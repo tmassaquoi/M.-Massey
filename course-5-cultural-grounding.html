@@ -119,20 +119,27 @@ body { margin: 0; font-family: var(--font-body); background: var(--bg); color: v
 .subsection-body { padding: 0 20px 20px; border-top: 1px solid var(--border) }
 .sub-note { font-size: 13px; color: var(--fg-muted); font-style: italic; margin: 14px 0 4px; line-height: 1.55 }
 
-.check-group { margin: 0; padding: 0; list-style: none }
-.group-heading { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin: 16px 0 8px; padding-top: 8px; border-top: 1px dashed var(--border) }
-.group-heading:first-child { border-top: none; margin-top: 8px }
-.check-item { display: flex; align-items: flex-start; gap: 11px; padding: 7px 0; cursor: pointer; border-bottom: 1px solid var(--border) }
-.check-item:last-child { border-bottom: none }
-.check-item input { position: absolute; opacity: 0; pointer-events: none }
-.check-box { flex-shrink: 0; width: 18px; height: 18px; border: 1.5px solid var(--border-strong); border-radius: 4px; margin-top: 3px; background: var(--bg); display: flex; align-items: center; justify-content: center; transition: background .15s, border-color .15s }
-.check-item input:checked ~ .check-box { background: var(--accent); border-color: var(--accent) }
-.check-item input:checked ~ .check-box::after { content: ''; width: 9px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translateY(-1px) }
-.check-label { font-size: 14px; line-height: 1.55; color: var(--fg); flex: 1; min-width: 0; transition: color .15s }
-.check-item input:checked ~ .check-label { color: var(--fg-subtle); text-decoration: line-through; text-decoration-color: var(--border-strong) }
-.nested-list { padding: 2px 0 2px 26px; border-left: 2px solid var(--border); margin: 2px 0 2px 8px }
-.nested-list .check-item { border-bottom: none; padding: 4px 0 }
-.nested-list .check-label { font-size: 13.5px }
+/* Q&A FORM */
+.question-block { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border) }
+.question-block:last-child { border-bottom: none; margin-bottom: 0 }
+.subheading { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-muted); margin: 20px 0 12px; padding-top: 16px; border-top: 1px dashed var(--border) }
+.subheading:first-child { border-top: none; margin-top: 8px }
+.q-label { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 7px }
+.q-label.lbl-q { background: var(--accent-light); color: var(--accent) }
+.q-label.lbl-assignment { background: var(--accent-2-light); color: var(--accent-2) }
+.q-label.lbl-reflection { background: #F0EDF8; color: #4A1860 }
+.q-label.lbl-application { background: #FDF5E6; color: #7A5008 }
+.q-prompt { font-size: 14px; line-height: 1.6; color: var(--fg); margin: 0 0 10px }
+.q-textarea { width: 100%; min-height: 96px; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font-body); font-size: 14px; line-height: 1.55; color: var(--fg); background: var(--bg); resize: vertical; transition: border-color .15s, box-shadow .15s; box-sizing: border-box }
+.q-textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent) }
+.module-submit { background: var(--accent-light); border: 1px solid var(--accent); border-radius: var(--radius); padding: 20px 24px; margin-top: 28px; display: flex; flex-direction: column; gap: 12px }
+.module-submit h3 { margin: 0; font-size: 14px; font-weight: 700; color: var(--accent) }
+.module-submit p { margin: 0; font-size: 13px; color: var(--fg-muted); line-height: 1.5 }
+.submit-actions { display: flex; gap: 10px; flex-wrap: wrap }
+.btn-copy { padding: 8px 16px; background: var(--surface); border: 1.5px solid var(--accent); color: var(--accent); font-family: var(--font-body); font-size: 13px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: background .15s }
+.btn-copy:hover { background: var(--accent-light) }
+.btn-form { padding: 8px 16px; background: var(--accent); color: #fff; text-decoration: none; font-family: var(--font-body); font-size: 13px; font-weight: 600; border-radius: 6px; transition: background .15s; display: inline-block }
+.btn-form:hover { background: var(--accent-hover) }
 
 .callout {
   border-left: 3px solid var(--accent-2); padding: 14px 18px; margin: 16px 0;
@@ -702,6 +709,33 @@ const ATTRIBUTION = {
   ]
 };
 
+// ----- FORM URLS (replace '#' with actual Google Form URLs) -----
+const FORM_URLS = {
+  module1: '#', module2: '#', module3: '#', module4: '#',
+  module5: '#', module6: '#', module7: '#',
+};
+
+// ----- ADAPTER: convert groups/items → parts/questions -----
+function adaptSections(sections) {
+  return sections.map(sec => ({
+    ...sec,
+    parts: sec.groups.map(g => ({
+      subheading: g.heading,
+      questions: g.items.map((item, i) => {
+        const text = typeof item === 'string' ? item : (item.text || item);
+        let label = 'Q';
+        const t = text.trimStart().toLowerCase();
+        if (/^(develop|design|write|build|create|map|audit|conduct|draft|plan|integrate nguzo|integrate ma|close with|build a fsts|develop a practice|develop the|design the|develop an|design a|build the|build elder|build resilience)/.test(t)) label = 'Assignment';
+        else if (/^(apply|apply to)/.test(t)) label = 'Application';
+        else if (/^(reflect|honestly assess|commit|practice|close with the ancestral)/.test(t)) label = 'Reflection';
+        return { id: `q_${sec.id}_g${sec.groups.indexOf(g)}_${i+1}`, label, prompt: text, placeholder: 'Your response...' };
+      })
+    }))
+  }));
+}
+
+DATA.forEach(mod => { mod.sections = adaptSections(mod.sections); });
+
 const STORE_KEY = 'fsts_c5_v1';
 let state = {};
 try {
@@ -713,12 +747,26 @@ function saveState() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
 }
 
-function allCheckItems(sections) {
-  return sections.flatMap(s =>
-    s.groups.flatMap(g => g.items.flatMap(item =>
-      typeof item === 'string' ? [item] : [item, ...(item.nested || [])]
-    ))
-  );
+function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+
+function allQuestions(sections) {
+  return sections.flatMap(s => s.parts.flatMap(p => p.questions));
+}
+
+function labelClass(label) {
+  return { 'Q': 'lbl-q', 'Assignment': 'lbl-assignment', 'Reflection': 'lbl-reflection', 'Application': 'lbl-application' }[label] || 'lbl-q';
+}
+
+function buildQuestion(q) {
+  const div = document.createElement('div');
+  div.className = 'question-block';
+  div.innerHTML = `<span class="q-label ${labelClass(q.label)}">${q.label}</span><p class="q-prompt">${q.prompt}</p>`;
+  const ta = document.createElement('textarea');
+  ta.className = 'q-textarea'; ta.id = q.id; ta.placeholder = q.placeholder || 'Your response...';
+  ta.value = state[q.id] || '';
+  ta.addEventListener('input', debounce(() => { state[q.id] = ta.value; saveState(); updateAll(); }, 500));
+  div.appendChild(ta);
+  return div;
 }
 
 function buildNav() {
@@ -744,45 +792,18 @@ function buildNav() {
 }
 
 function getModuleProgress(mod) {
-  const all = allCheckItems(mod.sections);
-  const done = all.filter(item => {
-    const key = typeof item === 'string' ? item : item.text;
-    return state[key];
-  }).length;
-  return { done, total: all.length };
-}
-
-function buildItem(itemText) {
-  const li = document.createElement('li');
-  li.className = 'check-item';
-  li.setAttribute('role', 'checkbox');
-  li.setAttribute('aria-checked', state[itemText] ? 'true' : 'false');
-  const id = 'cb-' + Math.random().toString(36).slice(2);
-  li.innerHTML = `
-    <input type="checkbox" id="${id}" ${state[itemText] ? 'checked' : ''}>
-    <span class="check-box" aria-hidden="true"></span>
-    <label class="check-label" for="${id}">${itemText}</label>
-  `;
-  const input = li.querySelector('input');
-  li.addEventListener('click', () => {
-    input.checked = !input.checked;
-    state[itemText] = input.checked;
-    li.setAttribute('aria-checked', input.checked ? 'true' : 'false');
-    saveState();
-    updateAll();
-  });
-  return li;
+  const qs = allQuestions(mod.sections);
+  const done = qs.filter(q => (state[q.id]||'').trim().length > 10).length;
+  return { done, total: qs.length };
 }
 
 function buildSection(sec) {
   const details = document.createElement('details');
   details.className = 'subsection';
   details.id = sec.id;
-
-  const items = sec.groups.flatMap(g => g.items.flatMap(i => typeof i === 'string' ? [i] : [i.text, ...(i.nested||[])]));
-  const done = items.filter(t => state[t]).length;
-  const total = items.length;
-
+  const qs = allQuestions([sec]);
+  const done = qs.filter(q => (state[q.id]||'').trim().length > 10).length;
+  const total = qs.length;
   details.innerHTML = `
     <summary>
       <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -799,47 +820,38 @@ function buildSection(sec) {
     </summary>
     <div class="subsection-body"></div>
   `;
-
   const body = details.querySelector('.subsection-body');
-
-  sec.groups.forEach(grp => {
-    const ul = document.createElement('ul');
-    ul.className = 'check-group';
-    if (grp.heading) {
-      const h = document.createElement('li');
-      h.className = 'group-heading';
-      h.textContent = grp.heading;
-      ul.appendChild(h);
+  sec.parts.forEach(part => {
+    if (part.subheading) {
+      const h = document.createElement('p');
+      h.className = 'subheading';
+      h.textContent = part.subheading;
+      body.appendChild(h);
     }
-    grp.items.forEach(item => {
-      if (typeof item === 'string') {
-        ul.appendChild(buildItem(item));
-      } else {
-        const li = buildItem(item.text);
-        if (item.nested) {
-          const nested = document.createElement('ul');
-          nested.className = 'nested-list';
-          item.nested.forEach(n => nested.appendChild(buildItem(n)));
-          li.appendChild(nested);
-        }
-        ul.appendChild(li);
-      }
-    });
-    body.appendChild(ul);
+    part.questions.forEach(q => body.appendChild(buildQuestion(q)));
   });
-
   return details;
+}
+
+function copyModuleResponses(modId) {
+  const mod = DATA.find(m => m.id === modId);
+  if (!mod) return;
+  const lines = [`${mod.num}: ${mod.title}`, ''];
+  allQuestions(mod.sections).forEach(q => {
+    lines.push(`[${q.label}] ${q.prompt}`);
+    lines.push(state[q.id] || '(no response)');
+    lines.push('');
+  });
+  navigator.clipboard.writeText(lines.join('\n')).catch(() => {});
 }
 
 function buildModules() {
   const main = document.getElementById('main-content');
-
   DATA.forEach(mod => {
     const section = document.createElement('section');
     section.className = 'module-section';
     section.id = mod.id;
     section.setAttribute('data-module', mod.id);
-
     section.innerHTML = `
       <p class="module-eyebrow">${mod.num}</p>
       <h2 class="module-title">${mod.title}</h2>
@@ -847,50 +859,52 @@ function buildModules() {
       <div class="module-intro">${mod.intro}</div>
       <hr class="module-divider">
     `;
-
     mod.sections.forEach(sec => section.appendChild(buildSection(sec)));
+    const modNum = mod.id.replace('module-', '');
+    const submitDiv = document.createElement('div');
+    submitDiv.className = 'module-submit';
+    submitDiv.innerHTML = `
+      <h3>Module ${modNum} Complete?</h3>
+      <p>Review your responses above, copy them, then submit via Google Form to receive your copy.</p>
+      <div class="submit-actions">
+        <button class="btn-copy" onclick="copyModuleResponses('${mod.id}')">Copy My Responses</button>
+        <a class="btn-form" href="${FORM_URLS['module'+modNum]}" target="_blank">Open Google Form →</a>
+      </div>
+    `;
+    section.appendChild(submitDiv);
     main.appendChild(section);
   });
-
-  // Attribution
   const attrSection = document.createElement('section');
   attrSection.className = 'attribution-section';
   attrSection.id = 'attribution';
   attrSection.setAttribute('data-module', 'attribution');
-
   const block = document.createElement('div');
   block.className = 'attribution-block';
   block.innerHTML = `<p class="attribution-eyebrow">Framework Attribution & Authorship</p>`;
-
   ATTRIBUTION.rows.forEach((row, i) => {
     const rowEl = document.createElement('div');
     rowEl.className = 'attribution-row';
     rowEl.innerHTML = `<p class="attribution-label">${row.label}</p><p class="attribution-text">${row.text}</p>`;
     block.appendChild(rowEl);
     if (i < ATTRIBUTION.rows.length - 1) {
-      const div = document.createElement('hr');
-      div.className = 'attribution-divider';
-      block.appendChild(div);
+      const hr = document.createElement('hr');
+      hr.className = 'attribution-divider';
+      block.appendChild(hr);
     }
   });
-
   attrSection.appendChild(block);
   main.appendChild(attrSection);
 }
 
 function updateAll() {
-  let totalDone = 0;
-  let totalItems = 0;
-
+  let totalDone = 0, totalItems = 0;
   DATA.forEach(mod => {
     const { done, total } = getModuleProgress(mod);
-    totalDone += done;
-    totalItems += total;
-
+    totalDone += done; totalItems += total;
     mod.sections.forEach(sec => {
-      const items = sec.groups.flatMap(g => g.items.flatMap(i => typeof i === 'string' ? [i] : [i.text, ...(i.nested||[])]));
-      const secDone = items.filter(t => state[t]).length;
-      const secTotal = items.length;
+      const qs = allQuestions([sec]);
+      const secDone = qs.filter(q => (state[q.id]||'').trim().length > 10).length;
+      const secTotal = qs.length;
       const countEl = document.querySelector(`[data-sec-count="${sec.id}"]`);
       const barEl = document.querySelector(`[data-sec-bar="${sec.id}"]`);
       if (countEl) countEl.textContent = `${secDone}/${secTotal}`;

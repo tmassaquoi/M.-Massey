@@ -1,0 +1,1318 @@
+<title>FOUNDATIONS</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap">
+
+<style>
+/* Layout: sticky nav + scrollable modules. Deep forest green palette for FOUNDATIONS. */
+:root {
+  --bg: #F2F5F0;
+  --surface: #FFFFFF;
+  --surface-2: #E8EDE4;
+  --fg: #141F16;
+  --fg-muted: #3D5445;
+  --fg-subtle: #7A9480;
+  --accent: #1B3E2A;
+  --accent-hover: #142D1F;
+  --accent-light: #E4EDE6;
+  --accent-2: #C4960E;
+  --accent-2-light: #FBF2DA;
+  --border: #D4DDD0;
+  --border-strong: #B0BFB0;
+  --positive: #1A7A4A;
+  --warning: #C4960E;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --radius: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A1A10;
+    --surface: #111E15;
+    --surface-2: #182820;
+    --fg: #E4EEE6;
+    --fg-muted: #7AA882;
+    --fg-subtle: #4A6850;
+    --accent: #4A9060;
+    --accent-hover: #58A870;
+    --accent-light: #0C1E10;
+    --accent-2: #D4A020;
+    --accent-2-light: #201808;
+    --border: #1A2E1E;
+    --border-strong: #2A4030;
+    --positive: #3AB870;
+    --warning: #D4A020;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A1A10;
+  --surface: #111E15;
+  --surface-2: #182820;
+  --fg: #E4EEE6;
+  --fg-muted: #7AA882;
+  --fg-subtle: #4A6850;
+  --accent: #4A9060;
+  --accent-hover: #58A870;
+  --accent-light: #0C1E10;
+  --accent-2: #D4A020;
+  --accent-2-light: #201808;
+  --border: #1A2E1E;
+  --border-strong: #2A4030;
+  --positive: #3AB870;
+  --warning: #D4A020;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box }
+body { margin: 0; font-family: var(--font-body); background: var(--bg); color: var(--fg); font-size: 15px; line-height: 1.65 }
+
+/* HEADER */
+.site-header {
+  background: var(--accent);
+  color: #fff;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 36px;
+}
+.header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 28px; flex-wrap: wrap }
+.header-text { flex: 1; min-width: 0 }
+.header-series { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .65; margin: 0 0 6px }
+.foundations-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+  padding: 4px 14px; border-radius: 100px; color: #fff; margin: 0 0 12px;
+}
+.header-title { font-family: var(--font-display); font-size: clamp(28px, 5vw, 42px); line-height: 1.1; margin: 0 0 10px; text-wrap: balance; color: #fff; font-style: italic }
+.header-desc { font-size: 14px; opacity: .8; margin: 0 0 14px; max-width: 60ch; line-height: 1.5 }
+.header-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap }
+.header-stat { font-size: 12px; opacity: .7 }
+.header-stat strong { opacity: 1; font-weight: 600 }
+.header-author { font-size: 12px; opacity: .75 }
+.header-author strong { font-weight: 600; opacity: 1 }
+.progress-ring { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px }
+.ring-svg { width: 80px; height: 80px }
+.ring-track { fill: none; stroke: rgba(255,255,255,.2); stroke-width: 6 }
+.ring-fill { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset .5s ease }
+.ring-pct { font-size: 15px; font-weight: 600; fill: #fff; text-anchor: middle; dominant-baseline: central; font-family: var(--font-body) }
+.ring-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .7; color: #fff }
+
+/* NAV */
+.module-nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none }
+.module-nav::-webkit-scrollbar { display: none }
+.nav-inner { display: flex; max-width: 960px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); min-width: max-content }
+.nav-tab { padding: 14px 13px; font-size: 13px; font-weight: 500; color: var(--fg-muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; font-family: var(--font-body) }
+.nav-tab:hover { color: var(--fg) }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent) }
+.nav-tab.capstone-tab { color: var(--accent-2); font-weight: 600 }
+.nav-tab.capstone-tab.active { border-bottom-color: var(--accent-2) }
+
+/* MAIN */
+.main-content { max-width: 960px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); padding-block: 0 80px }
+
+/* SECTION WRAPPERS */
+.course-section { padding-top: 56px }
+.section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px }
+.section-title { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 32px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; font-style: italic }
+.section-meta { font-size: 13px; color: var(--fg-muted); margin: 0 0 14px; font-style: italic }
+.section-intro { font-size: 14px; color: var(--fg-muted); margin: 0 0 24px; max-width: 70ch; line-height: 1.65; padding: 14px 18px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0 }
+.section-divider { border: none; border-top: 2px solid var(--border); margin: 0 0 28px }
+
+/* INTRO SECTION CARDS */
+.intro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0 }
+.intro-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px }
+.intro-card-icon { font-size: 24px; margin: 0 0 10px }
+.intro-card-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 0 0 6px }
+.intro-card-text { font-size: 13px; color: var(--fg-muted); margin: 0; line-height: 1.5 }
+.framework-list { list-style: none; margin: 20px 0; padding: 0; display: flex; flex-direction: column; gap: 10px }
+.framework-item { display: flex; align-items: flex-start; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px }
+.framework-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 4px }
+.framework-item-title { font-size: 14px; font-weight: 600; margin: 0 0 2px }
+.framework-item-desc { font-size: 13px; color: var(--fg-muted); margin: 0 }
+
+/* SUBSECTION */
+.subsection { margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden }
+.subsection summary { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; user-select: none; list-style: none }
+.subsection summary::-webkit-details-marker { display: none }
+.chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--fg-subtle); transition: transform .2s ease }
+.subsection[open] .chevron { transform: rotate(90deg) }
+.summary-text { flex: 1; min-width: 0 }
+.summary-code { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-subtle); margin: 0 0 2px }
+.summary-title { font-size: 15px; font-weight: 600; color: var(--fg); margin: 0; line-height: 1.3 }
+.summary-right { flex-shrink: 0; display: flex; align-items: center; gap: 8px }
+.prog-count { font-size: 12px; font-weight: 500; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap }
+.prog-bar { width: 56px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden }
+.prog-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .35s ease }
+.prog-fill.done { background: var(--positive) }
+.subsection-body { padding: 0 20px 24px; border-top: 1px solid var(--border) }
+.subsection-content { font-size: 14px; color: var(--fg-muted); line-height: 1.7; margin: 16px 0 24px; padding: 14px 18px; background: var(--surface-2); border-radius: var(--radius) }
+
+/* QUESTIONS */
+.question-block { margin: 0 0 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border) }
+.question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0 }
+.question-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px }
+.question-prompt { font-size: 14px; font-weight: 500; color: var(--fg); margin: 0 0 10px; line-height: 1.6 }
+.question-textarea {
+  width: 100%; min-height: 120px; padding: 12px 14px;
+  border: 1.5px solid var(--border-strong); border-radius: var(--radius);
+  font-family: var(--font-body); font-size: 14px; line-height: 1.6;
+  background: var(--bg); color: var(--fg); resize: vertical;
+  transition: border-color .15s;
+}
+.question-textarea:focus { outline: none; border-color: var(--accent) }
+.question-textarea.answered { border-color: var(--positive) }
+.radio-group { display: flex; flex-direction: column; gap: 8px }
+.radio-option { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: border-color .15s, background .15s }
+.radio-option:hover { border-color: var(--border-strong) }
+.radio-option.selected { border-color: var(--accent); background: var(--accent-light) }
+.radio-option input { position: absolute; opacity: 0; pointer-events: none }
+.radio-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--border-strong); flex-shrink: 0; display: flex; align-items: center; justify-content: center }
+.radio-option.selected .radio-dot { border-color: var(--accent); background: var(--accent) }
+.radio-option.selected .radio-dot::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff }
+.radio-label { font-size: 14px; color: var(--fg) }
+.scale-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap }
+.scale-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--fg-subtle); margin-top: 6px }
+.scale-option { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer }
+.scale-option input { position: absolute; opacity: 0; pointer-events: none }
+.scale-btn {
+  width: 40px; height: 40px; border-radius: var(--radius); border: 1.5px solid var(--border-strong);
+  background: var(--bg); display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600; color: var(--fg-muted); transition: all .15s; cursor: pointer;
+}
+.scale-option.selected .scale-btn { background: var(--accent); border-color: var(--accent); color: #fff }
+.scale-num { font-size: 11px; color: var(--fg-subtle) }
+.scale-wrapper { width: 100% }
+.scale-row { display: flex; gap: 8px; flex-wrap: wrap }
+
+/* MODULE SUBMIT PANEL */
+.module-submit-panel {
+  margin-top: 32px; padding: 24px; background: var(--surface-2);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+}
+.submit-panel-title { font-size: 14px; font-weight: 600; color: var(--fg); flex: 1; min-width: 200px }
+.submit-panel-sub { font-size: 13px; color: var(--fg-muted); margin: 4px 0 0 }
+.submit-panel-actions { display: flex; gap: 8px; flex-wrap: wrap }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: var(--radius); font-family: var(--font-body); font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: background .15s, color .15s; text-decoration: none }
+.btn-primary { background: var(--accent); color: #fff }
+.btn-primary:hover { background: var(--accent-hover) }
+.btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent) }
+.btn-outline:hover { background: var(--accent-light) }
+.btn-gold { background: var(--accent-2); color: #fff }
+.btn-gold:hover { filter: brightness(1.1) }
+.btn-ghost { background: var(--surface); color: var(--fg-muted); border: 1.5px solid var(--border) }
+.btn-ghost:hover { border-color: var(--border-strong); color: var(--fg) }
+.form-link { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; color: var(--accent-2); font-weight: 600; text-decoration: none }
+.form-link:hover { text-decoration: underline }
+.form-link-note { font-size: 12px; color: var(--fg-subtle); margin-top: 4px }
+
+/* CAPSTONE */
+.capstone-section { padding-top: 56px }
+.capstone-header {
+  background: var(--accent); color: #fff; border-radius: var(--radius);
+  padding: 28px 32px; margin-bottom: 28px;
+}
+.capstone-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .7; margin: 0 0 8px }
+.capstone-title { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 30px); margin: 0 0 8px; font-style: italic }
+.capstone-desc { font-size: 14px; opacity: .85; margin: 0; max-width: 60ch; line-height: 1.5 }
+.capstone-parts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 32px }
+.capstone-part-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 24px;
+  cursor: pointer; transition: border-color .15s;
+}
+.capstone-part-card:hover { border-color: var(--border-strong) }
+.capstone-part-card.active { border-color: var(--accent); background: var(--accent-light) }
+.part-num { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px }
+.part-title { font-size: 15px; font-weight: 600; margin: 0 0 4px }
+.part-desc { font-size: 13px; color: var(--fg-muted); margin: 0 }
+
+.readiness-grid { display: flex; flex-direction: column; gap: 8px; margin: 0 0 24px }
+.readiness-item { display: flex; align-items: center; gap: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px }
+.readiness-num { font-size: 11px; font-weight: 700; color: var(--fg-subtle); width: 24px; flex-shrink: 0; font-variant-numeric: tabular-nums }
+.readiness-text { flex: 1; font-size: 14px; line-height: 1.5 }
+.readiness-scale { display: flex; gap: 6px; flex-shrink: 0 }
+.readiness-btn {
+  width: 36px; height: 36px; border-radius: 6px; border: 1.5px solid var(--border-strong);
+  background: var(--bg); font-size: 13px; font-weight: 600; color: var(--fg-muted);
+  cursor: pointer; transition: all .15s; display: flex; align-items: center; justify-content: center;
+}
+.readiness-btn:hover { border-color: var(--border-strong); background: var(--surface-2) }
+.readiness-btn.sel-1 { background: #C8322A; border-color: #C8322A; color: #fff }
+.readiness-btn.sel-2 { background: #D4700A; border-color: #D4700A; color: #fff }
+.readiness-btn.sel-3 { background: #B0941A; border-color: #B0941A; color: #fff }
+.readiness-btn.sel-4 { background: var(--positive); border-color: var(--positive); color: #fff }
+@media (max-width: 600px) {
+  .readiness-item { flex-wrap: wrap }
+  .readiness-scale { margin-top: 8px }
+}
+
+.readiness-score-block {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; margin: 24px 0; display: none;
+}
+.readiness-score-block.visible { display: block }
+.score-label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 6px }
+.score-value { font-family: var(--font-display); font-size: 48px; color: var(--accent); margin: 0 0 4px; font-style: italic }
+.score-out { font-size: 18px; color: var(--fg-muted) }
+.score-interp { font-size: 14px; color: var(--fg); margin: 12px 0 0; padding: 12px 16px; border-radius: var(--radius); background: var(--surface-2) }
+
+.blueprint-field { margin: 0 0 24px }
+.blueprint-label { font-size: 13px; font-weight: 700; color: var(--fg); margin: 0 0 4px }
+.blueprint-hint { font-size: 13px; color: var(--fg-muted); margin: 0 0 8px; font-style: italic }
+
+.capstone-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 32px 0 0 }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 200;
+  display: none; align-items: flex-start; justify-content: center;
+  padding: max(40px, env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px)) max(40px, env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
+  overflow-y: auto;
+}
+.modal-overlay.open { display: flex }
+.modal-box {
+  background: var(--surface); border-radius: var(--radius);
+  max-width: 720px; width: 100%; padding: 28px 32px;
+  position: relative;
+}
+.modal-title { font-family: var(--font-display); font-size: 22px; font-style: italic; margin: 0 0 16px }
+.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--fg-subtle); line-height: 1 }
+.modal-close:hover { color: var(--fg) }
+.modal-body { white-space: pre-wrap; font-size: 13px; font-family: monospace; line-height: 1.7; background: var(--bg); padding: 16px; border-radius: var(--radius); max-height: 60vh; overflow-y: auto; color: var(--fg) }
+.modal-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap }
+
+/* ATTRIBUTION */
+.attribution-section { padding-top: 56px; padding-bottom: 20px }
+.attribution-block { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 28px 32px }
+.attribution-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px }
+.attribution-row { margin-bottom: 20px }
+.attribution-row:last-child { margin-bottom: 0 }
+.attribution-label { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 5px }
+.attribution-text { font-size: 14px; line-height: 1.65; color: var(--fg); margin: 0 }
+.attribution-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 }
+
+@media (max-width: 520px) {
+  .progress-ring { display: none }
+  .capstone-parts { grid-template-columns: 1fr }
+  .modal-box { padding: 20px }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important } }
+</style>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-text">
+      <p class="header-series">From Soil to Sky Training Series</p>
+      <p class="foundations-badge">Foundations Course</p>
+      <h1 class="header-title">FOUNDATIONS</h1>
+      <p class="header-desc">The foundational training for organizational leaders developing or leading youth development and mentoring programming.</p>
+      <div class="header-meta">
+        <span class="header-stat">7 Modules &nbsp;·&nbsp; ~7 hours &nbsp;·&nbsp; Self-paced</span>
+        <span class="header-author">Framework integration by <strong>Tiana Massaquoi</strong>, Keep Still Cares Foundation</span>
+      </div>
+    </div>
+    <div class="progress-ring">
+      <svg class="ring-svg" viewBox="0 0 80 80" aria-hidden="true">
+        <circle class="ring-track" cx="40" cy="40" r="32"/>
+        <circle class="ring-fill" id="ring-fill" cx="40" cy="40" r="32"/>
+        <text class="ring-pct" id="ring-pct" x="40" y="40">0%</text>
+      </svg>
+      <span class="ring-label">Complete</span>
+    </div>
+  </div>
+</header>
+
+<nav class="module-nav" aria-label="Module navigation">
+  <div class="nav-inner" id="nav-inner"></div>
+</nav>
+
+<main class="main-content" id="main-content"></main>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+    <h2 class="modal-title" id="modal-title">Your Responses</h2>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="modal-copy-btn">Copy All</button>
+      <button class="btn btn-ghost" id="modal-close-btn">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CIRC = 2 * Math.PI * 32;
+
+// Replace these with your Google Form URLs for each module
+const FORM_URLS = {
+  module1: '#', // Replace with your Google Form URL for Module 1
+  module2: '#', // Replace with your Google Form URL for Module 2
+  module3: '#', // Replace with your Google Form URL for Module 3
+  module4: '#', // Replace with your Google Form URL for Module 4
+  module5: '#', // Replace with your Google Form URL for Module 5
+  module6: '#', // Replace with your Google Form URL for Module 6
+  module7: '#', // Replace with your Google Form URL for Module 7
+  capstone: '#', // Replace with your Google Form URL for Capstone
+};
+
+const DATA = [
+  {
+    id: 'intro',
+    navLabel: 'Intro',
+    eyebrow: 'Welcome',
+    title: 'Course Overview',
+    meta: 'How to use this training and what you will build',
+    isIntro: true,
+  },
+  {
+    id: 'module-1',
+    navLabel: 'M1',
+    eyebrow: 'Module 1  ·  ~50 min',
+    title: 'Why Youth Development? The Five Frameworks',
+    meta: 'Understanding the theoretical foundation before designing anything',
+    formKey: 'module1',
+    intro: 'Before you can design a program, you must understand the frameworks that define what youth development actually is. This module introduces the five frameworks at the core of FSTS and makes the case for why each one is necessary.',
+    sections: [
+      {
+        id: 'm1s1', code: '1.1', title: 'The State of Youth Development',
+        content: 'For decades, youth programming was organized around deficits — what young people lacked, what risks they faced, what problems needed to be prevented. Researchers like Richard Lerner and Karen Pittman challenged this paradigm, arguing that preventing problems is not the same as developing people. "Problem-free is not fully prepared" (Pittman) became the defining challenge to the field. Asset-based youth development asks a different question: not "what\'s wrong with these young people?" but "what do they need to thrive, and what does our organization need to provide?"',
+        questions: [
+          { id: 'q_m1s1_1', type: 'textarea', label: 'Q1 — Your Starting Definition', prompt: 'Before this training, how did you or your organization define "youth development"? What does that definition include, and what does it leave out?', placeholder: 'Write your response here...' },
+          { id: 'q_m1s1_2', type: 'textarea', label: 'Q2 — Your Community', prompt: 'Describe the community your program will serve. What are the assets — the strengths, relationships, cultural resources, and capacities already present? What are the specific challenges young people face?', placeholder: 'Write your response here...' },
+          { id: 'q_m1s1_3', type: 'textarea', label: 'Q3 — Reframing Success', prompt: 'Karen Pittman\'s assertion is "problem-free is not fully prepared." Describe one program or policy in your community that still measures youth success by what hasn\'t happened (no arrests, no dropout, no pregnancy). How would Pittman reframe its success metrics?', placeholder: 'Write your response here...' },
+        ]
+      },
+      {
+        id: 'm1s2', code: '1.2', title: 'The Five Frameworks — Overview',
+        content: 'FOUNDATIONS integrates five frameworks that, together, define what effective youth development and mentoring looks like: Positive Youth Development (the research-based theory of thriving), the 40 Developmental Assets (the community asset-building model), Karen Pittman\'s Youth Development Ecosystems Research (the systems-level argument), Elements of Effective Practice in Mentoring (the evidence-based standards for mentoring programs), and Emergent Strategy (Adrienne Maree Brown\'s theory of how organizations can embody the change they want to create). Each framework contributes something the others do not.',
+        questions: [
+          { id: 'q_m1s2_1', type: 'radio', label: 'Q4 — Framework Resonance', prompt: 'Which framework resonates most with your current understanding of what young people need?', options: ['Positive Youth Development', '40 Developmental Assets', 'Karen Pittman\'s Ecosystems Research', 'Elements of Effective Practice in Mentoring', 'Emergent Strategy'] },
+          { id: 'q_m1s2_2', type: 'textarea', label: 'Q5 — Organizational Culture as Fractal', prompt: 'Adrienne Maree Brown argues "how we are is how we do" — the internal culture of your organization fractals into the experience of every young person you serve. Describe one way your organizational culture currently models the values you want young people to develop, and one way it contradicts them.', placeholder: 'Write your response here...' },
+          { id: 'q_m1s2_3', type: 'textarea', label: 'Q6 — Assignment: Vision Statement', prompt: 'Write a one-paragraph vision statement — who are the young people you serve, what do you want their lives to look like when they complete your program, and what conditions will your organization create to make that possible?', placeholder: 'Write your vision statement here...' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-2',
+    navLabel: 'M2',
+    eyebrow: 'Module 2  ·  ~60 min',
+    title: 'Positive Youth Development & Developmental Assets',
+    meta: 'The research-backed foundation — and its limits',
+    formKey: 'module2',
+    intro: 'PYD is the research-backed foundation that transformed how the field thinks about young people. Understanding it deeply — including its limits — is prerequisite to everything that follows in the FSTS series.',
+    sections: [
+      {
+        id: 'm2s1', code: '2.1', title: 'Positive Youth Development',
+        content: 'Positive Youth Development (PYD) emerged in the 1980s-90s as researchers argued that youth work should organize around what young people can become, not what they must avoid. Richard Lerner\'s longitudinal research at Tufts University produced the "Five Cs" model — Competence, Confidence, Connection, Character, and Caring/Compassion — as the indicators of thriving youth. When all five are present, a sixth C emerges: Contribution. Karen Pittman at the Forum for Youth Investment argued these Cs require intentional investment: "young people need to be developed, not just saved."',
+        questions: [
+          { id: 'q_m2s1_1', type: 'textarea', label: 'Q1 — The Five Cs in Your Program', prompt: 'Name the five Cs of PYD and write one specific, observable example of what each C would look like in a young person completing your program. Be concrete — not "they will be more confident" but describe a specific behavior or moment.', placeholder: 'Competence:\nConfidence:\nConnection:\nCharacter:\nCaring/Compassion:' },
+          { id: 'q_m2s1_2', type: 'textarea', label: 'Q2 — Cultivating Contribution', prompt: 'The sixth C — Contribution — is the developmental outcome that emerges when the other five are present. How will your program explicitly cultivate Contribution? What will young people actually do to give back to their community?', placeholder: 'Write your response here...' },
+          { id: 'q_m2s1_3', type: 'textarea', label: 'Q3 — The Relationship Imperative', prompt: 'PYD research says the primary mechanism of development is the relationship between a young person and at least one caring adult — not the curriculum, not the activities. What does this mean for how you will recruit, train, and support your mentors?', placeholder: 'Write your response here...' },
+        ]
+      },
+      {
+        id: 'm2s2', code: '2.2', title: 'The 40 Developmental Assets',
+        content: 'Peter Benson and Search Institute surveyed more than 3 million young people and identified 40 conditions — "Developmental Assets" — that predict positive outcomes. Twenty are external (family support, caring adults, school climate, constructive use of time, community values for youth) and twenty are internal (commitment to learning, positive values, social competencies, positive identity). The key finding: the more assets a young person has, the more likely they are to thrive and the less likely they are to engage in high-risk behaviors. Assets are not delivered by programs alone — they require the whole community.',
+        questions: [
+          { id: 'q_m2s2_1', type: 'textarea', label: 'Q4 — Asset Gap Analysis', prompt: 'Review the 40 Developmental Assets. Identify five assets that are MOST present in the community and families your program will serve, and five that are LEAST present. What does this gap analysis tell you about where your program should focus its energy?', placeholder: 'Most present (5 assets):\n\nLeast present (5 assets):\n\nWhat this means for my program:' },
+          { id: 'q_m2s2_2', type: 'textarea', label: 'Q5 — Community Asset Providers', prompt: 'The 40 Assets framework argues that no single program can provide all the assets a young person needs — development requires the whole community. Name three community institutions (schools, congregations, businesses, etc.) whose partnership would significantly strengthen your program\'s asset-building capacity.', placeholder: 'Write your response here...' },
+          { id: 'q_m2s2_3', type: 'textarea', label: 'Q6 — Assignment: Theory of Thriving', prompt: 'Write a 2–3 sentence statement of what a young person who has completed your program will be able to do, believe about themselves, and contribute to their community. Ground this in at least three of the 5 Cs.', placeholder: 'Write your Theory of Thriving here...' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-3',
+    navLabel: 'M3',
+    eyebrow: 'Module 3  ·  ~60 min',
+    title: 'Elements of Effective Practice in Mentoring',
+    meta: 'The evidence-based standards for programs that do not harm',
+    formKey: 'module3',
+    intro: 'The Elements of Effective Practice in Mentoring (EEPM) are the field\'s evidence-based standards for youth mentoring programs. They are not aspirational — they are the minimum conditions for a program that does not harm young people. This module applies them directly to your program design.',
+    sections: [
+      {
+        id: 'm3s1', code: '3.1', title: 'The Program Development Standards',
+        content: 'MENTOR (The National Mentoring Partnership) developed the EEPM through decades of research on what distinguishes effective mentoring programs from harmful ones. The standards cover the full program lifecycle: Recruitment (bringing in the right mentors), Screening (removing those who would cause harm), Training (preparing mentors before they meet youth), Matching (thoughtfully pairing mentors and youth), Match Support and Monitoring (ongoing connection between program staff, mentors, and youth), and Closure (ending matches with intentionality). Programs that skip any of these elements consistently produce worse outcomes — and sometimes cause direct harm.',
+        questions: [
+          { id: 'q_m3s1_1', type: 'textarea', label: 'Q1 — Mentor Recruitment Strategy', prompt: 'Describe your program\'s mentor recruitment strategy. Where will you find mentors? What will you say to them? Who will do the recruiting, and what relationship do they have to the community you serve?', placeholder: 'Write your response here...' },
+          { id: 'q_m3s1_2', type: 'textarea', label: 'Q2 — Pre-Match Training Design', prompt: 'EEPM specifies mandatory training before mentors meet their youth. Design the outline of your program\'s pre-match mentor training — what will you cover, in what order, and why? What values and skills must every mentor have before Day 1?', placeholder: 'Training outline:\n\n1.\n2.\n3.\n4.\n5.' },
+          { id: 'q_m3s1_3', type: 'textarea', label: 'Q3 — Match Support Plan', prompt: 'Match support and monitoring is the element most often underfunded. Name your program\'s match support plan: how often will staff contact mentors and youth separately? What questions will they ask? What responses trigger an intervention, and what does that intervention look like?', placeholder: 'Write your response here...' },
+        ]
+      },
+      {
+        id: 'm3s2', code: '3.2', title: 'Safety, Boundaries & Program Integrity',
+        content: 'Child safety is not a compliance checkbox — it is an ethical foundation. EEPM specifies that programs must conduct background checks on all mentors and volunteers, provide mandatory reporting training, establish clear boundary guidelines, and create confidential channels for youth to report concerns. Premature match closure — when a mentor ends the relationship before the planned term — is one of the most harmful things that can happen to a youth in a mentoring program. Research shows premature closure increases the risk of negative outcomes for youth who were already in difficult circumstances. Programs must have a closure protocol that protects youth.',
+        questions: [
+          { id: 'q_m3s2_1', type: 'textarea', label: 'Q4 — Non-Negotiable Safety Policies', prompt: 'List the five non-negotiable safety policies your program must have in place before it opens. For each policy, name who is responsible for it, how it is communicated to mentors and families, and how violations are handled.', placeholder: 'Policy 1:\n\nPolicy 2:\n\nPolicy 3:\n\nPolicy 4:\n\nPolicy 5:' },
+          { id: 'q_m3s2_2', type: 'textarea', label: 'Q5 — Premature Closure Protocol', prompt: 'Mentoring relationships sometimes end before the planned closure — a mentor moves, a youth disengages, or the match simply doesn\'t work. Design your program\'s premature closure protocol. How will you support the young person? How will you support the mentor? What is the goal of the closure conversation?', placeholder: 'Write your response here...' },
+          { id: 'q_m3s2_3', type: 'textarea', label: 'Q6 — Assignment: Match Support Schedule', prompt: 'Write your program\'s complete match support schedule for the first year: month-by-month contact plan, what information you\'re gathering at each touchpoint, and what actions you\'ll take if a match is in distress.', placeholder: 'Month 1:\nMonth 2:\nMonth 3:\nMonths 4–6:\nMonths 7–9:\nMonths 10–12:\n\nDistress protocol:' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-4',
+    navLabel: 'M4',
+    eyebrow: 'Module 4  ·  ~60 min',
+    title: 'Emergent Strategy for Organizations',
+    meta: 'How to build an organization that embodies the change it wants to create',
+    formKey: 'module4',
+    intro: 'Emergent Strategy is not a productivity method. It is a theory of change about how organizations can embody the values they want to spread — and why most organizations unknowingly replicate the systems they oppose. This module applies all nine principles directly to your organizational design.',
+    sections: [
+      {
+        id: 'm4s1', code: '4.1', title: 'The Nine Principles — Applied to Your Organization',
+        content: 'Adrienne Maree Brown developed Emergent Strategy by studying natural systems — mycelium networks, murmuration of starlings, river deltas — and asking what they could teach organizations about change. The framework rests on a single claim: "how we are is how we do." The way your organization runs internally — how decisions are made, how conflict is handled, how staff are treated, how fast you move — fractals directly into the experience of every young person you serve. You cannot build a healing, trusting, justice-oriented program inside an organization that operates with hierarchy, distrust, and urgency.',
+        questions: [
+          { id: 'q_m4s1_1', type: 'textarea', label: 'Q1 — Fractals (Small is Good, Small is All)', prompt: 'Brown argues the shape of your smallest interaction is the shape of your whole organization. Audit one regular internal meeting or practice (staff meeting, supervision, team communication). Does it reflect the values you want young people to experience? What would you change?', placeholder: 'Write your response here...' },
+          { id: 'q_m4s1_2', type: 'textarea', label: 'Q2 — Speed of Trust', prompt: 'Identify one decision your organization has made — or is currently making — faster than the trust between the people involved can support. What is driving that pace? What is it costing?', placeholder: 'Write your response here...' },
+          { id: 'q_m4s1_3', type: 'textarea', label: 'Q3 — Critical Connections vs. Critical Mass', prompt: 'Funders push for large numbers. How will you defend a program that serves 15 young people deeply over one that serves 150 superficially? Write your argument.', placeholder: 'Write your response here...' },
+          { id: 'q_m4s1_4', type: 'textarea', label: 'Q4 — Trust the People', prompt: 'Name one group your organization currently over-manages (youth, staff, volunteers, families). What would genuinely trusting them more look like — concretely, not abstractly?', placeholder: 'Write your response here...' },
+          { id: 'q_m4s1_5', type: 'textarea', label: 'Q5 — Never a Failure, Always a Lesson', prompt: 'Describe an organizational failure you have witnessed or experienced. What lesson did it carry that was never extracted? How would you build a culture where failures are examined rather than buried?', placeholder: 'Write your response here...' },
+        ]
+      },
+      {
+        id: 'm4s2', code: '4.2', title: 'Building an Emergent Strategy Organization',
+        content: 'The nine principles of Emergent Strategy are: Small is good/small is all (fractals); Change is constant — be like water; There is always enough time for the right work; There is a conversation in the room — find it; Never a failure, always a lesson; Trust the people; Move at the speed of trust; Focus on critical connections more than critical mass; Less prep, more presence. Together they describe an organization that is adaptive, relational, and honest — one that trusts the people it works with and moves at the pace of genuine relationship rather than manufactured urgency.',
+        questions: [
+          { id: 'q_m4s2_1', type: 'textarea', label: 'Q6 — Your Biggest ES Challenge', prompt: 'Which of the nine principles most directly challenges how your organization currently operates? Design one specific practice change you will make in the next 90 days.', placeholder: 'Principle that challenges us most:\n\nWhat we currently do instead:\n\nThe practice change I will make:' },
+          { id: 'q_m4s2_2', type: 'textarea', label: 'Q7 — Assignment: Organizational ES Audit', prompt: 'For each of the nine principles, rate your organization on a scale of 1–5 (1=we actively violate this, 5=we consistently embody this). For your three lowest scores, write one specific change you could make in the next 90 days.', placeholder: 'Small is good: /5\nChange is constant: /5\nEnough time: /5\nConversation in the room: /5\nNever a failure: /5\nTrust the people: /5\nSpeed of trust: /5\nCritical connections: /5\nLess prep, more presence: /5\n\nBottom 3 and my changes:\n1.\n2.\n3.' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-5',
+    navLabel: 'M5',
+    eyebrow: 'Module 5  ·  ~60 min',
+    title: 'Engaging Youth — Relationships at the Center',
+    meta: 'What it actually takes for young people to choose to show up',
+    formKey: 'module5',
+    intro: 'Everything in this series points back to one fact: youth development lives or dies in the quality of the relationships between young people and the adults in their lives. This module is about what it actually takes to build those relationships and create conditions where young people choose to show up.',
+    sections: [
+      {
+        id: 'm5s1', code: '5.1', title: 'Youth Engagement Principles',
+        content: 'There is a critical difference between youth participation (young people show up and do what they are told) and youth engagement (young people show up because this is genuinely theirs). Engaged young people have voice — they help shape the program. They have choice — they make real decisions, not simulated ones. They have accountability — they are trusted with real responsibility and held to real expectations. Youth-adult partnership is the structural expression of these principles: creating shared authority between adults and young people in program design, governance, and evaluation.',
+        questions: [
+          { id: 'q_m5s1_1', type: 'textarea', label: 'Q1 — Participation vs. Engagement', prompt: 'What is the difference between "youth participation" and "youth engagement"? Describe what genuine engagement looks like versus the appearance of engagement — give a specific example of each from your experience or observation.', placeholder: 'Write your response here...' },
+          { id: 'q_m5s1_2', type: 'textarea', label: 'Q2 — What a Young Person Taught You', prompt: 'Think of a young person who significantly shaped your understanding of this work. What did they teach you? What did you have to unlearn about young people because of what you learned from them?', placeholder: 'Write your response here...' },
+          { id: 'q_m5s1_3', type: 'textarea', label: 'Q3 — Honest Power Assessment', prompt: 'Meaningful engagement requires that young people have real voice, real choice, and real accountability — not simulated power. Assess your program honestly: where will young people have genuine decision-making authority? Where is voice consultative but decisions already made? Name both honestly.', placeholder: 'Where young people will have genuine authority:\n\nWhere voice is consultative:' },
+        ]
+      },
+      {
+        id: 'm5s2', code: '5.2', title: 'Relationship Building & Youth Recruitment',
+        content: 'Young people are recruited by people they already trust, not by flyers and websites. The most effective youth recruitment strategy identifies trusted community members — coaches, faith leaders, school counselors, older youth, program alumni — and equips them to have honest conversations with young people about what the program is and what it asks. First impressions matter enormously: a young person\'s decision to stay past the first session is shaped by whether they felt seen, welcomed, and respected in that first hour. Who opens the door, and how they open it, sets the entire tone.',
+        questions: [
+          { id: 'q_m5s2_1', type: 'textarea', label: 'Q4 — Youth Recruitment Strategy', prompt: 'Design your program\'s youth recruitment strategy. Where will you find young people? Who will approach them and what relationship do they have to the community? What will young people be asked to commit to?', placeholder: 'Write your response here...' },
+          { id: 'q_m5s2_2', type: 'textarea', label: 'Q5 — Hardest-to-Reach Youth', prompt: 'Some young people who need this program most are hardest to engage — those who have been let down by institutions, those who are highly independent, those carrying the most weight. Describe the specific barriers you expect, and your strategy for each.', placeholder: 'Write your response here...' },
+          { id: 'q_m5s2_3', type: 'textarea', label: 'Q6 — First Circle Session Design', prompt: 'Design your program\'s first circle session. What is its purpose? What will happen? What do you want young people to feel at the end of it? How will you know the session achieved its goal?', placeholder: 'Write your response here...' },
+          { id: 'q_m5s2_4', type: 'textarea', label: 'Q7 — Assignment: Youth Engagement Charter', prompt: 'Write a one-page charter that states what young people can expect from your program, what you will ask of them, and how you will hold each other accountable. Write it in language a 15-year-old would actually read.', placeholder: 'Write your Youth Engagement Charter here...' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-6',
+    navLabel: 'M6',
+    eyebrow: 'Module 6  ·  ~60 min',
+    title: 'Engaging Volunteers, Families & Community',
+    meta: 'Building the ecosystem that development requires',
+    formKey: 'module6',
+    intro: 'Youth development does not happen in a building. It happens in an ecosystem — and the quality of that ecosystem depends on the quality of your relationships with the adults around your young people: mentors and volunteers who show up consistently, families who trust you with their children, and a community that sees your program as genuinely theirs.',
+    sections: [
+      {
+        id: 'm6s1', code: '6.1', title: 'Volunteer & Mentor Engagement',
+        content: 'Research on mentoring effectiveness consistently finds that what matters most is not the mentor\'s credentials — it is their consistency and their genuine care for the young person. Mentors who show up when they say they will, who ask questions and listen, who stay when the relationship gets hard — these are the mentors who change young people\'s lives. Programs that recruit mentors from the community the young people come from, who share cultural background, or who have navigated similar challenges, typically produce stronger relationships than programs that recruit from outside the community.',
+        questions: [
+          { id: 'q_m6s1_1', type: 'textarea', label: 'Q1 — Ideal Mentor Profile', prompt: 'Who is your ideal mentor or volunteer? Write a detailed description — not just skills and experience, but values, life stage, personal qualities, and what they need to be able to give. What life experience or character would make someone excellent for your program specifically?', placeholder: 'Write your response here...' },
+          { id: 'q_m6s1_2', type: 'textarea', label: 'Q2 — Application & Screening Process', prompt: 'Design your mentor application and screening process. What information will you collect? What will you look for? What would automatically disqualify someone? What gray areas will you exercise judgment on, and who makes those calls?', placeholder: 'Write your response here...' },
+          { id: 'q_m6s1_3', type: 'textarea', label: 'Q3 — Full Mentor Orientation', prompt: 'EEPM specifies minimum training requirements. Beyond those requirements, what additional preparation do YOUR mentors need for your specific program and community? Design the full mentor orientation experience — content, length, format, and what mentors should be able to do at the end.', placeholder: 'Write your response here...' },
+        ]
+      },
+      {
+        id: 'm6s2', code: '6.2', title: 'Family Engagement',
+        content: 'Many youth-serving organizations struggle with family engagement because they approach families as resources to be recruited rather than as partners with authority. Effective family engagement begins with honest acknowledgment: many families in Black and Brown communities have good reasons to be skeptical of institutions that claim to help their children. Earning family trust requires consistency over time, demonstrating genuine respect for family knowledge and authority, and creating meaningful opportunities for families to shape the program — not just to attend events.',
+        questions: [
+          { id: 'q_m6s2_1', type: 'textarea', label: 'Q4 — The Trust History', prompt: 'Be honest: why might families in your community be reluctant to trust your organization or any organization? What is the history? What has happened before? How will you earn trust differently?', placeholder: 'Write your response here...' },
+          { id: 'q_m6s2_2', type: 'textarea', label: 'Q5 — 90-Day Family Engagement Plan', prompt: 'Design your family engagement strategy for the first 90 days of your program. Who reaches out? When? Through what channels? What events or touchpoints exist? What are you asking families for, and what are you offering them in return?', placeholder: 'Write your response here...' },
+        ]
+      },
+      {
+        id: 'm6s3', code: '6.3', title: 'Community Stakeholder Engagement',
+        content: 'A program that only exists inside its own building is always fragile — dependent on its own capacity, disconnected from the community\'s own assets and power. Programs that build genuine community partnerships become part of the community\'s infrastructure. The distinction matters: a partnership is a relationship of mutual benefit and mutual investment; a referral arrangement is transactional. Programs that seek partners (not vendors or referral sources) build something more durable.',
+        questions: [
+          { id: 'q_m6s3_1', type: 'textarea', label: 'Q6 — Three Critical Partners', prompt: 'Identify three community stakeholders — organizations, institutions, or leaders — whose partnership would most strengthen your program. For each: what do they have that you need? What does your program offer them? What would you ask of them in a first conversation?', placeholder: 'Partner 1:\n\nPartner 2:\n\nPartner 3:' },
+          { id: 'q_m6s3_2', type: 'textarea', label: 'Q7 — First Partner Letter', prompt: 'Write the first letter or email you would send to your most important community partner. It should communicate who you are, what you\'re building, why this partnership serves both parties, and what you are specifically asking for. Make it concrete.', placeholder: 'Write your letter or email here...' },
+          { id: 'q_m6s3_3', type: 'textarea', label: 'Q8 — Assignment: Stakeholder Map', prompt: 'Complete a stakeholder map for your program. List each stakeholder group (youth, mentors, families, community partners, funders, board). For each: their role in the program, what they need from you, what you need from them, and your relationship-building strategy.', placeholder: 'Youth:\n\nMentors/Volunteers:\n\nFamilies:\n\nCommunity Partners:\n\nFunders:\n\nBoard:' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-7',
+    navLabel: 'M7',
+    eyebrow: 'Module 7  ·  ~45 min',
+    title: 'Program Architecture',
+    meta: 'The structural decisions that turn a vision into an actual program',
+    formKey: 'module7',
+    intro: 'This module brings everything together into the structural decisions that turn a vision into an actual program. By the end, you will have the core architecture of your program designed.',
+    sections: [
+      {
+        id: 'm7s1', code: '7.1', title: 'Theory of Change',
+        content: 'A theory of change is the logical argument for why your program will produce the outcomes you claim. It is not a list of activities — it is the "because" behind everything you do. The IF → THEN → AND structure: IF you provide specific inputs and conditions, THEN young people will participate in activities and reach outputs, AND this will produce specific outcomes BECAUSE of a testable theory about how change happens. Programs without an explicit theory of change cannot learn from their data, cannot explain what they do to partners and funders, and cannot make principled decisions about what to change when something isn\'t working.',
+        questions: [
+          { id: 'q_m7s1_1', type: 'textarea', label: 'Q1 — Your Theory of Change', prompt: 'Write your program\'s theory of change in this format: "IF we provide [inputs/conditions], THEN young people will [participate in activities and reach outputs], AND this will result in [outcomes] because [theory/reason]." Be specific — avoid vague language like "thrive" or "succeed" without defining what those mean.', placeholder: 'IF we provide...\n\nTHEN young people will...\n\nAND this will result in...\n\nBECAUSE...' },
+          { id: 'q_m7s1_2', type: 'textarea', label: 'Q2 — Theory Assumptions', prompt: 'What assumptions does your theory of change make? Name at least three assumptions that must be true for your theory to work — about young people, about families, about your community, about your organization\'s capacity.', placeholder: 'Assumption 1:\n\nAssumption 2:\n\nAssumption 3:' },
+        ]
+      },
+      {
+        id: 'm7s2', code: '7.2', title: 'Program Structure',
+        content: 'Program structure decisions — how long, how often, where, with whom — are theory-of-change decisions. A year-long program is not just longer than a six-week program: it has a different theory about what development requires (time, consistency, trust). A cohort model is not just different than individual case management: it has a different theory about what young people need (community and belonging, not just a caring adult). Make each structural decision deliberately, with a named reason, and make sure your structure is funded — a mentoring program that matches mentors and youth but cannot afford to support the matches will cause harm.',
+        questions: [
+          { id: 'q_m7s2_1', type: 'textarea', label: 'Q3 — Design Justification', prompt: 'Justify your program\'s design decisions: How long will the program run? How many hours per week/month? Where will you meet? Will programming be individual, group, or both? For each decision, name the research or value that drives it.', placeholder: 'Program length and justification:\n\nIntensity (hours/week) and justification:\n\nSetting and justification:\n\nIndividual vs. group model and justification:' },
+          { id: 'q_m7s2_2', type: 'textarea', label: 'Q4 — Staff Roles', prompt: 'What staff roles does your program require? For each role, write: the title, primary responsibility, values required, and the specific relationship that role holds with young people. Include any volunteer roles in this list.', placeholder: 'Role 1:\n\nRole 2:\n\nRole 3:\n\nVolunteer roles:' },
+          { id: 'q_m7s2_3', type: 'textarea', label: 'Q5 — Data Strategy', prompt: 'What is your program\'s data strategy? What will you measure? When? Who collects the data? How will you use data to improve the program in real time — not just at year end? Name the specific moment in your program calendar when you review and adjust.', placeholder: 'Write your response here...' },
+        ]
+      },
+      {
+        id: 'm7s3', code: '7.3', title: 'Readiness & Launch',
+        content: 'The program you have designed in this training may be larger than what you can currently fund. That is not a failure — it is a gap analysis. The distinction between your launch-ready version and your full-vision version allows you to start well and build toward what you are ultimately creating. The 18-month plan specifies the growth path: what you launch with, what you add, and at what milestones.',
+        questions: [
+          { id: 'q_m7s3_1', type: 'textarea', label: 'Q6 — Launch-Ready vs. Full Vision', prompt: 'What is the gap between the program you\'ve designed and the program you can currently fund? Name your launch-ready version (what you can do now) and your full-vision version (what you\'re building toward). What is your 18-month growth plan?', placeholder: 'Launch-ready version (now):\n\nFull vision:\n\n18-month growth plan:' },
+          { id: 'q_m7s3_2', type: 'textarea', label: 'Q7 — Assignment: Program Design One-Pager', prompt: 'Write a one-page program description you could share with a potential partner or funder. Include: theory of change, target population, program structure, key partners, staffing, and evaluation approach. Use the language of this training — PYD, developmental assets, EEPM, Emergent Strategy — accurately and naturally.', placeholder: 'Write your one-pager here...' },
+        ]
+      },
+    ]
+  },
+];
+
+const READINESS_ITEMS = [
+  'We have a clearly articulated theory of change for our youth development work',
+  'Our leadership team is genuinely committed to youth-centered, asset-based programming',
+  'We have financial sustainability for at least 12 months of initial programming',
+  'We have or can develop an appropriate physical space for youth programming',
+  'We have mandatory reporter training and youth safety protocols in place',
+  'We have established relationships with the community our program will serve',
+  'Our staff and/or leadership have formal training in youth development principles',
+  'We have a plan for recruiting and screening mentors or volunteers',
+  'We have a plan for recruiting youth participants that reflects their actual community',
+  'We have a strategy for meaningful family engagement',
+  'We have evaluation tools or the capacity to develop them',
+  'Our board understands and supports this programming direction',
+  'We have partnerships with schools, community organizations, or other youth-serving entities',
+  'Our internal organizational culture reflects the values we want young people to experience',
+  'We understand the specific community we serve (demographics, assets, challenges, history)',
+  'Our staff have the cultural competency to serve the youth we are targeting',
+  'We have a plan for program sustainability beyond initial funding',
+  'We have mentor and volunteer training capacity',
+  'Our leaders are doing their own personal and professional development work',
+  'We are ready to launch this program in the next 6–12 months',
+];
+
+const BLUEPRINT_FIELDS = [
+  { id: 'bp_name', label: 'Program Name & Mission', hint: 'Write your program\'s name and one-sentence mission statement.' },
+  { id: 'bp_toc', label: 'Theory of Change', hint: 'Your IF→THEN→AND theory of change from Module 7.' },
+  { id: 'bp_population', label: 'Target Youth Population', hint: 'Who are you serving? Age range, community, selection criteria, cohort size, and why this group.' },
+  { id: 'bp_mentor', label: 'Mentor / Volunteer Role', hint: 'Role description, commitment required, training plan, and support structure.' },
+  { id: 'bp_structure', label: 'Program Structure', hint: 'Key phases or stages, timeline, meeting frequency, key activities, and the role of each.' },
+  { id: 'bp_family', label: 'Family Engagement Strategy', hint: 'How families are involved, communication plan, events, and their role in decision-making.' },
+  { id: 'bp_partners', label: 'Community Partnerships', hint: 'Your three most critical partnerships, what each provides, and how you will maintain them.' },
+  { id: 'bp_culture', label: 'Cultural Grounding', hint: 'How cultural identity, African cultural frameworks, or community traditions are embedded in your program — not as an add-on, but as a foundation.' },
+  { id: 'bp_eval', label: 'Evaluation & Learning', hint: 'What you will measure, when, how you will use the data, and what would cause you to change the program.' },
+  { id: 'bp_launch', label: 'Launch Readiness (90-Day Plan)', hint: 'What happens in months 1, 2, and 3 of your program launch.' },
+];
+
+const ATTRIBUTION_ROWS = [
+  { label: 'Positive Youth Development', text: 'Developed by Richard M. Lerner (Tufts University Institute for Applied Research in Youth Development) and Karen Pittman (Forum for Youth Investment). The "problem-free is not fully prepared" framework is Karen Pittman\'s foundational contribution. The 5 Cs model and the 4-H Study of Positive Youth Development are Lerner\'s primary contributions.' },
+  { label: '40 Developmental Assets', text: 'Developed by Peter C. Benson and Search Institute (Minneapolis). Based on surveys of more than 3 million young people. The 40 Developmental Assets framework is Search Institute\'s intellectual property, developed over more than three decades of research.' },
+  { label: 'Elements of Effective Practice in Mentoring', text: 'Developed and published by MENTOR: The National Mentoring Partnership. The EEPM are the field\'s evidence-based standards for youth mentoring programs and are available at mentoring.org. All programs using the EEPM framework should reference MENTOR as the source.' },
+  { label: 'Emergent Strategy', text: 'Developed by Adrienne Maree Brown, published in Emergent Strategy: Shaping Change, Changing Worlds (AK Press, 2017). The nine principles, biomimicry lens, and organizational application are brown\'s original framework, rooted in Black feminist thought, Octavia Butler\'s speculative fiction, and the Detroit organizing tradition of Grace Lee Boggs.' },
+  { label: 'Course Design & Framework Integration for FSTS', text: 'This course — including the integration of the five frameworks, the module structure, the application questions and assignments, and the Program Design Blueprint capstone — is original work by Tiana Massaquoi, founder of Keep Still Cares Foundation. FOUNDATIONS is the prerequisite course of the From Soil to Sky Training Series.' },
+];
+
+// ---- STATE ----
+const STORE_KEY = 'fsts_foundations_v1';
+let state = {};
+try { const r = localStorage.getItem(STORE_KEY); if (r) state = JSON.parse(r); } catch(e) {}
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {} }
+function getVal(id) { return state[id] || ''; }
+function setVal(id, val) { state[id] = val; save(); }
+
+// ---- PROGRESS ----
+function countSection(sec) {
+  const qs = sec.questions || [];
+  const answered = qs.filter(q => {
+    const v = getVal(q.id);
+    return v && v.toString().trim() !== '';
+  }).length;
+  return { answered, total: qs.length };
+}
+
+function updateSectionProgress(sec) {
+  const { answered, total } = countSection(sec);
+  const countEl = document.querySelector(`[data-sec-count="${sec.id}"]`);
+  const barEl = document.querySelector(`[data-sec-bar="${sec.id}"]`);
+  if (countEl) countEl.textContent = `${answered}/${total}`;
+  if (barEl) {
+    barEl.style.width = total ? `${Math.round(answered / total * 100)}%` : '0%';
+    barEl.classList.toggle('done', answered === total && total > 0);
+  }
+}
+
+function updateOverallProgress() {
+  let totalQ = 0, answeredQ = 0;
+  DATA.forEach(mod => {
+    if (mod.isIntro) return;
+    (mod.sections || []).forEach(sec => {
+      const { answered, total } = countSection(sec);
+      totalQ += total;
+      answeredQ += answered;
+    });
+  });
+  // Add capstone
+  READINESS_ITEMS.forEach((_, i) => { totalQ++; if (getVal(`readiness_${i}`) !== '') answeredQ++; });
+  BLUEPRINT_FIELDS.forEach(f => { totalQ++; if (getVal(f.id).trim()) answeredQ++; });
+
+  const pct = totalQ ? Math.round(answeredQ / totalQ * 100) : 0;
+  const fill = document.getElementById('ring-fill');
+  const pctEl = document.getElementById('ring-pct');
+  if (fill) { fill.setAttribute('stroke-dasharray', CIRC); fill.style.strokeDashoffset = CIRC - (CIRC * pct / 100); }
+  if (pctEl) pctEl.textContent = pct + '%';
+}
+
+function updateAll(secId) {
+  if (secId) {
+    DATA.forEach(mod => (mod.sections || []).forEach(sec => { if (sec.id === secId) updateSectionProgress(sec); }));
+  } else {
+    DATA.forEach(mod => (mod.sections || []).forEach(sec => updateSectionProgress(sec)));
+  }
+  updateOverallProgress();
+}
+
+// ---- RENDER QUESTIONS ----
+function renderQuestion(q) {
+  const block = document.createElement('div');
+  block.className = 'question-block';
+
+  const label = document.createElement('p');
+  label.className = 'question-label';
+  label.textContent = q.label;
+  block.appendChild(label);
+
+  const prompt = document.createElement('p');
+  prompt.className = 'question-prompt';
+  prompt.textContent = q.prompt;
+  block.appendChild(prompt);
+
+  if (q.type === 'textarea') {
+    const ta = document.createElement('textarea');
+    ta.className = 'question-textarea';
+    ta.id = q.id;
+    ta.rows = 5;
+    ta.placeholder = q.placeholder || 'Write your response here...';
+    ta.value = getVal(q.id);
+    if (ta.value.trim()) ta.classList.add('answered');
+    ta.addEventListener('input', () => {
+      setVal(q.id, ta.value);
+      ta.classList.toggle('answered', !!ta.value.trim());
+      updateAll(q.id.replace(/q_([^_]+)_\d+/, '$1').replace('q_', '').replace(/_\d+$/, ''));
+      // extract section id from question id
+    });
+    // Better section id extraction
+    ta.addEventListener('input', () => {
+      // find section
+      let secId = null;
+      DATA.forEach(mod => (mod.sections || []).forEach(sec => {
+        if (sec.questions && sec.questions.find(qx => qx.id === q.id)) secId = sec.id;
+      }));
+      if (secId) updateSectionProgress({ id: secId, questions: [] });
+      updateSectionProgress(findSection(q.id));
+      updateOverallProgress();
+    });
+    block.appendChild(ta);
+
+  } else if (q.type === 'radio') {
+    const group = document.createElement('div');
+    group.className = 'radio-group';
+    q.options.forEach(opt => {
+      const saved = getVal(q.id);
+      const label2 = document.createElement('label');
+      label2.className = 'radio-option' + (saved === opt ? ' selected' : '');
+      const inp = document.createElement('input');
+      inp.type = 'radio';
+      inp.name = q.id;
+      inp.value = opt;
+      inp.checked = saved === opt;
+      const dot = document.createElement('span');
+      dot.className = 'radio-dot';
+      const txt = document.createElement('span');
+      txt.className = 'radio-label';
+      txt.textContent = opt;
+      label2.appendChild(inp);
+      label2.appendChild(dot);
+      label2.appendChild(txt);
+      label2.addEventListener('click', () => {
+        group.querySelectorAll('.radio-option').forEach(el => el.classList.remove('selected'));
+        label2.classList.add('selected');
+        inp.checked = true;
+        setVal(q.id, opt);
+        updateSectionProgress(findSection(q.id));
+        updateOverallProgress();
+      });
+      group.appendChild(label2);
+    });
+    block.appendChild(group);
+
+  } else if (q.type === 'scale') {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'scale-wrapper';
+    const row = document.createElement('div');
+    row.className = 'scale-row';
+    const min = q.min || 1;
+    const max = q.max || 5;
+    const saved = getVal(q.id);
+    for (let i = min; i <= max; i++) {
+      const opt = document.createElement('label');
+      opt.className = 'scale-option' + (String(saved) === String(i) ? ' selected' : '');
+      const inp = document.createElement('input');
+      inp.type = 'radio';
+      inp.name = q.id;
+      inp.value = i;
+      inp.checked = String(saved) === String(i);
+      const btn = document.createElement('span');
+      btn.className = 'scale-btn';
+      btn.textContent = i;
+      opt.appendChild(inp);
+      opt.appendChild(btn);
+      opt.addEventListener('click', () => {
+        row.querySelectorAll('.scale-option').forEach(el => el.classList.remove('selected'));
+        opt.classList.add('selected');
+        inp.checked = true;
+        setVal(q.id, String(i));
+        updateSectionProgress(findSection(q.id));
+        updateOverallProgress();
+      });
+      row.appendChild(opt);
+    }
+    const scaleLabels = document.createElement('div');
+    scaleLabels.className = 'scale-labels';
+    scaleLabels.innerHTML = `<span>${q.minLabel || min}</span><span>${q.maxLabel || max}</span>`;
+    wrapper.appendChild(row);
+    wrapper.appendChild(scaleLabels);
+    block.appendChild(wrapper);
+  }
+
+  return block;
+}
+
+function findSection(qid) {
+  let found = null;
+  DATA.forEach(mod => (mod.sections || []).forEach(sec => {
+    if (sec.questions && sec.questions.find(q => q.id === qid)) found = sec;
+  }));
+  return found || { id: '', questions: [] };
+}
+
+// ---- RENDER SUBSECTION ----
+function renderSubsection(sec) {
+  const details = document.createElement('details');
+  details.className = 'subsection';
+  details.id = sec.id;
+
+  const { answered, total } = countSection(sec);
+  details.innerHTML = `
+    <summary>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 4 10 8 6 12"/></svg>
+      <span class="summary-text">
+        <span class="summary-code">${sec.code}</span>
+        <span class="summary-title">${sec.title}</span>
+      </span>
+      <span class="summary-right">
+        <span class="prog-count" data-sec-count="${sec.id}">${answered}/${total}</span>
+        <span class="prog-bar"><span class="prog-fill${answered===total&&total>0?' done':''}" data-sec-bar="${sec.id}" style="width:${total?Math.round(answered/total*100):0}%"></span></span>
+      </span>
+    </summary>
+  `;
+
+  const body = document.createElement('div');
+  body.className = 'subsection-body';
+
+  if (sec.content) {
+    const ctx = document.createElement('div');
+    ctx.className = 'subsection-content';
+    ctx.textContent = sec.content;
+    body.appendChild(ctx);
+  }
+
+  (sec.questions || []).forEach(q => body.appendChild(renderQuestion(q)));
+  details.appendChild(body);
+  return details;
+}
+
+// ---- MODULE SUBMIT PANEL ----
+function renderSubmitPanel(mod) {
+  const panel = document.createElement('div');
+  panel.className = 'module-submit-panel';
+
+  const info = document.createElement('div');
+  info.style.flex = '1';
+  info.innerHTML = `<div class="submit-panel-title">Ready to submit ${mod.eyebrow.split('·')[0].trim()}?</div>
+    <div class="submit-panel-sub">Copy your responses or submit directly to Google Form.</div>`;
+  panel.appendChild(info);
+
+  const actions = document.createElement('div');
+  actions.className = 'submit-panel-actions';
+
+  const reviewBtn = document.createElement('button');
+  reviewBtn.className = 'btn btn-outline';
+  reviewBtn.textContent = 'Review Responses';
+  reviewBtn.addEventListener('click', () => showReviewModal(mod));
+  actions.appendChild(reviewBtn);
+
+  const copyBtn = document.createElement('button');
+  copyBtn.className = 'btn btn-ghost';
+  copyBtn.textContent = 'Copy Responses';
+  copyBtn.addEventListener('click', () => copyModuleResponses(mod));
+  actions.appendChild(copyBtn);
+
+  const formUrl = FORM_URLS[mod.formKey];
+  const formWrap = document.createElement('div');
+  formWrap.style.display = 'flex'; formWrap.style.flexDirection = 'column'; formWrap.style.gap = '3px';
+  const formLink = document.createElement('a');
+  formLink.className = 'btn btn-gold';
+  formLink.textContent = 'Submit to Google Form →';
+  formLink.href = formUrl;
+  if (formUrl !== '#') formLink.target = '_blank';
+  formWrap.appendChild(formLink);
+  if (formUrl === '#') {
+    const note = document.createElement('span');
+    note.className = 'form-link-note';
+    note.textContent = 'Google Form URL not yet configured';
+    formWrap.appendChild(note);
+  }
+  actions.appendChild(formWrap);
+  panel.appendChild(actions);
+  return panel;
+}
+
+// ---- BUILD MAIN CONTENT ----
+function buildIntro() {
+  const sec = document.createElement('section');
+  sec.className = 'course-section';
+  sec.id = 'intro';
+  sec.setAttribute('data-module', 'intro');
+  sec.innerHTML = `
+    <p class="section-eyebrow">Welcome</p>
+    <h2 class="section-title">How to Use This Training</h2>
+    <hr class="section-divider">
+    <div class="section-intro">FOUNDATIONS is the prerequisite course for the From Soil to Sky Training Series. It integrates five evidence-based frameworks to give you the theoretical foundation and practical design tools you need before you begin the deeper framework courses. Complete all seven modules and the capstone in sequence.</div>
+  `;
+
+  const grid = document.createElement('div');
+  grid.className = 'intro-grid';
+  [
+    { icon: '⏱', title: '~7 Hours Total', text: 'Seven modules of 45–60 minutes each, plus a 60–90 minute capstone. Work at your own pace.' },
+    { icon: '✍️', title: 'Questions & Assignments', text: 'Each module has reflection questions and a substantive assignment. Your responses are saved automatically.' },
+    { icon: '📋', title: 'Google Form Submission', text: 'Submit each module\'s responses via Google Form to get a copy emailed to you and share with your trainer.' },
+    { icon: '🏗', title: 'You Build Your Program', text: 'Every module adds to your Program Design Blueprint. The capstone compiles everything into a complete draft.' },
+  ].forEach(card => {
+    const c = document.createElement('div');
+    c.className = 'intro-card';
+    c.innerHTML = `<div class="intro-card-icon">${card.icon}</div><div class="intro-card-title">${card.title}</div><p class="intro-card-text">${card.text}</p>`;
+    grid.appendChild(c);
+  });
+  sec.appendChild(grid);
+
+  const fwLabel = document.createElement('h3');
+  fwLabel.style.cssText = 'font-size:15px;font-weight:700;margin:32px 0 12px';
+  fwLabel.textContent = 'The Five Frameworks';
+  sec.appendChild(fwLabel);
+
+  const list = document.createElement('ul');
+  list.className = 'framework-list';
+  [
+    { title: 'Positive Youth Development', desc: 'Richard Lerner & Karen Pittman — the research-based theory of the 5 Cs and what thriving looks like.' },
+    { title: '40 Developmental Assets', desc: 'Search Institute — the community asset-building model built from 3 million youth surveys.' },
+    { title: 'Youth Development Ecosystems', desc: 'Karen Pittman — the systems-level argument for why programs alone cannot develop young people.' },
+    { title: 'Elements of Effective Practice in Mentoring', desc: 'MENTOR — evidence-based standards for mentoring programs that help rather than harm.' },
+    { title: 'Emergent Strategy', desc: 'Adrienne Maree Brown — how organizations can embody the change they want to create.' },
+  ].forEach(fw => {
+    const li = document.createElement('li');
+    li.className = 'framework-item';
+    li.innerHTML = `<span class="framework-dot"></span><div><div class="framework-item-title">${fw.title}</div><p class="framework-item-desc">${fw.desc}</p></div>`;
+    list.appendChild(li);
+  });
+  sec.appendChild(list);
+  return sec;
+}
+
+function buildModule(mod) {
+  const sec = document.createElement('section');
+  sec.className = 'course-section';
+  sec.id = mod.id;
+  sec.setAttribute('data-module', mod.id);
+
+  sec.innerHTML = `
+    <p class="section-eyebrow">${mod.eyebrow}</p>
+    <h2 class="section-title">${mod.title}</h2>
+    <p class="section-meta">${mod.meta}</p>
+    <div class="section-intro">${mod.intro}</div>
+    <hr class="section-divider">
+  `;
+
+  (mod.sections || []).forEach(s => sec.appendChild(renderSubsection(s)));
+  sec.appendChild(renderSubmitPanel(mod));
+  return sec;
+}
+
+function buildCapstone() {
+  const sec = document.createElement('section');
+  sec.className = 'capstone-section course-section';
+  sec.id = 'capstone';
+  sec.setAttribute('data-module', 'capstone');
+
+  const header = document.createElement('div');
+  header.className = 'capstone-header';
+  header.innerHTML = `
+    <p class="capstone-eyebrow">Capstone — ~60–90 min</p>
+    <h2 class="capstone-title">Organizational Readiness Assessment + Program Design Blueprint</h2>
+    <p class="capstone-desc">Part 1 assesses your organization's readiness to launch. Part 2 compiles your work from all seven modules into a complete Program Design Blueprint you can share with partners and funders.</p>
+  `;
+  sec.appendChild(header);
+
+  // Part tabs
+  const parts = document.createElement('div');
+  parts.className = 'capstone-parts';
+  const p1card = document.createElement('div');
+  p1card.className = 'capstone-part-card active';
+  p1card.id = 'part1-card';
+  p1card.innerHTML = `<div class="part-num">Part 1</div><div class="part-title">Organizational Readiness Assessment</div><p class="part-desc">Rate your organization on 20 indicators to identify strengths and gaps.</p>`;
+  const p2card = document.createElement('div');
+  p2card.className = 'capstone-part-card';
+  p2card.id = 'part2-card';
+  p2card.innerHTML = `<div class="part-num">Part 2</div><div class="part-title">Program Design Blueprint</div><p class="part-desc">Complete your blueprint across 10 design domains.</p>`;
+  parts.appendChild(p1card);
+  parts.appendChild(p2card);
+  sec.appendChild(parts);
+
+  // Part 1
+  const part1 = document.createElement('div');
+  part1.id = 'capstone-part1';
+
+  const p1desc = document.createElement('p');
+  p1desc.style.cssText = 'font-size:14px;color:var(--fg-muted);margin:0 0 20px;font-style:italic';
+  p1desc.textContent = 'Rate your organization honestly on each indicator. 1 = Not at all, 2 = Just starting, 3 = Making progress, 4 = Fully ready.';
+  part1.appendChild(p1desc);
+
+  const grid = document.createElement('div');
+  grid.className = 'readiness-grid';
+
+  READINESS_ITEMS.forEach((item, i) => {
+    const row = document.createElement('div');
+    row.className = 'readiness-item';
+    const num = document.createElement('span');
+    num.className = 'readiness-num';
+    num.textContent = i + 1;
+    const text = document.createElement('span');
+    text.className = 'readiness-text';
+    text.textContent = item;
+    const scale = document.createElement('div');
+    scale.className = 'readiness-scale';
+    const saved = getVal(`readiness_${i}`);
+    [1,2,3,4].forEach(v => {
+      const btn = document.createElement('button');
+      btn.className = `readiness-btn${saved === String(v) ? ` sel-${v}` : ''}`;
+      btn.textContent = v;
+      btn.type = 'button';
+      btn.addEventListener('click', () => {
+        scale.querySelectorAll('.readiness-btn').forEach(b => b.className = 'readiness-btn');
+        btn.className = `readiness-btn sel-${v}`;
+        setVal(`readiness_${i}`, String(v));
+        updateReadinessScore();
+        updateOverallProgress();
+      });
+      scale.appendChild(btn);
+    });
+    row.appendChild(num);
+    row.appendChild(text);
+    row.appendChild(scale);
+    grid.appendChild(row);
+  });
+  part1.appendChild(grid);
+
+  const scoreBlock = document.createElement('div');
+  scoreBlock.className = 'readiness-score-block';
+  scoreBlock.id = 'readiness-score-block';
+  scoreBlock.innerHTML = `
+    <p class="score-label">Your Readiness Score</p>
+    <div><span class="score-value" id="score-value">0</span><span class="score-out">/80</span></div>
+    <div class="score-interp" id="score-interp"></div>
+  `;
+  part1.appendChild(scoreBlock);
+  sec.appendChild(part1);
+
+  // Part 2
+  const part2 = document.createElement('div');
+  part2.id = 'capstone-part2';
+  part2.style.display = 'none';
+
+  const p2desc = document.createElement('p');
+  p2desc.style.cssText = 'font-size:14px;color:var(--fg-muted);margin:0 0 24px;font-style:italic';
+  p2desc.textContent = 'Complete each section of your Program Design Blueprint. You can draw from your module assignments — copy your best responses here and refine them.';
+  part2.appendChild(p2desc);
+
+  BLUEPRINT_FIELDS.forEach(f => {
+    const field = document.createElement('div');
+    field.className = 'blueprint-field';
+    const lbl = document.createElement('p');
+    lbl.className = 'blueprint-label';
+    lbl.textContent = f.label;
+    const hint = document.createElement('p');
+    hint.className = 'blueprint-hint';
+    hint.textContent = f.hint;
+    const ta = document.createElement('textarea');
+    ta.className = 'question-textarea';
+    ta.id = f.id;
+    ta.rows = 5;
+    ta.value = getVal(f.id);
+    if (ta.value.trim()) ta.classList.add('answered');
+    ta.addEventListener('input', () => {
+      setVal(f.id, ta.value);
+      ta.classList.toggle('answered', !!ta.value.trim());
+      updateOverallProgress();
+    });
+    field.appendChild(lbl);
+    field.appendChild(hint);
+    field.appendChild(ta);
+    part2.appendChild(field);
+  });
+  sec.appendChild(part2);
+
+  // Tab switching
+  p1card.addEventListener('click', () => {
+    p1card.classList.add('active'); p2card.classList.remove('active');
+    part1.style.display = ''; part2.style.display = 'none';
+  });
+  p2card.addEventListener('click', () => {
+    p2card.classList.add('active'); p1card.classList.remove('active');
+    part1.style.display = 'none'; part2.style.display = '';
+  });
+
+  // Actions
+  const actions = document.createElement('div');
+  actions.className = 'capstone-actions';
+
+  const genBtn = document.createElement('button');
+  genBtn.className = 'btn btn-gold';
+  genBtn.textContent = 'Generate My Blueprint';
+  genBtn.addEventListener('click', generateBlueprint);
+  actions.appendChild(genBtn);
+
+  const copyCapstoneBtn = document.createElement('button');
+  copyCapstoneBtn.className = 'btn btn-outline';
+  copyCapstoneBtn.textContent = 'Copy Capstone Responses';
+  copyCapstoneBtn.addEventListener('click', copyCapstoneResponses);
+  actions.appendChild(copyCapstoneBtn);
+
+  const formUrl = FORM_URLS['capstone'];
+  const formLink = document.createElement('a');
+  formLink.className = 'btn btn-primary';
+  formLink.textContent = 'Submit to Google Form →';
+  formLink.href = formUrl;
+  if (formUrl !== '#') formLink.target = '_blank';
+  actions.appendChild(formLink);
+
+  sec.appendChild(actions);
+  return sec;
+}
+
+function buildAttribution() {
+  const sec = document.createElement('section');
+  sec.className = 'attribution-section course-section';
+  sec.id = 'attribution';
+  sec.setAttribute('data-module', 'attribution');
+
+  const block = document.createElement('div');
+  block.className = 'attribution-block';
+  block.innerHTML = `<p class="attribution-eyebrow">Framework Attribution & Authorship</p>`;
+
+  ATTRIBUTION_ROWS.forEach((row, i) => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'attribution-row';
+    rowEl.innerHTML = `<p class="attribution-label">${row.label}</p><p class="attribution-text">${row.text}</p>`;
+    block.appendChild(rowEl);
+    if (i < ATTRIBUTION_ROWS.length - 1) {
+      const hr = document.createElement('hr');
+      hr.className = 'attribution-divider';
+      block.appendChild(hr);
+    }
+  });
+
+  sec.appendChild(block);
+  return sec;
+}
+
+// ---- READINESS SCORE ----
+function updateReadinessScore() {
+  let total = 0;
+  let answered = 0;
+  READINESS_ITEMS.forEach((_, i) => {
+    const v = parseInt(getVal(`readiness_${i}`));
+    if (!isNaN(v)) { total += v; answered++; }
+  });
+
+  if (answered < READINESS_ITEMS.length) return;
+
+  const block = document.getElementById('readiness-score-block');
+  const valEl = document.getElementById('score-value');
+  const interpEl = document.getElementById('score-interp');
+  if (!block) return;
+  block.classList.add('visible');
+  valEl.textContent = total;
+
+  let interp = '';
+  if (total >= 60) interp = 'Strong readiness. Your organization has most of the foundations in place. Focus on your lowest-scored areas as your primary launch priorities.';
+  else if (total >= 40) interp = 'Moderate readiness. You have meaningful foundations but significant gaps. Use your Program Design Blueprint to address the lowest-scored areas before launch.';
+  else interp = 'Early stage. Your organization is in the groundwork phase — this is the right time to be building. Use your blueprint to identify your first 3 priorities and focus there.';
+  interpEl.textContent = interp;
+}
+
+// ---- MODAL ----
+function openModal(title, content) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').textContent = content;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+document.getElementById('modal-copy-btn').addEventListener('click', () => {
+  const text = document.getElementById('modal-body').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('modal-copy-btn').textContent = 'Copied!';
+    setTimeout(() => { document.getElementById('modal-copy-btn').textContent = 'Copy All'; }, 2000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+});
+
+function buildModuleText(mod) {
+  let text = `${mod.eyebrow}\n${mod.title}\n${'='.repeat(60)}\n\n`;
+  (mod.sections || []).forEach(sec => {
+    text += `${sec.code} — ${sec.title}\n${'-'.repeat(40)}\n`;
+    (sec.questions || []).forEach(q => {
+      const v = getVal(q.id);
+      text += `\n${q.label}\n${q.prompt}\n\nResponse: ${v || '(Not answered)'}\n`;
+    });
+    text += '\n';
+  });
+  return text;
+}
+
+function showReviewModal(mod) {
+  openModal(`Review: ${mod.title}`, buildModuleText(mod));
+}
+
+function copyModuleResponses(mod) {
+  const text = buildModuleText(mod);
+  navigator.clipboard.writeText(text).catch(() => {});
+}
+
+function copyCapstoneResponses() {
+  let text = 'CAPSTONE RESPONSES\n' + '='.repeat(60) + '\n\n';
+  text += 'PART 1: ORGANIZATIONAL READINESS ASSESSMENT\n';
+  let total = 0;
+  READINESS_ITEMS.forEach((item, i) => {
+    const v = getVal(`readiness_${i}`);
+    text += `${i+1}. ${item}\n   Rating: ${v || '(Not rated)'}/4\n`;
+    if (v) total += parseInt(v);
+  });
+  text += `\nTotal Score: ${total}/80\n\n`;
+  text += 'PART 2: PROGRAM DESIGN BLUEPRINT\n';
+  BLUEPRINT_FIELDS.forEach(f => {
+    text += `\n${f.label}\n${'-'.repeat(40)}\n${getVal(f.id) || '(Not answered)'}\n`;
+  });
+  navigator.clipboard.writeText(text).catch(() => {});
+}
+
+function generateBlueprint() {
+  let text = 'PROGRAM DESIGN BLUEPRINT\n';
+  text += 'From Soil to Sky Training Series — FOUNDATIONS Capstone\n';
+  text += '='.repeat(60) + '\n\n';
+
+  BLUEPRINT_FIELDS.forEach(f => {
+    text += `${f.label.toUpperCase()}\n${'─'.repeat(40)}\n`;
+    text += `${getVal(f.id) || '(Not yet completed)'}\n\n`;
+  });
+
+  text += '='.repeat(60) + '\n';
+  text += 'ORGANIZATIONAL READINESS SUMMARY\n';
+  let score = 0;
+  READINESS_ITEMS.forEach((item, i) => {
+    const v = parseInt(getVal(`readiness_${i}`));
+    if (!isNaN(v)) { score += v; text += `${i+1}. ${item}: ${v}/4\n`; }
+    else text += `${i+1}. ${item}: (not rated)\n`;
+  });
+  text += `\nOverall Readiness Score: ${score}/80\n`;
+  openModal('Your Program Design Blueprint', text);
+}
+
+// ---- NAV ----
+function buildNav() {
+  const nav = document.getElementById('nav-inner');
+  const navItems = [
+    { id: 'intro', label: 'Intro' },
+    ...DATA.filter(m => !m.isIntro).map(m => ({ id: m.id, label: m.navLabel })),
+    { id: 'capstone', label: 'Capstone', isCapstone: true },
+    { id: 'attribution', label: 'Attribution' },
+  ];
+  navItems.forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-tab' + (item.isCapstone ? ' capstone-tab' : '');
+    btn.textContent = item.label;
+    btn.dataset.target = item.id;
+    btn.addEventListener('click', () => {
+      document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    nav.appendChild(btn);
+  });
+}
+
+// ---- INTERSECTION OBSERVER ----
+function initIO() {
+  const tabs = document.querySelectorAll('.nav-tab');
+  const sections = document.querySelectorAll('[data-module]');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('data-module');
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => io.observe(s));
+}
+
+// ---- INIT ----
+const main = document.getElementById('main-content');
+buildNav();
+main.appendChild(buildIntro());
+DATA.filter(m => !m.isIntro).forEach(mod => main.appendChild(buildModule(mod)));
+main.appendChild(buildCapstone());
+main.appendChild(buildAttribution());
+updateAll();
+updateReadinessScore();
+initIO();
+</script>
