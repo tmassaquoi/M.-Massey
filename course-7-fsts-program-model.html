@@ -1,0 +1,623 @@
+<title>The FSTS Program Model</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap">
+
+<style>
+/* Rich amber-brown palette — Course 7: The FSTS Program Model (original work) */
+:root {
+  --bg: #F5F2EE;
+  --surface: #FFFFFF;
+  --surface-2: #EDE8E2;
+  --fg: #1C1008;
+  --fg-muted: #4A3520;
+  --fg-subtle: #8A7060;
+  --accent: #7A3A00;
+  --accent-hover: #602E00;
+  --accent-light: #F5E8D8;
+  --accent-2: #4A8C5C;
+  --accent-2-light: #DFF0E6;
+  --border: #D8CEC2;
+  --border-strong: #B09070;
+  --positive: #2A7A3A;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --radius: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #180E00;
+    --surface: #221400;
+    --surface-2: #2E1C08;
+    --fg: #F0E4D0;
+    --fg-muted: #C09060;
+    --fg-subtle: #705030;
+    --accent: #C07030;
+    --accent-hover: #D08040;
+    --accent-light: #1C1000;
+    --accent-2: #50A070;
+    --accent-2-light: #081810;
+    --border: #2A1C08;
+    --border-strong: #402810;
+    --positive: #40A050;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #180E00;
+  --surface: #221400;
+  --surface-2: #2E1C08;
+  --fg: #F0E4D0;
+  --fg-muted: #C09060;
+  --fg-subtle: #705030;
+  --accent: #C07030;
+  --accent-hover: #D08040;
+  --accent-light: #1C1000;
+  --accent-2: #50A070;
+  --accent-2-light: #081810;
+  --border: #2A1C08;
+  --border-strong: #402810;
+  --positive: #40A050;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box }
+body { margin: 0; font-family: var(--font-body); background: var(--bg); color: var(--fg); font-size: 15px; line-height: 1.65 }
+.site-header { background: var(--accent); color: #fff; padding-left: max(28px, env(safe-area-inset-left,0px)); padding-right: max(28px, env(safe-area-inset-right,0px)); padding-block: 40px 36px }
+.header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 28px; flex-wrap: wrap }
+.header-text { flex: 1; min-width: 0 }
+.header-series { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .65; margin: 0 0 6px }
+.course-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); padding: 4px 14px; border-radius: 100px; color: #fff; margin: 0 0 6px }
+.culminating-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; background: var(--accent-2); border: none; padding: 4px 14px; border-radius: 100px; color: #fff; margin: 0 0 12px; margin-left: 8px }
+.header-title { font-family: var(--font-display); font-size: clamp(24px, 4.5vw, 38px); line-height: 1.1; margin: 0 0 10px; text-wrap: balance; color: #fff; font-style: italic }
+.header-desc { font-size: 14px; opacity: .8; margin: 0 0 14px; max-width: 60ch; line-height: 1.5 }
+.header-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap }
+.header-stat { font-size: 12px; opacity: .7 }
+.header-stat strong { opacity: 1; font-weight: 600 }
+.header-author { font-size: 12px; opacity: .75 }
+.header-author strong { font-weight: 600; opacity: 1 }
+.progress-ring { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px }
+.ring-svg { width: 80px; height: 80px }
+.ring-track { fill: none; stroke: rgba(255,255,255,.2); stroke-width: 6 }
+.ring-fill { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset .5s ease }
+.ring-pct { font-size: 15px; font-weight: 600; fill: #fff; text-anchor: middle; dominant-baseline: central; font-family: var(--font-body) }
+.ring-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .7; color: #fff }
+.module-nav { position: sticky; top: env(safe-area-inset-top,0px); z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none }
+.module-nav::-webkit-scrollbar { display: none }
+.nav-inner { display: flex; max-width: 960px; margin: 0 auto; padding-left: max(24px,env(safe-area-inset-left,0px)); padding-right: max(24px,env(safe-area-inset-right,0px)); min-width: max-content }
+.nav-tab { padding: 14px 13px; font-size: 13px; font-weight: 500; color: var(--fg-muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; font-family: var(--font-body) }
+.nav-tab:hover { color: var(--fg) }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent) }
+.main-content { max-width: 960px; margin: 0 auto; padding-left: max(24px,env(safe-area-inset-left,0px)); padding-right: max(24px,env(safe-area-inset-right,0px)); padding-block: 0 80px }
+.course-section { padding-top: 56px }
+.section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px }
+.section-title { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 32px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; font-style: italic }
+.section-meta { font-size: 13px; color: var(--fg-muted); margin: 0 0 14px; font-style: italic }
+.section-intro { font-size: 14px; color: var(--fg-muted); margin: 0 0 24px; max-width: 70ch; line-height: 1.65; padding: 14px 18px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0 }
+.section-divider { border: none; border-top: 2px solid var(--border); margin: 0 0 28px }
+.subsection { margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden }
+.subsection summary { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; user-select: none; list-style: none }
+.subsection summary::-webkit-details-marker { display: none }
+.chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--fg-subtle); transition: transform .2s ease }
+.subsection[open] .chevron { transform: rotate(90deg) }
+.summary-text { flex: 1; min-width: 0 }
+.summary-code { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-subtle); margin: 0 0 2px }
+.summary-title { font-size: 15px; font-weight: 600; color: var(--fg); margin: 0; line-height: 1.3 }
+.summary-right { flex-shrink: 0; display: flex; align-items: center; gap: 8px }
+.prog-count { font-size: 12px; font-weight: 500; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap }
+.prog-bar { width: 56px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden }
+.prog-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .35s ease }
+.prog-fill.done { background: var(--positive) }
+.subsection-body { padding: 0 20px 24px; border-top: 1px solid var(--border) }
+.subsection-content { font-size: 14px; color: var(--fg-muted); line-height: 1.7; margin: 16px 0 24px; padding: 14px 18px; background: var(--surface-2); border-radius: var(--radius) }
+.question-block { margin: 0 0 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border) }
+.question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0 }
+.question-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px }
+.question-prompt { font-size: 14px; font-weight: 500; color: var(--fg); margin: 0 0 10px; line-height: 1.6 }
+.question-textarea { width: 100%; min-height: 120px; padding: 12px 14px; border: 1.5px solid var(--border-strong); border-radius: var(--radius); font-family: var(--font-body); font-size: 14px; line-height: 1.6; background: var(--bg); color: var(--fg); resize: vertical; transition: border-color .15s }
+.question-textarea:focus { outline: none; border-color: var(--accent) }
+.question-textarea.answered { border-color: var(--positive) }
+.radio-group { display: flex; flex-direction: column; gap: 8px }
+.radio-option { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: border-color .15s, background .15s }
+.radio-option:hover { border-color: var(--border-strong) }
+.radio-option.selected { border-color: var(--accent); background: var(--accent-light) }
+.radio-option input { position: absolute; opacity: 0; pointer-events: none }
+.radio-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--border-strong); flex-shrink: 0; display: flex; align-items: center; justify-content: center }
+.radio-option.selected .radio-dot { border-color: var(--accent); background: var(--accent) }
+.radio-option.selected .radio-dot::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff }
+.radio-label { font-size: 14px; color: var(--fg) }
+.scale-wrapper { width: 100% }
+.scale-row { display: flex; gap: 8px; flex-wrap: wrap }
+.scale-option { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer }
+.scale-option input { position: absolute; opacity: 0; pointer-events: none }
+.scale-btn { width: 40px; height: 40px; border-radius: var(--radius); border: 1.5px solid var(--border-strong); background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: var(--fg-muted); transition: all .15s; cursor: pointer }
+.scale-option.selected .scale-btn { background: var(--accent); border-color: var(--accent); color: #fff }
+.scale-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--fg-subtle); margin-top: 6px }
+.module-submit-panel { margin-top: 32px; padding: 24px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); display: flex; flex-wrap: wrap; align-items: center; gap: 12px }
+.submit-panel-title { font-size: 14px; font-weight: 600; color: var(--fg); flex: 1; min-width: 200px }
+.submit-panel-sub { font-size: 13px; color: var(--fg-muted); margin: 4px 0 0 }
+.submit-panel-actions { display: flex; gap: 8px; flex-wrap: wrap }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: var(--radius); font-family: var(--font-body); font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: background .15s, color .15s; text-decoration: none }
+.btn-primary { background: var(--accent); color: #fff }
+.btn-primary:hover { background: var(--accent-hover) }
+.btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent) }
+.btn-outline:hover { background: var(--accent-light) }
+.btn-green { background: var(--accent-2); color: #fff }
+.btn-ghost { background: var(--surface); color: var(--fg-muted); border: 1.5px solid var(--border) }
+.form-link-note { font-size: 12px; color: var(--fg-subtle); margin-top: 4px }
+.attribution-section { padding-top: 56px; padding-bottom: 20px }
+.attribution-block { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 28px 32px }
+.attribution-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px }
+.attribution-row { margin-bottom: 20px }
+.attribution-row:last-child { margin-bottom: 0 }
+.attribution-label { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 5px }
+.attribution-text { font-size: 14px; line-height: 1.65; color: var(--fg); margin: 0 }
+.attribution-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 }
+.original-work-banner { background: var(--accent-2); color: #fff; border-radius: var(--radius); padding: 16px 24px; margin: 24px 0; display: flex; align-items: center; gap: 12px }
+.original-work-banner p { margin: 0; font-size: 14px; line-height: 1.5 }
+.original-work-banner strong { display: block; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .85; margin-bottom: 4px }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 200; display: none; align-items: flex-start; justify-content: center; padding: max(40px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(40px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px)); overflow-y: auto }
+.modal-overlay.open { display: flex }
+.modal-box { background: var(--surface); border-radius: var(--radius); max-width: 720px; width: 100%; padding: 28px 32px; position: relative }
+.modal-title { font-family: var(--font-display); font-size: 22px; font-style: italic; margin: 0 0 16px }
+.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--fg-subtle); line-height: 1 }
+.modal-body { white-space: pre-wrap; font-size: 13px; font-family: monospace; line-height: 1.7; background: var(--bg); padding: 16px; border-radius: var(--radius); max-height: 60vh; overflow-y: auto; color: var(--fg) }
+.modal-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap }
+@media (max-width: 520px) { .progress-ring { display: none } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important } }
+</style>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-text">
+      <p class="header-series">From Soil to Sky Training Series</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px">
+        <span class="course-badge">Course 7</span>
+        <span class="culminating-badge">Culminating Course</span>
+      </div>
+      <h1 class="header-title">The FSTS Program Model</h1>
+      <p class="header-desc">Tiana Massaquoi's original synthesis of six frameworks into a unified program design methodology for Black and Brown youth development and mentoring.</p>
+      <div class="header-meta">
+        <span class="header-stat">7 Modules &nbsp;·&nbsp; ~6.5 hours &nbsp;·&nbsp; Self-paced</span>
+        <span class="header-author">Original work by <strong>Tiana Massaquoi</strong>, Keep Still Cares Foundation</span>
+      </div>
+    </div>
+    <div class="progress-ring">
+      <svg class="ring-svg" viewBox="0 0 80 80" aria-hidden="true">
+        <circle class="ring-track" cx="40" cy="40" r="32"/>
+        <circle class="ring-fill" id="ring-fill" cx="40" cy="40" r="32"/>
+        <text class="ring-pct" id="ring-pct" x="40" y="40">0%</text>
+      </svg>
+      <span class="ring-label">Complete</span>
+    </div>
+  </div>
+</header>
+
+<nav class="module-nav" aria-label="Module navigation">
+  <div class="nav-inner" id="nav-inner"></div>
+</nav>
+
+<main class="main-content" id="main-content"></main>
+
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+    <h2 class="modal-title" id="modal-title">Your Responses</h2>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="modal-copy-btn">Copy All</button>
+      <button class="btn btn-ghost" id="modal-close-btn">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CIRC = 2 * Math.PI * 32;
+const FORM_URLS = {
+  module1: '#', module2: '#', module3: '#', module4: '#',
+  module5: '#', module6: '#', module7: '#',
+};
+const DATA = [
+  {
+    id: 'module-1', navLabel: 'M1',
+    eyebrow: 'Module 1  ·  ~50 min',
+    title: 'The FSTS Program Model — Overview and Philosophy',
+    meta: 'The synthesis, its internal logic, and your role in it',
+    formKey: 'module1',
+    intro: 'The From Soil to Sky Program Model is Tiana Massaquoi\'s original synthesis of six bodies of work into a coherent framework for youth development and mentoring programming. It is not a collection of frameworks placed side by side — it is a model with its own internal logic, grounded in a specific theory of how Black and Brown young people develop, heal, and flourish when the conditions are right. This module introduces the complete model and situates your program within it.',
+    originalWork: true,
+    sections: [
+      {
+        id: 'm1s1', code: '1.1', title: 'What Makes FSTS Different',
+        content: 'Most youth development programs draw on one framework — PYD, or trauma-informed care, or mentoring best practices — and apply it to their work. FSTS argues that no single framework is adequate to the full complexity of what Black and Brown young people need, and that the integration of multiple frameworks into a coherent theory is not optional complexity but developmental necessity. What FSTS asks of its practitioners is different from what most programs ask: it requires personal development, not just professional competency; cultural grounding, not just cultural sensitivity; organizational integrity, not just program fidelity. It asks practitioners to embody what they are trying to create.',
+        questions: [
+          { id: 'q_m1s1_1', type: 'textarea', label: 'Q1 — What Distinguishes FSTS', prompt: 'In your own words, what distinguishes the FSTS model from conventional youth mentoring or youth development programs? What does FSTS ask of its practitioners that conventional programs do not? Be concrete.', placeholder: 'Write your response here...' },
+          { id: 'q_m1s1_2', type: 'radio', label: 'Q2 — Foundational Principle', prompt: 'In your current understanding, what is the most foundational principle of the FSTS model?', options: ['Cultural grounding as a developmental necessity, not an add-on', 'Healing-centered engagement over problem-focused or deficit-based approaches', 'Emergent strategy — organizational integrity as the foundation of program integrity', 'Rites of passage as the structural architecture of youth development'] },
+          { id: 'q_m1s1_3', type: 'textarea', label: 'Q3 — The Young Person FSTS Serves', prompt: 'Describe the young person FSTS is designed to serve — not just demographically, but psychologically, spiritually, and socially. What has shaped them? What do they carry? What are they capable of? What do they need that no other program in your community is currently providing?', placeholder: 'Write your response here...' },
+        ]
+      },
+      {
+        id: 'm1s2', code: '1.2', title: 'The Integration — How the Six Frameworks Work Together',
+        content: 'The FSTS model integrates six frameworks: FOUNDATIONS (PYD, Developmental Assets, EEPM, Emergent Strategy), Emergent Strategy (organizational integrity), Healing-Centered Engagement, PYD×HCE synthesis, Cultural Grounding, and Rites of Passage. Each framework contributes something the others do not. FOUNDATIONS provides the theoretical base. Emergent Strategy provides the organizational model. HCE shifts the engagement paradigm. PYD×HCE synthesizes the two dominant frameworks. Cultural Grounding provides the developmental soil. Rites of Passage provides the structural architecture. Together they describe a program that is holistic, culturally grounded, healing-centered, and developmentally sequenced.',
+        questions: [
+          { id: 'q_m1s2_1', type: 'textarea', label: 'Q4 — The System', prompt: 'Describe how the six frameworks function as a system. What does each contribute that the others do not? Where do the frameworks reinforce each other? Where do they create productive tension?', placeholder: 'Framework 1 (FOUNDATIONS — PYD/Assets/EEPM/ES):\n\nFramework 2 (Emergent Strategy):\n\nFramework 3 (Healing-Centered Engagement):\n\nFramework 4 (PYD×HCE):\n\nFramework 5 (Cultural Grounding):\n\nFramework 6 (Rites of Passage):' },
+          { id: 'q_m1s2_2', type: 'textarea', label: 'Q5 — Genuine Tensions', prompt: 'Where do the frameworks create genuine tension with each other? Name one real conflict between two of the frameworks and describe how you resolve it in your program design. (Example: EEPM\'s emphasis on structured matching processes vs. Emergent Strategy\'s "less prep, more presence.")', placeholder: 'Write your response here...' },
+          { id: 'q_m1s2_3', type: 'textarea', label: 'Q6 — Assignment: Synthesis Statement', prompt: 'Write a one-page synthesis statement — your articulation of how these six frameworks combine into one coherent theory of youth development, in your own voice, for your specific community. This is a document you could use to explain FSTS to a new staff member, a board member, or a partner organization.', placeholder: 'Write your synthesis statement here...' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-2', navLabel: 'M2',
+    eyebrow: 'Module 2  ·  ~55 min',
+    title: 'The FSTS Theory of Change',
+    meta: 'Completing and stress-testing your causal logic',
+    formKey: 'module2',
+    intro: 'A theory of change articulates the causal logic behind your program — why what you do produces the outcomes you claim. The FSTS Theory of Change is grounded in the integration of the six frameworks and must be stated explicitly, tested, and revised as you learn. This module completes and stress-tests your theory.',
+    sections: [
+      {
+        id: 'm2s1', code: '2.1', title: 'Components of the FSTS Theory of Change',
+        content: 'The FSTS Theory of Change has several distinctive features. It names healing as a condition for development, not just an outcome. It identifies cultural identity as a developmental resource, not just a background variable. It holds organizational culture as a program input — the way the organization operates is part of what young people experience. And it treats the community as a co-producer of development, not just a context. A conventional Theory of Change focuses on what the program does to young people. The FSTS Theory of Change focuses on what conditions allow young people to become who they already are.',
+        questions: [
+          { id: 'q_m2s1_1', type: 'textarea', label: 'Q1 — Your Theory of Change', prompt: 'Write the complete FSTS Theory of Change for your program. Use the IF→THEN→AND→BECAUSE structure. Be specific: name the inputs (including organizational culture and community investment), activities (including ceremony and cultural learning), outputs, and outcomes. The BECAUSE section should state the developmental theory that links your inputs to your outcomes.', placeholder: 'IF we provide...\n\nTHEN young people will...\n\nAND this will result in...\n\nBECAUSE...' },
+          { id: 'q_m2s1_2', type: 'textarea', label: 'Q2 — Non-Negotiable Conditions', prompt: 'What are the three most critical conditions that must exist in your organization for this theory of change to work? These are the conditions without which your program cannot deliver what it promises — organizational non-negotiables, not just program design elements.', placeholder: 'Condition 1:\n\nCondition 2:\n\nCondition 3:' },
+          { id: 'q_m2s1_3', type: 'radio', label: 'Q3 — Primary Mechanism', prompt: 'In the FSTS model, what is the primary mechanism through which change happens for young people?', options: ['The mentoring relationship — one consistent, caring adult', 'Cultural grounding — identity development as the foundation of thriving', 'The healing-centered environment — safety and belonging as preconditions', 'The rites of passage structure — developmental sequencing and community witness'] },
+        ]
+      },
+      {
+        id: 'm2s2', code: '2.2', title: 'Testing and Refining',
+        content: 'A theory of change that has never been challenged is a wish, not a theory. Genuine stress-testing requires asking: what would need to be false for this theory not to work? What conditions in our community, our organization, or our target population could prevent it from working? Programs that skip this step build on untested assumptions and discover their theory\'s weaknesses in implementation — at the cost of the young people they serve.',
+        questions: [
+          { id: 'q_m2s2_1', type: 'textarea', label: 'Q4 — Falsification Test', prompt: 'What would falsify your theory of change? Describe three conditions or outcomes that would tell you your theory is wrong and must be revised. For each: what would you observe, what would it mean about your theory, and what would you change?', placeholder: 'Falsification 1:\n\nFalsification 2:\n\nFalsification 3:' },
+          { id: 'q_m2s2_2', type: 'textarea', label: 'Q5 — Your Learning Cycle', prompt: 'Design your program\'s learning cycle. How will you collect data about whether your theory of change is working? When will you review it — not annually, but at what specific point in the program calendar? Who will be in the room? What decisions can come out of that process?', placeholder: 'Write your response here...' },
+          { id: 'q_m2s2_3', type: 'textarea', label: 'Q6 — Assignment: Community Check', prompt: 'Share your Theory of Change with someone who knows your community deeply — a community elder, a young person who\'s been through a similar program, a family member of your target population. Have a real conversation, not a presentation. Write a summary: what did they confirm, what did they question, and what did you change as a result of the conversation?', placeholder: 'What they confirmed:\n\nWhat they questioned:\n\nWhat I changed:' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-3', navLabel: 'M3',
+    eyebrow: 'Module 3  ·  ~60 min',
+    title: 'Program Design — The Complete FSTS Architecture',
+    meta: 'Drawing everything together into a complete structure',
+    formKey: 'module3',
+    intro: 'This module completes your program\'s architectural design — pulling together everything from the previous six courses into a full, coherent structure. By the end of this module, you have a complete program design document.',
+    sections: [
+      {
+        id: 'm3s1', code: '3.1', title: 'Structure and Sequence',
+        content: 'The FSTS architectural question is: how do the four phases (Soil, Seed, Growth, Sky) organize your program\'s time, activities, and relationships into a developmental sequence? Most youth programs run activities. An FSTS program runs a sequence — one phase creates the conditions for the next, and a young person who completes the sequence has traveled a developmental arc, not just participated in activities. The arc is designed, not emergent; it has a beginning, a demanding middle, and a ceremonially marked completion.',
+        questions: [
+          { id: 'q_m3s1_1', type: 'textarea', label: 'Q1 — Four Phases Mapped', prompt: 'Describe your program\'s complete structure: the four phases mapped to specific timelines, activities, relationships, and developmental milestones. What happens in each phase, how long does it last, and what marks the transition to the next?', placeholder: 'Soil (duration, activities, milestones):\n\nSeed (duration, activities, milestones):\n\nGrowth (duration, activities, milestones):\n\nSky (duration, activities, milestones):' },
+          { id: 'q_m3s1_2', type: 'textarea', label: 'Q2 — A Typical Month', prompt: 'Describe a typical month in your program. How do mentoring relationships, group sessions, cultural learning, and ceremony function together in the weekly and monthly rhythm? What does a participant experience from week one to week four of a typical month?', placeholder: 'Write your response here...' },
+          { id: 'q_m3s1_3', type: 'textarea', label: 'Q3 — Family Role by Phase', prompt: 'What is the role of families in each phase? What specifically do families do in your program — not just receive information, but actively participate? How does their involvement change as the young person moves through the phases?', placeholder: 'Family role in Soil:\n\nFamily role in Seed:\n\nFamily role in Growth:\n\nFamily role in Sky:' },
+        ]
+      },
+      {
+        id: 'm3s2', code: '3.2', title: 'Staffing and Facilitation',
+        content: 'The staffing question for an FSTS program is not just "who can fill these roles?" but "who has the right to do this work with these young people?" That is a question of cultural authority, relational trust, and personal development — not just credentials. An FSTS program that is staffed by people who have not done their own healing, who are not culturally grounded, who are not operating from a place of genuine care, will produce the appearance of development without the substance.',
+        questions: [
+          { id: 'q_m3s2_1', type: 'textarea', label: 'Q4 — Staffing Design', prompt: 'Name every staff and volunteer role your complete program requires. For each: title, core responsibilities, cultural competency requirements, personal development expectations, and how they are prepared. Include your elder and mentor roles.', placeholder: 'Write your response here...' },
+          { id: 'q_m3s2_2', type: 'scale', label: 'Q5 — Staffing Confidence', prompt: 'How confident are you that your organization can currently staff this program with people who have the values and cultural competency it requires?', min: 1, max: 5, minLabel: 'Not confident', maxLabel: 'Very confident' },
+          { id: 'q_m3s2_3', type: 'textarea', label: 'Q6 — Assignment: Program Design Document', prompt: 'Write your complete program design document — 2–3 pages covering: theory of change, four-phase structure (with timeline and activities for each), mentor and elder roles, family engagement strategy, cultural grounding curriculum, evaluation approach. This is the document you share with partners and funders to explain your program.', placeholder: 'Write your program design document here...' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-4', navLabel: 'M4',
+    eyebrow: 'Module 4  ·  ~55 min',
+    title: 'Healing-Centered Program Environment',
+    meta: 'The environment is the intervention',
+    formKey: 'module4',
+    intro: 'The FSTS model centers healing not as a therapeutic intervention but as an environmental condition. The program itself must be a healing-centered space — one in which young people experience safety, belonging, cultural affirmation, and genuine care before they are asked to grow, challenge themselves, or take risks. This module applies Shawn Ginwright\'s Healing-Centered Engagement framework to your program environment design.',
+    sections: [
+      {
+        id: 'm4s1', code: '4.1', title: 'Creating Healing-Centered Conditions',
+        content: 'The distinction between trauma-informed care (TIC) and healing-centered engagement (HCE) is not semantic — it reflects different theories of change. TIC asks: what trauma has this young person experienced, and how do we avoid re-traumatizing them? HCE asks: what does this young person need in order to heal and thrive, and how do we create the conditions for that? The first is a deficit lens applied carefully. The second is an asset lens with healing as the active project. HCE holds that young people do not need to be managed around their trauma — they need environments that actively support their healing.',
+        questions: [
+          { id: 'q_m4s1_1', type: 'textarea', label: 'Q1 — HCE vs. TIC', prompt: 'What are the practical, concrete differences between a trauma-informed program environment and a healing-centered one? Give three specific examples of how a program practice would look different under each framework.', placeholder: 'Practice 1:\n  TIC approach:\n  HCE approach:\n\nPractice 2:\n  TIC approach:\n  HCE approach:\n\nPractice 3:\n  TIC approach:\n  HCE approach:' },
+          { id: 'q_m4s1_2', type: 'textarea', label: 'Q2 — Undermining Practices', prompt: 'Identify three specific practices in your organization\'s current work — or in the program you are designing — that would undermine a healing-centered environment. For each, propose a concrete redesign that preserves the program need while creating healing rather than harm.', placeholder: 'Practice 1 and redesign:\n\nPractice 2 and redesign:\n\nPractice 3 and redesign:' },
+          { id: 'q_m4s1_3', type: 'radio', label: 'Q3 — Hardest Challenge', prompt: 'The most challenging aspect of creating a healing-centered environment in your organizational context is:', options: ['Staff\'s own unresolved trauma — healing cannot be created by unhealed people', 'Administrative and compliance pressures that require surveillance and documentation', 'Funder requirements that use deficit-based metrics and problem-focused language', 'The physical environment — spaces that signal control rather than care'] },
+        ]
+      },
+      {
+        id: 'm4s2', code: '4.2', title: 'Staff as Healers',
+        content: 'The most demanding requirement of the FSTS model is this: staff and mentors cannot create healing environments for young people if they are not doing their own healing work. This is not a moral standard — it is a developmental argument. People who have not addressed their own wounds operate from those wounds in ways they cannot see, and those wounds become the hidden curriculum of the program. Building a healing-centered program requires building a healing-centered organization first.',
+        questions: [
+          { id: 'q_m4s2_1', type: 'textarea', label: 'Q4 — Staff Wellness Practice', prompt: 'Design your program\'s staff wellness and development practice. Not a benefit package — a structural commitment to staff healing and growth. What specifically will you provide, fund, and protect time for? What do you require of staff as part of this role?', placeholder: 'Write your response here...' },
+          { id: 'q_m4s2_2', type: 'textarea', label: 'Q5 — Organizational Culture Check', prompt: 'How will you prevent program culture from replicating the systems it opposes — hierarchy, urgency, distrust, surveillance — in its own operations? Describe the specific organizational practices that would signal to staff that the organization is genuinely committed to the values it teaches.', placeholder: 'Write your response here...' },
+          { id: 'q_m4s2_3', type: 'textarea', label: 'Q6 — Assignment: HCE Environment Policy', prompt: 'Write your program\'s Healing-Centered Environment policy — a one-page document that states what staff and participants can expect in terms of how they will be treated, how conflict will be handled, what happens when someone causes harm, and what healing looks like in your organizational culture.', placeholder: 'Write your HCE policy here...' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-5', navLabel: 'M5',
+    eyebrow: 'Module 5  ·  ~55 min',
+    title: 'Cultural Grounding in Practice',
+    meta: 'The water the program lives in — not a curriculum unit',
+    formKey: 'module5',
+    intro: 'Cultural grounding is not a curriculum unit — it is the water the program lives in. The FSTS model holds that young people develop fully only when they are developing within and through their cultural identity. This module designs cultural grounding as a structural element of your program, not an add-on.',
+    sections: [
+      {
+        id: 'm5s1', code: '5.1', title: 'Cultural Curriculum Design',
+        content: 'The most common failure of cultural programming in youth development is treating culture as content rather than as context. A "Black history month" unit treats culture as something you add. A culturally grounded program treats culture as the frame through which everything is understood — including the program\'s theory of development, its authority structures, its language, its aesthetics, and its relationships. The question is not "how much African culture are we including?" but "is our program itself a culturally grounded space?"',
+        questions: [
+          { id: 'q_m5s1_1', type: 'textarea', label: 'Q1 — Your Cultural Content', prompt: 'What specific cultural content will your program teach? Name the traditions, histories, frameworks, and values you will transmit, and explain why each is developmentally necessary for the young people you serve — not just culturally valuable, but necessary for their development.', placeholder: 'Write your response here...' },
+          { id: 'q_m5s1_2', type: 'textarea', label: 'Q2 — Information vs. Immersion', prompt: 'How do you distinguish between teaching about culture (giving information) and cultural immersion (transformation)? Which does your program do, and how? Be specific about the activities and practices that create immersion rather than information transfer.', placeholder: 'Write your response here...' },
+          { id: 'q_m5s1_3', type: 'radio', label: 'Q3 — Most Essential Element', prompt: 'For your specific community and program, the most essential cultural grounding element is:', options: ['African philosophical frameworks — Nguzo Saba, Ma\'at, Ubuntu as lived practice', 'Community elders and knowledge keepers as curriculum', 'African American and African diaspora history and the freedom struggle', 'Cultural arts, music, language, and expressive practice'] },
+        ]
+      },
+      {
+        id: 'm5s2', code: '5.2', title: 'Cultural Integrity',
+        content: 'Cultural integrity is not about perfection — it is about honesty. A culturally grounded program that is honest about what it knows, humble about what it does not, and clear about who has the cultural authority to lead each element is a program with integrity. A program that presents cultural content as a curriculum module, delivered by a facilitator who is not themselves culturally grounded, is producing cultural performance, not cultural grounding.',
+        questions: [
+          { id: 'q_m5s2_1', type: 'textarea', label: 'Q4 — Cultural Authority', prompt: 'Who in your community has the authority to teach and transmit the cultural content in your program? These are not the people with the most education or the most impressive resumes — they are the people whose lives embody the knowledge and whose community has recognized their standing. Name them.', placeholder: 'Write your response here...' },
+          { id: 'q_m5s2_2', type: 'textarea', label: 'Q5 — Diversity of Heritage', prompt: 'How do you handle cultural grounding when your program serves youth from multiple African diaspora backgrounds, or from non-African heritages? What is the FSTS principle that guides these decisions, and how does it play out in specific program moments?', placeholder: 'Write your response here...' },
+          { id: 'q_m5s2_3', type: 'textarea', label: 'Q6 — Assignment: Cultural Curriculum Outline', prompt: 'Write your program\'s cultural grounding curriculum outline. What is taught in each phase (Soil, Seed, Growth, Sky)? By whom — which specific people or community members? How does each element connect to the developmental tasks of that phase? What does a young person know, believe, and practice about their cultural identity by the time they complete the Sky phase?', placeholder: 'Soil phase curriculum:\n\nSeed phase curriculum:\n\nGrowth phase curriculum:\n\nSky phase curriculum:' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-6', navLabel: 'M6',
+    eyebrow: 'Module 6  ·  ~50 min',
+    title: 'Evaluation, Learning, and Program Accountability',
+    meta: 'Measuring what FSTS actually produces',
+    formKey: 'module6',
+    intro: 'The FSTS model demands a different kind of evaluation — one that can capture developmental growth, cultural transformation, healing, and community impact, not just attendance and test scores. This module designs an evaluation approach that is honest about what the program actually does and accountable to the young people it serves.',
+    sections: [
+      {
+        id: 'm6s1', code: '6.1', title: 'What FSTS Measures',
+        content: 'Standard youth program metrics — attendance rates, academic performance, incident rates — measure whether problems were avoided. FSTS measures something harder and more important: whether young people are thriving. Thriving is not the absence of problems; it is the presence of developmental assets, cultural identity, healing, purpose, and community belonging. Measuring thriving requires methods that standard program evaluation often cannot accommodate: narrative assessment, youth self-report on identity and belonging, community observation, and ceremonial witness.',
+        questions: [
+          { id: 'q_m6s1_1', type: 'textarea', label: 'Q1 — What You Measure', prompt: 'What outcomes does your FSTS program actually produce? List 5–7 specific, observable outcomes that reflect the program\'s full impact — including cultural, relational, healing, and developmental outcomes that standard metrics miss. For each, describe how you would know if it had occurred.', placeholder: 'Outcome 1:\n\nOutcome 2:\n\nOutcome 3:\n\nOutcome 4:\n\nOutcome 5:' },
+          { id: 'q_m6s1_2', type: 'textarea', label: 'Q2 — Evaluation Design', prompt: 'Design your program\'s evaluation approach: what data you collect, when, from whom, through what methods (survey, narrative, observation, portfolio, ceremony record), who owns the data, and how it is kept confidential and used.', placeholder: 'Write your response here...' },
+          { id: 'q_m6s1_3', type: 'radio', label: 'Q3 — Evaluation Challenge', prompt: 'The biggest challenge to evaluating an FSTS-model program honestly is:', options: ['Funder preference for deficit-based, problem-prevention metrics', 'The difficulty of measuring cultural identity development and healing', 'Organizational capacity to collect, analyze, and act on data', 'Young people\'s privacy, consent, and the relational cost of surveillance'] },
+        ]
+      },
+      {
+        id: 'm6s2', code: '6.2', title: 'Youth Accountability and Learning',
+        content: 'The deepest form of accountability in an FSTS program is accountability to the young people it serves — not just the funders who finance it. Youth accountability is not a suggestion box or an annual survey. It is a structural arrangement in which young people have meaningful influence over the program\'s direction, can raise concerns through protected channels, and are treated as co-evaluators of the program\'s quality.',
+        questions: [
+          { id: 'q_m6s2_1', type: 'textarea', label: 'Q4 — Youth Accountability Structure', prompt: 'Design your program\'s youth accountability structure. How can young people formally give feedback, raise concerns, and influence program decisions — not just through casual conversation, but through structure? What authority do they have, and what happens when they use it?', placeholder: 'Write your response here...' },
+          { id: 'q_m6s2_2', type: 'textarea', label: 'Q5 — When the Data Says It\'s Not Working', prompt: 'What would you do if your evaluation data showed your program was not producing the outcomes you claimed? Describe the decision-making process. Who is in the room? What authority do they have? What could be changed, and what is non-negotiable?', placeholder: 'Write your response here...' },
+          { id: 'q_m6s2_3', type: 'textarea', label: 'Q6 — Assignment: Evaluation Plan', prompt: 'Write your program\'s complete evaluation plan. Cover: what you measure (with specific indicators), how you collect it (with specific methods), when (with a schedule), who analyzes it, how it is shared with stakeholders including youth, and how it drives program improvement. Include what you will do if data shows the program is not working.', placeholder: 'Write your evaluation plan here...' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-7', navLabel: 'M7',
+    eyebrow: 'Module 7  ·  ~50 min',
+    title: 'Legacy, Sustainability, and the FSTS Practitioner',
+    meta: 'What it takes to do this work over time',
+    formKey: 'module7',
+    intro: 'From Soil to Sky is not just a program model — it is a legacy project. This final module addresses the practitioner themselves: what it takes to sustain this work over time, how to build a program that outlasts any single leader, and what it means to do this work as a calling, not just a career.',
+    sections: [
+      {
+        id: 'm7s1', code: '7.1', title: 'The Practitioner\'s Foundation',
+        content: 'The FSTS model holds that you cannot give what you do not have. A practitioner who is not doing their own healing, who is not culturally grounded, who is not in right relationship with the communities they serve, will not build a healing-centered, culturally grounded program — regardless of how well they can describe it. The hardest question in this training is not "how do I build the program?" but "how do I become the practitioner this program requires?"',
+        questions: [
+          { id: 'q_m7s1_1', type: 'textarea', label: 'Q1 — Your Calling', prompt: 'What is your calling to this work? Write honestly — not the professional answer, but the real one. What brought you here? What do you know about suffering that made you want to do this? What sustains you when it is hard? What are you afraid of?', placeholder: 'Write your response here...' },
+          { id: 'q_m7s1_2', type: 'scale', label: 'Q2 — Your Own Readiness', prompt: 'Rate your own current readiness for this work — your personal healing, your cultural grounding, your organizational support, and your sustainability practices combined.', min: 1, max: 5, minLabel: 'Significant gaps to address', maxLabel: 'Strong, grounded foundation' },
+          { id: 'q_m7s1_3', type: 'textarea', label: 'Q3 — What You Must Deepen', prompt: 'Adrienne Maree Brown says "how we are is how we do." Describe one area of your own personal and professional development that must deepen before you can fully deliver what the FSTS model asks of its practitioners. Be honest about the gap. Describe what deepening it would look like.', placeholder: 'Write your response here...' },
+        ]
+      },
+      {
+        id: 'm7s2', code: '7.2', title: 'Building a Legacy',
+        content: 'A program that depends on one person\'s vision, relationships, and energy is not a legacy — it is a project that ends when that person leaves. Building a legacy requires building institutions: documentation, succession, distributed authority, and community ownership. The hardest part of legacy-building is releasing control — trusting the people you have developed to carry the work forward, even if they carry it differently than you would.',
+        questions: [
+          { id: 'q_m7s2_1', type: 'textarea', label: 'Q4 — Ten Years From Now', prompt: 'What does a sustainable FSTS program look like in ten years? Who is running it, and how did they get there? Who does it serve — how many young people, and in what ways has it grown? What has it built in the community beyond its own program? Write this as a description of what you see.', placeholder: 'Write your response here...' },
+          { id: 'q_m7s2_2', type: 'textarea', label: 'Q5 — Not About You', prompt: 'How do you build a program that does not depend on you? Name the succession structures, institutional knowledge systems, community ownership practices, and distributed authority arrangements you will create. What does it look like when the program is genuinely the community\'s, not yours?', placeholder: 'Write your response here...' },
+          { id: 'q_m7s2_3', type: 'textarea', label: 'Q6 — Final Assignment: A Letter', prompt: 'Write a letter to the young person who will graduate from your program ten years from now. Tell them what you built for them and why. Tell them what it cost. Tell them what you hope they will carry forward. Tell them what you need from them — what contribution you are calling them to make. This letter is your program\'s north star: the document you return to whenever you lose your way.', placeholder: 'Write your letter here...' },
+        ]
+      },
+    ]
+  },
+];
+
+const ATTRIBUTION_ROWS = [
+  { label: 'The FSTS Program Model', text: 'This course — the FSTS Program Model and its synthesis of six frameworks into a unified theory of youth development — is original intellectual work by Tiana Massaquoi, founder of Keep Still Cares Foundation. The integration of Positive Youth Development, Developmental Assets, Elements of Effective Practice in Mentoring, Emergent Strategy, Healing-Centered Engagement, Cultural Grounding (Nguzo Saba, Ma\'at, Ubuntu), and Rites of Passage into the FSTS model is Tiana Massaquoi\'s original contribution to the field.' },
+  { label: 'Framework Authors', text: 'The frameworks synthesized in the FSTS model are the original intellectual work of their respective authors. Full attribution is provided in Courses 1–6 of the From Soil to Sky Training Series: Richard Lerner and Karen Pittman (PYD), Search Institute (40 Developmental Assets), MENTOR (EEPM), Adrienne Maree Brown (Emergent Strategy), Shawn Ginwright (Healing-Centered Engagement), Maulana Karenga (Nguzo Saba), Paul Hill Jr., Malidoma Somé, and Na\'im Akbar (Rites of Passage). This course applies their work; it does not represent their direct teachings.' },
+  { label: 'Keep Still Cares Foundation', text: 'Course 7 is the culminating course of the From Soil to Sky Training Series, a professional development program for organizational leaders developed by Keep Still Cares Foundation. For questions about this training or about the FSTS model, contact tiana@keepstillcares.org.' },
+  { label: 'Dedication', text: 'Course 7 is dedicated to every organizational leader who took this training and chose to build something worthy of the young people they serve. You are the practitioner this work requires.' },
+];
+
+const STORE_KEY = 'fsts_c7_v1';
+let state = {};
+try { const r = localStorage.getItem(STORE_KEY); if (r) state = JSON.parse(r); } catch(e) {}
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {} }
+function getVal(id) { return state[id] || ''; }
+function setVal(id, val) { state[id] = val; save(); }
+
+function countSection(sec) {
+  const qs = sec.questions || [];
+  const answered = qs.filter(q => { const v = getVal(q.id); return v && v.toString().trim() !== ''; }).length;
+  return { answered, total: qs.length };
+}
+function updateSectionProgress(sec) {
+  if (!sec) return;
+  const { answered, total } = countSection(sec);
+  const countEl = document.querySelector(`[data-sec-count="${sec.id}"]`);
+  const barEl = document.querySelector(`[data-sec-bar="${sec.id}"]`);
+  if (countEl) countEl.textContent = `${answered}/${total}`;
+  if (barEl) { barEl.style.width = total ? `${Math.round(answered/total*100)}%` : '0%'; barEl.classList.toggle('done', answered===total&&total>0); }
+}
+function updateOverallProgress() {
+  let totalQ = 0, answeredQ = 0;
+  DATA.forEach(mod => (mod.sections||[]).forEach(sec => {
+    const { answered, total } = countSection(sec);
+    totalQ += total; answeredQ += answered;
+  }));
+  const pct = totalQ ? Math.round(answeredQ/totalQ*100) : 0;
+  const fill = document.getElementById('ring-fill');
+  const pctEl = document.getElementById('ring-pct');
+  if (fill) { fill.setAttribute('stroke-dasharray', CIRC); fill.style.strokeDashoffset = CIRC - (CIRC*pct/100); }
+  if (pctEl) pctEl.textContent = pct + '%';
+}
+function updateAll() {
+  DATA.forEach(mod => (mod.sections||[]).forEach(sec => updateSectionProgress(sec)));
+  updateOverallProgress();
+}
+function findSection(qid) {
+  let found = null;
+  DATA.forEach(mod => (mod.sections||[]).forEach(sec => { if (sec.questions && sec.questions.find(q => q.id===qid)) found = sec; }));
+  return found || { id:'', questions:[] };
+}
+
+function renderQuestion(q) {
+  const block = document.createElement('div'); block.className = 'question-block';
+  const label = document.createElement('p'); label.className = 'question-label'; label.textContent = q.label;
+  block.appendChild(label);
+  const prompt = document.createElement('p'); prompt.className = 'question-prompt'; prompt.textContent = q.prompt;
+  block.appendChild(prompt);
+  if (q.type === 'textarea') {
+    const ta = document.createElement('textarea');
+    ta.className = 'question-textarea'; ta.id = q.id; ta.rows = 5;
+    ta.placeholder = q.placeholder || 'Write your response here...'; ta.value = getVal(q.id);
+    if (ta.value.trim()) ta.classList.add('answered');
+    ta.addEventListener('input', () => { setVal(q.id, ta.value); ta.classList.toggle('answered', !!ta.value.trim()); updateSectionProgress(findSection(q.id)); updateOverallProgress(); });
+    block.appendChild(ta);
+  } else if (q.type === 'radio') {
+    const group = document.createElement('div'); group.className = 'radio-group';
+    q.options.forEach(opt => {
+      const saved = getVal(q.id);
+      const lbl = document.createElement('label'); lbl.className = 'radio-option' + (saved===opt?' selected':'');
+      const inp = document.createElement('input'); inp.type='radio'; inp.name=q.id; inp.value=opt; inp.checked=saved===opt;
+      const dot = document.createElement('span'); dot.className='radio-dot';
+      const txt = document.createElement('span'); txt.className='radio-label'; txt.textContent=opt;
+      lbl.appendChild(inp); lbl.appendChild(dot); lbl.appendChild(txt);
+      lbl.addEventListener('click', () => { group.querySelectorAll('.radio-option').forEach(el=>el.classList.remove('selected')); lbl.classList.add('selected'); inp.checked=true; setVal(q.id,opt); updateSectionProgress(findSection(q.id)); updateOverallProgress(); });
+      group.appendChild(lbl);
+    });
+    block.appendChild(group);
+  } else if (q.type === 'scale') {
+    const wrapper = document.createElement('div'); wrapper.className='scale-wrapper';
+    const row = document.createElement('div'); row.className='scale-row';
+    const saved = getVal(q.id);
+    for (let i = q.min; i <= q.max; i++) {
+      const opt = document.createElement('label'); opt.className='scale-option'+(String(saved)===String(i)?' selected':'');
+      const inp = document.createElement('input'); inp.type='radio'; inp.name=q.id; inp.value=i; inp.checked=String(saved)===String(i);
+      const btn = document.createElement('span'); btn.className='scale-btn'; btn.textContent=i;
+      opt.appendChild(inp); opt.appendChild(btn);
+      opt.addEventListener('click', () => { row.querySelectorAll('.scale-option').forEach(el=>el.classList.remove('selected')); opt.classList.add('selected'); inp.checked=true; setVal(q.id,String(i)); updateSectionProgress(findSection(q.id)); updateOverallProgress(); });
+      row.appendChild(opt);
+    }
+    const sl = document.createElement('div'); sl.className='scale-labels'; sl.innerHTML=`<span>${q.minLabel}</span><span>${q.maxLabel}</span>`;
+    wrapper.appendChild(row); wrapper.appendChild(sl); block.appendChild(wrapper);
+  }
+  return block;
+}
+
+function renderSubsection(sec) {
+  const details = document.createElement('details'); details.className='subsection'; details.id=sec.id;
+  const { answered, total } = countSection(sec);
+  details.innerHTML = `
+    <summary>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 4 10 8 6 12"/></svg>
+      <span class="summary-text"><span class="summary-code">${sec.code}</span><span class="summary-title">${sec.title}</span></span>
+      <span class="summary-right">
+        <span class="prog-count" data-sec-count="${sec.id}">${answered}/${total}</span>
+        <span class="prog-bar"><span class="prog-fill${answered===total&&total>0?' done':''}" data-sec-bar="${sec.id}" style="width:${total?Math.round(answered/total*100):0}%"></span></span>
+      </span>
+    </summary>`;
+  const body = document.createElement('div'); body.className='subsection-body';
+  if (sec.content) { const ctx=document.createElement('div'); ctx.className='subsection-content'; ctx.textContent=sec.content; body.appendChild(ctx); }
+  (sec.questions||[]).forEach(q => body.appendChild(renderQuestion(q)));
+  details.appendChild(body);
+  return details;
+}
+
+function renderSubmitPanel(mod) {
+  const panel = document.createElement('div'); panel.className='module-submit-panel';
+  const info = document.createElement('div'); info.style.flex='1';
+  info.innerHTML=`<div class="submit-panel-title">Submit ${mod.eyebrow.split('·')[0].trim()}</div><div class="submit-panel-sub">Copy your responses or submit directly to Google Form.</div>`;
+  panel.appendChild(info);
+  const actions = document.createElement('div'); actions.className='submit-panel-actions';
+  const rBtn=document.createElement('button'); rBtn.className='btn btn-outline'; rBtn.textContent='Review Responses'; rBtn.addEventListener('click',()=>showModal(mod));
+  const cBtn=document.createElement('button'); cBtn.className='btn btn-ghost'; cBtn.textContent='Copy Responses'; cBtn.addEventListener('click',()=>copyModule(mod));
+  const formUrl=FORM_URLS[mod.formKey];
+  const fWrap=document.createElement('div'); fWrap.style.cssText='display:flex;flex-direction:column;gap:3px';
+  const fLink=document.createElement('a'); fLink.className='btn btn-green'; fLink.textContent='Submit to Google Form →'; fLink.href=formUrl; if(formUrl!=='#')fLink.target='_blank';
+  fWrap.appendChild(fLink);
+  if(formUrl==='#'){const note=document.createElement('span');note.className='form-link-note';note.textContent='Google Form URL not yet configured';fWrap.appendChild(note);}
+  actions.appendChild(rBtn); actions.appendChild(cBtn); actions.appendChild(fWrap);
+  panel.appendChild(actions);
+  return panel;
+}
+
+function buildModuleText(mod) {
+  let text=`${mod.eyebrow}\n${mod.title}\n${'='.repeat(60)}\n\n`;
+  (mod.sections||[]).forEach(sec=>{
+    text+=`${sec.code} — ${sec.title}\n${'-'.repeat(40)}\n`;
+    (sec.questions||[]).forEach(q=>{const v=getVal(q.id);text+=`\n${q.label}\n${q.prompt}\n\nResponse: ${v||'(Not answered)'}\n`;});
+    text+='\n';
+  });
+  return text;
+}
+function showModal(mod){openModal(`Review: ${mod.title}`,buildModuleText(mod));}
+function copyModule(mod){navigator.clipboard.writeText(buildModuleText(mod)).catch(()=>{});}
+
+function openModal(title,content){document.getElementById('modal-title').textContent=title;document.getElementById('modal-body').textContent=content;document.getElementById('modal-overlay').classList.add('open');}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
+document.getElementById('modal-close').addEventListener('click',closeModal);
+document.getElementById('modal-close-btn').addEventListener('click',closeModal);
+document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+document.getElementById('modal-copy-btn').addEventListener('click',()=>{
+  const text=document.getElementById('modal-body').textContent;
+  navigator.clipboard.writeText(text).then(()=>{document.getElementById('modal-copy-btn').textContent='Copied!';setTimeout(()=>{document.getElementById('modal-copy-btn').textContent='Copy All';},2000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);});
+});
+
+function buildModule(mod) {
+  const sec=document.createElement('section'); sec.className='course-section'; sec.id=mod.id; sec.setAttribute('data-module',mod.id);
+  sec.innerHTML=`
+    <p class="section-eyebrow">${mod.eyebrow}</p>
+    <h2 class="section-title">${mod.title}</h2>
+    <p class="section-meta">${mod.meta}</p>
+    <div class="section-intro">${mod.intro}</div>
+    <hr class="section-divider">`;
+  if (mod.originalWork) {
+    const banner=document.createElement('div'); banner.className='original-work-banner';
+    banner.innerHTML='<p><strong>Original Work</strong>This module is part of Tiana Massaquoi\'s original synthesis of the FSTS frameworks. The questions and assignments here draw on all six prior courses and ask you to integrate that learning into a complete, actionable program design.</p>';
+    sec.insertBefore(banner, sec.querySelector('hr.section-divider').nextSibling || sec.children[sec.children.length-1]);
+    sec.appendChild(banner);
+  }
+  (mod.sections||[]).forEach(s=>sec.appendChild(renderSubsection(s)));
+  sec.appendChild(renderSubmitPanel(mod));
+  return sec;
+}
+
+function buildAttribution() {
+  const sec=document.createElement('section'); sec.className='attribution-section course-section'; sec.id='attribution'; sec.setAttribute('data-module','attribution');
+  const block=document.createElement('div'); block.className='attribution-block';
+  block.innerHTML=`<p class="attribution-eyebrow">Authorship & Attribution</p>`;
+  ATTRIBUTION_ROWS.forEach((row,i)=>{
+    const rowEl=document.createElement('div'); rowEl.className='attribution-row';
+    rowEl.innerHTML=`<p class="attribution-label">${row.label}</p><p class="attribution-text">${row.text}</p>`;
+    block.appendChild(rowEl);
+    if(i<ATTRIBUTION_ROWS.length-1){const hr=document.createElement('hr');hr.className='attribution-divider';block.appendChild(hr);}
+  });
+  sec.appendChild(block);
+  return sec;
+}
+
+function buildNav() {
+  const nav=document.getElementById('nav-inner');
+  [...DATA.map(m=>({id:m.id,label:m.navLabel})),{id:'attribution',label:'Attribution'}].forEach(item=>{
+    const btn=document.createElement('button'); btn.className='nav-tab'; btn.textContent=item.label; btn.dataset.target=item.id;
+    btn.addEventListener('click',()=>document.getElementById(item.id)?.scrollIntoView({behavior:'smooth',block:'start'}));
+    nav.appendChild(btn);
+  });
+}
+function initIO() {
+  const tabs=document.querySelectorAll('.nav-tab');
+  const io=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){const id=entry.target.getAttribute('data-module');tabs.forEach(t=>t.classList.toggle('active',t.dataset.target===id));}});},{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('[data-module]').forEach(s=>io.observe(s));
+}
+buildNav();
+DATA.forEach(mod=>document.getElementById('main-content').appendChild(buildModule(mod)));
+document.getElementById('main-content').appendChild(buildAttribution());
+updateAll();
+initIO();
+</script>
