@@ -1,0 +1,930 @@
+<title>Cultural Grounding: Nguzo Saba, Ma'at & Ubuntu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap">
+
+<style>
+/* Layout: sticky module nav + scrollable sections. Deep violet palette for ancestral/ceremonial grounding. */
+:root {
+  --bg: #F5F3F8;
+  --surface: #FFFFFF;
+  --surface-2: #EDE8F2;
+  --fg: #1A0D25;
+  --fg-muted: #574870;
+  --fg-subtle: #8875A0;
+  --accent: #4A1860;
+  --accent-hover: #3A1249;
+  --accent-light: #EEE8F5;
+  --accent-2: #C4860E;
+  --accent-2-light: #FBF2DA;
+  --border: #DDD8E8;
+  --border-strong: #BBACCE;
+  --positive: #1A7A4A;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --radius: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F0818;
+    --surface: #180E24;
+    --surface-2: #221535;
+    --fg: #EDE8F4;
+    --fg-muted: #A890C8;
+    --fg-subtle: #706090;
+    --accent: #9065C0;
+    --accent-hover: #A478D4;
+    --accent-light: #170E24;
+    --accent-2: #D89820;
+    --accent-2-light: #1E1004;
+    --border: #221535;
+    --border-strong: #3A2555;
+    --positive: #3AB870;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F0818;
+  --surface: #180E24;
+  --surface-2: #221535;
+  --fg: #EDE8F4;
+  --fg-muted: #A890C8;
+  --fg-subtle: #706090;
+  --accent: #9065C0;
+  --accent-hover: #A478D4;
+  --accent-light: #170E24;
+  --accent-2: #D89820;
+  --accent-2-light: #1E1004;
+  --border: #221535;
+  --border-strong: #3A2555;
+  --positive: #3AB870;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box }
+body { margin: 0; font-family: var(--font-body); background: var(--bg); color: var(--fg); font-size: 15px; line-height: 1.65 }
+
+.site-header {
+  background: var(--accent);
+  color: #fff;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 36px;
+}
+.header-inner { max-width: 920px; margin: 0 auto; display: flex; align-items: center; gap: 28px; flex-wrap: wrap }
+.header-text { flex: 1; min-width: 0 }
+.header-series { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .65; margin: 0 0 6px }
+.header-course { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .8; margin: 0 0 10px; display: flex; align-items: center; gap: 8px }
+.course-badge { display: inline-flex; align-items: center; padding: 2px 9px; background: rgba(255,255,255,.18); border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: .08em }
+.header-title { font-family: var(--font-display); font-size: clamp(22px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; color: #fff; font-style: italic }
+.header-desc { font-size: 14px; opacity: .8; margin: 0 0 14px; max-width: 58ch; line-height: 1.5 }
+.header-author { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; opacity: .75 }
+.header-author strong { opacity: 1; font-weight: 600 }
+.progress-ring { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px }
+.ring-svg { width: 80px; height: 80px }
+.ring-track { fill: none; stroke: rgba(255,255,255,.2); stroke-width: 6 }
+.ring-fill { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset .5s ease }
+.ring-pct { font-size: 15px; font-weight: 600; fill: #fff; text-anchor: middle; dominant-baseline: central; font-family: var(--font-body) }
+.ring-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .7; color: #fff }
+
+.module-nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none }
+.module-nav::-webkit-scrollbar { display: none }
+.nav-inner { display: flex; max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); min-width: max-content }
+.nav-tab { padding: 14px 14px; font-size: 13px; font-weight: 500; color: var(--fg-muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; font-family: var(--font-body) }
+.nav-tab:hover { color: var(--fg) }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent) }
+
+.main-content { max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); padding-block: 0 80px }
+
+.module-section { padding-top: 56px }
+.module-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px }
+.module-title { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 30px); line-height: 1.2; margin: 0 0 10px; text-wrap: balance; font-style: italic }
+.module-meta { font-size: 13px; color: var(--fg-muted); margin: 0 0 14px; font-style: italic }
+.module-intro { font-size: 14px; color: var(--fg-muted); margin: 0 0 20px; max-width: 70ch; line-height: 1.65; padding: 14px 18px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0 }
+.module-divider { border: none; border-top: 2px solid var(--border); margin: 0 0 28px }
+
+.subsection { margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden }
+.subsection summary { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; user-select: none; list-style: none }
+.subsection summary::-webkit-details-marker { display: none }
+.chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--fg-subtle); transition: transform .2s ease }
+.subsection[open] .chevron { transform: rotate(90deg) }
+.summary-text { flex: 1; min-width: 0 }
+.summary-code { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-subtle); margin: 0 0 2px }
+.summary-title { font-size: 15px; font-weight: 600; color: var(--fg); margin: 0; line-height: 1.3 }
+.summary-right { flex-shrink: 0; display: flex; align-items: center; gap: 8px }
+.prog-count { font-size: 12px; font-weight: 500; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap }
+.prog-bar { width: 56px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden }
+.prog-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .35s ease }
+.prog-fill.done { background: var(--positive) }
+.subsection-body { padding: 0 20px 20px; border-top: 1px solid var(--border) }
+.sub-note { font-size: 13px; color: var(--fg-muted); font-style: italic; margin: 14px 0 4px; line-height: 1.55 }
+
+.check-group { margin: 0; padding: 0; list-style: none }
+.group-heading { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin: 16px 0 8px; padding-top: 8px; border-top: 1px dashed var(--border) }
+.group-heading:first-child { border-top: none; margin-top: 8px }
+.check-item { display: flex; align-items: flex-start; gap: 11px; padding: 7px 0; cursor: pointer; border-bottom: 1px solid var(--border) }
+.check-item:last-child { border-bottom: none }
+.check-item input { position: absolute; opacity: 0; pointer-events: none }
+.check-box { flex-shrink: 0; width: 18px; height: 18px; border: 1.5px solid var(--border-strong); border-radius: 4px; margin-top: 3px; background: var(--bg); display: flex; align-items: center; justify-content: center; transition: background .15s, border-color .15s }
+.check-item input:checked ~ .check-box { background: var(--accent); border-color: var(--accent) }
+.check-item input:checked ~ .check-box::after { content: ''; width: 9px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translateY(-1px) }
+.check-label { font-size: 14px; line-height: 1.55; color: var(--fg); flex: 1; min-width: 0; transition: color .15s }
+.check-item input:checked ~ .check-label { color: var(--fg-subtle); text-decoration: line-through; text-decoration-color: var(--border-strong) }
+.nested-list { padding: 2px 0 2px 26px; border-left: 2px solid var(--border); margin: 2px 0 2px 8px }
+.nested-list .check-item { border-bottom: none; padding: 4px 0 }
+.nested-list .check-label { font-size: 13.5px }
+
+.callout {
+  border-left: 3px solid var(--accent-2); padding: 14px 18px; margin: 16px 0;
+  background: var(--accent-2-light); border-radius: 0 var(--radius) var(--radius) 0;
+}
+.callout p { margin: 0 0 6px; font-style: italic; font-size: 14px; color: var(--fg-muted); line-height: 1.6 }
+.callout cite { font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-2) }
+
+.principle-header {
+  display: flex; align-items: baseline; gap: 12px; margin: 14px 0 4px;
+  flex-wrap: wrap;
+}
+.principle-name { font-family: var(--font-display); font-size: 17px; font-style: italic; color: var(--accent); margin: 0 }
+.principle-translation { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-2); margin: 0 }
+.principle-phonetic { font-size: 12px; color: var(--fg-subtle); margin: 0; font-style: italic }
+
+.attribution-section { padding-top: 56px; padding-bottom: 20px }
+.attribution-block { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 28px 32px }
+.attribution-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px }
+.attribution-row { margin-bottom: 20px }
+.attribution-row:last-child { margin-bottom: 0 }
+.attribution-label { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 5px }
+.attribution-text { font-size: 14px; line-height: 1.65; color: var(--fg); margin: 0 }
+.attribution-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 }
+
+@media (max-width: 520px) { .progress-ring { display: none } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important } }
+</style>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-text">
+      <p class="header-series">From Soil to Sky Training Series</p>
+      <p class="header-course"><span class="course-badge">Course 5</span></p>
+      <h1 class="header-title">Cultural Grounding: Nguzo Saba, Ma'at & Ubuntu</h1>
+      <p class="header-desc">A deep study of three African cultural frameworks — the Seven Principles of Kwanzaa, the Kemetic ethics of Ma'at, and the Bantu philosophy of Ubuntu — and how they form the cultural spine of the From Soil to Sky model.</p>
+      <p class="header-author">Nguzo Saba: <strong>Maulana Karenga</strong> &nbsp;·&nbsp; Ma'at: <strong>Kemetic tradition</strong> &nbsp;·&nbsp; Ubuntu: <strong>Bantu tradition</strong> &nbsp;·&nbsp; Applied by <strong>Tiana Massaquoi</strong></p>
+    </div>
+    <div class="progress-ring">
+      <svg class="ring-svg" viewBox="0 0 80 80" aria-hidden="true">
+        <circle class="ring-track" cx="40" cy="40" r="32"/>
+        <circle class="ring-fill" id="ring-fill" cx="40" cy="40" r="32"/>
+        <text class="ring-pct" id="ring-pct" x="40" y="40">0%</text>
+      </svg>
+      <span class="ring-label">Complete</span>
+    </div>
+  </div>
+</header>
+
+<nav class="module-nav" aria-label="Module navigation">
+  <div class="nav-inner" id="nav-inner"></div>
+</nav>
+
+<main class="main-content" id="main-content"></main>
+
+<script>
+const CIRC = 2 * Math.PI * 32;
+
+const DATA = [
+  {
+    id: 'module-1',
+    num: 'Module 1',
+    title: 'The Foundation — Why Cultural Grounding?',
+    meta: 'Culture is not a supplement to development — it is the soil it grows from',
+    intro: 'A youth development program that does not ground itself in the culture of the young people it serves will always be building on borrowed ground. This module makes the case for cultural grounding — not as a program add-on, not as a cultural celebration, but as the foundational soil of everything FSTS does.',
+    sections: [
+      {
+        id: 'm1s1', code: '1.1',
+        title: 'The Argument for Cultural Grounding',
+        groups: [
+          { heading: null, items: [
+            'Define cultural grounding as distinct from cultural programming: cultural programming adds African traditions to a program that was designed elsewhere (an African dance workshop, a Kwanzaa celebration); cultural grounding builds the program\'s entire structure on African philosophical and ethical frameworks from the beginning',
+            'Name the developmental argument: a young person\'s cultural identity is not a background fact about them — it is a developmental resource; when a program affirms and deepens that identity, it is doing development work, not cultural decoration',
+            'Name the healing argument: for Black and Brown young people who have experienced cultural erasure, disconnection from ancestral traditions, or the message that their culture is inferior, cultural grounding is a healing practice; it reconnects a severed root',
+            'Name the organizational argument: an organization that is culturally grounded is harder to co-opt; when your values, language, and structure come from African philosophical traditions, you have a framework for saying no to practices that violate those values, even when they come packaged as "best practices"',
+            'Identify the three frameworks this course studies — Nguzo Saba (Maulana Karenga/Kwanzaa), Ma\'at (ancient Kemetic tradition), Ubuntu (Bantu philosophy) — and name what each one provides that the other two do not',
+            'Reflect: Is your current or planned organization culturally grounded or culturally programmed? What is the evidence for your answer?',
+          ]}
+        ]
+      },
+      {
+        id: 'm1s2', code: '1.2',
+        title: 'The Legacy of Cultural Erasure and Why Restoration Matters',
+        groups: [
+          { heading: null, items: [
+            'Name the historical process of cultural erasure for African Americans: the systematic dismantling of African cultural identity through enslavement, forced religious conversion, prohibition of African languages and names, and the ongoing devaluation of African cultural production in American institutions',
+            'Identify the developmental impact of cultural erasure: research on cultural identity development (Phinney, Cross\'s Racial Identity Development model) consistently finds that a secure cultural identity is a protective factor — young people who know who they are and where they come from are more resilient, more academically engaged, and more resistant to internalizing negative social messages',
+            'Name Maulana Karenga\'s specific contribution to cultural restoration: the founding of the US Organization (1965) and Kwanzaa (1966) as explicit acts of cultural recovery — creating an African American cultural holiday grounded in pan-African philosophical principles at a moment when the Civil Rights movement was raising the question of what Black freedom would actually look like',
+            'Name the Afrocentric academic tradition: Molefi Kete Asante\'s Afrocentricity (1980) as the philosophical framework that placed African cultural frameworks at the center of educational practice — not as supplementary material but as primary knowledge',
+            'Identify your own relationship to cultural continuity: what African or diasporic cultural traditions do you carry? Which have you lost? Which do you actively practice or study? What does your answer tell you about what you bring to FSTS?',
+          ]}
+        ]
+      },
+      {
+        id: 'm1s3', code: '1.3',
+        title: 'How Nguzo Saba, Ma\'at, and Ubuntu Work Together',
+        groups: [
+          { heading: null, items: [
+            'Understand Nguzo Saba as the community ethics framework: the Seven Principles provide the values architecture for how a community organizes itself, makes decisions, and measures the quality of its collective life',
+            'Understand Ma\'at as the cosmic ethics framework: the ancient Kemetic principles of truth, justice, and balance provide a character development framework rooted in African civilization — an answer to the question "what does a person of integrity look like?"',
+            'Understand Ubuntu as the relational ontology framework: "I am because we are" is not just a nice sentiment — it is a philosophy of identity that locates the self in relationship rather than in individual achievement; it provides the philosophical foundation for the cohort model, the Elder role, and the communal orientation of FSTS',
+            'Name how the three work together: Nguzo Saba gives you the community values (what we stand for together); Ma\'at gives you the individual character (who I am becoming); Ubuntu gives you the relational foundation (why we need each other to be fully ourselves)',
+            'Map the three frameworks onto the FSTS structure: Nguzo Saba governs the Kwanzaa closing and the cohort agreements; Ma\'at governs the identity work of the Seed phase; Ubuntu governs the cohort model and the mentor relationship throughout the year',
+            'Write your one-paragraph synthesis: what is the cultural foundation of FSTS in your own words, drawing on all three frameworks?',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-2',
+    num: 'Module 2',
+    title: 'Nguzo Saba — The Seven Principles',
+    meta: 'A deep study of Maulana Karenga\'s founding principles of Kwanzaa',
+    intro: 'The Nguzo Saba are the seven principles of Kwanzaa, established by Maulana Karenga in 1966 as a framework for African American cultural life and community organization. They are not a religion, not a nationalism, and not a holiday — they are a philosophy of community values for people of African descent. Study each one as a living practice, not a definition to memorize.',
+    sections: [
+      {
+        id: 'm2s1', code: '2.1',
+        title: 'Maulana Karenga and the Founding of Kwanzaa',
+        groups: [
+          { heading: null, items: [
+            'Research Maulana Karenga (born Ronald Everett, 1941): scholar, activist, and founder of the US Organization (United Slaves), a Black cultural nationalist organization founded in Los Angeles in 1965 in the wake of the Watts rebellion',
+            'Understand the political and cultural context of Kwanzaa\'s founding (1966): the Black Power movement\'s question "what does it mean to be free?" extended beyond political rights to cultural and psychological liberation — Karenga\'s answer was to build a cultural foundation',
+            'Name the pan-African sources Karenga drew from: East, West, and Southern African traditions of harvest celebration, ancestral veneration, and communal values — Kwanzaa was not invented whole cloth but was a synthesis of existing African traditions adapted for the African American context',
+            'Identify the word "Kwanzaa": from the Swahili "matunda ya kwanza" (first fruits of the harvest) — the use of Swahili as a pan-African reference language that no single ethnic group owned was a deliberate political choice',
+            'Understand the academic work that followed: Karenga became a professor of Africana Studies and wrote extensively on Maat (Maat: The Moral Ideal in Ancient Egypt, 2004) — Nguzo Saba and his work on Ma\'at are not separate projects but a continuous project of building an African-centered ethics for contemporary life',
+            'Reflect: What do you know about Maulana Karenga and the US Organization beyond Kwanzaa? Why does the fuller picture matter for how you teach Nguzo Saba?',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s2', code: '2.2',
+        title: 'Principle 1: Umoja — Unity',
+        groups: [
+          { heading: 'The Principle', items: [
+            'State the full principle: "To strive for and maintain unity in the family, community, nation, and race"',
+            'Define unity in Karenga\'s sense: not uniformity, not the suppression of difference, but the capacity to hold together across difference in the service of collective flourishing',
+            'Distinguish unity from agreement: Umoja is not achieved when everyone agrees — it is practiced when people who disagree can still work together, hold each other, and maintain the relationship through conflict',
+            'Name the concentric rings of unity in the principle: family → community → nation → race; Umoja is practiced at every scale simultaneously, and the quality of unity in the small (family) fractals into the large (community)',
+          ]},
+          { heading: 'In Practice and FSTS Application', items: [
+            'Identify the specific threats to unity in your community and program context: competition for resources, interpersonal conflict, ideological difference, historical wounds between families and organizations',
+            'Develop a cohort agreement rooted in Umoja: not a rule against conflict, but a commitment to maintain relationship through it — what does that look like as a specific, concrete agreement?',
+            'Apply Umoja to the mentor-youth relationship: a mentoring relationship is a small unit of Umoja — two people committed to maintaining connection across generation, experience, and difference; how do you train mentors to practice Umoja in the relationship?',
+            'Name how Umoja appears in the Kwanzaa closing ceremony of FSTS: what is the specific ceremonial act that embodies unity at the close of the program year?',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s3', code: '2.3',
+        title: 'Principle 2: Kujichagulia — Self-Determination',
+        groups: [
+          { heading: 'The Principle', items: [
+            'State the full principle: "To define ourselves, name ourselves, create for ourselves, and speak for ourselves"',
+            'Understand why definition and naming come first: in a society that has systematically misdefined and misnamed Black people, the act of self-definition is political and developmental simultaneously; you cannot thrive as a person whose identity is defined by others',
+            'Name the four acts of Kujichagulia: define, name, create, speak — these are not synonyms; each represents a different dimension of self-determination; work through the distinction between each',
+            'Connect to developmental science: Kujichagulia is the cultural framework version of what developmental psychologists call "identity formation" — but Kujichagulia locates the work in community and culture, not in individual psychology',
+          ]},
+          { heading: 'In Practice and FSTS Application', items: [
+            'Apply Kujichagulia to the naming practice in FSTS: the act of giving or reclaiming African names, or of speaking one\'s name with intention and history, is an act of Kujichagulia; how is this built into the program?',
+            'Develop a self-definition exercise for the Seed phase of FSTS: a practice where young people write, speak, or create their own definitions of themselves — not through the lens of what others see, but through what they know to be true about who they are',
+            'Apply Kujichagulia to program governance: does your program allow youth to name and define the values, agreements, and priorities of the cohort? If not, you are practicing the opposite of Kujichagulia in the very program designed to teach it',
+            'Identify an external force in your community that attempts to define your young people without their consent (a school district narrative, a news media framing, a funder\'s population language) — develop a Kujichagulia response',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s4', code: '2.4',
+        title: 'Principle 3: Ujima — Collective Work and Responsibility',
+        groups: [
+          { heading: 'The Principle', items: [
+            'State the full principle: "To build and maintain our community together and to make our brothers\' and sisters\' problems our problems and to solve them together"',
+            'Understand the philosophical claim: Ujima refuses the individualism of American culture that says your problem is yours to solve alone; it insists that my neighbor\'s problem diminishes me if I do not engage it, and that collective action is both a moral obligation and a more effective strategy',
+            'Distinguish Ujima from charity: charity is giving from surplus to those in need; Ujima is collective ownership of both the problem and the solution — there is no giver and recipient, only community members who hold each other',
+            'Connect to the Ubuntu principle: Ujima is Ubuntu in action — because I am only fully myself through you, your suffering is not separate from mine; the philosophical foundation of collective responsibility is a relational ontology',
+          ]},
+          { heading: 'In Practice and FSTS Application', items: [
+            'Design the FSTS contribution project through the lens of Ujima: the project is not community service (an individual doing something for others) — it is Ujima (the cohort identifying a community problem as their problem and solving it together)',
+            'Develop a cohort accountability structure rooted in Ujima: when one cohort member struggles, what is the obligation of the others? Build this into cohort agreements explicitly',
+            'Apply Ujima to staff culture: name one way your organization currently practices collective responsibility among staff, and one way it does not — develop a specific change',
+            'Identify the barriers to Ujima in your specific community context: what prevents people from treating their neighbors\' problems as their own? (Historical betrayal, resource scarcity, distrust, competing priorities) — how does FSTS address these barriers?',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s5', code: '2.5',
+        title: 'Principle 4: Ujamaa — Cooperative Economics',
+        groups: [
+          { heading: 'The Principle', items: [
+            'State the full principle: "To build and maintain our own stores, shops, and other businesses and to profit from them together"',
+            'Understand Ujamaa in its original sense: Karenga was drawing on Julius Nyerere\'s Ujamaa socialism in Tanzania — African socialism as an alternative to both Western capitalism and Soviet communism, rooted in traditional African communal economic life',
+            'Name the contemporary application: Ujamaa is not just about Black-owned businesses — it is about economic self-determination; the question is whether your community controls the resources that determine its quality of life, or whether those resources are controlled by external actors',
+            'Connect Ujamaa to youth development: young people who learn Ujamaa understand that their economic choices have community implications — that buying from Black-owned businesses, investing in community institutions, and building economic networks is a practice of Ujamaa',
+          ]},
+          { heading: 'In Practice and FSTS Application', items: [
+            'Develop a financial literacy curriculum for FSTS grounded in Ujamaa: not personal finance as individual wealth-building, but cooperative economics as community wealth-building',
+            'Identify the Ujamaa implications of your organization\'s economic practices: who does your organization buy from? Who does it hire? Where does it bank? Apply the Ujamaa lens to these decisions',
+            'Apply Ujamaa to the contribution project: can the project have an economic dimension — creating something of economic value for the community, or addressing an economic barrier?',
+            'Develop the young person\'s Ujamaa vision: by the end of FSTS, each participant should be able to articulate a specific vision of how their economic choices and career choices will serve their community — this is Ujamaa as vocational discernment',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s6', code: '2.6',
+        title: 'Principle 5: Nia — Purpose',
+        groups: [
+          { heading: 'The Principle', items: [
+            'State the full principle: "To make our collective vocation the building and developing of our community in order to restore our people to their traditional greatness"',
+            'Understand the scope of Nia: purpose in Karenga\'s framework is not individual calling — it is collective vocation; the question is not only "what am I here to do?" but "what are we here to build together?"',
+            'Name what "traditional greatness" means and does not mean: it does not mean nostalgia or a return to an idealized past; it means reclaiming the intellectual, cultural, and spiritual greatness of African civilization as a resource for present-day community building',
+            'Connect Nia to the 5 Cs of PYD: Nia is the cultural framework version of Purpose in the Positive Youth Development model — but where PYD focuses on individual purpose, Nia insists that individual purpose is only fully realized in its collective expression',
+          ]},
+          { heading: 'In Practice and FSTS Application', items: [
+            'Develop a Nia discovery process for the FSTS Seed phase: a structured set of experiences and conversations that help young people connect their individual gifts and passions to a sense of community purpose',
+            'Build the Nia statement as a program artifact: each FSTS participant leaves the program with a written Nia statement — not a personal mission statement (individual) but a collective vocation statement ("I am here to contribute X to my community because Y") — develop the process for building it across the program year',
+            'Apply Nia to the mentor\'s role: train mentors to help young people discover purpose in conversation, not by telling them what their purpose is, but by asking the questions that help the young person discover it themselves',
+            'Name the relationship between Nia and the FSTS program\'s contribution project: the project is Nia in action — it is the first time young people test their sense of collective vocation in a real community context',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s7', code: '2.7',
+        title: 'Principle 6: Kuumba — Creativity',
+        groups: [
+          { heading: 'The Principle', items: [
+            'State the full principle: "To do always as much as we can, in the way we can, in order to leave our community more beautiful and beneficial than we inherited it"',
+            'Understand Kuumba beyond art: creativity in this framework is not primarily artistic expression — it is the obligation to leave every space you inhabit more beautiful and more useful than you found it; it is a generative ethics',
+            'Name the intergenerational dimension of Kuumba: "than we inherited it" — Kuumba is practiced in relationship to ancestors and descendants; what we create is offered backward to those who built what we stand on, and forward to those who will stand on what we build',
+            'Connect Kuumba to Emergent Strategy: Adrienne Maree Brown\'s principle of "less prep, more presence" is a form of Kuumba — showing up fully, creating in the moment in response to what is actually needed, leaving the space changed by your presence',
+          ]},
+          { heading: 'In Practice and FSTS Application', items: [
+            'Build artistic expression as a developmental practice into FSTS: not as an optional elective but as a structured component of each phase — what creative modalities (spoken word, visual art, music, movement, writing) will the program make available?',
+            'Apply Kuumba to facilitator practice: train facilitators to understand their role as creative work — designing a session, holding a circle, responding to what emerges — as an act of Kuumba, leaving each gathering more alive than they found it',
+            'Develop a Kuumba-based closing ritual for each FSTS session: something the group creates together — a shared phrase, a gesture, a brief creation — that marks the end of that gathering and embodies their collective creativity',
+            'Apply Kuumba to the contribution project: the project should have an element of beauty — it should create or restore something that is not only functional but aesthetically or spiritually meaningful to the community',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s8', code: '2.8',
+        title: 'Principle 7: Imani — Faith',
+        groups: [
+          { heading: 'The Principle', items: [
+            'State the full principle: "To believe with all our heart in our people, our parents, our teachers, our leaders, and the righteousness and victory of our struggle"',
+            'Understand Imani as communal rather than religious faith: while Imani has spiritual resonance, Karenga was careful to frame it as a community-held belief that is not dependent on any specific religious tradition — it is faith in the capacity of the community to achieve its own liberation',
+            'Name what Imani is asked to believe in: people, parents, teachers, leaders, and the struggle — each is specific; Imani is not naive optimism but earned trust, rooted in knowledge of what the community has survived and achieved',
+            'Connect Imani to Healing-Centered Engagement: Ginwright\'s insistence on joy, hope, and political agency is a form of Imani — the refusal to let despair have the last word; Imani is the cultural framework that grounds HCE\'s healing orientation',
+          ]},
+          { heading: 'In Practice and FSTS Application', items: [
+            'Develop a practice of testimonial for FSTS: regular moments in the program where participants, mentors, Elders, and alumni share evidence of what the community is capable of — feeding the collective Imani with real stories of real people',
+            'Apply Imani to program closings and transitions: when a cohort ends, when a young person graduates, when a mentor finishes the year, the closing should be an act of Imani — affirming the possibility that the next cohort, the next year, the next generation will carry the work forward',
+            'Connect Imani to the Kwanzaa ceremony: Imani is the seventh day of Kwanzaa; in FSTS\'s Kwanzaa closing, the final act should embody Imani — what is the specific ceremonial moment that calls forth the community\'s faith in its own future?',
+            'Build resilience through Imani: develop a practice for when things go hard — when a young person drops out, when a mentor ends a match prematurely, when the program faces a difficult year — that calls the team back to Imani without toxic positivity or denial of difficulty',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s9', code: '2.9',
+        title: 'The Seven Principles in FSTS Program Design',
+        groups: [
+          { heading: null, items: [
+            'Map each principle to a specific FSTS program element: which phase, activity, or ceremony most directly embodies each of the seven principles? Build this as a one-page program logic diagram that you can use in training and orientation',
+            'Design the Kwanzaa ceremony as a Nguzo Saba ceremony: the seven days of Kwanzaa each represent one principle; in FSTS\'s single-day closing, how do you honor all seven? Develop the ceremonial structure',
+            'Develop the cohort agreement as a Nguzo Saba document: not seven rules, but seven commitments that the cohort makes to each other at the beginning of the year and renews at the closing',
+            'Train mentors in Nguzo Saba: develop a three-session mentor training on the principles, focused on how each mentor can practice all seven in their mentoring relationship — not as a lesson to teach the young person, but as a practice to model',
+            'Develop a youth self-assessment rooted in Nguzo Saba: how would young people evaluate their own practice of each principle at midpoint and at program close? Build the tool',
+            'Integrate Nguzo Saba into the contribution project: which of the seven principles most directly governs the project? (Ujima is primary, but Nia, Kuumba, Kujichagulia may all be present) — develop the framing language for the project that draws on the principles',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-3',
+    num: 'Module 3',
+    title: 'Ma\'at — Kemetic Ethics and Cosmic Order',
+    meta: 'The ancient African framework of truth, justice, and balance as a character development practice',
+    intro: 'Ma\'at is one of the oldest ethical frameworks in recorded human history — the ancient Kemetic (Egyptian) principle of truth, justice, and cosmic order that organized both the personal and political life of one of Africa\'s greatest civilizations. Maulana Karenga has argued that Ma\'at is the most fully developed ethical system in ancient Africa, and that it belongs at the center of African American moral education.',
+    sections: [
+      {
+        id: 'm3s1', code: '3.1',
+        title: 'Ancient Kemet and the Tradition of Ma\'at',
+        groups: [
+          { heading: null, items: [
+            'Understand Kemet as the ancient African civilization we now call Egypt: "Kemet" means "the black land" — the ancient Egyptians\' own name for their civilization; using "Kemet" rather than "Egypt" is a deliberate act of reclaiming African ownership of this heritage',
+            'Identify Ma\'at as both a cosmic principle and a goddess: in the Kemetic worldview, Ma\'at was the divine order that governed the universe — truth, justice, balance, harmony, and reciprocity as the foundation of existence itself, personified as a goddess with a feather on her head',
+            'Understand the Weighing of the Heart: in Kemetic funerary tradition, the dead person\'s heart was weighed against the feather of Ma\'at in the presence of 42 assessors — if the heart was heavier than the feather (burdened by wrongdoing), it was consumed; if it balanced the feather (a life of Ma\'at), the person passed into the afterlife; this is the most vivid statement of Ma\'at as a complete moral system',
+            'Name the 42 Declarations of Innocence: the negative confessions from the Book of the Dead where the deceased declares before each of 42 assessors what they did NOT do (lying, theft, harming another, speaking idle words) — these declarations are the most complete catalog of Kemetic ethics in the written record',
+            'Connect to Maulana Karenga\'s scholarship: his 2004 work Maat: The Moral Ideal in Ancient Egypt argues that Ma\'at provides African Americans with an ethical framework rooted in the highest expressions of African civilization — not borrowed from Western traditions but native to the African intellectual heritage',
+            'Reflect: What does it mean to you that one of the world\'s oldest ethical frameworks came from Africa? How does knowing this change how you understand the African intellectual tradition?',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s2', code: '3.2',
+        title: 'The Seven Principles of Ma\'at',
+        groups: [
+          { heading: 'Truth (Maat)', items: [
+            'Define Ma\'at/Truth as alignment between inner reality and outer expression: you speak what you know to be true; you live according to your stated values; there is no gap between who you say you are and who you are',
+            'Apply to youth work: develop a truth-telling practice for FSTS circles — a culture where young people are supported to say what is actually true for them, not what they think adults want to hear',
+            'Apply to organizational practice: name one place in your organization where institutional truth-telling is weak — where you present one story to funders and another is lived internally; develop a commitment to close that gap',
+          ]},
+          { heading: 'Justice (Maat)', items: [
+            'Define Justice in the Kemetic sense: not punitive justice (punishment for wrongdoing) but restorative and relational justice — the right ordering of relationships; giving each person what they are owed; ensuring no one is exploited or diminished',
+            'Apply to program design: does your program practice justice internally? Are voices heard equitably? Are youth given genuine decision-making power or only consultation? Is harm acknowledged and repaired when it occurs?',
+            'Apply to the contribution project: require that the project address a genuine injustice in the community — not just a need, but a wrong that can be named, and that the young people\'s contribution begins to right it',
+          ]},
+          { heading: 'Righteousness / Right Action', items: [
+            'Define Righteousness in Ma\'at: the alignment of one\'s actions with the cosmic order — not personal preference or cultural norm, but the deeper order that upholds the flourishing of all; doing the right thing even when it is difficult, unpopular, or costly',
+            'Apply to mentors: a mentor who practices Ma\'at does what is right for the young person even when it is uncomfortable — gives honest feedback, holds boundaries, addresses harm, stays when the relationship is hard',
+            'Apply to leadership: develop a practice of organizational righteousness — a regular question in leadership reflection: "Is this decision aligned with what is actually right, or just with what is expedient?"',
+          ]},
+          { heading: 'Balance, Harmony, Order, and Reciprocity', items: [
+            'Define Balance (Sba) in Ma\'at: the equilibrium of opposites that creates stability — not the suppression of conflict but the holding of tensions in productive relationship; the scales of Ma\'at are always in motion',
+            'Define Harmony (Hetep) in Ma\'at: the condition of right relationship — peace that is not the absence of conflict but the presence of mutual respect, collective care, and shared purpose',
+            'Define Order in Ma\'at: Ma\'at (order) is contrasted with Isfet (chaos) — the cosmic struggle to maintain right relationship against the forces of disorder; this is not rigidity but the active maintenance of what supports flourishing',
+            'Define Reciprocity in Ma\'at: the principle that what you give returns to you; that relationships are governed by mutual obligation; that the community sustains those who sustain it; apply this to the giving and receiving structure of FSTS',
+            'Develop a Ma\'at-based self-assessment for FSTS participants: not "did I follow the rules?" but "did I practice truth, justice, righteousness, balance, harmony, order, and reciprocity in my relationships this week?" — build the reflection tool',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s3', code: '3.3',
+        title: 'Ma\'at as Character Development Framework',
+        groups: [
+          { heading: null, items: [
+            'Identify the parallel between Ma\'at and PYD\'s Character: the C of Character in Positive Youth Development — respect for societal and cultural rules, possession of standards for correct behavior, integrity — is substantially what Ma\'at is describing from an African philosophical tradition; Ma\'at gives the Character C its cultural grounding',
+            'Develop a Ma\'at-based character curriculum for the Seed phase of FSTS: not a rules curriculum ("here is how you behave") but a philosophical inquiry ("what does a person of Ma\'at look like, and how do I become that person?")',
+            'Build the Ma\'at character portrait: develop a detailed description of a young person who is practicing Ma\'at — what do they say, how do they treat others, how do they respond to difficulty, what do they refuse to do and why? This becomes the character North Star for the Seed phase',
+            'Connect Ma\'at to ancestral accountability: in the Kemetic worldview, you will one day stand before the 42 assessors and account for your life; translate this into a developmental practice — regular moments where young people reflect on whether they are living in Ma\'at, not for fear of judgment, but out of love for the community they belong to',
+            'Apply Ma\'at to restorative justice practices in FSTS: when harm occurs in the cohort (and it will), the repair process should be rooted in Ma\'at — acknowledging the imbalance, restoring right relationship, ensuring the person who was harmed receives what they are owed',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s4', code: '3.4',
+        title: 'Ma\'at in the FSTS Program',
+        groups: [
+          { heading: null, items: [
+            'Map Ma\'at to the four phases of FSTS: which principles are primary in which phases? (Truth and balance in the Soil phase; righteousness and character in the Seed phase; justice in the Stem and Sky phases)',
+            'Design a Ma\'at-based opening ceremony for each FSTS session: a brief invocation that calls the group to Ma\'at — to truth, to right relationship, to the cosmic order that the ancestors maintained — as a way of entering the work',
+            'Develop the Ma\'at pledge for FSTS participants: a short, spoken commitment that participants make at the beginning of the program and renew at each session — not an oath of allegiance to the program, but a personal commitment to live in Ma\'at during this year together',
+            'Apply Ma\'at to elder role in FSTS: Elders are carriers of Ma\'at — they have lived long enough to know the consequences of Isfet (disorder) and to speak with authority about what Ma\'at looks like across a whole life; train Elders to share their Ma\'at stories explicitly',
+            'Integrate Ma\'at into the closing ceremony: the Kwanzaa closing should include a Ma\'at reflection — each participant speaks to one way they practiced Ma\'at during the year and one way they fell short; this is accountability, not shame',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-4',
+    num: 'Module 4',
+    title: 'Ubuntu — The Philosophy of Collective Being',
+    meta: '"I am because we are" — African communal ontology as a developmental foundation',
+    intro: '"Umuntu ngumuntu ngabantu" — a person is a person through other persons. Ubuntu is not a management philosophy or a team-building slogan. It is a profound African philosophical claim about the nature of identity itself: that the self is not a pre-social individual who then enters community, but a relational being who is constituted by community. Study it as the philosophical foundation of everything the FSTS cohort model is built on.',
+    sections: [
+      {
+        id: 'm4s1', code: '4.1',
+        title: 'Ubuntu in Bantu Philosophy',
+        groups: [
+          { heading: null, items: [
+            'Identify Ubuntu\'s linguistic roots: "Ubuntu" comes from the Nguni Bantu language family (Zulu, Xhosa, Ndebele); the concept has cognates across dozens of Bantu language groups across sub-Saharan Africa under different names, suggesting a shared philosophical tradition',
+            'Name the academic philosophers of Ubuntu: Mogobe B.A. Ramose (Ubuntu: Botho as the African Basis for Ethical Community Governance), Desmond Mpilo Tutu (No Future Without Forgiveness — Ubuntu in the Truth and Reconciliation Commission context), Thabo Mbeki, and the growing field of African philosophy',
+            'Understand Ubuntu as ontology, not just ethics: Ubuntu is not primarily a moral claim ("you should be good to your neighbor") — it is an ontological claim about the nature of being ("you cannot be fully yourself without your neighbor"); this distinction matters enormously for how it is applied',
+            'Name the contrast with Western individual ontology: Western philosophy (Descartes\' "I think therefore I am") begins with the individual self as the fundamental unit of being; Ubuntu begins with the relational self — "I am therefore I participate," and "I participate therefore I am" (Ramose)',
+            'Understand Ubuntu in the South African Truth and Reconciliation Commission: Desmond Tutu applied Ubuntu as the philosophical basis for restorative rather than punitive justice — because we are constitutively connected, the harm done to one diminishes the other, and the restoration of the harmed person restores the whole community; this is the most powerful modern application of Ubuntu to community life',
+            'Reflect: How does the claim "I am because we are" change how you understand your own identity — your strengths, your wounds, your purpose? How does it change how you understand the young people in FSTS?',
+          ]}
+        ]
+      },
+      {
+        id: 'm4s2', code: '4.2',
+        title: 'The Core Ubuntu Claims',
+        groups: [
+          { heading: null, items: [
+            'Explain the constitutive claim: community is not something you join — it is something you are made by; identity is not formed first and then expressed in community, it is formed through community; a person raised in isolation would not develop selfhood in the Ubuntu sense',
+            'Explain the moral claim: because I am made by you and you by me, your suffering is not merely a concern of mine — it constitutes a diminishment of me; I cannot be fully myself while you are in pain that I could address; Ubuntu is the philosophical foundation of Ujima\'s collective responsibility',
+            'Explain the epistemological claim: knowledge is communal — wisdom is not possessed by individuals but carried by communities; the most important things a person needs to know, they cannot learn alone; they need Elders, peers, ancestors, and community to know what they need to know',
+            'Explain the restoration claim: because we are constitutively connected, healing is always communal; a person cannot fully heal in isolation; healing requires witness, community, and the restoration of right relationship; this is Ubuntu\'s contribution to Healing-Centered Engagement',
+            'Name the limits and critiques of Ubuntu: Ubuntu has been critiqued for potentially suppressing individual dissent ("the community says so, therefore it is right"), for being used by political leaders to demand conformity, and for romanticizing African communalism without addressing power dynamics within communities — hold these critiques as part of a full understanding',
+          ]}
+        ]
+      },
+      {
+        id: 'm4s3', code: '4.3',
+        title: 'Ubuntu and the FSTS Cohort Model',
+        groups: [
+          { heading: null, items: [
+            'Identify Ubuntu as the philosophical foundation of the cohort model: the cohort is not just a group of young people going through a program together — it is a community that constitutes each member; each young person is more fully themselves because of the others, and the others are more fully themselves because of each young person',
+            'Apply Ubuntu to cohort design: how large should the cohort be? Ubuntu would say small enough that each person can genuinely know and be known by every other — 12–15 is not arbitrary; it is the scale at which Ubuntu relationships are possible',
+            'Apply Ubuntu to the mentor relationship: a mentor who practices Ubuntu understands that they are not a service provider delivering development to a young person — they are a person who is changed by the young person they mentor; the relationship is constitutive of both parties',
+            'Apply Ubuntu to Elder roles: Elders in FSTS are not resources the program uses — they are community members through whom the young people come to know themselves as part of a lineage; their presence constitutes the young people\'s sense of intergenerational identity',
+            'Apply Ubuntu to the Alumni network: FSTS alumni do not graduate out of relationship — they graduate into a wider community; the Ubuntu claim is that current cohort members are constituted by alumni before them, and future cohort members will be constituted by the current cohort; develop the program design that makes this real',
+            'Develop an Ubuntu covenant for FSTS: a statement of relational ontology that the whole program — youth, mentors, Elders, staff, families — signs at the beginning of the year, naming their commitment to constitute each other through right relationship across the program year',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-5',
+    num: 'Module 5',
+    title: 'Three Frameworks, One Cultural Spine',
+    meta: 'How Nguzo Saba, Ma\'at, and Ubuntu work together as an integrated foundation',
+    intro: 'These three frameworks do not compete — they operate at different levels of the same cultural architecture. Ubuntu provides the philosophical foundation (who we are in relation), Ma\'at provides the ethical framework (how we live with each other), and Nguzo Saba provides the community values (what we stand for together). This module studies how the three work as one.',
+    sections: [
+      {
+        id: 'm5s1', code: '5.1',
+        title: 'The Three Levels of the Cultural Architecture',
+        groups: [
+          { heading: null, items: [
+            'Define the three levels: Ubuntu as ontology (the philosophy of being and identity), Ma\'at as ethics (the principles of right action), Nguzo Saba as community values (the specific commitments of a particular community) — each level rests on the level below it',
+            'Explain how they fit: Ubuntu says "you are because we are" (foundational claim about identity); Ma\'at says "then live in truth, justice, and balance with each other" (the ethical consequence of the foundational claim); Nguzo Saba says "here is what that looks like in our specific community" (the applied community expression)',
+            'Name the integration: a program designed on all three levels has a philosophical foundation (Ubuntu), an ethical framework (Ma\'at), and a community values system (Nguzo Saba) — it is not a collection of cultural activities but a culturally grounded institution',
+            'Map the three frameworks to the FSTS structure: Ubuntu grounds the relational architecture (cohort, mentors, Elders); Ma\'at grounds the character development work (Seed phase, identity development); Nguzo Saba grounds the community practices (Kwanzaa ceremony, contribution project, cohort agreements)',
+          ]}
+        ]
+      },
+      {
+        id: 'm5s2', code: '5.2',
+        title: 'The Convergences',
+        groups: [
+          { heading: null, items: [
+            'Name the shared communal orientation: all three frameworks refuse Western individualism; Ubuntu says identity is relational, Ma\'at is practiced in community, Nguzo Saba is explicitly collective in every principle — none of these frameworks produces a successful individual who exits the community; all produce a person who is fully human only in relationship to and through community',
+            'Name the shared ethical seriousness: all three frameworks take moral life with the utmost seriousness; Ubuntu says harm to one diminishes all; Ma\'at weighs the heart against a feather; Nguzo Saba asks the community to commit to seven demanding principles — this is not feel-good cultural affirmation; it is a moral challenge',
+            'Name the shared ancestral orientation: all three frameworks hold the ancestors as present moral authorities; Ubuntu\'s "I am because we are" extends backward through the dead; Ma\'at\'s judgment before the 42 assessors holds a person accountable to those who preceded them; Nguzo Saba\'s Imani explicitly includes faith in "our people" across generations',
+            'Name the shared wholeness claim: all three frameworks refuse the fragmentation of the human person into separate domains; Ubuntu says you are your relationships; Ma\'at governs the whole of life (not just public behavior); Nguzo Saba addresses economics, creativity, faith, and purpose together — all three treat human development as a unified whole',
+          ]}
+        ]
+      },
+      {
+        id: 'm5s3', code: '5.3',
+        title: 'Building the Cultural Spine of FSTS',
+        groups: [
+          { heading: null, items: [
+            'Define what a "cultural spine" means in program design: a spine is structural — it is what the program\'s flexibility wraps around; without a spine, a program can be bent in any direction by funder requirements, partner preferences, or staff turnover; with a spine, the program has a center that holds',
+            'Write the FSTS cultural foundation statement: a one-page document that names Ubuntu, Ma\'at, and Nguzo Saba as the three foundations of FSTS, explains what each contributes, and describes how they work together — this is not for external funders; it is the internal document that every staff member, mentor, and Elder reads before they begin',
+            'Develop the cultural language guide for FSTS: the specific terms, phrases, and framings from Ubuntu, Ma\'at, and Nguzo Saba that are used throughout the program — the naming ceremony, the opening invocations, the cohort agreement language, the closing ceremony words',
+            'Design a cultural orientation for new mentors and Elders: a three-hour session that introduces all three frameworks and their application in FSTS — not as an academic lecture, but as an experiential encounter with the cultural foundation they are joining',
+            'Identify the cultural gatekeeping responsibility: who in your organization carries the cultural knowledge required to maintain the integrity of this foundation? Who ensures that Ubuntu is not watered down into "teamwork," that Ma\'at is not reduced to a character poster on the wall, that Nguzo Saba is not only for the Kwanzaa party? Name the role and build the accountability',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-6',
+    num: 'Module 6',
+    title: 'Cultural Grounding in Program Design',
+    meta: 'How the three frameworks live in the actual structure of FSTS',
+    intro: 'Cultural grounding is not achieved by reading about frameworks. It is embedded through the structures, practices, language, and ceremonies that make up the program day by day. This module works through the specific design decisions that make FSTS a culturally grounded program.',
+    sections: [
+      {
+        id: 'm6s1', code: '6.1',
+        title: 'The Four Phases Through a Cultural Lens',
+        groups: [
+          { heading: 'Soil Phase', items: [
+            'Identify the cultural work of the Soil phase: establishing the Ubuntu covenant — this cohort is a community that will constitute each member; the agreements made in this phase are not rules but relational commitments grounded in Ubuntu',
+            'Design the opening ceremony of Soil: the naming of the cohort (Kujichagulia), the speaking of each person\'s name and story (Ubuntu as self-introduction), and the opening invocation of Ma\'at (truth and right relationship as the conditions of this work)',
+          ]},
+          { heading: 'Seed Phase', items: [
+            'Identify the cultural work of the Seed phase: deep identity formation through cultural knowledge — ancestors, traditions, the Kemetic civilization, the Nguzo Saba as a values framework the young person can claim as their own',
+            'Design the cultural immersion experiences of the Seed phase: visits to or encounters with Kemetic art and history; study of Nguzo Saba with Elder teachers; Ubuntu storytelling practices where young people hear their relational identity told back to them by people who know them',
+          ]},
+          { heading: 'Stem and Sky Phases', items: [
+            'Identify the cultural work of the Stem phase: Ujima and Ujamaa in action — the contribution project as a community-building practice, not a service project; apply the Nguzo Saba lens to every aspect of project design',
+            'Identify the cultural work of the Sky phase: Imani and Nia — the young person\'s integration of their cultural identity, their purpose, and their community commitment; the Sky phase is where Ubuntu, Ma\'at, and Nguzo Saba become a lived identity, not a studied framework',
+            'Design the Kwanzaa closing as the cultural culmination: not a celebration that happens after the program ends, but the program\'s final ceremony — the seven candles of Kwanzaa as the seven principles the cohort has practiced all year, the harvest as the community\'s gift back to itself',
+          ]}
+        ]
+      },
+      {
+        id: 'm6s2', code: '6.2',
+        title: 'Language, Ceremony, and Naming',
+        groups: [
+          { heading: null, items: [
+            'Understand naming as developmental practice: in African traditions, naming is not just identification — it is an act of claiming; to name something is to call it into fuller existence; the way FSTS uses names (personal names, cohort names, the program\'s own name) should be deliberate and grounded in Kujichagulia',
+            'Develop the FSTS naming ceremony: a ritual moment early in the Soil phase where each young person speaks their full name, learns its origin, and is welcomed into the community by name — and where, if they wish, they receive or reclaim an African name',
+            'Develop the circle invocation: a brief opening practice for every FSTS circle that calls in the values of Ubuntu (we are here together), Ma\'at (we commit to truth and right relationship), and the applicable Nguzo Saba principle — not a rote formula but a living language that changes as the year progresses',
+            'Develop the ancestral acknowledgment: a practice of naming ancestors — collective (African ancestors, freedom fighters, cultural giants) and personal (family members, community members who have passed) — that locates FSTS participants in an intergenerational story; not as a religious practice but as a cultural one',
+            'Build a FSTS glossary: a living document of the African terms, concepts, and cultural references that the program uses, with pronunciations, origins, and meanings — this is a cultural education tool, not a translation guide',
+          ]}
+        ]
+      },
+      {
+        id: 'm6s3', code: '6.3',
+        title: 'Elder Roles as Cultural Carriers',
+        groups: [
+          { heading: null, items: [
+            'Define the Elder role in FSTS through the lens of all three frameworks: Elders are Ubuntu in action (they constitute the young people\'s sense of intergenerational identity), Ma\'at lived (they embody the result of a life committed to truth and right action), and Nguzo Saba walking (each Elder carries one or more principles in their person and story)',
+            'Develop the Elder selection process: not all community elders are Elders in the FSTS sense; an FSTS Elder should be someone who has done the cultural work, knows the frameworks, and is committed to the young people\'s development — develop the criteria and the invitation process',
+            'Develop Elder orientation: Elders need to understand their role in FSTS — not as guest speakers, not as traditional authorities who tell young people what to do, but as witnesses, story-holders, and cultural guides; develop the specific framing and expectations',
+            'Build Elder-youth pairings: beyond the mentor-youth match, create Elder-cohort relationships that deepen over the year; the Elder is not assigned to one young person but is present to the whole cohort, with specific practices for deepening those relationships',
+            'Develop a practice of Elder acknowledgment: FSTS should not consume Elders\' wisdom without reciprocity; develop the ways the program gives back to the Elders who give to it — celebration, compensation, recognition, and the ongoing relationship beyond the program year',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-7',
+    num: 'Module 7',
+    title: 'The Culturally Grounded Practitioner',
+    meta: 'Your relationship to these traditions and what that means for how you lead',
+    intro: 'You cannot lead a culturally grounded program from a culturally ungrounded self. This final module is about you — your relationship to the African traditions this course has studied, the humility and honesty required to lead from them, and the ongoing work of your own cultural development.',
+    sections: [
+      {
+        id: 'm7s1', code: '7.1',
+        title: 'Your Relationship to These Traditions',
+        groups: [
+          { heading: null, items: [
+            'Honestly assess your relationship to Nguzo Saba: do you practice the seven principles in your own life? Do you observe Kwanzaa? When did you first encounter the principles? How have they shaped your work? How have they shaped how you live?',
+            'Honestly assess your relationship to Ma\'at: have you studied the Kemetic tradition? Have you read Karenga\'s work on Ma\'at? Do you have a practice of evaluating your own life against the principles of truth, justice, and balance? What is the gap between where you are and where the framework asks you to be?',
+            'Honestly assess your relationship to Ubuntu: do you experience your own identity as relationally constituted? When have you felt the truth of "I am because we are" in your own life? When have you violated the Ubuntu principle — treated others as instrumental to your individual purposes?',
+            'Name the cultural work you are still doing: no one comes to these frameworks fully arrived; name specifically what you are still learning, still healing, still recovering in your own relationship to African cultural tradition — and commit to the specific practice that will deepen it during the FSTS program year',
+          ]}
+        ]
+      },
+      {
+        id: 'm7s2', code: '7.2',
+        title: 'Cultural Humility and Authentic Practice',
+        groups: [
+          { heading: null, items: [
+            'Distinguish cultural competence from cultural humility: cultural competence implies mastery — you have learned the framework and can now teach it; cultural humility insists that cultural knowledge is inexhaustible and that the practitioner\'s primary posture is always one of learning, not mastery',
+            'Name what it means to teach from traditions that are ancestrally yours but culturally disrupted: African Americans whose ancestors were enslaved are returning to African traditions that were taken from them — this is not the same as appropriation, but it is also not the same as unbroken cultural transmission; the work includes grief, recovery, and reconstruction alongside study',
+            'Address the practitioner who is not African American leading a program for Black youth: this course is part of the FSTS series for organizational leaders; if you are not Black and are leading or working in a program that serves Black youth, name the specific responsibilities that creates: deep study, community accountability, humility about the limits of your own cultural authority, and ongoing relationship with Black cultural leaders who can guide and correct you',
+            'Develop a cultural accountability practice: identify the specific community relationships that will hold you accountable to the authentic practice of these frameworks — not just using the language, but practicing the values; who are the Elders, scholars, and community members who will tell you when you have drifted, and how will you build those relationships?',
+            'Commit to the ongoing study: these frameworks are not a training module you complete — they are traditions that practitioners study for a lifetime; develop your specific plan for ongoing engagement with the scholarship, the community practice, and the personal work of living these values',
+          ]}
+        ]
+      },
+      {
+        id: 'm7s3', code: '7.3',
+        title: 'The Culturally Grounded Leader',
+        groups: [
+          { heading: null, items: [
+            'Write the portrait of the culturally grounded FSTS leader: what does a leader look like who practices Ubuntu in their relationships, Ma\'at in their decision-making, and Nguzo Saba in their organizational values? Be specific — not abstract virtues, but observable behaviors, practices, and commitments',
+            'Develop your cultural leadership development plan: three specific practices you will begin or deepen in the next year that will make you a more culturally grounded leader — name the practice, the frequency, the community you will practice it with, and how you will know it is working',
+            'Design the cultural leadership component of mentor and staff training: what cultural grounding do your team members need to be effective in FSTS? Develop the specific training content, the ongoing practice structure, and the accountability system for staff and mentor cultural development',
+            'Write the organizational culture statement: a document that describes the cultural values of Keep Still Cares Foundation and the FSTS program — not a mission statement, but a living description of how Ubuntu, Ma\'at, and Nguzo Saba show up in the way the organization treats its staff, its participants, its community partners, and the broader community it serves',
+            'Close with the ancestral offering: write a brief statement to the ancestors whose traditions you are carrying forward in FSTS — name who you are drawing from, name what you are attempting to build, and name the commitment you are making to carry it with care, accuracy, humility, and love',
+          ]}
+        ]
+      },
+    ]
+  },
+];
+
+const ATTRIBUTION = {
+  rows: [
+    {
+      label: 'Nguzo Saba and Kwanzaa',
+      text: 'The Nguzo Saba (Seven Principles) and Kwanzaa were created by Maulana Karenga (born Ronald Everett) in 1966, through the US Organization, as an expression of African American cultural nationalism and pan-African identity. Karenga is also the primary scholar of Ma\'at in African-centered educational contexts, as developed in his work Maat: The Moral Ideal in Ancient Egypt (2004). The Nguzo Saba draw on East, West, and Southern African communal and harvest traditions adapted for African American cultural life.',
+    },
+    {
+      label: 'Ma\'at and the Kemetic Tradition',
+      text: 'Ma\'at is an ancient Kemetic (Egyptian) principle of truth, justice, balance, harmony, order, and reciprocity, originating in the oldest recorded African civilization. The primary textual sources include the Book of the Dead, the 42 Declarations of Innocence, and the Wisdom Literature of ancient Kemet. Scholars who have applied Ma\'at to African-centered education and ethics include Maulana Karenga, Molefi Kete Asante (Afrocentricity, 1980), and Asa Hilliard. This course draws on the tradition as adapted for contemporary African American character development and youth work.',
+    },
+    {
+      label: 'Ubuntu and Bantu Philosophy',
+      text: 'Ubuntu ("umuntu ngumuntu ngabantu" — a person is a person through other persons) is rooted in the Nguni Bantu philosophical tradition of sub-Saharan Africa. Academic philosophers of Ubuntu include Mogobe B.A. Ramose (who developed Ubuntu as a formal philosophical framework), Desmond Mpilo Tutu (who applied Ubuntu in the South African Truth and Reconciliation Commission context in No Future Without Forgiveness), and the broader field of African philosophy. Ubuntu as applied here draws on Ramose\'s ontological framing and Tutu\'s restorative justice application.',
+    },
+    {
+      label: 'Application to From Soil to Sky',
+      text: 'The integration of Nguzo Saba, Ma\'at, and Ubuntu as the three-part cultural spine of the From Soil to Sky Program Model — including the mapping of these frameworks to the four FSTS phases, the ceremonial design, the Elder role, the cohort covenant, and the Kwanzaa closing — is original work by Tiana Massaquoi, founder of Keep Still Cares Foundation. This synthesis represents a distinct contribution to the field of African American youth development and culturally grounded mentoring practice.',
+    },
+  ]
+};
+
+const STORE_KEY = 'fsts_c5_v1';
+let state = {};
+try {
+  const raw = localStorage.getItem(STORE_KEY);
+  if (raw) state = JSON.parse(raw);
+} catch(e) {}
+
+function saveState() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function allCheckItems(sections) {
+  return sections.flatMap(s =>
+    s.groups.flatMap(g => g.items.flatMap(item =>
+      typeof item === 'string' ? [item] : [item, ...(item.nested || [])]
+    ))
+  );
+}
+
+function buildNav() {
+  const nav = document.getElementById('nav-inner');
+  DATA.forEach(mod => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-tab';
+    btn.textContent = mod.num;
+    btn.dataset.target = mod.id;
+    btn.addEventListener('click', () => {
+      document.getElementById(mod.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    nav.appendChild(btn);
+  });
+  const attrBtn = document.createElement('button');
+  attrBtn.className = 'nav-tab';
+  attrBtn.textContent = 'Attribution';
+  attrBtn.dataset.target = 'attribution';
+  attrBtn.addEventListener('click', () => {
+    document.getElementById('attribution')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  nav.appendChild(attrBtn);
+}
+
+function getModuleProgress(mod) {
+  const all = allCheckItems(mod.sections);
+  const done = all.filter(item => {
+    const key = typeof item === 'string' ? item : item.text;
+    return state[key];
+  }).length;
+  return { done, total: all.length };
+}
+
+function buildItem(itemText) {
+  const li = document.createElement('li');
+  li.className = 'check-item';
+  li.setAttribute('role', 'checkbox');
+  li.setAttribute('aria-checked', state[itemText] ? 'true' : 'false');
+  const id = 'cb-' + Math.random().toString(36).slice(2);
+  li.innerHTML = `
+    <input type="checkbox" id="${id}" ${state[itemText] ? 'checked' : ''}>
+    <span class="check-box" aria-hidden="true"></span>
+    <label class="check-label" for="${id}">${itemText}</label>
+  `;
+  const input = li.querySelector('input');
+  li.addEventListener('click', () => {
+    input.checked = !input.checked;
+    state[itemText] = input.checked;
+    li.setAttribute('aria-checked', input.checked ? 'true' : 'false');
+    saveState();
+    updateAll();
+  });
+  return li;
+}
+
+function buildSection(sec) {
+  const details = document.createElement('details');
+  details.className = 'subsection';
+  details.id = sec.id;
+
+  const items = sec.groups.flatMap(g => g.items.flatMap(i => typeof i === 'string' ? [i] : [i.text, ...(i.nested||[])]));
+  const done = items.filter(t => state[t]).length;
+  const total = items.length;
+
+  details.innerHTML = `
+    <summary>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 4 10 8 6 12"/>
+      </svg>
+      <span class="summary-text">
+        <span class="summary-code">${sec.code}</span>
+        <span class="summary-title">${sec.title}</span>
+      </span>
+      <span class="summary-right">
+        <span class="prog-count" data-sec-count="${sec.id}">${done}/${total}</span>
+        <span class="prog-bar"><span class="prog-fill ${done===total&&total>0?'done':''}" data-sec-bar="${sec.id}" style="width:${total?Math.round(done/total*100):0}%"></span></span>
+      </span>
+    </summary>
+    <div class="subsection-body"></div>
+  `;
+
+  const body = details.querySelector('.subsection-body');
+
+  sec.groups.forEach(grp => {
+    const ul = document.createElement('ul');
+    ul.className = 'check-group';
+    if (grp.heading) {
+      const h = document.createElement('li');
+      h.className = 'group-heading';
+      h.textContent = grp.heading;
+      ul.appendChild(h);
+    }
+    grp.items.forEach(item => {
+      if (typeof item === 'string') {
+        ul.appendChild(buildItem(item));
+      } else {
+        const li = buildItem(item.text);
+        if (item.nested) {
+          const nested = document.createElement('ul');
+          nested.className = 'nested-list';
+          item.nested.forEach(n => nested.appendChild(buildItem(n)));
+          li.appendChild(nested);
+        }
+        ul.appendChild(li);
+      }
+    });
+    body.appendChild(ul);
+  });
+
+  return details;
+}
+
+function buildModules() {
+  const main = document.getElementById('main-content');
+
+  DATA.forEach(mod => {
+    const section = document.createElement('section');
+    section.className = 'module-section';
+    section.id = mod.id;
+    section.setAttribute('data-module', mod.id);
+
+    section.innerHTML = `
+      <p class="module-eyebrow">${mod.num}</p>
+      <h2 class="module-title">${mod.title}</h2>
+      <p class="module-meta">${mod.meta}</p>
+      <div class="module-intro">${mod.intro}</div>
+      <hr class="module-divider">
+    `;
+
+    mod.sections.forEach(sec => section.appendChild(buildSection(sec)));
+    main.appendChild(section);
+  });
+
+  // Attribution
+  const attrSection = document.createElement('section');
+  attrSection.className = 'attribution-section';
+  attrSection.id = 'attribution';
+  attrSection.setAttribute('data-module', 'attribution');
+
+  const block = document.createElement('div');
+  block.className = 'attribution-block';
+  block.innerHTML = `<p class="attribution-eyebrow">Framework Attribution & Authorship</p>`;
+
+  ATTRIBUTION.rows.forEach((row, i) => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'attribution-row';
+    rowEl.innerHTML = `<p class="attribution-label">${row.label}</p><p class="attribution-text">${row.text}</p>`;
+    block.appendChild(rowEl);
+    if (i < ATTRIBUTION.rows.length - 1) {
+      const div = document.createElement('hr');
+      div.className = 'attribution-divider';
+      block.appendChild(div);
+    }
+  });
+
+  attrSection.appendChild(block);
+  main.appendChild(attrSection);
+}
+
+function updateAll() {
+  let totalDone = 0;
+  let totalItems = 0;
+
+  DATA.forEach(mod => {
+    const { done, total } = getModuleProgress(mod);
+    totalDone += done;
+    totalItems += total;
+
+    mod.sections.forEach(sec => {
+      const items = sec.groups.flatMap(g => g.items.flatMap(i => typeof i === 'string' ? [i] : [i.text, ...(i.nested||[])]));
+      const secDone = items.filter(t => state[t]).length;
+      const secTotal = items.length;
+      const countEl = document.querySelector(`[data-sec-count="${sec.id}"]`);
+      const barEl = document.querySelector(`[data-sec-bar="${sec.id}"]`);
+      if (countEl) countEl.textContent = `${secDone}/${secTotal}`;
+      if (barEl) {
+        barEl.style.width = secTotal ? `${Math.round(secDone/secTotal*100)}%` : '0%';
+        barEl.classList.toggle('done', secDone === secTotal && secTotal > 0);
+      }
+    });
+  });
+
+  const pct = totalItems ? Math.round(totalDone / totalItems * 100) : 0;
+  const fill = document.getElementById('ring-fill');
+  const pctEl = document.getElementById('ring-pct');
+  if (fill) fill.style.strokeDashoffset = CIRC - (CIRC * pct / 100);
+  if (pctEl) pctEl.textContent = pct + '%';
+  if (fill) fill.setAttribute('stroke-dasharray', CIRC);
+}
+
+function initIntersectionObserver() {
+  const tabs = document.querySelectorAll('.nav-tab');
+  const sections = document.querySelectorAll('[data-module]');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('data-module');
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => io.observe(s));
+}
+
+buildNav();
+buildModules();
+updateAll();
+initIntersectionObserver();
+</script>
