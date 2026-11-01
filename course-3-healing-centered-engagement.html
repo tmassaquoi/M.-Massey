@@ -1,0 +1,708 @@
+<!----><title>Healing-Centered Engagement</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap">
+
+<style>
+/* Layout: sticky module nav + scrollable sections. Terracotta/clay palette for warmth, body, earth — themes of healing and wholeness. */
+:root {
+  --bg: #F8F5EF;
+  --surface: #FFFFFF;
+  --surface-2: #F0EBE3;
+  --fg: #201610;
+  --fg-muted: #5E4A38;
+  --fg-subtle: #8E7860;
+  --accent: #8C4A2F;
+  --accent-hover: #7A3E26;
+  --accent-light: #F5E8E2;
+  --accent-2: #1A6B4A;
+  --accent-2-light: #E2F2EA;
+  --border: #DDD4C8;
+  --border-strong: #C4B8A8;
+  --positive: #1A7A50;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --radius: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A0C06;
+    --surface: #261408;
+    --surface-2: #321C10;
+    --fg: #F0E8E0;
+    --fg-muted: #C4A088;
+    --fg-subtle: #886050;
+    --accent: #D07258;
+    --accent-hover: #DC8066;
+    --accent-light: #2A1208;
+    --accent-2: #3AB878;
+    --accent-2-light: #0A2018;
+    --border: #3A2018;
+    --border-strong: #4E3020;
+    --positive: #3AB878;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A0C06;
+  --surface: #261408;
+  --surface-2: #321C10;
+  --fg: #F0E8E0;
+  --fg-muted: #C4A088;
+  --fg-subtle: #886050;
+  --accent: #D07258;
+  --accent-hover: #DC8066;
+  --accent-light: #2A1208;
+  --accent-2: #3AB878;
+  --accent-2-light: #0A2018;
+  --border: #3A2018;
+  --border-strong: #4E3020;
+  --positive: #3AB878;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box }
+body { margin: 0; font-family: var(--font-body); background: var(--bg); color: var(--fg); font-size: 15px; line-height: 1.65 }
+
+.site-header {
+  background: var(--accent);
+  color: #fff;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 36px;
+}
+.header-inner { max-width: 920px; margin: 0 auto; display: flex; align-items: center; gap: 28px; flex-wrap: wrap }
+.header-text { flex: 1; min-width: 0 }
+.header-series { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .65; margin: 0 0 6px }
+.header-course { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .8; margin: 0 0 10px }
+.course-badge { display: inline-flex; align-items: center; padding: 2px 9px; background: rgba(255,255,255,.18); border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: .08em }
+.header-title { font-family: var(--font-display); font-size: clamp(22px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; color: #fff; font-style: italic }
+.header-desc { font-size: 14px; opacity: .8; margin: 0 0 14px; max-width: 58ch; line-height: 1.5 }
+.header-author { font-size: 12px; opacity: .75 }
+.header-author strong { opacity: 1; font-weight: 600 }
+.progress-ring { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px }
+.ring-svg { width: 80px; height: 80px }
+.ring-track { fill: none; stroke: rgba(255,255,255,.2); stroke-width: 6 }
+.ring-fill { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset .5s ease }
+.ring-pct { font-size: 15px; font-weight: 600; fill: #fff; text-anchor: middle; dominant-baseline: central; font-family: var(--font-body) }
+.ring-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .7; color: #fff }
+
+.module-nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none }
+.module-nav::-webkit-scrollbar { display: none }
+.nav-inner { display: flex; max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); min-width: max-content }
+.nav-tab { padding: 14px 14px; font-size: 13px; font-weight: 500; color: var(--fg-muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; font-family: var(--font-body) }
+.nav-tab:hover { color: var(--fg) }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent) }
+
+.main-content { max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); padding-block: 0 80px }
+
+.module-section { padding-top: 56px }
+.module-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px }
+.module-title { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 30px); line-height: 1.2; margin: 0 0 10px; text-wrap: balance; font-style: italic }
+.module-meta { font-size: 13px; color: var(--fg-muted); margin: 0 0 14px; font-style: italic }
+.module-intro { font-size: 14px; color: var(--fg-muted); margin: 0 0 20px; max-width: 70ch; line-height: 1.65; padding: 14px 18px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0 }
+.module-divider { border: none; border-top: 2px solid var(--border); margin: 0 0 28px }
+
+.subsection { margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden }
+.subsection summary { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; user-select: none; list-style: none }
+.subsection summary::-webkit-details-marker { display: none }
+.chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--fg-subtle); transition: transform .2s ease }
+.subsection[open] .chevron { transform: rotate(90deg) }
+.summary-text { flex: 1; min-width: 0 }
+.summary-code { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-subtle); margin: 0 0 2px }
+.summary-title { font-size: 15px; font-weight: 600; color: var(--fg); margin: 0; line-height: 1.3 }
+.summary-right { flex-shrink: 0; display: flex; align-items: center; gap: 8px }
+.prog-count { font-size: 12px; font-weight: 500; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap }
+.prog-bar { width: 56px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden }
+.prog-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .35s ease }
+.prog-fill.done { background: var(--positive) }
+.subsection-body { padding: 0 20px 20px; border-top: 1px solid var(--border) }
+
+.check-group { margin: 0; padding: 0; list-style: none }
+.group-heading { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin: 16px 0 8px; padding-top: 8px; border-top: 1px dashed var(--border) }
+.group-heading:first-child { border-top: none; margin-top: 8px }
+.check-item { display: flex; align-items: flex-start; gap: 11px; padding: 7px 0; cursor: pointer; border-bottom: 1px solid var(--border) }
+.check-item:last-child { border-bottom: none }
+.check-item input { position: absolute; opacity: 0; pointer-events: none }
+.check-box { flex-shrink: 0; width: 18px; height: 18px; border: 1.5px solid var(--border-strong); border-radius: 4px; margin-top: 3px; background: var(--bg); display: flex; align-items: center; justify-content: center; transition: background .15s, border-color .15s }
+.check-item input:checked ~ .check-box { background: var(--accent); border-color: var(--accent) }
+.check-item input:checked ~ .check-box::after { content: ''; width: 9px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translateY(-1px) }
+.check-label { font-size: 14px; line-height: 1.55; color: var(--fg); flex: 1; min-width: 0; transition: color .15s }
+.check-item input:checked ~ .check-label { color: var(--fg-subtle); text-decoration: line-through; text-decoration-color: var(--border-strong) }
+.nested-list { padding: 2px 0 2px 26px; border-left: 2px solid var(--border); margin: 2px 0 2px 8px }
+.nested-list .check-item { border-bottom: none; padding: 4px 0 }
+.nested-list .check-label { font-size: 13.5px }
+
+.callout { border-left: 3px solid var(--accent-2); padding: 14px 18px; margin: 16px 0; background: var(--accent-2-light); border-radius: 0 var(--radius) var(--radius) 0 }
+.callout p { margin: 0 0 6px; font-style: italic; font-size: 14px; color: var(--fg-muted); line-height: 1.6 }
+.callout cite { font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-2) }
+
+.attribution-section { padding-top: 56px; padding-bottom: 20px }
+.attribution-block { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 28px 32px }
+.attribution-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px }
+.attribution-row { margin-bottom: 20px }
+.attribution-row:last-child { margin-bottom: 0 }
+.attribution-label { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 5px }
+.attribution-text { font-size: 14px; line-height: 1.65; color: var(--fg); margin: 0 }
+.attribution-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 }
+
+@media (max-width: 520px) { .progress-ring { display: none } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important } }
+</style>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-text">
+      <p class="header-series">From Soil to Sky Training Series</p>
+      <p class="header-course"><span class="course-badge">Course 3</span></p>
+      <h1 class="header-title">Healing-Centered Engagement</h1>
+      <p class="header-desc">A deep study of Shawn Ginwright's Healing-Centered Engagement framework and its application to youth development, mentoring, and the From Soil to Sky program model.</p>
+      <p class="header-author">Framework by <strong>Shawn Ginwright, Ph.D.</strong> &nbsp;·&nbsp; Applied to youth work by <strong>Tiana Massaquoi</strong></p>
+    </div>
+    <div class="progress-ring">
+      <svg class="ring-svg" viewBox="0 0 80 80" aria-hidden="true">
+        <circle class="ring-track" cx="40" cy="40" r="32"/>
+        <circle class="ring-fill" id="ring-fill" cx="40" cy="40" r="32"/>
+        <text class="ring-pct" id="ring-pct" x="40" y="40">0%</text>
+      </svg>
+      <span class="ring-label">Complete</span>
+    </div>
+  </div>
+</header>
+
+<nav class="module-nav" aria-label="Module navigation">
+  <div class="nav-inner" id="nav-inner"></div>
+</nav>
+
+<main class="main-content" id="main-content"></main>
+
+<script>
+const CIRC = 2 * Math.PI * 32;
+
+const DATA = [
+  {
+    id: 'module-1',
+    num: 'Module 1',
+    title: 'Shawn Ginwright & the Origins of Healing-Centered Engagement',
+    meta: 'Grounding in the person, the practice, and what made HCE necessary',
+    intro: 'Healing-Centered Engagement did not emerge in a vacuum. It emerged from a scholar-practitioner who watched the trauma-informed care movement stop short — identifying harm without building wholeness. Understanding where it came from is the foundation for using it well.',
+    sections: [
+      {
+        id: 'm1s1', code: '1.1',
+        title: 'Who Is Shawn Ginwright?',
+        groups: [{ heading: null, items: [
+          'Research Shawn Ginwright\'s background as a professor, author, and community organizer focused on Black youth, healing, and civic engagement in urban America',
+          'Explore his organizational work: Flourish Agenda and Thrive Agency — organizations built on the premise that healing is political and communal, not just clinical',
+          'Study his primary works: Black Youth Rising (2010), Hope and Healing in Urban Education (2016), and his foundational 2018 essay "The Future of Healing: Shifting From Trauma Informed Care to Healing Centered Engagement"',
+          'Understand Ginwright\'s position at the intersection of community psychology, Black Studies, and youth development — his authority comes from decades of working in and with Black communities',
+          'Reflect: What does it mean for a framework to emerge from Black communities rather than being designed for them?',
+        ]}]
+      },
+      {
+        id: 'm1s2', code: '1.2',
+        title: 'The Intellectual Lineage of HCE',
+        groups: [{ heading: null, items: [
+          'Identify the liberation psychology tradition (Paulo Freire, Frantz Fanon, Ignacio Martín-Baró) that grounds HCE\'s view of healing as inseparable from justice',
+          'Recognize the influence of Afrocentric psychology — particularly Na\'im Akbar\'s work on healing from enslavement and Linda James Myers\'s theory of optimal psychology — on HCE\'s cultural grounding',
+          'Understand how bell hooks\'s writing on love, community, and wholeness shapes HCE\'s orientation toward joy and belonging',
+          'Connect HCE to the African American healing tradition: the church, the barbershop, the kitchen table, the front porch — spaces that held collective healing long before trauma-informed care existed',
+          'Identify what makes HCE distinct from Western clinical psychology: it is communal, cultural, political, and joy-centered rather than individual, neutral, clinical, and symptom-focused',
+        ]}]
+      },
+      {
+        id: 'm1s3', code: '1.3',
+        title: 'The Political Context That Made HCE Necessary',
+        groups: [{ heading: null, items: [
+          'Name the historical conditions that produce trauma in Black and Brown communities: enslavement, redlining, mass incarceration, underfunded schools, police violence, environmental racism',
+          'Explain why Ginwright argues that trauma in these communities is not individual pathology — it is the predictable response to unjust systems',
+          'Identify the limitation of individualizing trauma: treating each young person\'s response to collective harm as a personal disorder rather than a communal wound',
+          'Name the concept of "historical trauma" and explain how it operates across generations — including in the communities FSTS serves',
+          'Articulate why healing, in this context, is a political act: to restore wholeness to people who were deliberately broken is to resist the systems that broke them',
+        ]}]
+      },
+    ]
+  },
+  {
+    id: 'module-2',
+    num: 'Module 2',
+    title: 'From Trauma-Informed to Healing-Centered',
+    meta: 'Understanding the shift — and why it matters for youth work',
+    intro: 'Trauma-Informed Care (TIC) was a necessary correction to practices that harmed youth by ignoring their pain. But Ginwright argues it stopped short. This module studies exactly where TIC ends and where HCE begins — and why that distance is significant for the young people in FSTS.',
+    sections: [
+      {
+        id: 'm2s1', code: '2.1',
+        title: 'What Trauma-Informed Care Gets Right',
+        groups: [{ heading: null, items: [
+          'Define Trauma-Informed Care and its core contribution: shifting the question from "what\'s wrong with you?" to "what happened to you?"',
+          'Identify the five principles of TIC most commonly cited: safety, trustworthiness, peer support, collaboration, and empowerment',
+          'Acknowledge what TIC changed: it stopped practitioners from re-traumatizing youth by treating behavior problems without understanding their causes',
+          'Recognize the genuine value of TIC for frontline workers: it reduced punitive responses, introduced trauma screening, and made practitioners more compassionate',
+          'Name organizations and settings where TIC remains the right starting point and should not be skipped',
+        ]}]
+      },
+      {
+        id: 'm2s2', code: '2.2',
+        title: 'Where Trauma-Informed Care Falls Short',
+        groups: [{ heading: null, items: [
+          'Explain Ginwright\'s central critique: TIC is still organized around damage — it sees youth primarily as wounded people who need to be stabilized',
+          'Name the four limitations of TIC that HCE addresses:',
+          { text: 'The four limitations Ginwright identifies:', nested: [
+            'TIC focuses on the individual, not the collective — but trauma in Black and Brown communities is communal, not personal',
+            'TIC treats culture as context, not cure — but cultural identity is itself a healing force',
+            'TIC centers safety and stability as the endpoint — but youth need more than the absence of harm; they need purpose, joy, and agency',
+            'TIC locates the problem inside the young person — HCE locates it in unjust systems, and the response in community power',
+          ]},
+          'Distinguish between "avoiding re-traumatization" (TIC\'s floor) and "actively building wholeness" (HCE\'s goal)',
+          'Identify how TIC\'s medical model can pathologize normal responses to abnormal conditions — labeling resilience as dysfunction',
+          'Reflect on your own organization: are your current practices organized around avoiding harm, or actively building healing? Where is the line?',
+        ]}]
+      },
+      {
+        id: 'm2s3', code: '2.3',
+        title: 'The Core Shift: "What\'s Right With You?"',
+        groups: [{ heading: null, items: [
+          'Explain the language shift at the center of HCE: from "what happened to you?" to "what\'s right with you?" and "what do you want to see happen?"',
+          'Understand why this is not toxic positivity or the erasure of pain — HCE holds the harm and names it; it refuses to make harm the whole story',
+          'Identify the three questions HCE adds to the TIC question:',
+          { text: 'Three HCE questions alongside "what happened to you?":', nested: [
+            '"What\'s right with you?" — your strengths, gifts, and capacities',
+            '"What do you want to see happen?" — your agency, vision, and purpose',
+            '"Who are your people?" — your community, belonging, and cultural identity',
+          ]},
+          'Practice rewriting a program description, intake question, or youth activity through the HCE lens — compare the TIC version to the HCE version',
+          'Apply to FSTS: how does each phase hold the HCE question? Where in Soil, Root, Growth, and Sky is "what\'s right with you?" most explicitly centered?',
+        ]}]
+      },
+    ]
+  },
+  {
+    id: 'module-3',
+    num: 'Module 3',
+    title: 'The Four Pillars of Healing-Centered Engagement',
+    meta: 'Wellness, Culture, Civic Engagement, and Spirituality',
+    intro: 'Ginwright identifies four domains that HCE addresses simultaneously. Healing is not one-dimensional. Young people need all four — and programs that address only one or two are leaving healing work undone.',
+    sections: [
+      {
+        id: 'm3s1', code: '3.1',
+        title: 'Pillar 1: Wellness',
+        groups: [
+          { heading: 'Understanding the Pillar', items: [
+            'Define wellness in the HCE framework: not the absence of symptoms, but the presence of thriving — physical, emotional, relational, and spiritual health',
+            'Distinguish HCE\'s wellness from clinical mental health: HCE does not pathologize, diagnose, or treat — it supports holistic flourishing',
+            'Explain why wellness is communal as well as individual: a young person\'s wellness is deeply connected to the wellness of their family, their community, and their culture',
+          ]},
+          { heading: 'In Practice', items: [
+            'Assess whether your programming addresses physical wellness (nutrition, movement, rest, safety) — not just emotional or behavioral outcomes',
+            'Identify the wellness practices embedded in FSTS: circles that open and close with intentionality, celebrations that restore joy, physical challenge in the Growth phase',
+            'Develop a wellness culture check: does your organization model wellness for youth through how staff are treated, how conflict is handled, and how rest is honored?',
+            'Identify the wellness supports your program will connect youth to beyond your four walls: mental health, health care, nutrition',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s2', code: '3.2',
+        title: 'Pillar 2: Culture',
+        groups: [
+          { heading: 'Understanding the Pillar', items: [
+            'Explain Ginwright\'s claim: cultural identity is not background context — it is a primary healing resource',
+            'Name how disconnection from cultural identity contributes to harm: when young people cannot see themselves in the world, when their history is erased or distorted, the wound is real',
+            'Understand the concept of cultural affirming practice: actively using cultural heritage, language, art, music, story, and ceremony as tools of healing and identity formation',
+            'Connect this to the FSTS Soil phase: lineage mapping, ancestor acknowledgment, and family story work are not decorative — they are healing practices',
+          ]},
+          { heading: 'In Practice', items: [
+            'Audit your current or planned programming: where is cultural identity centered as a healing resource, and where is it incidental or absent?',
+            'Identify the specific cultural traditions, practices, and stories most relevant to the youth you serve — and who in the community holds them',
+            'Develop a cultural asset map: the cultural resources (elders, artists, musicians, storytellers, cultural institutions) in your community that can be brought into the program',
+            'Apply to FSTS: explain how Nguzo Saba, Ma\'at, Ubuntu, and rites of passage practice are not just cultural content — they are healing technologies',
+            'Address cultural humility: distinguish between cultural affirmation (honoring the culture of the community you serve) and cultural appropriation (borrowing from cultures that are not yours)',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s3', code: '3.3',
+        title: 'Pillar 3: Civic Engagement',
+        groups: [
+          { heading: 'Understanding the Pillar', items: [
+            'Explain Ginwright\'s argument: healing is not complete until a person can act on the world — civic engagement is both a sign of healing and a vehicle for it',
+            'Name the connection between agency and healing: when young people can name injustice, organize with others, and take action, they move from victim to agent — and that shift is healing',
+            'Understand why service is different from civic engagement: service does something for the community; civic engagement asks young people to understand and act on the conditions that shape the community',
+          ]},
+          { heading: 'In Practice', items: [
+            'Identify the civic engagement elements already embedded in FSTS: the Sky phase contribution projects are not service projects — they are acts of civic contribution and community healing',
+            'Develop a civic identity curriculum: help young people name the issues in their community, trace their roots, and identify actions they can take at their developmental stage',
+            'Distinguish age-appropriate civic engagement: for 13-year-olds, this might be a community presentation; for 17-year-olds, it might be leading an organizing effort',
+            'Connect civic engagement to the healing question: "What do you want to see happen?" is a civic question as much as a personal one',
+            'Build community witnesses into FSTS\'s Sky phase: the Kwanzaa closing ceremony is not just graduation — it is public recognition of young people as civic contributors',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s4', code: '3.4',
+        title: 'Pillar 4: Spirituality',
+        groups: [
+          { heading: 'Understanding the Pillar', items: [
+            'Define spirituality in HCE\'s secular-inclusive sense: connection to something larger than the self — ancestors, community, nature, purpose, the divine as understood by the individual and their community',
+            'Understand why Ginwright includes spirituality: healing from deep harm often requires a container larger than psychology can provide — a sense of meaning, belonging in time, and connection to the sacred',
+            'Identify how spirituality functions in African American healing traditions: the church, the circle, ancestor acknowledgment, prayer, music — these are spiritual technologies that have sustained Black people through centuries of harm',
+            'Distinguish spirituality from religion: HCE\'s spirituality is inclusive and does not impose a particular faith — but it does not pretend that meaning and transcendence are irrelevant to healing',
+          ]},
+          { heading: 'In Practice', items: [
+            'Identify the spiritual elements already embedded in FSTS: ancestor acknowledgment, the Elder Council, ceremony, the circle, Nguzo Saba — these are spiritual practices in the HCE sense',
+            'Develop a spiritual inclusivity practice: how does FSTS honor the spiritual traditions of youth and families from different faiths without imposing a single tradition?',
+            'Build meaning-making into the program: help young people articulate their purpose, their connection to ancestors and community, and their sense of responsibility to the future',
+            'Train facilitators and mentors to hold spiritual conversations without directing them — curiosity, not instruction, is the stance',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-4',
+    num: 'Module 4',
+    title: 'Joy, Rest, and Pleasure as Healing Practices',
+    meta: 'Reclaiming the full range of human experience as a site of healing',
+    intro: 'One of the most distinctive and radical claims of Healing-Centered Engagement is that joy, pleasure, rest, and play are not rewards for healing — they are healing itself. This module studies that claim and its implications for how you design FSTS programming.',
+    sections: [
+      {
+        id: 'm4s1', code: '4.1',
+        title: 'Joy as Resistance',
+        groups: [{ heading: null, items: [
+          'Explain Ginwright\'s claim: for communities that have been targeted for harm and defined by deficit, experiencing joy is an act of resistance against the forces that say their lives are not worth celebrating',
+          'Connect to Audre Lorde\'s concept of the erotic as power: joy, pleasure, and aliveness are not frivolous — they are sources of knowing and strength',
+          'Connect to Adrienne Maree Brown\'s Pleasure Activism: the pursuit of happiness and liberation are not separate projects',
+          'Identify how deficit-based youth programs drain joy: they are organized around risk prevention, compliance, and problem-solving — they leave little room for delight',
+          'Assess your programming honestly: what is the joy-to-obligation ratio? How much of what young people experience in your program is genuinely delightful?',
+          'Build joy intentionally into FSTS: name three practices in each phase that are designed primarily to generate joy — not as reward, but as the work itself',
+        ]}]
+      },
+      {
+        id: 'm4s2', code: '4.2',
+        title: 'Rest as Healing',
+        groups: [{ heading: null, items: [
+          'Engage with Tricia Hersey\'s "The Nap Ministry" and her argument that rest is resistance — particularly for descendants of enslaved people whose bodies were treated as tools',
+          'Understand the relationship between rest and healing: the nervous system heals in rest; insight arrives in stillness; identity is consolidated in quiet',
+          'Identify how urgency culture in nonprofits and youth programs mirrors the extractive logic HCE opposes: always busy, always producing, never resting',
+          'Apply to staff: develop a rest practice for your team — not as a perk, but as a program value that you model for youth',
+          'Apply to programming: build rest and integration time into FSTS — between phases, between sessions, within sessions — and name it explicitly as healing practice',
+          'Develop language for youth about rest: in a culture that treats rest as laziness, help young people understand it as a form of power',
+        ]}]
+      },
+      {
+        id: 'm4s3', code: '4.3',
+        title: 'Play and Celebration',
+        groups: [{ heading: null, items: [
+          'Define play in adolescent development: not just physical activity, but imaginative, relational, and creative engagement that builds identity, connection, and resilience',
+          'Identify the developmental research on play: it reduces stress hormones, builds social bonds, develops problem-solving capacity, and creates the emotional safety that serious growth requires',
+          'Build genuine play into FSTS: not ice breakers that are really assessments, but actual play — games, creative challenges, silly competitions, improvisational moments',
+          'Design celebrations that are substantive: FSTS\'s ceremonies should feel like genuine celebration — not a check-the-box ritual, but an event youth and families will remember for years',
+          'Name the difference between celebration as recognition (we see what you did) and celebration as healing (we witness who you are becoming)',
+        ]}]
+      },
+    ]
+  },
+  {
+    id: 'module-5',
+    num: 'Module 5',
+    title: 'Collective Healing in Practice',
+    meta: 'Moving from individual intervention to communal restoration',
+    intro: 'The deepest divergence between Trauma-Informed Care and Healing-Centered Engagement is the unit of analysis. TIC treats individuals. HCE heals communities. This module studies what collective healing looks like in practice — in circles, in ceremony, in the cohort, and in the broader community.',
+    sections: [
+      {
+        id: 'm5s1', code: '5.1',
+        title: 'What Collective Healing Means',
+        groups: [{ heading: null, items: [
+          'Define collective healing: the process by which a community restores its own wholeness — its relationships, its story, its agency, and its hope',
+          'Explain why individual therapy, even excellent individual therapy, cannot heal collective wounds: a young person can be individually healthier while their community remains broken',
+          'Identify what makes FSTS structurally a collective healing program: the cohort model, the Elder Council, the family involvement, the community ceremony — these are not program features, they are healing architecture',
+          'Name the African proverb Ubuntu as a theory of collective healing: "I am because we are" — individual wholeness is inseparable from communal wholeness',
+          'Articulate how FSTS contributes to community healing beyond its cohort: young people who complete the program become contributors and eventually elders — the healing ripples forward',
+        ]}]
+      },
+      {
+        id: 'm5s2', code: '5.2',
+        title: 'Circle as Collective Healing Technology',
+        groups: [{ heading: null, items: [
+          'Understand the circle not just as a facilitation tool but as a healing practice: everyone is visible, everyone is equal, the center is shared, the beginning and end are marked',
+          'Identify the healing elements of circle practice: accountability without shame, witness without judgment, voice without interruption, presence without performance',
+          'Study the use of circles in restorative justice — a directly related tradition — and identify what FSTS can learn from that practice',
+          'Train facilitators in the healing function of circle: they are not running a discussion, they are holding a container in which collective healing can happen',
+          'Develop a circle guide for FSTS that names the healing intention of each element: the opening, the agreements, the talking piece, the check-in, the deep work, the check-out, the closing',
+        ]}]
+      },
+      {
+        id: 'm5s3', code: '5.3',
+        title: 'Ceremony as Healing',
+        groups: [{ heading: null, items: [
+          'Define ceremony in the HCE/FSTS context: a structured, intentional, communal practice that marks a transition, honors what has happened, and calls in what is possible',
+          'Explain why ceremony is healing: it makes invisible growth visible; it enlists the community as witness; it uses symbol, story, and ritual to do what words alone cannot',
+          'Study the four FSTS ceremonies — one per phase — through the HCE lens: what is being healed, marked, and restored in each?',
+          { text: 'The healing function of each FSTS ceremony:', nested: [
+            'Soil — Opening Ceremony: healing disconnection; restoring young people to lineage, community, and belonging',
+            'Root — Naming/Affirmation Ceremony: healing the wound of being unnamed or misnamed; young people claim their own identity',
+            'Growth — Challenge Completion: healing learned helplessness and self-doubt; young people experience their own capacity',
+            'Sky — Kwanzaa Closing: healing invisibility; community publicly witnesses young people as contributors, not just recipients',
+          ]},
+          'Develop a ceremony design protocol: what elements must every FSTS ceremony include to function as a healing practice? (Elder presence, community witness, transition marking, young person as agent)',
+          'Train facilitators on how to hold ceremony with reverence — not performance, not routine, but genuine sacred practice',
+        ]}]
+      },
+      {
+        id: 'm5s4', code: '5.4',
+        title: 'Youth as Healers',
+        groups: [{ heading: null, items: [
+          'Challenge the assumption that healing flows only from adults to youth — in HCE, young people are healers of each other and of their community',
+          'Identify the ways youth heal each other in FSTS: cohort solidarity, peer witnessing, shared challenge, the alumni returning to guide a new cohort',
+          'Understand the Sky phase contribution projects as community healing: young people identifying a wound in their community and offering their gifts to address it',
+          'Develop youth healer language and identity: help young people understand themselves as people with something to offer, not only people with needs to be met',
+          'Build healing into peer relationships: train the cohort in active listening, witnessing, accountability, and celebration — these are healing skills, not just social skills',
+        ]}]
+      },
+    ]
+  },
+  {
+    id: 'module-6',
+    num: 'Module 6',
+    title: 'The Healing Adult',
+    meta: 'You cannot pour from an empty vessel — and the vessel must be actively healed, not just resting',
+    intro: 'Ginwright is explicit: Healing-Centered Engagement requires healing-centered adults. An adult who has not done their own healing work — who carries unexamined trauma, unprocessed grief, or an unhealed relationship with their own identity — cannot hold healing space for young people. This is not a critique. It is an invitation.',
+    sections: [
+      {
+        id: 'm6s1', code: '6.1',
+        title: 'Why the Adult\'s Healing Matters',
+        groups: [{ heading: null, items: [
+          'Explain Ginwright\'s claim: young people are exquisitely sensitive to the emotional state of the adults around them — they cannot outgrow what is still alive in us',
+          'Name the ways unhealed adult trauma shows up in youth work: over-controlling programming, taking youth behavior personally, creating dependency rather than autonomy, centering adult needs in youth spaces',
+          'Distinguish the healing adult from the perfect adult: no one is fully healed, and HCE does not require that — it requires active engagement with your own healing, not its completion',
+          'Identify what the healing journey looks like for a youth worker: therapy, community, spiritual practice, supervision, peer support, rest, honest feedback',
+          'Develop a personal healing inventory: what are you still carrying that could show up in your work with young people? Name it, and identify one step you will take toward it',
+        ]}]
+      },
+      {
+        id: 'm6s2', code: '6.2',
+        title: 'Secondary Trauma and Compassion Fatigue',
+        groups: [{ heading: null, items: [
+          'Define secondary traumatic stress: the emotional and physiological impact of regularly bearing witness to others\' trauma — a real occupational hazard of youth work',
+          'Distinguish secondary trauma from burnout: burnout is depletion from overwork; secondary trauma is a specific wound from exposure to pain',
+          'Identify the signs of secondary trauma in youth workers: hypervigilance, numbing, cynicism, difficulty being present, taking work home emotionally',
+          'Develop an organizational protocol for secondary trauma: regular supervision with emotional check-ins, peer support structures, clear boundaries, access to mental health support',
+          'Apply to FSTS leadership: the Program Director, Lead Facilitators, and mentors all need their own healing containers — name what those will be',
+          'Apply the HCE principle: rest, joy, and community are not luxuries for staff — they are protective factors against secondary trauma',
+        ]}]
+      },
+      {
+        id: 'm6s3', code: '6.3',
+        title: 'Building a Healing Organizational Culture',
+        groups: [{ heading: null, items: [
+          'Apply HCE to the organization itself: a healing-centered youth program must also be a healing-centered workplace',
+          'Identify the organizational practices that either build or erode staff healing: how decisions are made, how conflict is handled, how failures are processed, how contributions are recognized',
+          'Connect to Emergent Strategy\'s fractal principle: if staff are not held in a healing culture, they cannot hold youth in one',
+          'Develop three concrete organizational practices that embody HCE for staff: not wellness perks, but structural practices that build wholeness',
+          { text: 'Examples to consider and adapt:', nested: [
+            'Opening every staff meeting with a genuine check-in — not "what\'s on your plate" but "how are you actually doing"',
+            'Naming grief and loss when they happen in the team, rather than pushing past them',
+            'Building staff celebration that is as intentional as youth celebration',
+            'Creating a team agreement about how to name when someone is carrying too much',
+          ]},
+          'Commit to your own healing practice as a leader: name it, schedule it, protect it',
+        ]}]
+      },
+    ]
+  },
+  {
+    id: 'module-7',
+    num: 'Module 7',
+    title: 'Healing-Centered Engagement in the FSTS Program',
+    meta: 'Seeing the framework alive in the model',
+    intro: 'This module is an integration practice. Healing-Centered Engagement is not a layer added on top of FSTS — it is woven into the program\'s structure, language, and purpose. This module asks you to see it clearly and use it as a design and decision-making guide.',
+    sections: [
+      {
+        id: 'm7s1', code: '7.1',
+        title: 'HCE in the Four Phases',
+        groups: [
+          { heading: 'Soil — Lineage and Grounding', items: [
+            'Name the healing work of the Soil phase: restoring connection to lineage, community, and cultural identity — addressing the wound of disconnection and erasure',
+            'Identify the HCE pillars most alive in Soil: Culture (lineage, ancestor acknowledgment) and Spirituality (connection to something larger than the self)',
+            'Name the HCE risk in Soil: rushing past grief — some young people will encounter pain in their family histories; the facilitator must be able to hold that with them',
+          ]},
+          { heading: 'Root — Identity and Separation', items: [
+            'Name the healing work of the Root phase: restoring the young person\'s relationship to themselves — addressing the wound of external definition and identity theft',
+            'Identify the HCE pillars most alive in Root: Wellness (self-knowledge and self-worth) and Culture (claiming identity against dominant narratives)',
+            'Name the HCE risk in Root: the adult\'s own unhealed identity showing up — facilitators may inadvertently steer young people toward the identities adults want them to claim',
+          ]},
+          { heading: 'Growth — Challenge and Learning', items: [
+            'Name the healing work of the Growth phase: restoring belief in one\'s own capacity — addressing the wound of learned helplessness and low expectation',
+            'Identify the HCE pillars most alive in Growth: Wellness (competence and confidence) and Civic Engagement (learning to act on the world)',
+            'Name the HCE risk in Growth: challenge without adequate support — pushing young people past their capacity without a sufficient container of care',
+          ]},
+          { heading: 'Sky — Contribution and Public Witness', items: [
+            'Name the healing work of the Sky phase: restoring visibility and agency — addressing the wound of invisibility and voicelessness',
+            'Identify the HCE pillars most alive in Sky: Civic Engagement (contribution and action) and Spirituality (sense of purpose and legacy)',
+            'Name the HCE risk in Sky: performance over transformation — letting the closing ceremony become a showcase rather than genuine public healing',
+          ]},
+        ]
+      },
+      {
+        id: 'm7s2', code: '7.2',
+        title: 'HCE and the Mentoring Relationship',
+        groups: [{ heading: null, items: [
+          'Explain how a mentoring relationship is, at its best, a healing relationship: consistent presence, genuine curiosity, belief in the young person\'s potential, and willingness to witness their full self',
+          'Apply HCE to mentor training: mentors in FSTS must understand that they are offering more than guidance — they are offering a healing relationship',
+          'Identify the HCE question mentors can hold for their mentee: "What\'s right with you?" — naming and reflecting strengths the young person may not yet see in themselves',
+          'Develop a HCE mentoring guide: what does a healing-centered mentoring conversation look like? (Not a coaching session, not a check-in form — a genuine encounter)',
+          'Apply the healing adult principle to mentors: mentor screening and training must include the question of the mentor\'s own healing — not as a disqualifier, but as an honest assessment',
+          'Build HCE into match monitoring: check-in questions should include "Is this relationship building the young person\'s wholeness? Is it honoring their full humanity?"',
+        ]}]
+      },
+      {
+        id: 'm7s3', code: '7.3',
+        title: 'HCE as an Organizational North Star',
+        groups: [{ heading: null, items: [
+          'Write a Healing-Centered Engagement statement for FSTS: what does HCE mean for how this program is designed, how adults show up, and what young people can expect?',
+          'Develop HCE language for funders and partners: how do you explain HCE to people trained in TIC or deficit-based frameworks without dismissing their knowledge?',
+          'Create a HCE decision protocol: when a program decision must be made, what does HCE ask? ("Does this build wholeness or just address symptoms? Does it honor the community\'s cultural strengths? Does it create healing space for adults as well as youth?")',
+          'Build a HCE annual review: at the end of each program year, assess not just outcomes but healing — did young people leave more whole than they arrived? Did adults?',
+          'Name your own HCE north star: as the leader of FSTS, what is the healing you most want to see — in young people, in families, in the community, and in yourself?',
+        ]}]
+      },
+    ]
+  },
+];
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function makeItem(item, base, gi, ii) {
+  const id = `${base}-g${gi}-i${ii}`;
+  if (typeof item === 'string') {
+    return `<li><label class="check-item"><input type="checkbox" data-id="${id}"><span class="check-box" aria-hidden="true"></span><span class="check-label">${item}</span></label></li>`;
+  }
+  const nested = item.nested.map((n, ni) =>
+    `<li><label class="check-item"><input type="checkbox" data-id="${id}-n${ni}"><span class="check-box" aria-hidden="true"></span><span class="check-label">${n}</span></label></li>`
+  ).join('');
+  return `<li><label class="check-item"><input type="checkbox" data-id="${id}"><span class="check-box" aria-hidden="true"></span><span class="check-label">${item.text}</span></label><ul class="nested-list check-group">${nested}</ul></li>`;
+}
+
+function makeSection(sec, modId) {
+  const body = sec.groups.map((g, gi) => {
+    const h = g.heading ? `<p class="group-heading">${g.heading}</p>` : '';
+    return h + `<ul class="check-group">${g.items.map((it, ii) => makeItem(it, `${modId}-${sec.id}`, gi, ii)).join('')}</ul>`;
+  }).join('');
+  return `<details class="subsection" data-subsection="${sec.id}">
+    <summary>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <div class="summary-text"><p class="summary-code">${sec.code}</p><p class="summary-title">${sec.title}</p></div>
+      <div class="summary-right">
+        <span class="prog-count" aria-live="polite">0/0</span>
+        <div class="prog-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="prog-fill"></div></div>
+      </div>
+    </summary>
+    <div class="subsection-body">${body}</div>
+  </details>`;
+}
+
+function renderAll() {
+  const main = document.getElementById('main-content');
+  const nav = document.getElementById('nav-inner');
+  DATA.forEach(mod => {
+    const tab = document.createElement('button');
+    tab.className = 'nav-tab'; tab.textContent = mod.num; tab.dataset.target = mod.id;
+    nav.appendChild(tab);
+    const intro = mod.intro ? `<div class="module-intro">${mod.intro}</div>` : '';
+    const el = document.createElement('section');
+    el.className = 'module-section'; el.id = mod.id;
+    el.innerHTML = `<p class="module-eyebrow">${mod.num}</p><h2 class="module-title">${mod.title}</h2><p class="module-meta">${mod.meta}</p>${intro}<hr class="module-divider">${mod.sections.map(s => makeSection(s, mod.id)).join('')}`;
+    main.appendChild(el);
+  });
+
+  const attrTab = document.createElement('button');
+  attrTab.className = 'nav-tab'; attrTab.textContent = 'Attribution'; attrTab.dataset.target = 'attribution';
+  nav.appendChild(attrTab);
+
+  const attrEl = document.createElement('section');
+  attrEl.className = 'attribution-section'; attrEl.id = 'attribution';
+  attrEl.innerHTML = `<div class="attribution-block">
+    <p class="attribution-eyebrow">Attribution & Intellectual Credit</p>
+    <div class="attribution-row">
+      <p class="attribution-label">Original Framework</p>
+      <p class="attribution-text"><strong>Healing-Centered Engagement</strong> was developed by <strong>Shawn Ginwright, Ph.D.</strong> and introduced in his foundational essay <em>"The Future of Healing: Shifting From Trauma Informed Care to Healing Centered Engagement"</em> (Ginwright, 2018). The framework is further developed in his books <em>Black Youth Rising: Activism and Radical Healing in Urban America</em> (2010) and <em>Hope and Healing in Urban Education: How Urban Activists and Teachers Transform Schools</em> (2016). All core principles, language, and theoretical constructs in this course belong to Shawn Ginwright and are used here with deep respect and credit. Learn more at his organization, <strong>Flourish Agenda</strong> and <strong>Thrive Agency</strong>.</p>
+    </div>
+    <hr class="attribution-divider">
+    <div class="attribution-row">
+      <p class="attribution-label">Contributing Voices</p>
+      <p class="attribution-text">This course also draws on the work of <strong>Tricia Hersey</strong> (The Nap Ministry) on rest as resistance; <strong>Audre Lorde</strong> on the erotic as power and self-care as political act; <strong>Paulo Freire</strong> and <strong>Ignacio Martín-Baró</strong> on liberation psychology; <strong>Na'im Akbar</strong> and <strong>Linda James Myers</strong> on Afrocentric psychology; and the African American healing tradition held by elders, communities, and cultural institutions across generations.</p>
+    </div>
+    <hr class="attribution-divider">
+    <div class="attribution-row">
+      <p class="attribution-label">Application & Synthesis</p>
+      <p class="attribution-text">The application of Healing-Centered Engagement to youth development practice, mentoring program design, organizational culture, and the <em>From Soil to Sky</em> program model — including the connection to FSTS's four phases, the Healing Adult framework for mentors and staff, and the HCE decision protocols — is the original synthesis work of <strong>Tiana Massaquoi</strong> and the <strong>Keep Still Cares Foundation</strong>.</p>
+    </div>
+    <hr class="attribution-divider">
+    <div class="attribution-row">
+      <p class="attribution-label">Further Study</p>
+      <p class="attribution-text">Read Ginwright's 2018 essay directly — it is freely available online and should be read in full before facilitating this course. Then read <em>Hope and Healing in Urban Education</em> for the full theoretical and practice framework. Tricia Hersey's <em>Rest Is Resistance</em> (2022) is essential companion reading for Module 4.</p>
+    </div>
+  </div>`;
+  main.appendChild(attrEl);
+}
+
+/* STATE & PROGRESS */
+function getState() { try { return JSON.parse(localStorage.getItem('fsts_c3_v1') || '{}'); } catch { return {}; } }
+function saveState(s) { try { localStorage.setItem('fsts_c3_v1', JSON.stringify(s)); } catch {} }
+
+function updateProgress() {
+  document.querySelectorAll('[data-subsection]').forEach(sec => {
+    const inputs = sec.querySelectorAll('.check-item input[type="checkbox"]');
+    const checked = [...inputs].filter(i => i.checked).length;
+    const total = inputs.length;
+    const pct = total > 0 ? (checked / total) * 100 : 0;
+    const fill = sec.querySelector('.prog-fill');
+    const count = sec.querySelector('.prog-count');
+    const bar = sec.querySelector('.prog-bar');
+    if (fill) { fill.style.width = pct + '%'; fill.classList.toggle('done', pct >= 100); }
+    if (count) count.textContent = `${checked}/${total}`;
+    if (bar) bar.setAttribute('aria-valuenow', Math.round(pct));
+  });
+  const all = document.querySelectorAll('.check-item input[type="checkbox"]');
+  const done = [...all].filter(i => i.checked).length;
+  const pct = all.length > 0 ? done / all.length : 0;
+  const rf = document.getElementById('ring-fill');
+  const rp = document.getElementById('ring-pct');
+  if (rf) { rf.style.strokeDasharray = CIRC; rf.style.strokeDashoffset = CIRC * (1 - pct); }
+  if (rp) rp.textContent = Math.round(pct * 100) + '%';
+}
+
+function initCheckboxes() {
+  const state = getState();
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+    if (state[cb.dataset.id]) cb.checked = true;
+    cb.addEventListener('change', () => {
+      const s = getState(); if (cb.checked) s[cb.dataset.id] = true; else delete s[cb.dataset.id];
+      saveState(s); updateProgress();
+    });
+  });
+}
+
+function initNav() {
+  const tabs = document.querySelectorAll('.nav-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = document.getElementById(tab.dataset.target);
+      if (!target) return;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - (document.querySelector('.module-nav')?.offsetHeight || 52) - 16, behavior: 'smooth' });
+    });
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+        document.querySelector(`.nav-tab[data-target="${id}"]`)?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('.module-section, .attribution-section').forEach(s => io.observe(s));
+}
+
+document.addEventListener('DOMContentLoaded', () => { renderAll(); initCheckboxes(); updateProgress(); initNav(); });
+</script>
