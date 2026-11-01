@@ -1,0 +1,850 @@
+<!----><title>Emergent Strategy in Youth Work</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap">
+
+<style>
+/* Layout: sticky module nav + scrollable sections. Forest-green palette for the natural/biomimicry theme of ES. */
+:root {
+  --bg: #F4F5F0;
+  --surface: #FFFFFF;
+  --surface-2: #EAEDE6;
+  --fg: #1A201C;
+  --fg-muted: #4E5E52;
+  --fg-subtle: #84948A;
+  --accent: #1C5235;
+  --accent-hover: #164429;
+  --accent-light: #E2EFE7;
+  --accent-2: #B8780A;
+  --accent-2-light: #FBF0DA;
+  --border: #D8DDD4;
+  --border-strong: #BDC5BA;
+  --positive: #1C7A4A;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --radius: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1810;
+    --surface: #122018;
+    --surface-2: #1A2E22;
+    --fg: #E4F0E8;
+    --fg-muted: #88B094;
+    --fg-subtle: #587860;
+    --accent: #3A9460;
+    --accent-hover: #44A86E;
+    --accent-light: #0C2018;
+    --accent-2: #D4900C;
+    --accent-2-light: #261A04;
+    --border: #1C3024;
+    --border-strong: #2C4434;
+    --positive: #3AB870;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1810;
+  --surface: #122018;
+  --surface-2: #1A2E22;
+  --fg: #E4F0E8;
+  --fg-muted: #88B094;
+  --fg-subtle: #587860;
+  --accent: #3A9460;
+  --accent-hover: #44A86E;
+  --accent-light: #0C2018;
+  --accent-2: #D4900C;
+  --accent-2-light: #261A04;
+  --border: #1C3024;
+  --border-strong: #2C4434;
+  --positive: #3AB870;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box }
+body { margin: 0; font-family: var(--font-body); background: var(--bg); color: var(--fg); font-size: 15px; line-height: 1.65 }
+
+/* HEADER */
+.site-header {
+  background: var(--accent);
+  color: #fff;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 36px;
+}
+.header-inner { max-width: 920px; margin: 0 auto; display: flex; align-items: center; gap: 28px; flex-wrap: wrap }
+.header-text { flex: 1; min-width: 0 }
+.header-series { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .65; margin: 0 0 6px }
+.header-course { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .8; margin: 0 0 10px; display: flex; align-items: center; gap: 8px }
+.course-badge {
+  display: inline-flex; align-items: center; padding: 2px 9px;
+  background: rgba(255,255,255,.18); border-radius: 100px;
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+}
+.header-title { font-family: var(--font-display); font-size: clamp(22px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; color: #fff; font-style: italic }
+.header-desc { font-size: 14px; opacity: .8; margin: 0 0 14px; max-width: 58ch; line-height: 1.5 }
+.header-author {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; opacity: .75;
+}
+.header-author strong { opacity: 1; font-weight: 600 }
+.progress-ring { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px }
+.ring-svg { width: 80px; height: 80px }
+.ring-track { fill: none; stroke: rgba(255,255,255,.2); stroke-width: 6 }
+.ring-fill { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset .5s ease }
+.ring-pct { font-size: 15px; font-weight: 600; fill: #fff; text-anchor: middle; dominant-baseline: central; font-family: var(--font-body) }
+.ring-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .7; color: #fff }
+
+/* NAV */
+.module-nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none }
+.module-nav::-webkit-scrollbar { display: none }
+.nav-inner { display: flex; max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); min-width: max-content }
+.nav-tab { padding: 14px 14px; font-size: 13px; font-weight: 500; color: var(--fg-muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; font-family: var(--font-body) }
+.nav-tab:hover { color: var(--fg) }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent) }
+
+/* MAIN */
+.main-content { max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); padding-block: 0 80px }
+
+/* MODULE SECTIONS */
+.module-section { padding-top: 56px }
+.module-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px }
+.module-title { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 30px); line-height: 1.2; margin: 0 0 10px; text-wrap: balance; font-style: italic }
+.module-meta { font-size: 13px; color: var(--fg-muted); margin: 0 0 14px; font-style: italic }
+.module-intro { font-size: 14px; color: var(--fg-muted); margin: 0 0 20px; max-width: 70ch; line-height: 1.65; padding: 14px 18px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0 }
+.module-divider { border: none; border-top: 2px solid var(--border); margin: 0 0 28px }
+
+/* SUBSECTION */
+.subsection { margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden }
+.subsection summary { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; user-select: none; list-style: none }
+.subsection summary::-webkit-details-marker { display: none }
+.chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--fg-subtle); transition: transform .2s ease }
+.subsection[open] .chevron { transform: rotate(90deg) }
+.summary-text { flex: 1; min-width: 0 }
+.summary-code { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-subtle); margin: 0 0 2px }
+.summary-title { font-size: 15px; font-weight: 600; color: var(--fg); margin: 0; line-height: 1.3 }
+.summary-right { flex-shrink: 0; display: flex; align-items: center; gap: 8px }
+.prog-count { font-size: 12px; font-weight: 500; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap }
+.prog-bar { width: 56px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden }
+.prog-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .35s ease }
+.prog-fill.done { background: var(--positive) }
+.subsection-body { padding: 0 20px 20px; border-top: 1px solid var(--border) }
+.sub-note { font-size: 13px; color: var(--fg-muted); font-style: italic; margin: 14px 0 4px; line-height: 1.55 }
+
+/* CHECKLIST */
+.check-group { margin: 0; padding: 0; list-style: none }
+.group-heading { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin: 16px 0 8px; padding-top: 8px; border-top: 1px dashed var(--border) }
+.group-heading:first-child { border-top: none; margin-top: 8px }
+.check-item { display: flex; align-items: flex-start; gap: 11px; padding: 7px 0; cursor: pointer; border-bottom: 1px solid var(--border) }
+.check-item:last-child { border-bottom: none }
+.check-item input { position: absolute; opacity: 0; pointer-events: none }
+.check-box { flex-shrink: 0; width: 18px; height: 18px; border: 1.5px solid var(--border-strong); border-radius: 4px; margin-top: 3px; background: var(--bg); display: flex; align-items: center; justify-content: center; transition: background .15s, border-color .15s }
+.check-item input:checked ~ .check-box { background: var(--accent); border-color: var(--accent) }
+.check-item input:checked ~ .check-box::after { content: ''; width: 9px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translateY(-1px) }
+.check-label { font-size: 14px; line-height: 1.55; color: var(--fg); flex: 1; min-width: 0; transition: color .15s }
+.check-item input:checked ~ .check-label { color: var(--fg-subtle); text-decoration: line-through; text-decoration-color: var(--border-strong) }
+.nested-list { padding: 2px 0 2px 26px; border-left: 2px solid var(--border); margin: 2px 0 2px 8px }
+.nested-list .check-item { border-bottom: none; padding: 4px 0 }
+.nested-list .check-label { font-size: 13.5px }
+
+/* CALLOUT QUOTE */
+.callout {
+  border-left: 3px solid var(--accent-2); padding: 14px 18px; margin: 16px 0;
+  background: var(--accent-2-light); border-radius: 0 var(--radius) var(--radius) 0;
+}
+.callout p { margin: 0 0 6px; font-style: italic; font-size: 14px; color: var(--fg-muted); line-height: 1.6 }
+.callout cite { font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-2) }
+
+/* ATTRIBUTION FOOTER */
+.attribution-section { padding-top: 56px; padding-bottom: 20px }
+.attribution-block {
+  background: var(--surface); border: 1px solid var(--border);
+  border-top: 3px solid var(--accent); border-radius: var(--radius);
+  padding: 28px 32px;
+}
+.attribution-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px }
+.attribution-row { margin-bottom: 20px }
+.attribution-row:last-child { margin-bottom: 0 }
+.attribution-label { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 5px }
+.attribution-text { font-size: 14px; line-height: 1.65; color: var(--fg); margin: 0 }
+.attribution-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 }
+
+@media (max-width: 520px) { .progress-ring { display: none } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important } }
+</style>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-text">
+      <p class="header-series">From Soil to Sky Training Series</p>
+      <p class="header-course"><span class="course-badge">Course 2</span></p>
+      <h1 class="header-title">Emergent Strategy in Youth Work</h1>
+      <p class="header-desc">A deep study of Adrienne Maree Brown's Emergent Strategy and its application to youth development organizations, mentoring programs, and the From Soil to Sky model.</p>
+      <p class="header-author">Framework by <strong>Adrienne Maree Brown</strong> &nbsp;·&nbsp; Applied to youth work by <strong>Tiana Massaquoi</strong></p>
+    </div>
+    <div class="progress-ring">
+      <svg class="ring-svg" viewBox="0 0 80 80" aria-hidden="true">
+        <circle class="ring-track" cx="40" cy="40" r="32"/>
+        <circle class="ring-fill" id="ring-fill" cx="40" cy="40" r="32"/>
+        <text class="ring-pct" id="ring-pct" x="40" y="40">0%</text>
+      </svg>
+      <span class="ring-label">Complete</span>
+    </div>
+  </div>
+</header>
+
+<nav class="module-nav" aria-label="Module navigation">
+  <div class="nav-inner" id="nav-inner"></div>
+</nav>
+
+<main class="main-content" id="main-content"></main>
+
+<script>
+const CIRC = 2 * Math.PI * 32;
+
+const DATA = [
+  {
+    id: 'module-1',
+    num: 'Module 1',
+    title: 'Adrienne Maree Brown & the Origins of Emergent Strategy',
+    meta: 'Grounding in the person, the practice, and the lineage',
+    intro: 'Before applying a framework, you must understand who built it, from what tradition, and why. Emergent Strategy is not a productivity method. It is a theory of change rooted in Black feminist thought, liberation movements, and the study of natural systems.',
+    sections: [
+      {
+        id: 'm1s1', code: '1.1',
+        title: 'Who Is Adrienne Maree Brown?',
+        groups: [
+          { heading: null, items: [
+            'Research Adrienne Maree Brown\'s background as a writer, facilitator, doula, and movement organizer based in Detroit',
+            'Identify the traditions and communities that shaped her thinking: Detroit organizing, reproductive justice, Black feminist thought, science fiction as liberation literature',
+            'Understand her role as a practitioner-theorist — someone who develops frameworks through lived community work, not academic study',
+            'Explore her body of work: Emergent Strategy (2017), Pleasure Activism (2019), We Will Not Cancel Us (2020), Holding Change (2021)',
+            'Reflect on what it means to learn a framework from someone whose authority comes from practice and community rather than an institution',
+          ]}
+        ]
+      },
+      {
+        id: 'm1s2', code: '1.2',
+        title: 'What Is Emergent Strategy?',
+        groups: [
+          { heading: null, items: [
+            'Define Emergent Strategy in your own words — before and after reading brown\'s introduction',
+            'Explain the biomimicry lens: why brown looks to nature as teacher for social change and organizational practice',
+            'Identify the natural systems brown draws on: mycelium networks, murmuration of starlings, river deltas, cells, seasons, dandelions',
+            'Distinguish Emergent Strategy from strategic planning — what is the fundamental difference in orientation?',
+            'Explain brown\'s core claim: "how we are is how we do" — that process and outcome are inseparable',
+            'Name the political and social context that made Emergent Strategy necessary: movements, organizations, and change work that kept burning people out or replicating the systems they opposed',
+          ]}
+        ]
+      },
+      {
+        id: 'm1s3', code: '1.3',
+        title: 'The Intellectual Lineage Behind Emergent Strategy',
+        groups: [
+          { heading: null, items: [
+            'Identify how Emergent Strategy draws from Afrofuturism and the speculative fiction of Octavia Butler',
+            'Recognize the influence of Black feminist thought (bell hooks, Audre Lorde, Combahee River Collective) on how brown thinks about relationships, power, and transformation',
+            'Understand grace Lee Boggs and the Detroit tradition of community-based transformation that shaped brown\'s practice',
+            'Explore how complexity science and systems thinking inform the framework (emergence, feedback loops, nonlinearity)',
+            'Reflect: How does knowing the lineage of a framework change how you use it?',
+          ]}
+        ]
+      },
+      {
+        id: 'm1s4', code: '1.4',
+        title: 'Why Emergent Strategy Belongs in Youth Work',
+        groups: [
+          { heading: null, items: [
+            'Articulate the connection between ES and youth development: young people are not a problem to solve, they are a system to support',
+            'Identify how youth-serving organizations often replicate hierarchical, deficit-based systems — even when their mission says otherwise',
+            'Explain how ES offers an alternative: organizations that model the change they want to see, in every interaction',
+            'Connect ES to the From Soil to Sky theory of change: "growth happens in ecosystems — when the soil is healthy, young people do not need to be forced to grow"',
+            'Name at least two ways your current or planned organization already reflects ES principles, and two ways it contradicts them',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-2',
+    num: 'Module 2',
+    title: 'The Six Principles — A Deep Study',
+    meta: 'Moving from concept to practice, one principle at a time',
+    intro: 'The Foundations course introduced the six principles of Emergent Strategy. This module studies each one in depth — understanding the idea, tracing it in nature, and applying it directly to your organization and the FSTS program.',
+    sections: [
+      {
+        id: 'm2s1', code: '2.1',
+        title: 'Principle 1: Fractals — Small Is Good, Small Is All',
+        groups: [
+          { heading: 'Understanding the Principle', items: [
+            'Define fractals: patterns that repeat at every scale of a system — a fern leaf mirrors the fern; a snowflake\'s arm mirrors the whole snowflake',
+            'Explain brown\'s application: the shape of your smallest interactions is the shape of your whole organization, which is the shape of the movement',
+            'Identify what this means practically: a staff meeting run with hierarchy and silence will produce a program that runs on hierarchy and silence',
+          ]},
+          { heading: 'In Nature', items: [
+            'Study at least one natural fractal (coastlines, river networks, tree branching, broccoli) and write down what it teaches you about organizational design',
+            'Explore the mycelium metaphor: underground networks that share nutrients across a forest — what is the mycelium in your organization?',
+          ]},
+          { heading: 'In Your Organization', items: [
+            'Audit your staff meetings, supervision practices, and team communication through the fractal lens — do they reflect the values you want youth to experience?',
+            'Identify the smallest unit of your work (a single mentoring conversation, a circle opening, a family check-in) and evaluate whether it fractals your values',
+            'Practice the fractal question: "If someone only ever experienced this one interaction with us, what would they learn about who we are?"',
+            'Design one small practice change that would improve the fractal quality of your team culture',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s2', code: '2.2',
+        title: 'Principle 2: Adaptive — Comfortable with Uncertainty',
+        groups: [
+          { heading: 'Understanding the Principle', items: [
+            'Define adaptability in the ES sense: not reactive chaos, but a practiced readiness to shift based on what is actually happening',
+            'Distinguish adaptive practice from having no plan — ES is not anti-planning, it is anti-rigidity',
+            'Explain why brown argues that the inability to adapt is itself a form of harm — organizations that cannot shift cause harm when conditions change',
+          ]},
+          { heading: 'In Nature', items: [
+            'Study how water moves: it does not fight obstacles, it goes around, over, under, or through — and it always reaches the sea',
+            'Explore how forests respond to fire, drought, or disease — not by resisting, but by adapting the whole system\'s response',
+          ]},
+          { heading: 'In Your Organization', items: [
+            'Identify two decisions your organization has made (or should make) that required releasing an original plan because conditions changed',
+            'Develop an organizational "adaptation protocol": when new information arrives, how do you pause, assess, and shift without panic or abandonment of values?',
+            'Apply to FSTS: each phase of the program is designed to adapt to who the young people are that year — build at least two specific adaptation points into your program calendar',
+            'Practice sitting with uncertainty: name one open question in your work that you are trying to force to a premature answer, and decide to hold it longer',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s3', code: '2.3',
+        title: 'Principle 3: Interdependence & Decentralization',
+        groups: [
+          { heading: 'Understanding the Principle', items: [
+            'Define interdependence: we are not independent (isolated) or dependent (subordinate), but genuinely reliant on each other\'s gifts and roles',
+            'Define decentralization: distributed leadership and decision-making — the whole system is smarter than any one node',
+            'Explain why brown pairs these two: you can only decentralize if you trust that others are capable; you can only recognize interdependence if you release the myth of the self-sufficient leader',
+          ]},
+          { heading: 'In Nature', items: [
+            'Study how ant colonies make decisions without a central commander — through pheromone signals and distributed response',
+            'Explore the mycorrhizal network again: trees of different species share water and nutrients through fungal networks — interdependence across difference',
+          ]},
+          { heading: 'In Your Organization', items: [
+            'Map the actual decision-making structure of your organization: who decides what, and how? Compare it to the structure on paper',
+            'Identify three decisions currently made by one person (you, or a director) that could be made by a broader group without compromising safety or quality',
+            'Build a distributed leadership map for FSTS: Program Director, Lead Facilitators, Mentors, Elder Council, Family Liaison, and Youth Alumni — what decisions belong to each?',
+            'Practice releasing: identify one task or decision you are holding onto that someone else could own — and give it to them with full authority',
+            'Develop a shared accountability structure: how will the team check in with each other without one person carrying all oversight?',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s4', code: '2.4',
+        title: 'Principle 4: Nonlinear & Iterative Change',
+        groups: [
+          { heading: 'Understanding the Principle', items: [
+            'Define nonlinear change: transformation rarely happens in straight lines — it happens in spirals, leaps, and sometimes through apparent regression',
+            'Explain why this is critical for youth work: a young person\'s growth is not a straight line, and neither is a program\'s impact',
+            'Identify the harm of linear thinking in youth work: labeling youth as "failing" when they are in a nonlinear growth process',
+          ]},
+          { heading: 'In Nature', items: [
+            'Study metamorphosis: a caterpillar in a chrysalis appears to dissolve entirely before becoming a butterfly — chaos is part of transformation',
+            'Explore seasonal cycles: nothing grows in winter, but winter is not failure — it is necessary fallow time',
+          ]},
+          { heading: 'In Your Organization', items: [
+            'Identify a moment in youth work where apparent setback turned out to be growth — document it as a teaching story',
+            'Review your program\'s outcome measures: do they allow for nonlinear progress, or do they only capture forward motion?',
+            'Build a "fallow time" into FSTS: what do rest, reflection, and integration look like between phases?',
+            'Develop language for talking about nonlinear youth growth with mentors and families — how do you help them not panic when a young person "goes backwards"?',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s5', code: '2.5',
+        title: 'Principle 5: Creating More Possibilities',
+        groups: [
+          { heading: 'Understanding the Principle', items: [
+            'Define this principle: orient toward abundance, not scarcity — toward more futures, not a narrowing of options',
+            'Explain the relationship between this principle and youth development: a young person who sees more possible futures for themselves is more resilient, more engaged, and more likely to contribute',
+            'Identify how scarcity thinking limits organizations: competition for funding, hoarding knowledge, zero-sum thinking about community resources',
+          ]},
+          { heading: 'In Your Organization', items: [
+            'Audit your organization\'s language: where does scarcity show up? ("We can\'t afford to...", "There\'s only room for...")',
+            'Practice abundance mapping: identify at least five resources your community has that your program could tap but hasn\'t yet',
+            'Apply to FSTS: how does the Sky phase (contribution and public witness) embody the principle of creating more possibilities — for youth and for the community?',
+            'Develop at least three practices that signal abundance to youth: multiple pathways, open doors, "and" thinking instead of "or" thinking',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s6', code: '2.6',
+        title: 'Principle 6: Focus on Critical Connections, Not Critical Mass',
+        groups: [
+          { heading: 'Understanding the Principle', items: [
+            'Explain brown\'s argument: scale comes from depth, not breadth — serve fewer people more deeply and the transformation ripples outward',
+            'Distinguish critical connections from critical mass: critical mass is quantity; critical connections are quality relationships that change the pattern',
+            'Apply to FSTS: a cohort of 12–15 young people changed at the root is more powerful than 200 young people processed through a program',
+          ]},
+          { heading: 'In Your Organization', items: [
+            'Identify the critical connections in your current or planned work: which relationships, if they deepened, would change everything?',
+            'Resist the pressure to scale before depth: name one place where you are being pushed to grow bigger before you have grown deeper, and articulate your response',
+            'Apply to mentoring: explain to funders and stakeholders why one mentor-youth relationship maintained for 18 months creates more change than three mentors for six months each',
+            'Map the critical connections in FSTS: between youth and mentors, between elders and youth, between families and the cohort, between alumni and new cohort members',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-3',
+    num: 'Module 3',
+    title: 'Moving at the Speed of Trust',
+    meta: 'Trust as a pacing tool and a practice',
+    intro: '"Move at the speed of trust" is perhaps Emergent Strategy\'s most practical instruction — and the one most often violated by organizations under pressure. This module studies trust as a concrete practice in youth work, mentoring, and organizational life.',
+    sections: [
+      {
+        id: 'm3s1', code: '3.1',
+        title: 'What Does It Mean to Move at the Speed of Trust?',
+        groups: [
+          { heading: null, items: [
+            'Explain what brown means: you can only move as fast as the trust between people will carry you — anything faster breaks the relationship',
+            'Identify what violates the speed of trust in youth work: rushing to match mentors and youth, skipping intake conversations with families, launching before a community is ready',
+            'Distinguish urgency (real) from urgency (performed) — not every deadline is real, and treating invented urgency as real destroys trust',
+            'Name the political economy of urgency in nonprofits: funders create timelines, staff comply, youth absorb the pressure — trace this pattern in your own context',
+            'Commit to a personal practice of naming when you are moving faster than trust allows, and slowing down',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s2', code: '3.2',
+        title: 'Trust in the Mentoring Relationship',
+        groups: [
+          { heading: null, items: [
+            'Apply the speed of trust to the mentor-youth match: what does trust-building look like in the first three months of a mentoring relationship?',
+            'Identify the behaviors that build trust in mentoring: consistency, follow-through, curiosity without agenda, showing up when you said you would',
+            'Identify the behaviors that break trust: canceling without notice, asking too much too soon, bringing adult anxiety into the relationship',
+            'Train mentors to name the trust-building process explicitly with youth: "We\'re just getting to know each other — there\'s no rush"',
+            'Develop a 90-day trust-building protocol for new mentor matches that deliberately paces connection before challenge',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s3', code: '3.3',
+        title: 'Trust in the Organization',
+        groups: [
+          { heading: null, items: [
+            'Map the trust levels between roles in your organization: staff-youth, staff-families, staff-community partners, leader-staff — where is trust high and where is it thin?',
+            'Identify one broken trust that has never been named or repaired — and develop a plan to name and repair it',
+            'Develop an organizational trust assessment: a simple tool for teams to rate trust and identify where to invest',
+            'Apply to hiring and onboarding: how does your hiring process build trust with new staff before they begin, rather than testing compliance?',
+            'Practice transparent communication: identify one decision you make regularly that could be made more transparent without compromising confidentiality',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s4', code: '3.4',
+        title: 'Trust with Families and Community',
+        groups: [
+          { heading: null, items: [
+            'Name the historical reasons why many Black and Brown families distrust institutions — and why "we\'re different" is not sufficient to overcome it',
+            'Identify the specific trust-builders that matter most to families: consistent communication, honoring commitments, asking before deciding, keeping youth safe',
+            'Develop a family trust timeline for FSTS: what does trust-building with families look like from first contact through the Kwanzaa closing ceremony?',
+            'Apply to Elder engagement: Elders in FSTS hold deep cultural authority — how do you approach them with appropriate humility and earn their investment in the program?',
+            'Name one place where your organization asks community trust before it has earned it, and redesign that ask',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-4',
+    num: 'Module 4',
+    title: 'Fractals in Organizational Life',
+    meta: 'The shape of the small is the shape of everything',
+    intro: 'This module goes deeper on fractals — not as a concept but as a diagnostic tool. The fractal principle is the most powerful lens for organizational self-examination because it asks: is the way we treat each other inside this building the way we want young people to experience the world?',
+    sections: [
+      {
+        id: 'm4s1', code: '4.1',
+        title: 'The Staff Culture Fractal',
+        groups: [
+          { heading: null, items: [
+            'Run the fractal audit on your team culture: how are decisions made? How is conflict handled? Whose voice is centered in meetings? Who is regularly overlooked?',
+            'Identify the gap between your staff culture and the culture you want young people to experience — this gap is the fractal leak',
+            'Practice naming the fractal in real time: "The way we just made that decision without asking the newest staff member — that\'s the same thing we do to youth when we decide things without them"',
+            'Commit to a specific staff culture practice that would close the fractal gap: rotating meeting facilitation, consensus decision-making on program changes, regular team reflection',
+            'Develop a 90-day staff culture intention: three specific practices your team will commit to for the next three months',
+          ]}
+        ]
+      },
+      {
+        id: 'm4s2', code: '4.2',
+        title: 'The Circle as a Fractal Practice',
+        groups: [
+          { heading: null, items: [
+            'Understand the circle as a fractal of the values FSTS wants to embody: everyone is seen, everyone has a voice, the center belongs to all',
+            'Study circle practice as a technology: the check-in, the talking piece, the closing, the agreements — how does each element embody a value?',
+            'Practice leading a circle: open it, hold it, close it — in a staff meeting, a family gathering, or a community session',
+            'Identify what breaks circle: side conversations, people on phones, a facilitator who uses the circle to lecture rather than listen',
+            'Develop a circle guide for FSTS facilitators that connects each element of the circle to an ES principle',
+          ]}
+        ]
+      },
+      {
+        id: 'm4s3', code: '4.3',
+        title: 'The Cohort as a Community Fractal',
+        groups: [
+          { heading: null, items: [
+            'Apply the fractal principle to the FSTS cohort: a cohort of 12–15 young people who practice Ubuntu, accountability, and contribution together is a fractal of the community you are trying to build',
+            'Identify what must be true about the cohort experience for it to fractal healthy community: safety, equity of voice, shared challenge, celebration of difference',
+            'Develop cohort agreements (not rules) that explicitly embody ES and FSTS values',
+            'Name the fractal failure modes: a cohort where one or two voices dominate, where conflict is avoided rather than held, where youth are managed rather than developed',
+            'Design a cohort health check: a simple quarterly reflection that asks youth to evaluate how well the group is living its own agreements',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-5',
+    num: 'Module 5',
+    title: 'Adaptive Leadership & Resilient Organizations',
+    meta: 'What it looks like to lead through uncertainty with your values intact',
+    intro: 'Adaptive leadership is not improvisation. It is a practiced capacity to read conditions clearly, release what is not working, and move toward what is — without abandoning the values that define the work.',
+    sections: [
+      {
+        id: 'm5s1', code: '5.1',
+        title: 'Reading the Room, Reading the Community',
+        groups: [
+          { heading: null, items: [
+            'Develop your capacity for contextual reading: what are the conditions in your community right now that are shaping what young people need?',
+            'Identify formal and informal data sources: youth feedback, family conversations, community events, local news, partner intelligence',
+            'Build a regular "listening practice" into your leadership: who do you talk to each week to stay connected to what is actually happening?',
+            'Practice holding two truths: "the plan says this, but the conditions say that" — what do you do with the tension?',
+            'Apply to FSTS: how will the program team read each phase as it unfolds and make real-time adjustments without derailing the year?',
+          ]}
+        ]
+      },
+      {
+        id: 'm5s2', code: '5.2',
+        title: 'Failure as Information',
+        groups: [
+          { heading: null, items: [
+            'Define how Emergent Strategy understands failure: not as error to be hidden, but as feedback to be used',
+            'Identify the organizational cultures that punish failure — and how that punishment drives failure underground, where it compounds',
+            'Build a failure culture practice: a regular team ritual (monthly debrief, quarterly retrospective) where failures are named, studied, and honored for what they taught',
+            'Apply to FSTS: develop a phase debrief protocol where facilitators, mentors, elders, and youth reflect on what worked, what didn\'t, and what to carry forward',
+            'Practice the reframe: "We didn\'t fail — we learned something we couldn\'t have learned any other way"',
+            'Distinguish productive failure (which teaches) from harmful failure (which harms youth or families) — and develop guardrails for the latter',
+          ]}
+        ]
+      },
+      {
+        id: 'm5s3', code: '5.3',
+        title: 'Grief, Release, and Organizational Change',
+        groups: [
+          { heading: null, items: [
+            'Name the grief that comes with adaptive leadership: releasing a program that people love, changing a practice that felt right, ending a partnership that no longer serves',
+            'Develop a practice of organizational grieving: how do you acknowledge what is being released before moving forward?',
+            'Apply to FSTS: each cohort ends. Each young person graduates. How does the program honor what was without trying to preserve it?',
+            'Build transitions into organizational life: staff changes, program redesigns, funding losses — how do you lead through them without pretending loss is not loss?',
+            'Connect to the rites of passage framework: separation-threshold-return applies to organizations as much as to young people',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-6',
+    num: 'Module 6',
+    title: 'Decentralization & Youth Leadership',
+    meta: 'Distributing power as a developmental practice',
+    intro: 'Decentralization in youth work is not a management strategy — it is a developmental one. Young people who hold real decision-making power in an organization learn what power feels like, how responsibility works, and that their voice matters. That is youth development.',
+    sections: [
+      {
+        id: 'm6s1', code: '6.1',
+        title: 'What Decentralization Actually Requires',
+        groups: [
+          { heading: null, items: [
+            'Define the difference between delegating tasks and distributing authority — delegation gives work, distribution gives power',
+            'Name the fears that prevent leaders from decentralizing: "what if they get it wrong," "what if it doesn\'t reflect our values," "what if we lose consistency"',
+            'Develop a response to each of those fears that is honest about the tradeoffs — not dismissive, but grounded',
+            'Identify what must be in place before you can safely decentralize: clear values, adequate training, a culture of accountability without punishment',
+            'Map the zones of your program: what decisions are non-negotiable (youth safety, legal compliance), what decisions can be shared (program design, cohort agreements), and what decisions should be youth-led (contribution projects, cohort culture)?',
+          ]}
+        ]
+      },
+      {
+        id: 'm6s2', code: '6.2',
+        title: 'Youth as Decision-Makers',
+        groups: [
+          { heading: null, items: [
+            'Design at least three specific, real decisions in FSTS that will be made by youth (not just consulted on)',
+            'Develop a youth decision-making process: how do youth bring proposals, debate options, and reach decisions as a cohort?',
+            'Train adult staff and mentors on how to hold space for youth decision-making without redirecting it toward adult preferences',
+            'Create a youth leadership pipeline inside FSTS: current cohort members become alumni guides; alumni guides become mentors; mentors can become facilitators',
+            'Name the difference between youth leadership that is real and youth leadership that is performance — and audit your own program for the difference',
+          ]}
+        ]
+      },
+      {
+        id: 'm6s3', code: '6.3',
+        title: 'Elders, Mentors, and the Elder Council as Distributed Leadership',
+        groups: [
+          { heading: null, items: [
+            'Explain the Elder Council in FSTS as a decentralized wisdom structure: the program does not run on the Program Director\'s wisdom alone',
+            'Define the decision-making authority of the Elder Council: what do Elders hold that staff do not? (ceremony, cultural guidance, witness)',
+            'Develop an onboarding process for Elder Council members that honors their authority and clarifies their role',
+            'Apply decentralization to the mentor role: mentors are not volunteers who execute the program\'s plan — they are co-developers of the young people in their care',
+            'Build a peer mentoring structure into the mentor community: experienced mentors guide newer ones; no one person holds all the mentoring wisdom',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-7',
+    num: 'Module 7',
+    title: 'Emergent Strategy in the FSTS Program',
+    meta: 'Seeing the framework alive in the model',
+    intro: 'This module is an integration practice. Each Emergent Strategy principle is already embedded in the design of From Soil to Sky. This module asks you to see it clearly, name it explicitly, and use it as a guide when the program faces difficult decisions.',
+    sections: [
+      {
+        id: 'm7s1', code: '7.1',
+        title: 'ES Principles in the Four Phases',
+        groups: [
+          { heading: 'Soil Phase', items: [
+            'Identify which ES principles are most alive in the Soil phase (Lineage and Grounding): critical connections, moving at the speed of trust, fractals (the young person\'s family is the first fractal of the cohort)',
+            'Name the ES principle at risk of being violated in Soil: urgency — moving into identity work before trust is built',
+          ]},
+          { heading: 'Root Phase', items: [
+            'Identify which ES principles are most alive in the Root phase (Identity and Separation): nonlinear change, creating more possibilities, decentralization (youth claim their own identity, it is not assigned)',
+            'Name the ES principle at risk in Root: adult projection — adults narrating who youth "should" be rather than holding space for who they are becoming',
+          ]},
+          { heading: 'Growth Phase', items: [
+            'Identify the ES principles most alive in Growth: adaptive, interdependence, distributed leadership (youth coach each other through the communal challenge)',
+            'Name the ES principle at risk in Growth: critical mass thinking — trying to do too much, pack in too many skills, measure too many outcomes',
+          ]},
+          { heading: 'Sky Phase', items: [
+            'Identify the ES principles most alive in Sky: fractals (the contribution project is a fractal of the community young people want to live in), creating more possibilities, critical connections',
+            'Name the ES principle at risk in Sky: performance over transformation — the closing ceremony becoming a showcase rather than a genuine rite of return',
+          ]}
+        ]
+      },
+      {
+        id: 'm7s2', code: '7.2',
+        title: 'When the Program Faces Hard Decisions',
+        groups: [
+          { heading: null, items: [
+            'Develop an ES-based decision protocol for FSTS: when the program faces a hard decision (removing a mentor, changing a phase, responding to harm), what questions do ES principles tell you to ask?',
+            'Apply the speed-of-trust test: "Are we moving faster than the trust in this relationship or community will allow?"',
+            'Apply the fractal test: "Is the way we are making this decision the kind of decision-making we want to model for youth?"',
+            'Apply the adaptive test: "Are we holding onto this plan because it is truly the best response, or because we are afraid to change?"',
+            'Apply the interdependence test: "Who else needs to be at this table before we decide?"',
+            'Practice using these questions as a team — run a scenario and apply all five tests before deciding',
+          ]}
+        ]
+      },
+      {
+        id: 'm7s3', code: '7.3',
+        title: 'Building an Emergent Organization',
+        groups: [
+          { heading: null, items: [
+            'Write a one-paragraph organizational culture statement for KeepStill Cares / FSTS that explicitly names ES principles as part of how the organization operates',
+            'Identify the three ES practices your organization will commit to for its first year: name them, define them, and build in accountability',
+            'Develop an annual organizational reflection ritual: a time each year where the team steps back and asks — "Are we still practicing what we say we believe? What has the year taught us?"',
+            'Create a way to teach ES to mentors and volunteers without requiring them to read the whole book: a one-page guide, a story, a circle exercise',
+            'Name your own edge as a leader: which ES principle is hardest for you to practice? What support do you need to grow in it?',
+          ]}
+        ]
+      },
+    ]
+  },
+];
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function makeItem(item, idBase, gIdx, iIdx) {
+  const id = `${idBase}-g${gIdx}-i${iIdx}`;
+  if (typeof item === 'string') {
+    return `<li><label class="check-item">
+      <input type="checkbox" data-id="${id}">
+      <span class="check-box" aria-hidden="true"></span>
+      <span class="check-label">${item}</span>
+    </label></li>`;
+  }
+  const nested = item.nested.map((n, ni) => `<li><label class="check-item">
+    <input type="checkbox" data-id="${id}-n${ni}">
+    <span class="check-box" aria-hidden="true"></span>
+    <span class="check-label">${n}</span>
+  </label></li>`).join('');
+  return `<li><label class="check-item">
+    <input type="checkbox" data-id="${id}">
+    <span class="check-box" aria-hidden="true"></span>
+    <span class="check-label">${item.text}</span>
+  </label>
+  <ul class="nested-list check-group">${nested}</ul></li>`;
+}
+
+function makeSection(sec, modId) {
+  const body = sec.groups.map((g, gi) => {
+    const heading = g.heading ? `<p class="group-heading">${g.heading}</p>` : '';
+    const items = g.items.map((it, ii) => makeItem(it, `${modId}-${sec.id}`, gi, ii)).join('');
+    return `${heading}<ul class="check-group">${items}</ul>`;
+  }).join('');
+
+  return `<details class="subsection" data-subsection="${sec.id}">
+    <summary>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <div class="summary-text">
+        <p class="summary-code">${sec.code}</p>
+        <p class="summary-title">${sec.title}</p>
+      </div>
+      <div class="summary-right">
+        <span class="prog-count" aria-live="polite">0/0</span>
+        <div class="prog-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="prog-fill"></div>
+        </div>
+      </div>
+    </summary>
+    <div class="subsection-body">${body}</div>
+  </details>`;
+}
+
+function renderAll() {
+  const main = document.getElementById('main-content');
+  const nav = document.getElementById('nav-inner');
+
+  DATA.forEach(mod => {
+    const tab = document.createElement('button');
+    tab.className = 'nav-tab';
+    tab.textContent = mod.num;
+    tab.dataset.target = mod.id;
+    nav.appendChild(tab);
+
+    const intro = mod.intro ? `<div class="module-intro">${mod.intro}</div>` : '';
+    const el = document.createElement('section');
+    el.className = 'module-section';
+    el.id = mod.id;
+    el.innerHTML = `
+      <p class="module-eyebrow">${mod.num}</p>
+      <h2 class="module-title">${mod.title}</h2>
+      <p class="module-meta">${mod.meta}</p>
+      ${intro}
+      <hr class="module-divider">
+      ${mod.sections.map(s => makeSection(s, mod.id)).join('')}
+    `;
+    main.appendChild(el);
+  });
+
+  // Attribution
+  const attrTab = document.createElement('button');
+  attrTab.className = 'nav-tab';
+  attrTab.textContent = 'Attribution';
+  attrTab.dataset.target = 'attribution';
+  nav.appendChild(attrTab);
+
+  const attrEl = document.createElement('section');
+  attrEl.className = 'attribution-section';
+  attrEl.id = 'attribution';
+  attrEl.innerHTML = `
+    <div class="attribution-block">
+      <p class="attribution-eyebrow">Attribution & Intellectual Credit</p>
+
+      <div class="attribution-row">
+        <p class="attribution-label">Original Framework</p>
+        <p class="attribution-text"><strong>Emergent Strategy</strong> was developed by <strong>Adrienne Maree Brown</strong> and published in <em>Emergent Strategy: Shaping Change, Changing Worlds</em> (AK Press, 2017). The framework draws on the speculative fiction of <strong>Octavia Butler</strong>, the organizing tradition of <strong>Grace Lee Boggs</strong>, the Black feminist thought of <strong>Audre Lorde</strong>, <strong>bell hooks</strong>, and the Combahee River Collective, and the science of complex adaptive systems. All core principles, language, and biomimicry frameworks in this course belong to Adrienne Maree Brown and are used here with deep respect and credit.</p>
+      </div>
+
+      <hr class="attribution-divider">
+
+      <div class="attribution-row">
+        <p class="attribution-label">Application & Synthesis</p>
+        <p class="attribution-text">The application of Emergent Strategy to youth development practice, mentoring program design, and the <em>From Soil to Sky</em> program model is the original synthesis work of <strong>Tiana Massaquoi</strong> and the <strong>Keep Still Cares Foundation</strong>. This includes the course structure, the connection to FSTS's four phases, the organizational culture diagnostics, and the decision-making protocols developed throughout this training.</p>
+      </div>
+
+      <hr class="attribution-divider">
+
+      <div class="attribution-row">
+        <p class="attribution-label">Further Study</p>
+        <p class="attribution-text">Learners are encouraged to read Adrienne Maree Brown's work directly. Start with <em>Emergent Strategy</em> (2017), then <em>Holding Change: The Way of Emergent Strategy Facilitation and Mediation</em> (2021), which applies the framework specifically to facilitation and conflict. Visit adriennemareebrown.net for resources, audio, and community practice guides.</p>
+      </div>
+    </div>
+  `;
+  main.appendChild(attrEl);
+}
+
+/* =========================================================
+   STATE & PROGRESS
+   ========================================================= */
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem('fsts_c2_v1') || '{}'); } catch { return {}; }
+}
+function saveState(s) {
+  try { localStorage.setItem('fsts_c2_v1', JSON.stringify(s)); } catch {}
+}
+
+function updateProgress() {
+  document.querySelectorAll('[data-subsection]').forEach(sec => {
+    const inputs = sec.querySelectorAll('.check-item input[type="checkbox"]');
+    const checked = [...inputs].filter(i => i.checked).length;
+    const total = inputs.length;
+    const pct = total > 0 ? (checked / total) * 100 : 0;
+    const fill = sec.querySelector('.prog-fill');
+    const count = sec.querySelector('.prog-count');
+    const bar = sec.querySelector('.prog-bar');
+    if (fill) { fill.style.width = pct + '%'; fill.classList.toggle('done', pct >= 100); }
+    if (count) count.textContent = `${checked}/${total}`;
+    if (bar) bar.setAttribute('aria-valuenow', Math.round(pct));
+  });
+  const all = document.querySelectorAll('.check-item input[type="checkbox"]');
+  const done = [...all].filter(i => i.checked).length;
+  const pct = all.length > 0 ? done / all.length : 0;
+  const rf = document.getElementById('ring-fill');
+  const rp = document.getElementById('ring-pct');
+  if (rf) { rf.style.strokeDasharray = CIRC; rf.style.strokeDashoffset = CIRC * (1 - pct); }
+  if (rp) rp.textContent = Math.round(pct * 100) + '%';
+}
+
+function initCheckboxes() {
+  const state = getState();
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+    if (state[cb.dataset.id]) cb.checked = true;
+    cb.addEventListener('change', () => {
+      const s = getState();
+      if (cb.checked) s[cb.dataset.id] = true; else delete s[cb.dataset.id];
+      saveState(s);
+      updateProgress();
+    });
+  });
+}
+
+function initNav() {
+  const tabs = document.querySelectorAll('.nav-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = document.getElementById(tab.dataset.target);
+      if (!target) return;
+      const navH = document.querySelector('.module-nav')?.offsetHeight || 52;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH - 16, behavior: 'smooth' });
+    });
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+        document.querySelector(`.nav-tab[data-target="${id}"]`)?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('.module-section, .attribution-section').forEach(s => io.observe(s));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderAll();
+  initCheckboxes();
+  updateProgress();
+  initNav();
+});
+</script>
