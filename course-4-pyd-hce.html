@@ -1,0 +1,952 @@
+<title>PYD × Healing-Centered Engagement</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap">
+
+<style>
+/* Layout: sticky module nav + scrollable sections. Deep indigo palette for analytical synthesis. */
+:root {
+  --bg: #F3F4F8;
+  --surface: #FFFFFF;
+  --surface-2: #E9EBF4;
+  --fg: #1A1C2E;
+  --fg-muted: #4E5270;
+  --fg-subtle: #8085A8;
+  --accent: #2C3B8E;
+  --accent-hover: #222F74;
+  --accent-light: #EAECF8;
+  --accent-2: #A06820;
+  --accent-2-light: #FBF0DA;
+  --border: #D8DAE8;
+  --border-strong: #B8BBCE;
+  --positive: #1A7A4A;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --radius: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1022;
+    --surface: #151828;
+    --surface-2: #1E2238;
+    --fg: #E4E6F4;
+    --fg-muted: #8890B8;
+    --fg-subtle: #565E88;
+    --accent: #6878D8;
+    --accent-hover: #7888E4;
+    --accent-light: #111530;
+    --accent-2: #C88830;
+    --accent-2-light: #201508;
+    --border: #1E2240;
+    --border-strong: #2C3060;
+    --positive: #3AB870;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1022;
+  --surface: #151828;
+  --surface-2: #1E2238;
+  --fg: #E4E6F4;
+  --fg-muted: #8890B8;
+  --fg-subtle: #565E88;
+  --accent: #6878D8;
+  --accent-hover: #7888E4;
+  --accent-light: #111530;
+  --accent-2: #C88830;
+  --accent-2-light: #201508;
+  --border: #1E2240;
+  --border-strong: #2C3060;
+  --positive: #3AB870;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box }
+body { margin: 0; font-family: var(--font-body); background: var(--bg); color: var(--fg); font-size: 15px; line-height: 1.65 }
+
+/* HEADER */
+.site-header {
+  background: var(--accent);
+  color: #fff;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 36px;
+}
+.header-inner { max-width: 920px; margin: 0 auto; display: flex; align-items: center; gap: 28px; flex-wrap: wrap }
+.header-text { flex: 1; min-width: 0 }
+.header-series { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .65; margin: 0 0 6px }
+.header-course { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .8; margin: 0 0 10px; display: flex; align-items: center; gap: 8px }
+.course-badge {
+  display: inline-flex; align-items: center; padding: 2px 9px;
+  background: rgba(255,255,255,.18); border-radius: 100px;
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+}
+.header-title { font-family: var(--font-display); font-size: clamp(22px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; color: #fff; font-style: italic }
+.header-desc { font-size: 14px; opacity: .8; margin: 0 0 14px; max-width: 58ch; line-height: 1.5 }
+.header-author { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; opacity: .75 }
+.header-author strong { opacity: 1; font-weight: 600 }
+.progress-ring { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px }
+.ring-svg { width: 80px; height: 80px }
+.ring-track { fill: none; stroke: rgba(255,255,255,.2); stroke-width: 6 }
+.ring-fill { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset .5s ease }
+.ring-pct { font-size: 15px; font-weight: 600; fill: #fff; text-anchor: middle; dominant-baseline: central; font-family: var(--font-body) }
+.ring-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .7; color: #fff }
+
+/* NAV */
+.module-nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none }
+.module-nav::-webkit-scrollbar { display: none }
+.nav-inner { display: flex; max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); min-width: max-content }
+.nav-tab { padding: 14px 14px; font-size: 13px; font-weight: 500; color: var(--fg-muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; font-family: var(--font-body) }
+.nav-tab:hover { color: var(--fg) }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent) }
+
+/* MAIN */
+.main-content { max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); padding-block: 0 80px }
+
+/* MODULE SECTIONS */
+.module-section { padding-top: 56px }
+.module-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px }
+.module-title { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 30px); line-height: 1.2; margin: 0 0 10px; text-wrap: balance; font-style: italic }
+.module-meta { font-size: 13px; color: var(--fg-muted); margin: 0 0 14px; font-style: italic }
+.module-intro { font-size: 14px; color: var(--fg-muted); margin: 0 0 20px; max-width: 70ch; line-height: 1.65; padding: 14px 18px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0 }
+.module-divider { border: none; border-top: 2px solid var(--border); margin: 0 0 28px }
+
+/* SUBSECTION */
+.subsection { margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden }
+.subsection summary { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; user-select: none; list-style: none }
+.subsection summary::-webkit-details-marker { display: none }
+.chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--fg-subtle); transition: transform .2s ease }
+.subsection[open] .chevron { transform: rotate(90deg) }
+.summary-text { flex: 1; min-width: 0 }
+.summary-code { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-subtle); margin: 0 0 2px }
+.summary-title { font-size: 15px; font-weight: 600; color: var(--fg); margin: 0; line-height: 1.3 }
+.summary-right { flex-shrink: 0; display: flex; align-items: center; gap: 8px }
+.prog-count { font-size: 12px; font-weight: 500; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap }
+.prog-bar { width: 56px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden }
+.prog-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .35s ease }
+.prog-fill.done { background: var(--positive) }
+.subsection-body { padding: 0 20px 20px; border-top: 1px solid var(--border) }
+.sub-note { font-size: 13px; color: var(--fg-muted); font-style: italic; margin: 14px 0 4px; line-height: 1.55 }
+
+/* CHECKLIST */
+.check-group { margin: 0; padding: 0; list-style: none }
+.group-heading { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin: 16px 0 8px; padding-top: 8px; border-top: 1px dashed var(--border) }
+.group-heading:first-child { border-top: none; margin-top: 8px }
+.check-item { display: flex; align-items: flex-start; gap: 11px; padding: 7px 0; cursor: pointer; border-bottom: 1px solid var(--border) }
+.check-item:last-child { border-bottom: none }
+.check-item input { position: absolute; opacity: 0; pointer-events: none }
+.check-box { flex-shrink: 0; width: 18px; height: 18px; border: 1.5px solid var(--border-strong); border-radius: 4px; margin-top: 3px; background: var(--bg); display: flex; align-items: center; justify-content: center; transition: background .15s, border-color .15s }
+.check-item input:checked ~ .check-box { background: var(--accent); border-color: var(--accent) }
+.check-item input:checked ~ .check-box::after { content: ''; width: 9px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translateY(-1px) }
+.check-label { font-size: 14px; line-height: 1.55; color: var(--fg); flex: 1; min-width: 0; transition: color .15s }
+.check-item input:checked ~ .check-label { color: var(--fg-subtle); text-decoration: line-through; text-decoration-color: var(--border-strong) }
+.nested-list { padding: 2px 0 2px 26px; border-left: 2px solid var(--border); margin: 2px 0 2px 8px }
+.nested-list .check-item { border-bottom: none; padding: 4px 0 }
+.nested-list .check-label { font-size: 13.5px }
+
+/* CALLOUT QUOTE */
+.callout {
+  border-left: 3px solid var(--accent-2); padding: 14px 18px; margin: 16px 0;
+  background: var(--accent-2-light); border-radius: 0 var(--radius) var(--radius) 0;
+}
+.callout p { margin: 0 0 6px; font-style: italic; font-size: 14px; color: var(--fg-muted); line-height: 1.6 }
+.callout cite { font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-2) }
+
+/* FRAMEWORK COMPARISON CALLOUT */
+.compare-block {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0;
+}
+.compare-side {
+  padding: 14px 16px; border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.compare-side.pyd { background: var(--accent-light); border-color: var(--accent) }
+.compare-side.hce { background: var(--accent-2-light); border-color: var(--accent-2) }
+.compare-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 6px }
+.compare-side.pyd .compare-label { color: var(--accent) }
+.compare-side.hce .compare-label { color: var(--accent-2) }
+.compare-text { font-size: 13px; color: var(--fg-muted); margin: 0; line-height: 1.55 }
+@media (max-width: 520px) { .compare-block { grid-template-columns: 1fr } }
+
+/* ATTRIBUTION FOOTER */
+.attribution-section { padding-top: 56px; padding-bottom: 20px }
+.attribution-block {
+  background: var(--surface); border: 1px solid var(--border);
+  border-top: 3px solid var(--accent); border-radius: var(--radius);
+  padding: 28px 32px;
+}
+.attribution-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px }
+.attribution-row { margin-bottom: 20px }
+.attribution-row:last-child { margin-bottom: 0 }
+.attribution-label { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 5px }
+.attribution-text { font-size: 14px; line-height: 1.65; color: var(--fg); margin: 0 }
+.attribution-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 }
+
+@media (max-width: 520px) { .progress-ring { display: none } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important } }
+</style>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-text">
+      <p class="header-series">From Soil to Sky Training Series</p>
+      <p class="header-course"><span class="course-badge">Course 4</span></p>
+      <h1 class="header-title">PYD × Healing-Centered Engagement</h1>
+      <p class="header-desc">A co-analysis of Positive Youth Development and Healing-Centered Engagement — examining where they converge, where they diverge, and how the synthesis strengthens the From Soil to Sky model.</p>
+      <p class="header-author">PYD: <strong>Lerner, Benson & Pittman</strong> &nbsp;·&nbsp; HCE: <strong>Shawn Ginwright</strong> &nbsp;·&nbsp; Synthesized by <strong>Tiana Massaquoi</strong></p>
+    </div>
+    <div class="progress-ring">
+      <svg class="ring-svg" viewBox="0 0 80 80" aria-hidden="true">
+        <circle class="ring-track" cx="40" cy="40" r="32"/>
+        <circle class="ring-fill" id="ring-fill" cx="40" cy="40" r="32"/>
+        <text class="ring-pct" id="ring-pct" x="40" y="40">0%</text>
+      </svg>
+      <span class="ring-label">Complete</span>
+    </div>
+  </div>
+</header>
+
+<nav class="module-nav" aria-label="Module navigation">
+  <div class="nav-inner" id="nav-inner"></div>
+</nav>
+
+<main class="main-content" id="main-content"></main>
+
+<script>
+const CIRC = 2 * Math.PI * 32;
+
+const DATA = [
+  {
+    id: 'module-1',
+    num: 'Module 1',
+    title: 'The Case for Integration',
+    meta: 'Why PYD and HCE belong together in the same program',
+    intro: 'Positive Youth Development and Healing-Centered Engagement were built by different people, in different decades, in response to different problems — and together they form a more complete theory of what young people need than either can offer alone. This module makes the case for why FSTS holds both.',
+    sections: [
+      {
+        id: 'm1s1', code: '1.1',
+        title: 'Two Frameworks, One Young Person',
+        groups: [
+          { heading: null, items: [
+            'Name the central argument for integration: the young person who walks into your program is both developing and healing — and any framework that only addresses one of those realities is incomplete',
+            'Identify what PYD offers that is irreplaceable: a strengths-based developmental framework, attention to five domains of thriving, and a research base built across decades of longitudinal study',
+            'Identify what HCE offers that is irreplaceable: a political analysis of why healing is necessary, attention to collective not just individual transformation, and a centering of joy, rest, and cultural identity as developmental goods',
+            'Define the integration thesis: a program that only develops skills without healing wounds produces young people who are more capable but no less broken; a program that only heals without developing capacities produces young people who are spiritually whole but materially unprepared',
+            'Write your own one-paragraph argument for why FSTS must hold both frameworks — this is your theory of change statement for this course',
+          ]}
+        ]
+      },
+      {
+        id: 'm1s2', code: '1.2',
+        title: 'The Historical Gap Between Them',
+        groups: [
+          { heading: 'Chronology of the Frameworks', items: [
+            'Trace PYD\'s emergence in the 1980s–1990s: a response to the "deficit model" in youth work, which organized programs around problems (delinquency, pregnancy, substance use) rather than assets',
+            'Identify the research institutions and policy contexts that gave PYD its authority: Search Institute (Minneapolis), Tufts University\'s Institute for Applied Research in Youth Development, the Forum for Youth Investment (Karen Pittman)',
+            'Trace HCE\'s emergence in the 2010s: a response to the trauma-informed care movement, which Ginwright argued had reinscribed a medical/deficit model by centering pathology rather than agency',
+            'Understand the political moment that produced HCE: the post-Ferguson era, when it became impossible to separate youth development from community grief, police violence, and collective resistance',
+          ]},
+          { heading: 'Why the Gap Matters', items: [
+            'Name the gap explicitly: PYD was largely built in predominantly white, university-affiliated research contexts — its asset framework did not fully account for the assets of resistance, cultural identity, and collective healing specific to Black and Brown young people',
+            'Name what this means for application: PYD is most powerful when its universalizing tendencies are complicated by HCE\'s attention to historical and political context',
+            'Identify how HCE named what was missing: Ginwright\'s argument was not that PYD was wrong, but that it was incomplete — it named the young person\'s internal development without naming the world the young person had to develop through',
+            'Reflect: What is the organizational history of your community context that makes both frameworks necessary right now?',
+          ]}
+        ]
+      },
+      {
+        id: 'm1s3', code: '1.3',
+        title: 'Tiana\'s Synthesis: The FSTS Argument',
+        groups: [
+          { heading: null, items: [
+            'Understand the FSTS synthesis thesis: "Young people do not grow first and then heal — they grow and heal at the same time, and the conditions that support both are the same conditions: safety, belonging, cultural rootedness, and the experience of contributing to something larger than themselves"',
+            'Identify the four phases of FSTS and name how each one holds both PYD and HCE: Soil (safety and grounding), Seed (identity and agency), Stem (contribution and skill), Sky (integration and legacy)',
+            'Map the frameworks to the phases: PYD\'s competence-building leads the Stem phase; HCE\'s healing-centered identity work leads the Seed phase; both are present throughout; neither is sequenced before the other',
+            'Name Tiana\'s original contribution in this synthesis: the claim that the rites of passage structure provides the container in which both frameworks operate — neither PYD nor HCE alone provides a developmental ceremony, but together they define what the ceremony is for',
+            'Write your own articulation of the FSTS synthesis in one paragraph — without looking at the framing above — then compare and refine',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-2',
+    num: 'Module 2',
+    title: 'Positive Youth Development — A Deep Review',
+    meta: 'Understanding the theoretical foundations, the 5 Cs, and PYD\'s limits',
+    intro: 'You cannot analyze PYD in relation to HCE without first knowing PYD well. This module is a thorough review — not a surface summary. Understand the theorists, the empirical base, the model, and the honest critique before you proceed.',
+    sections: [
+      {
+        id: 'm2s1', code: '2.1',
+        title: 'Who Built PYD and Why',
+        groups: [
+          { heading: null, items: [
+            'Research Richard M. Lerner\'s contribution: a developmental scientist at Tufts University who argued, against the deficit-reduction paradigm, that youth development was not about fixing problems but about cultivating thriving across the lifespan',
+            'Research Peter C. Benson\'s contribution at Search Institute (Minneapolis): the 40 Developmental Assets framework (1990), which translated developmental science into a community-applicable asset-building model',
+            'Research Karen Pittman\'s contribution through the Forum for Youth Investment: the definitional argument that "problem-free is not fully prepared" — developing youth means building competencies, not just preventing risks',
+            'Identify the policy and funding context of PYD\'s rise: the shift from prevention-focused federal youth programming (D.A.R.E., scared straight) toward positive development in the 1990s–2000s under the influence of Search Institute research',
+            'Name the empirical base: the 4-H Study of Positive Youth Development (Lerner), Search Institute\'s longitudinal surveys of over 3 million young people, and the My Generation study — understand why this research gave PYD its credibility',
+            'Reflect: How much of the youth programming in your community was influenced by PYD\'s rise, even if that name was never used?',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s2', code: '2.2',
+        title: 'The Five Cs of Positive Youth Development',
+        groups: [
+          { heading: 'The Five Cs', items: [
+            'Define Competence: a young person\'s positive view of their own actions in specific domains — academic, social, cognitive, vocational — the belief that they can do things that matter',
+            'Define Confidence: an internal sense of overall positive self-worth — distinct from competence (which is domain-specific); the general conviction that one is a person of worth',
+            'Define Connection: positive bonds with people and institutions — family, peers, school, community; the experience of belonging that is developmental in itself',
+            'Define Character: respect for societal and cultural rules; possession of standards for correct behaviors; integrity; moral centeredness — the values infrastructure that orients action',
+            'Define Caring/Compassion: a sense of sympathy and empathy for others; the affective and ethical capacity to be in relationship with and responsible for others',
+            'Name the sixth C that emerges from the other five: Contribution — when a young person has developed the first five, they naturally want to give back to family, community, and society; contribution is the mark of thriving',
+          ]},
+          { heading: 'Applying the 5 Cs', items: [
+            'Map your current or planned program against each of the 5 Cs: which are explicitly cultivated, which are incidental, and which are absent?',
+            'Identify the developmental activities in FSTS that primarily address each C: where does the mentoring relationship primarily build Confidence? Where does the cohort model primarily build Connection?',
+            'Develop a youth self-assessment tool based on the 5 Cs: how would young people in your program rate their own thriving in each domain, and how would you use that data to respond?',
+            'Name the criticism of the 5 Cs framework: does it individualize development in a way that makes systemic oppression invisible? Can a young person be "thriving" on all five C\'s in a racist, economically exploitative environment?',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s3', code: '2.3',
+        title: 'Developmental Assets and the Thriving Model',
+        groups: [
+          { heading: 'The 40 Developmental Assets', items: [
+            'Explain the structure of the 40 Developmental Assets: 20 external assets (family support, caring adults, school boundaries, constructive use of time, etc.) and 20 internal assets (commitment to learning, positive values, social competencies, positive identity)',
+            'Identify the key research finding: Search Institute found that the more assets a young person has, the less likely they are to engage in high-risk behaviors and the more likely they are to thrive across developmental outcomes',
+            'Name the community implication of the Assets model: development happens everywhere, not just in programs — families, congregations, schools, and neighbors are all asset providers; a program that tries to do it all without building community assets will always be insufficient',
+            'Distinguish the 40 Assets framework from the 5 Cs: Assets are the conditions that support development; the 5 Cs are the outcomes of that development — they are complementary, not competing',
+          ]},
+          { heading: 'Applying Assets in FSTS', items: [
+            'Conduct an asset audit of your FSTS program: which of the 40 Assets does FSTS directly provide (e.g., other adult relationships, caring school climate analog, community values), which does it build through its network (family support, parent involvement), and which are not addressed at all?',
+            'Identify the mentoring relationship as a primary vehicle for at least four external assets — name all four',
+            'Identify the cohort model as a primary vehicle for at least three internal assets — name all three',
+            'Identify the Elder presence in FSTS as a primary vehicle for at least two external assets — name both',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s4', code: '2.4',
+        title: 'What PYD Gets Right',
+        groups: [
+          { heading: null, items: [
+            'Name PYD\'s most important contribution: the definitional move from "reducing deficits" to "building assets" — this single reframe changed how an entire generation of practitioners designed programs',
+            'Name PYD\'s empirical rigor as a contribution: unlike many frameworks in youth work, PYD has been tested, measured, and revised over three decades of longitudinal research — this gives practitioners a credible evidence base to bring to funders and partners',
+            'Identify PYD\'s relationship framework as a contribution: the insistence that relationships between young people and caring adults are the primary mechanism of development — not curricula, not activities, not dosage — changed what we look for when evaluating programs',
+            'Name PYD\'s systemic vision (40 Assets) as a contribution: the recognition that programs alone cannot develop young people — that the whole community must be asset-providing — is ahead of where most of the field currently practices',
+            'Identify PYD\'s influence on FSTS specifically: name three decisions in the FSTS model that reflect PYD values (e.g., the year-long cohort model as connection-building; the mentor relationship as the primary developmental relationship; the service project as contribution development)',
+          ]}
+        ]
+      },
+      {
+        id: 'm2s5', code: '2.5',
+        title: 'What PYD Leaves Unaddressed',
+        groups: [
+          { heading: null, items: [
+            'Name the race and racism gap in PYD: the framework was built in research contexts that often treated race as a demographic variable rather than a determinant of developmental context — PYD\'s asset model did not fully account for the assets of resistance, cultural pride, and community solidarity that are specific to Black and Brown young people',
+            'Name the collective healing gap: PYD focuses on individual development — it can tell you what a thriving individual looks like but has less to say about what it means for a community to heal from collective trauma, grief, or oppression',
+            'Name the joy and rest gap: PYD\'s framework centers competence and contribution — it is oriented toward productive outcomes; it has less language for the developmental value of pleasure, rest, joy, and doing nothing at all',
+            'Name the political identity gap: PYD\'s model of "character" tends toward civic participation and rule-following — it does not fully account for the developmental value of resistance, protest, and refusing unjust norms as legitimate expressions of emerging identity',
+            'Name the trauma gap: PYD assumes a developmental baseline that not all young people begin from — a framework for thriving that does not account for the impact of acute and chronic trauma on developmental capacity leaves practitioners without language for what they actually see',
+            'Reflect: How do these gaps show up in your current or planned program? Which gap is most costly to your specific community?',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-3',
+    num: 'Module 3',
+    title: 'Healing-Centered Engagement — A Deep Review',
+    meta: 'Understanding the origins, pillars, and political argument of HCE',
+    intro: 'Course 3 covered Healing-Centered Engagement in full. This module is a focused review through the lens of comparison with PYD — identifying what HCE adds, where PYD is stronger, and what the synthesis requires from each.',
+    sections: [
+      {
+        id: 'm3s1', code: '3.1',
+        title: 'Shawn Ginwright and the Origins of HCE',
+        groups: [
+          { heading: null, items: [
+            'Identify Ginwright\'s starting critique: trauma-informed care, while important, had reinscribed a deficit model by asking practitioners to identify and respond to trauma — making trauma the organizing principle of a young person\'s story',
+            'Explain Ginwright\'s core reframe: healing is not the absence of trauma — it is the active presence of joy, agency, meaning, and connection; a healing-centered program does not organize itself around what was done to young people but around what young people want their lives to become',
+            'Name the political argument that distinguishes HCE from TIC: Ginwright argued that trauma in Black and Brown communities was not primarily individual — it was collective, historical, and structural; an approach that treated each young person\'s trauma as a discrete clinical phenomenon missed the political cause of that trauma entirely',
+            'Identify Ginwright\'s intellectual lineage: Paulo Freire (pedagogy of the oppressed), Audre Lorde (the erotic as power), James Baldwin (the self-examination required for genuine love), Na\'im Akbar (African-centered psychology) — name how each contributed to HCE\'s theoretical foundation',
+            'Reflect: What was the specific problem in your practice context that made HCE feel necessary — not as a concept, but as a correction to something you were already doing?',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s2', code: '3.2',
+        title: 'The Paradigm Shift: Trauma-Informed vs. Healing-Centered',
+        groups: [
+          { heading: 'The Comparison', items: [
+            'Explain what trauma-informed care asks practitioners to do: recognize the signs and symptoms of trauma, avoid re-traumatization, and modify practice to support safety and regulation — it is primarily a clinical and environmental intervention',
+            'Explain what healing-centered engagement asks practitioners to do: cultivate conditions for collective healing, joy, cultural affirmation, and the political agency to name and resist the sources of harm — it is primarily a community and political intervention',
+            'Name the shared foundation: both TIC and HCE insist that practitioners must not harm young people through their practices, must recognize the impact of adversity, and must prioritize safety as a developmental prerequisite',
+            'Name the key differences: TIC is symptom-responsive and individually focused; HCE is vision-oriented and collectively focused; TIC asks "what happened to you?"; HCE asks "what do you want your life to become, and what do we build together to make that possible?"',
+          ]},
+          { heading: 'In Your Program', items: [
+            'Audit your current or planned program: which elements are trauma-informed (safety protocols, staff training, physical environment) and which are healing-centered (cultural affirmation, joy, political agency)?',
+            'Identify the staff capacity gap: trauma-informed care often requires clinical knowledge; healing-centered engagement requires cultural competence and political consciousness — which gap is larger on your team right now?',
+            'Develop a protocol for holding both: a program that is trauma-informed enough not to re-harm, and healing-centered enough to cultivate genuine thriving — name three specific design choices that achieve this in FSTS',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s3', code: '3.3',
+        title: 'The Four Pillars of HCE — Review',
+        groups: [
+          { heading: null, items: [
+            'Re-articulate Pillar 1 — Healing as Political: individual healing is inseparable from collective liberation; the conditions that harm young people are political, and healing them requires naming and changing those conditions, not just managing their symptoms',
+            'Re-articulate Pillar 2 — Cultural Identity as Healing: a young person who knows who they are and where they come from has a resource for healing that no curriculum can substitute; cultural identity is not a supplement to development — it is a developmental foundation',
+            'Re-articulate Pillar 3 — Joy, Rest, and Pleasure as Healing: the capacity for pleasure, beauty, and rest is not a reward for completing the hard work — it is the hard work; restoring access to joy is a clinical, developmental, and political act',
+            'Re-articulate Pillar 4 — The Healed Adult as Prerequisite: practitioners cannot guide healing they have not done; the adult in the room is always modeling a relationship to their own wounds, joy, and wholeness — and young people know it',
+            'Identify which of the four pillars is most developed in your current practice, and which is most underdeveloped — name the specific evidence for your assessment',
+          ]}
+        ]
+      },
+      {
+        id: 'm3s4', code: '3.4',
+        title: 'What HCE Contributes That PYD Cannot',
+        groups: [
+          { heading: null, items: [
+            'Name HCE\'s political naming as a contribution PYD lacks: HCE explicitly identifies white supremacy, economic exploitation, and structural racism as causes of the conditions that harm young people — PYD\'s deficit-reduction critique did not extend to naming the political sources of deficit',
+            'Name HCE\'s collective healing framework as a contribution: PYD has no concept of communal grief or collective recovery — HCE\'s insistence that healing must be collective, not just individual, fills a gap that PYD leaves open',
+            'Name HCE\'s centering of joy as a contribution: PYD\'s 5 Cs do not include a C for pleasure, rest, or the right to simply be — HCE\'s insistence on joy as a developmental right complicates PYD\'s productivity orientation in a necessary way',
+            'Name HCE\'s attention to the practitioner\'s own healing as a contribution: PYD\'s research and framework are largely about the young person — they have less to say about what the adult who works with young people must carry, process, and resolve; HCE makes practitioner healing central',
+            'Name HCE\'s cultural specificity as a contribution: PYD aspired to universal developmental science; HCE insists that development is always culturally embedded and that programs for Black and Brown youth must be built from Black and Brown traditions — not just adapted from universal models',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-4',
+    num: 'Module 4',
+    title: 'Where They Meet — Points of Deep Resonance',
+    meta: 'The genuine convergences between PYD and HCE',
+    intro: 'The integration of PYD and HCE is not forced. Before exploring the tensions, you must understand the genuine resonances — the places where both frameworks arrive at the same truth by different routes. These convergences are the foundation of the synthesis.',
+    sections: [
+      {
+        id: 'm4s1', code: '4.1',
+        title: 'Asset-Framing: Youth as Capable, Not Broken',
+        groups: [
+          { heading: null, items: [
+            'Name the shared foundational move: both PYD and HCE begin by refusing the deficit-reduction framing that organized youth programming for most of the twentieth century — both insist that young people are not problems to be solved but people to be supported',
+            'Identify the difference in how each arrives at asset-framing: PYD arrived through developmental science (what does the research say promotes thriving?); HCE arrived through political critique (what does deficit-framing do to Black and Brown communities, and who benefits from it?)',
+            'Name the convergent implication for program design: both frameworks produce the same instruction to practitioners — organize your program around what young people can do, who they already are, and what they are growing toward, not around what they are lacking or what must be prevented',
+            'Identify how FSTS embodies this convergence: name three specific program elements that would look different if FSTS was organized around deficit reduction rather than asset development',
+            'Practice the asset-frame in real time: take a young person you know or are imagining as part of your cohort, and write their description first from a deficit frame, then from an integrated PYD + HCE asset frame — notice what changes',
+          ]}
+        ]
+      },
+      {
+        id: 'm4s2', code: '4.2',
+        title: 'Relationships as the Foundation of Development',
+        groups: [
+          { heading: null, items: [
+            'Name PYD\'s relational claim: the primary mechanism of positive youth development is the relationship between a young person and at least one consistent, caring adult — not the curriculum, not the program structure, not the activities; the relationship',
+            'Name HCE\'s relational claim: collective healing happens in community — in the experience of being witnessed, held, and known by others; isolation is not just a symptom of harm, it is itself a harm; belonging is a healing condition',
+            'Identify the convergence: both frameworks locate developmental and healing power primarily in the quality of human relationships, not in programs, interventions, or services',
+            'Name the implication for FSTS: the mentor relationship and the cohort bonds are not delivery mechanisms for a curriculum — they are the curriculum; a program that gets the relationships right has done the most important thing, regardless of what activities surround them',
+            'Develop a relational health metric: what does a high-quality mentor-youth relationship look like at 30 days? At 90 days? At 6 months? At program completion? Name specific, observable indicators that you would use to assess it',
+          ]}
+        ]
+      },
+      {
+        id: 'm4s3', code: '4.3',
+        title: 'Community and Belonging as Developmental Necessities',
+        groups: [
+          { heading: null, items: [
+            'Name PYD\'s community claim: the 40 Developmental Assets framework explicitly distributes the work of development across community institutions — family, congregation, school, neighborhood, youth organization; no single setting can provide all the assets a young person needs',
+            'Name HCE\'s community claim: healing is not an individual process that happens inside a single person — it is a collective process that happens between people, and the community is both the site of harm and the site of healing',
+            'Identify the convergence: both frameworks refuse the idea that a youth program can do development or healing in isolation from community; both call for programs that are embedded in, responsive to, and transformative of the communities they serve',
+            'Name the implication for FSTS: the Elder role is not a cultural decoration — it is a structural necessity; Elders carry the community\'s developmental assets (life wisdom, cultural authority, intergenerational memory) and they carry its healing (witness, forgiveness, the long view)',
+            'Identify your community partners: which organizations, congregations, families, and elders in your community are already asset providers? Where are the gaps in the community asset landscape that FSTS cannot fill alone?',
+          ]}
+        ]
+      },
+      {
+        id: 'm4s4', code: '4.4',
+        title: 'The Whole Person: Internal and External Development',
+        groups: [
+          { heading: null, items: [
+            'Name PYD\'s whole-person orientation: the 5 Cs cover internal (character, confidence) and relational (connection, caring) and instrumental (competence, contribution) domains — thriving is multidimensional, not reducible to any single outcome like academic achievement or employment',
+            'Name HCE\'s whole-person orientation: healing-centered engagement is explicitly holistic — addressing the body, spirit, mind, and political consciousness of young people; it refuses to treat development as a purely cognitive or behavioral project',
+            'Identify the convergence: both frameworks position the young person as a whole human being whose development encompasses emotional, spiritual, relational, civic, and practical dimensions — and resist reductionist outcome measures that track only one of these',
+            'Name the implication for evaluation: a program that claims to practice both PYD and HCE cannot evaluate its work through test scores or employment rates alone — name the full set of outcome domains your evaluation should address',
+            'Design a whole-person assessment for FSTS participants: what are you measuring across the domains of Competence, Confidence, Connection, Character, Contribution (PYD) and Healing, Cultural Identity, Joy, Political Agency (HCE)?',
+          ]}
+        ]
+      },
+      {
+        id: 'm4s5', code: '4.5',
+        title: 'Social Justice as Developmental Context',
+        groups: [
+          { heading: null, items: [
+            'Name PYD\'s implicit social justice orientation: the 40 Assets framework names "social justice" as an internal asset under Positive Values — Asset 27; and Pittman\'s "problem-free is not fully prepared" implicitly includes preparation for civic life and democratic participation',
+            'Name HCE\'s explicit social justice orientation: for Ginwright, social justice is not a value among others — it is the framework\'s political spine; healing without justice is incomplete; the sources of harm are political, so the response must include political action',
+            'Name the convergence and the difference: both frameworks claim that development is oriented toward civic life; PYD sees this as one dimension of thriving; HCE sees it as the political condition of possibility for healing — not equal weightings, but genuine convergence',
+            'Name the implication for FSTS: the service project and contribution phase of FSTS is not merely a competence-building exercise — it is also a healing-centered act of claiming one\'s political agency as a young person who can act on the world',
+            'Develop a political agency outcome statement for FSTS: by the end of the program, what should young people be able to say, do, and claim about their relationship to their community and to power?',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-5',
+    num: 'Module 5',
+    title: 'Where They Differ — Productive Tensions',
+    meta: 'What each framework offers that the other cannot',
+    intro: 'The tensions between PYD and HCE are not contradictions to resolve — they are productive disagreements that, held together, make the synthesis richer than either framework alone. Study these tensions honestly.',
+    sections: [
+      {
+        id: 'm5s1', code: '5.1',
+        title: 'Individual Development vs. Collective Liberation',
+        groups: [
+          { heading: null, items: [
+            'Name PYD\'s unit of analysis: the individual young person — what does this particular young person need to thrive? What assets do they have? What is their developmental trajectory?',
+            'Name HCE\'s unit of analysis: the community — what does this particular community need to heal? What are the collective sources of harm? What are the collective sources of resilience and resistance?',
+            'Identify the productive tension: a program must be able to attend to the individual young person in front of them (PYD) and to the communal context that shapes that young person\'s possibilities (HCE) — neither lens alone is sufficient',
+            'Name the program design implication: individual mentoring (PYD-primary) and cohort/community work (HCE-primary) must both be present in FSTS — they are not equivalent, and they are not interchangeable',
+            'Develop a protocol for navigating the tension: when an individual young person\'s needs conflict with the cohort\'s developmental process, how does your program respond without abandoning either framework?',
+          ]}
+        ]
+      },
+      {
+        id: 'm5s2', code: '5.2',
+        title: 'Resilience vs. Resistance',
+        groups: [
+          { heading: null, items: [
+            'Define resilience as PYD uses it: the capacity of a young person to thrive despite adversity — to bounce back, adapt, and continue growing even in difficult conditions; resilience is a developmental outcome to be cultivated',
+            'Define resistance as HCE uses it: the active refusal of dehumanizing conditions — not the capacity to endure harm without being destroyed by it, but the capacity to name it as harm, refuse to internalize it, and organize against it; resistance is a political act',
+            'Identify the tension: a program that only cultivates resilience risks teaching young people to endure injustice more gracefully; a program that only cultivates resistance without the internal resources of resilience risks leaving young people politically activated but personally depleted',
+            'Name the synthesis position: FSTS does not choose between resilience and resistance — it builds both; the contribution project is an act of resistance that requires the resilience to sustain it; the personal development of the Seed phase is the resilience infrastructure that makes the resistance of the Sky phase possible',
+            'Develop a program element that explicitly cultivates both: name a session, activity, or project in FSTS that simultaneously builds internal resilience and practices collective resistance — describe how it does both',
+          ]}
+        ]
+      },
+      {
+        id: 'm5s3', code: '5.3',
+        title: 'Skill-Building vs. Meaning-Making',
+        groups: [
+          { heading: null, items: [
+            'Name PYD\'s orientation toward skill and competence: the framework values the development of concrete capabilities — social, academic, vocational, civic — that prepare young people to function effectively in the world as it is',
+            'Name HCE\'s orientation toward meaning and wholeness: the framework values the development of a young person\'s sense of purpose, cultural identity, spiritual grounding, and connection to something larger than individual achievement',
+            'Identify the tension: a program that prioritizes only skill risks producing young people who are technically capable but spiritually empty — who can navigate the world without knowing why it\'s worth navigating; a program that prioritizes only meaning risks producing young people who are deeply connected to purpose but lack the practical skills to act on it',
+            'Name the synthesis position: skills without meaning are tools without purpose; meaning without skills is vision without hands; FSTS requires both, and the developmental sequence matters — meaning should be established first, so that skills are developed in its service',
+            'Map the developmental sequence in FSTS: identify where meaning-making is primary (Soil and Seed phases), where skill-building is primary (Stem phase), and where they are integrated (Sky phase)',
+          ]}
+        ]
+      },
+      {
+        id: 'm5s4', code: '5.4',
+        title: 'The Role of Trauma: Context vs. Core Framework',
+        groups: [
+          { heading: null, items: [
+            'Explain PYD\'s position on trauma: the framework acknowledges adversity as a developmental context but does not center trauma — it centers assets, not deficits, and the primary orientation is toward what supports thriving rather than what causes harm',
+            'Explain HCE\'s position on trauma: trauma is not a peripheral issue to be managed — it is a central political fact; the conditions that produce trauma (racism, poverty, violence) are the same conditions that obstruct development; you cannot separate the developmental story from the trauma story',
+            'Identify the risk on each side: PYD practitioners who ignore trauma may use an asset-framing to bypass the hard work of naming what has harmed young people; HCE practitioners who center trauma too exclusively may re-organize the program around wound rather than possibility',
+            'Name the synthesis: trauma must be named and honored, not organized around — the program acknowledges harm without making it the organizing principle; the healing-centered frame says "we see what happened to you AND we see who you are and who you are becoming"',
+            'Develop a staff language guide: how does your team talk about young people\'s adversity experiences in ways that are honest about harm without centering wound as identity?',
+          ]}
+        ]
+      },
+      {
+        id: 'm5s5', code: '5.5',
+        title: 'Joy, Rest, and Pleasure — What PYD Leaves Out',
+        groups: [
+          { heading: null, items: [
+            'Name the absence in PYD: the 5 Cs do not include a C for joy, rest, or pleasure; PYD\'s developmental framework is oriented toward productive outcomes — thriving is defined by what a young person can do and contribute, not by what they can enjoy and inhabit',
+            'Name HCE\'s insistence on joy: for Ginwright, drawing on Audre Lorde\'s essay "Uses of the Erotic," the capacity for pleasure, beauty, and rest is not a reward for completing development — it is a dimension of development itself; a young person who cannot access joy has not yet fully healed',
+            'Name the Tricia Hersey dimension: the work of rest as resistance (the Nap Ministry) intersects with HCE to argue that for Black people specifically, rest is not laziness — it is a refusal of the productivity imperative that has been used to extract from and dehumanize Black bodies for centuries',
+            'Name the program design implication: FSTS must explicitly include rest, play, beauty, and unstructured joy in its program structure — not as breaks from the developmental work, but as developmental work in itself',
+            'Develop a joy audit for FSTS: identify five specific moments in the program year that are devoted entirely to pleasure, rest, or play with no other developmental objective — if you cannot name five, that is your design gap',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-6',
+    num: 'Module 6',
+    title: 'Integration in the FSTS Program Model',
+    meta: 'How both frameworks live together in your actual program design',
+    intro: 'Theory becomes practice here. This module works through the specific design decisions of FSTS through the integrated PYD + HCE lens — not as an abstract exercise, but as the practical work of building a program that is worth building.',
+    sections: [
+      {
+        id: 'm6s1', code: '6.1',
+        title: 'The FSTS Theory of Change Through Both Lenses',
+        groups: [
+          { heading: null, items: [
+            'State the FSTS theory of change in PYD terms: when young people are in consistent relationship with caring adults and a supportive cohort, within a structure that cultivates the 5 Cs across a full developmental year, they emerge more capable, more confident, more connected, and more committed to contribution',
+            'State the FSTS theory of change in HCE terms: when young people are held in culturally grounded community, given language for their experiences, provided access to joy and rest, connected to Elders and ancestors, and invited to name and resist the conditions that have harmed them, they heal — not from their stories, but into their futures',
+            'Write the integrated FSTS theory of change: a single paragraph that holds both framings without forcing them into one — this is the paragraph that should appear in every FSTS grant application, organizational document, and program description',
+            'Identify the outcome domains that flow from the integrated theory: name at least six specific outcomes that FSTS aims for, distributed across both PYD (competence, confidence, connection, character, contribution) and HCE (healing, cultural identity, political agency, joy, collective belonging) domains',
+            'Identify the mechanisms: for each outcome domain, name the specific program element that produces it — not in general, but in your specific FSTS design',
+          ]}
+        ]
+      },
+      {
+        id: 'm6s2', code: '6.2',
+        title: 'The Four Phases of FSTS: PYD + HCE Together',
+        groups: [
+          { heading: 'Soil Phase', items: [
+            'Identify the primary PYD domain in the Soil phase: Connection — the work of the first phase is establishing the relational bonds (mentor, cohort, facilitator, program) that will carry the rest of the year',
+            'Identify the primary HCE domain in the Soil phase: Safety and trust as healing conditions — young people who have experienced harm need to know this is not another environment that will harm them before they can open to growth',
+            'Name the design elements that serve both simultaneously: the naming ceremony, the cohort agreements, the sharing of stories — identify how each serves connection (PYD) and safety/belonging (HCE)',
+          ]},
+          { heading: 'Seed Phase', items: [
+            'Identify the primary PYD domain in the Seed phase: Character and Confidence — identity work builds the values infrastructure and the internal sense of self-worth that make the rest of development possible',
+            'Identify the primary HCE domain in the Seed phase: Cultural Identity as healing — the Nguzo Saba, ancestral stories, and rites of passage that anchor this phase are explicitly healing-centered in their cultural grounding',
+            'Name the design elements that serve both simultaneously: the cultural immersion, the identity narratives, the Elder conversations — identify how each builds character/confidence (PYD) and cultural identity healing (HCE)',
+          ]},
+          { heading: 'Stem and Sky Phases', items: [
+            'Identify the primary PYD domain in the Stem phase: Competence — the skills, capacities, and practical capabilities that prepare young people to act on their intentions; this is where mentoring most explicitly addresses career, education, and contribution goals',
+            'Identify the primary HCE domain in the Stem phase: Political agency — the contribution project is not just skill-building, it is an act of collective healing; when young people address a real problem in their community, they are healing themselves by acting on the world',
+            'Identify the integration in the Sky phase: Contribution — the sixth C in PYD — is also HCE\'s vision of the healed person who wants to give back; the Sky phase is where the PYD and HCE stories of this young person converge into one story of someone who knows who they are and what they are for',
+          ]}
+        ]
+      },
+      {
+        id: 'm6s3', code: '6.3',
+        title: 'Mentor Training at the Intersection',
+        groups: [
+          { heading: null, items: [
+            'Define the mentor\'s role through the PYD lens: the mentor is the primary provider of the relational asset — a caring, consistent adult who believes in the young person\'s potential and supports their development across the five domains',
+            'Define the mentor\'s role through the HCE lens: the mentor is a healing presence — someone who models a healed relationship to their own story, who creates space for the young person to be seen, and who holds cultural identity as a developmental resource rather than a complication',
+            'Identify the integrated mentor training curriculum: what must mentors know and be able to do at the intersection of PYD and HCE? Name at least six specific competencies (e.g., "holds strength-based framing while acknowledging real harm," "uses cultural knowledge to build connection," "practices their own ongoing healing")',
+            'Develop a mentor self-assessment: a tool for mentors to honestly evaluate their own healed-adult status (HCE) and their asset-building practice (PYD) — this assessment should be done at the start of each program year, not just at mentor intake',
+            'Identify the ongoing mentor development structure: what does the program do throughout the year to continue the mentor\'s own development as both an asset-provider (PYD) and a healing adult (HCE)?',
+          ]}
+        ]
+      },
+      {
+        id: 'm6s4', code: '6.4',
+        title: 'Program Design Decisions That Embody Both',
+        groups: [
+          { heading: null, items: [
+            'Analyze the year-long structure: why does FSTS last one year rather than a semester? Name the PYD argument (relationship depth and developmental continuity) and the HCE argument (healing takes time and trust-building cannot be rushed)',
+            'Analyze the cohort model: why does FSTS use a cohort of 12–15 rather than individual case management? Name the PYD argument (connection and peer development) and the HCE argument (collective healing requires community)',
+            'Analyze the Elder role: why are Elders structurally integrated into FSTS rather than invited as occasional guest speakers? Name the PYD argument (other adult relationships as developmental asset) and the HCE argument (Elder presence as cultural healing, intergenerational transmission, and ancestral connection)',
+            'Analyze the Kwanzaa closing ceremony: why does FSTS close at Kwanzaa rather than at a generic graduation? Name the PYD argument (contribution and celebration of the sixth C) and the HCE argument (ceremonial closure as collective healing, cultural identity affirmation, and community belonging)',
+            'Identify one program design decision you have not yet made and analyze it through both lenses: what would PYD say, what would HCE say, and what does the synthesis suggest?',
+          ]}
+        ]
+      },
+    ]
+  },
+  {
+    id: 'module-7',
+    num: 'Module 7',
+    title: 'Your Organizational Vision',
+    meta: 'Writing the portrait of the young person your program is for',
+    intro: 'The integrated PYD + HCE framework culminates in a portrait — not a statistical outcome, not a theory, but a living description of the young person you are trying to serve into their fullest self. This module is an act of organizational visioning.',
+    sections: [
+      {
+        id: 'm7s1', code: '7.1',
+        title: 'The Healed, Thriving Young Person: Write the Portrait',
+        groups: [
+          { heading: null, items: [
+            'Before writing, sit with the question: who is the young person you are imagining when you design FSTS? Not an abstract "youth," but a real or composite person with a history, a body, a neighborhood, a family, a wound, and a gift',
+            'Write the portrait in PYD terms: what does this young person\'s competence look like at program completion? Their confidence? Their connections? Their character? Their contribution? Be specific — not "they will be more confident" but "they will be able to stand in front of their community and speak their name and their purpose without looking away"',
+            'Write the portrait in HCE terms: what has healed in this young person? What cultural knowledge do they carry that they didn\'t carry before? What can they say about themselves that they couldn\'t say at the beginning? What joy have they found access to? What community do they now belong to?',
+            'Write the integrated portrait: one cohesive description of this young person at the end of their FSTS year — present tense, specific, earned; grounded in both frameworks without citing either; the kind of language you would use with their family at the closing ceremony',
+            'Test the portrait: share it with someone outside the program — a community member, a potential funder, a young person who has experienced something similar — and ask them if it sounds real, if it sounds worth working toward, if it sounds like someone they know or might know',
+          ]}
+        ]
+      },
+      {
+        id: 'm7s2', code: '7.2',
+        title: 'Organizational Indicators of Success',
+        groups: [
+          { heading: null, items: [
+            'Develop quantitative indicators from PYD: what numbers will you track? School attendance? GPA? Graduation rates? Mentoring relationship duration? Post-program civic participation? Name the specific metrics and the research that connects them to PYD outcomes',
+            'Develop qualitative indicators from HCE: what will you listen for? The language young people use about themselves at the end vs. the beginning? The stories they tell about their community? The quality of their relationships with Elders and mentors? Name the specific qualitative data you will collect',
+            'Develop participatory indicators: how will young people themselves define success for their own year? Build a youth-driven evaluation component where cohort members set their own metrics at the beginning of the year and assess themselves against those metrics at the end',
+            'Develop long-term indicators: what will FSTS alumni look like at 5 years? At 10? What outcomes would tell you that the program worked in the long run? Name these and develop a modest alumni tracking plan',
+            'Build a two-framework evaluation rubric: a simple matrix with PYD outcomes on one axis, HCE outcomes on the other, and specific indicators in each cell — this is the foundation of your program evaluation',
+          ]}
+        ]
+      },
+      {
+        id: 'm7s3', code: '7.3',
+        title: 'Building a Program That Holds Both',
+        groups: [
+          { heading: null, items: [
+            'Write the one-page program description for FSTS that reflects the integrated PYD + HCE framework: for a potential family reading it before enrollment; includes the portrait of the young person you serve, the program structure, the year-long commitment, the roles of mentor and Elder, and the closing ceremony',
+            'Write the practitioner\'s commitment statement: a document that staff, mentors, and Elders sign at the beginning of each program year, naming their commitment to both their own ongoing healing (HCE) and their ongoing growth as asset-providers (PYD)',
+            'Build the program calendar through both lenses: for each phase and each major program element, annotate with the PYD domain it primarily addresses and the HCE domain it primarily addresses — this becomes your program logic model',
+            'Identify the single most important change you need to make in your current program design based on what this module has taught you — name it specifically, name what has been missing, and name what you will do differently',
+            'Close with the commitment: write a letter from yourself to the young people who will come through FSTS — not a program description, not an outcome statement, but a promise; what are you promising them? What are you promising to build for them? What do you owe them?',
+          ]}
+        ]
+      },
+    ]
+  },
+];
+
+const ATTRIBUTION = {
+  rows: [
+    {
+      label: 'Positive Youth Development Framework',
+      text: 'Positive Youth Development was developed by Richard M. Lerner (Tufts University Institute for Applied Research in Youth Development), Peter C. Benson (Search Institute, Minneapolis — 40 Developmental Assets), and Karen Pittman (Forum for Youth Investment). The 5 Cs model and longitudinal research basis draw on the 4-H Study of Positive Youth Development and decades of Search Institute survey research. The foundational argument — "problem-free is not fully prepared" — is Karen Pittman\'s.',
+    },
+    {
+      label: 'Healing-Centered Engagement Framework',
+      text: 'Healing-Centered Engagement was developed by Shawn Ginwright, scholar-activist and co-founder of Flourish Agenda, first articulated in his 2018 essay "The Future of Healing." Its intellectual foundations include Paulo Freire (Pedagogy of the Oppressed), Audre Lorde (Uses of the Erotic; Sister Outsider), James Baldwin, Na\'im Akbar (African-centered psychology), and the tradition of Black feminist political thought. Tricia Hersey (The Nap Ministry) extends the HCE framework\'s emphasis on rest as resistance.',
+    },
+    {
+      label: 'Cross-Framework Analysis and Synthesis',
+      text: 'The co-analysis of PYD and HCE — identifying their convergences, productive tensions, and integration in the FSTS program model — is original work by Tiana Massaquoi, founder of Keep Still Cares Foundation. The argument that the rites of passage structure provides the container in which both frameworks operate, and the four-phase model (Soil → Seed → Stem → Sky) as an integration architecture, reflect Tiana\'s original theoretical contribution to the field of youth development and mentoring.',
+    },
+    {
+      label: 'Application to From Soil to Sky',
+      text: 'The From Soil to Sky (FSTS) Program Model is the original work of Tiana Massaquoi and Keep Still Cares Foundation. All applications of PYD and HCE to FSTS program design, mentoring structure, Elder role, cohort model, and ceremonial closing reflect Tiana\'s synthesis and are part of the FSTS Training Series.',
+    },
+  ]
+};
+
+// ----- RENDER -----
+
+const STORE_KEY = 'fsts_c4_v1';
+let state = {};
+try {
+  const raw = localStorage.getItem(STORE_KEY);
+  if (raw) state = JSON.parse(raw);
+} catch(e) {}
+
+function saveState() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function allCheckItems(sections) {
+  return sections.flatMap(s =>
+    s.groups.flatMap(g => g.items.flatMap(item =>
+      typeof item === 'string' ? [item] : [item, ...(item.nested || [])]
+    ))
+  );
+}
+
+function buildNav() {
+  const nav = document.getElementById('nav-inner');
+  DATA.forEach(mod => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-tab';
+    btn.textContent = mod.num;
+    btn.dataset.target = mod.id;
+    btn.addEventListener('click', () => {
+      document.getElementById(mod.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    nav.appendChild(btn);
+  });
+  const attrBtn = document.createElement('button');
+  attrBtn.className = 'nav-tab';
+  attrBtn.textContent = 'Attribution';
+  attrBtn.dataset.target = 'attribution';
+  attrBtn.addEventListener('click', () => {
+    document.getElementById('attribution')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  nav.appendChild(attrBtn);
+}
+
+function getModuleProgress(mod) {
+  const all = allCheckItems(mod.sections);
+  const done = all.filter(item => {
+    const key = typeof item === 'string' ? item : item.text;
+    return state[key];
+  }).length;
+  return { done, total: all.length };
+}
+
+function buildItem(itemText, sectionTitle, groupHeading) {
+  const li = document.createElement('li');
+  li.className = 'check-item';
+  li.setAttribute('role', 'checkbox');
+  li.setAttribute('aria-checked', state[itemText] ? 'true' : 'false');
+  const id = 'cb-' + Math.random().toString(36).slice(2);
+  li.innerHTML = `
+    <input type="checkbox" id="${id}" ${state[itemText] ? 'checked' : ''}>
+    <span class="check-box" aria-hidden="true"></span>
+    <label class="check-label" for="${id}">${itemText}</label>
+  `;
+  const input = li.querySelector('input');
+  li.addEventListener('click', () => {
+    input.checked = !input.checked;
+    state[itemText] = input.checked;
+    li.setAttribute('aria-checked', input.checked ? 'true' : 'false');
+    saveState();
+    updateAll();
+  });
+  return li;
+}
+
+function buildSection(sec) {
+  const details = document.createElement('details');
+  details.className = 'subsection';
+  details.id = sec.id;
+
+  const items = sec.groups.flatMap(g => g.items.flatMap(i => typeof i === 'string' ? [i] : [i.text, ...(i.nested||[])]));
+  const done = items.filter(t => state[t]).length;
+  const total = items.length;
+
+  details.innerHTML = `
+    <summary>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 4 10 8 6 12"/>
+      </svg>
+      <span class="summary-text">
+        <span class="summary-code">${sec.code}</span>
+        <span class="summary-title">${sec.title}</span>
+      </span>
+      <span class="summary-right">
+        <span class="prog-count" data-sec-count="${sec.id}">${done}/${total}</span>
+        <span class="prog-bar"><span class="prog-fill ${done===total&&total>0?'done':''}" data-sec-bar="${sec.id}" style="width:${total?Math.round(done/total*100):0}%"></span></span>
+      </span>
+    </summary>
+    <div class="subsection-body"></div>
+  `;
+
+  const body = details.querySelector('.subsection-body');
+  if (sec.note) {
+    const note = document.createElement('p');
+    note.className = 'sub-note';
+    note.textContent = sec.note;
+    body.appendChild(note);
+  }
+  if (sec.callout) {
+    const callout = document.createElement('div');
+    callout.className = 'callout';
+    callout.innerHTML = `<p>${sec.callout.quote}</p><cite>— ${sec.callout.cite}</cite>`;
+    body.appendChild(callout);
+  }
+
+  sec.groups.forEach(grp => {
+    const ul = document.createElement('ul');
+    ul.className = 'check-group';
+    if (grp.heading) {
+      const h = document.createElement('li');
+      h.className = 'group-heading';
+      h.textContent = grp.heading;
+      ul.appendChild(h);
+    }
+    grp.items.forEach(item => {
+      if (typeof item === 'string') {
+        ul.appendChild(buildItem(item, sec.title, grp.heading));
+      } else {
+        const li = buildItem(item.text, sec.title, grp.heading);
+        if (item.nested) {
+          const nested = document.createElement('ul');
+          nested.className = 'nested-list';
+          item.nested.forEach(n => nested.appendChild(buildItem(n, sec.title, grp.heading)));
+          li.appendChild(nested);
+        }
+        ul.appendChild(li);
+      }
+    });
+    body.appendChild(ul);
+  });
+
+  return details;
+}
+
+function buildModules() {
+  const main = document.getElementById('main-content');
+
+  DATA.forEach(mod => {
+    const section = document.createElement('section');
+    section.className = 'module-section';
+    section.id = mod.id;
+    section.setAttribute('data-module', mod.id);
+
+    section.innerHTML = `
+      <p class="module-eyebrow">${mod.num}</p>
+      <h2 class="module-title">${mod.title}</h2>
+      <p class="module-meta">${mod.meta}</p>
+      <div class="module-intro">${mod.intro}</div>
+      <hr class="module-divider">
+    `;
+
+    mod.sections.forEach(sec => section.appendChild(buildSection(sec)));
+    main.appendChild(section);
+  });
+
+  // Attribution
+  const attrSection = document.createElement('section');
+  attrSection.className = 'attribution-section';
+  attrSection.id = 'attribution';
+  attrSection.setAttribute('data-module', 'attribution');
+
+  const block = document.createElement('div');
+  block.className = 'attribution-block';
+  block.innerHTML = `<p class="attribution-eyebrow">Framework Attribution & Authorship</p>`;
+
+  ATTRIBUTION.rows.forEach((row, i) => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'attribution-row';
+    rowEl.innerHTML = `<p class="attribution-label">${row.label}</p><p class="attribution-text">${row.text}</p>`;
+    block.appendChild(rowEl);
+    if (i < ATTRIBUTION.rows.length - 1) {
+      const div = document.createElement('hr');
+      div.className = 'attribution-divider';
+      block.appendChild(div);
+    }
+  });
+
+  attrSection.appendChild(block);
+  main.appendChild(attrSection);
+}
+
+function updateAll() {
+  let totalDone = 0;
+  let totalItems = 0;
+
+  DATA.forEach(mod => {
+    const { done, total } = getModuleProgress(mod);
+    totalDone += done;
+    totalItems += total;
+
+    mod.sections.forEach(sec => {
+      const items = sec.groups.flatMap(g => g.items.flatMap(i => typeof i === 'string' ? [i] : [i.text, ...(i.nested||[])]));
+      const secDone = items.filter(t => state[t]).length;
+      const secTotal = items.length;
+      const countEl = document.querySelector(`[data-sec-count="${sec.id}"]`);
+      const barEl = document.querySelector(`[data-sec-bar="${sec.id}"]`);
+      if (countEl) countEl.textContent = `${secDone}/${secTotal}`;
+      if (barEl) {
+        barEl.style.width = secTotal ? `${Math.round(secDone/secTotal*100)}%` : '0%';
+        barEl.classList.toggle('done', secDone === secTotal && secTotal > 0);
+      }
+    });
+  });
+
+  const pct = totalItems ? Math.round(totalDone / totalItems * 100) : 0;
+  const fill = document.getElementById('ring-fill');
+  const pctEl = document.getElementById('ring-pct');
+  if (fill) fill.style.strokeDashoffset = CIRC - (CIRC * pct / 100);
+  if (pctEl) pctEl.textContent = pct + '%';
+  if (fill) fill.setAttribute('stroke-dasharray', CIRC);
+}
+
+function initIntersectionObserver() {
+  const tabs = document.querySelectorAll('.nav-tab');
+  const sections = document.querySelectorAll('[data-module]');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('data-module');
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => io.observe(s));
+}
+
+buildNav();
+buildModules();
+updateAll();
+initIntersectionObserver();
+</script>
