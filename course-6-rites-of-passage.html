@@ -1,99 +1,118 @@
-<title>Rites of Passage & Developmental Ceremony</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course 6 — Rites of Passage &amp; Developmental Ceremony</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap">
 
 <style>
-/* Deep teal palette — Course 6: Rites of Passage */
 :root {
-  --bg: #F0F4F4;
+  --bg: #F5EEE4;
   --surface: #FFFFFF;
-  --surface-2: #E4ECEC;
-  --fg: #0D1F1F;
-  --fg-muted: #2E4D4D;
-  --fg-subtle: #5C7A7A;
-  --accent: #1A4D4D;
-  --accent-hover: #113535;
-  --accent-light: #DCF0F0;
-  --accent-2: #D4870E;
-  --accent-2-light: #FEF3DC;
-  --border: #C8D8D8;
-  --border-strong: #8CAAAA;
-  --positive: #1A7A4A;
+  --surface-2: #EDE3D8;
+  --fg: #1C0F06;
+  --fg-muted: #5A3E2A;
+  --fg-subtle: #8A6A50;
+  --accent: #5C3614;
+  --accent-hover: #4A2A0E;
+  --accent-light: #EFE1CE;
+  --accent-2: #B8820A;
+  --accent-2-light: #FAF0D8;
+  --border: #DDD0BE;
+  --border-strong: #C4B09A;
+  --positive: #1C7A4A;
   --font-display: 'DM Serif Display', Georgia, serif;
   --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
   --radius: 8px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #091515;
-    --surface: #0F2020;
-    --surface-2: #162A2A;
-    --fg: #E0EEEE;
-    --fg-muted: #6AAAAA;
-    --fg-subtle: #3A6060;
-    --accent: #3A8080;
-    --accent-hover: #4A9090;
-    --accent-light: #0A1F1F;
-    --accent-2: #E09020;
-    --accent-2-light: #1A1000;
-    --border: #122222;
-    --border-strong: #1E3838;
-    --positive: #2AAA5A;
+    --bg: #160C04;
+    --surface: #201008;
+    --surface-2: #2C1A0C;
+    --fg: #F5EDE0;
+    --fg-muted: #C8A880;
+    --fg-subtle: #906848;
+    --accent: #A05A28;
+    --accent-hover: #B4682E;
+    --accent-light: #2C1808;
+    --accent-2: #D4A030;
+    --accent-2-light: #281C04;
+    --border: #3A2010;
+    --border-strong: #4E3018;
+    --positive: #3AB870;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #091515;
-  --surface: #0F2020;
-  --surface-2: #162A2A;
-  --fg: #E0EEEE;
-  --fg-muted: #6AAAAA;
-  --fg-subtle: #3A6060;
-  --accent: #3A8080;
-  --accent-hover: #4A9090;
-  --accent-light: #0A1F1F;
-  --accent-2: #E09020;
-  --accent-2-light: #1A1000;
-  --border: #122222;
-  --border-strong: #1E3838;
-  --positive: #2AAA5A;
+  --bg: #160C04;
+  --surface: #201008;
+  --surface-2: #2C1A0C;
+  --fg: #F5EDE0;
+  --fg-muted: #C8A880;
+  --fg-subtle: #906848;
+  --accent: #A05A28;
+  --accent-hover: #B4682E;
+  --accent-light: #2C1808;
+  --accent-2: #D4A030;
+  --accent-2-light: #281C04;
+  --border: #3A2010;
+  --border-strong: #4E3018;
+  --positive: #3AB870;
   color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box }
 body { margin: 0; font-family: var(--font-body); background: var(--bg); color: var(--fg); font-size: 15px; line-height: 1.65 }
-.site-header { background: var(--accent); color: #fff; padding-left: max(28px, env(safe-area-inset-left,0px)); padding-right: max(28px, env(safe-area-inset-right,0px)); padding-block: 40px 36px }
-.header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 28px; flex-wrap: wrap }
+
+/* HEADER */
+.site-header {
+  background: var(--accent);
+  color: #fff;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 36px;
+}
+.header-inner { max-width: 920px; margin: 0 auto; display: flex; align-items: center; gap: 28px; flex-wrap: wrap }
 .header-text { flex: 1; min-width: 0 }
 .header-series { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .65; margin: 0 0 6px }
-.course-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); padding: 4px 14px; border-radius: 100px; color: #fff; margin: 0 0 12px }
-.header-title { font-family: var(--font-display); font-size: clamp(24px, 4.5vw, 38px); line-height: 1.1; margin: 0 0 10px; text-wrap: balance; color: #fff; font-style: italic }
-.header-desc { font-size: 14px; opacity: .8; margin: 0 0 14px; max-width: 60ch; line-height: 1.5 }
-.header-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap }
-.header-stat { font-size: 12px; opacity: .7 }
-.header-stat strong { opacity: 1; font-weight: 600 }
-.header-author { font-size: 12px; opacity: .75 }
-.header-author strong { font-weight: 600; opacity: 1 }
+.header-course { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .8; margin: 0 0 10px; display: flex; align-items: center; gap: 8px }
+.course-badge { display: inline-flex; align-items: center; padding: 2px 9px; background: rgba(255,255,255,.18); border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: .08em }
+.header-title { font-family: var(--font-display); font-size: clamp(22px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; color: #fff; font-style: italic }
+.header-desc { font-size: 14px; opacity: .8; margin: 0 0 14px; max-width: 58ch; line-height: 1.5 }
+.header-author { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; opacity: .75 }
+.header-author strong { opacity: 1; font-weight: 600 }
 .progress-ring { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px }
 .ring-svg { width: 80px; height: 80px }
 .ring-track { fill: none; stroke: rgba(255,255,255,.2); stroke-width: 6 }
 .ring-fill { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset .5s ease }
 .ring-pct { font-size: 15px; font-weight: 600; fill: #fff; text-anchor: middle; dominant-baseline: central; font-family: var(--font-body) }
 .ring-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .7; color: #fff }
-.module-nav { position: sticky; top: env(safe-area-inset-top,0px); z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none }
+
+/* NAV */
+.module-nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none }
 .module-nav::-webkit-scrollbar { display: none }
-.nav-inner { display: flex; max-width: 960px; margin: 0 auto; padding-left: max(24px,env(safe-area-inset-left,0px)); padding-right: max(24px,env(safe-area-inset-right,0px)); min-width: max-content }
-.nav-tab { padding: 14px 13px; font-size: 13px; font-weight: 500; color: var(--fg-muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; font-family: var(--font-body) }
+.nav-inner { display: flex; max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); min-width: max-content }
+.nav-tab { padding: 14px 14px; font-size: 13px; font-weight: 500; color: var(--fg-muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; font-family: var(--font-body) }
 .nav-tab:hover { color: var(--fg) }
 .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent) }
-.main-content { max-width: 960px; margin: 0 auto; padding-left: max(24px,env(safe-area-inset-left,0px)); padding-right: max(24px,env(safe-area-inset-right,0px)); padding-block: 0 80px }
-.course-section { padding-top: 56px }
-.section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px }
-.section-title { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 32px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; font-style: italic }
-.section-meta { font-size: 13px; color: var(--fg-muted); margin: 0 0 14px; font-style: italic }
-.section-intro { font-size: 14px; color: var(--fg-muted); margin: 0 0 24px; max-width: 70ch; line-height: 1.65; padding: 14px 18px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0 }
-.section-divider { border: none; border-top: 2px solid var(--border); margin: 0 0 28px }
+
+/* MAIN */
+.main-content { max-width: 920px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); padding-block: 0 80px }
+
+/* MODULE SECTIONS */
+.module-section { padding-top: 56px }
+.module-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px }
+.module-title { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 30px); line-height: 1.2; margin: 0 0 10px; text-wrap: balance; font-style: italic }
+.module-meta { font-size: 13px; color: var(--fg-muted); margin: 0 0 14px; font-style: italic }
+.module-intro { font-size: 14px; color: var(--fg-muted); margin: 0 0 20px; max-width: 70ch; line-height: 1.65; padding: 14px 18px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0 }
+.module-intro p { margin: 0 0 8px }
+.module-intro p:last-child { margin: 0 }
+.module-divider { border: none; border-top: 2px solid var(--border); margin: 0 0 28px }
+
+/* SUBSECTION */
 .subsection { margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden }
 .subsection summary { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; user-select: none; list-style: none }
 .subsection summary::-webkit-details-marker { display: none }
@@ -107,43 +126,36 @@ body { margin: 0; font-family: var(--font-body); background: var(--bg); color: v
 .prog-bar { width: 56px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden }
 .prog-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .35s ease }
 .prog-fill.done { background: var(--positive) }
-.subsection-body { padding: 0 20px 24px; border-top: 1px solid var(--border) }
-.subsection-content { font-size: 14px; color: var(--fg-muted); line-height: 1.7; margin: 16px 0 24px; padding: 14px 18px; background: var(--surface-2); border-radius: var(--radius) }
-.question-block { margin: 0 0 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border) }
-.question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0 }
-.question-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px }
-.question-prompt { font-size: 14px; font-weight: 500; color: var(--fg); margin: 0 0 10px; line-height: 1.6 }
-.question-textarea { width: 100%; min-height: 120px; padding: 12px 14px; border: 1.5px solid var(--border-strong); border-radius: var(--radius); font-family: var(--font-body); font-size: 14px; line-height: 1.6; background: var(--bg); color: var(--fg); resize: vertical; transition: border-color .15s }
+.subsection-body { padding: 0 20px 20px; border-top: 1px solid var(--border) }
+
+/* QUESTIONS */
+.group-heading { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin: 16px 0 8px; padding-top: 8px; border-top: 1px dashed var(--border) }
+.group-heading:first-child { border-top: none; margin-top: 8px }
+.question-item { margin: 10px 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius) }
+.question-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px }
+.q-label { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; flex-shrink: 0 }
+.q-label.type-q { background: var(--accent-light); color: var(--accent) }
+.q-label.type-assignment { background: var(--accent-2-light); color: var(--accent-2) }
+.q-label.type-reflection { background: var(--surface-2); color: var(--fg-muted) }
+.saved-chip { font-size: 11px; color: var(--fg-subtle); margin-left: auto; min-width: 36px; text-align: right }
+.question-prompt { font-size: 14px; line-height: 1.6; color: var(--fg); margin: 0 0 8px }
+.sub-list { margin: 4px 0 8px 0; padding: 0 0 0 20px }
+.sub-list li { font-size: 13px; line-height: 1.55; color: var(--fg-muted); margin-bottom: 4px }
+.question-textarea { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--fg); font-family: var(--font-body); font-size: 14px; line-height: 1.6; resize: vertical; min-height: 90px; transition: border-color .15s }
 .question-textarea:focus { outline: none; border-color: var(--accent) }
-.question-textarea.answered { border-color: var(--positive) }
-.radio-group { display: flex; flex-direction: column; gap: 8px }
-.radio-option { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: border-color .15s, background .15s }
-.radio-option:hover { border-color: var(--border-strong) }
-.radio-option.selected { border-color: var(--accent); background: var(--accent-light) }
-.radio-option input { position: absolute; opacity: 0; pointer-events: none }
-.radio-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--border-strong); flex-shrink: 0; display: flex; align-items: center; justify-content: center }
-.radio-option.selected .radio-dot { border-color: var(--accent); background: var(--accent) }
-.radio-option.selected .radio-dot::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff }
-.radio-label { font-size: 14px; color: var(--fg) }
-.scale-wrapper { width: 100% }
-.scale-row { display: flex; gap: 8px; flex-wrap: wrap }
-.scale-option { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer }
-.scale-option input { position: absolute; opacity: 0; pointer-events: none }
-.scale-btn { width: 40px; height: 40px; border-radius: var(--radius); border: 1.5px solid var(--border-strong); background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: var(--fg-muted); transition: all .15s; cursor: pointer }
-.scale-option.selected .scale-btn { background: var(--accent); border-color: var(--accent); color: #fff }
-.scale-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--fg-subtle); margin-top: 6px }
-.module-submit-panel { margin-top: 32px; padding: 24px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); display: flex; flex-wrap: wrap; align-items: center; gap: 12px }
-.submit-panel-title { font-size: 14px; font-weight: 600; color: var(--fg); flex: 1; min-width: 200px }
-.submit-panel-sub { font-size: 13px; color: var(--fg-muted); margin: 4px 0 0 }
-.submit-panel-actions { display: flex; gap: 8px; flex-wrap: wrap }
-.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: var(--radius); font-family: var(--font-body); font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: background .15s, color .15s; text-decoration: none }
-.btn-primary { background: var(--accent); color: #fff }
-.btn-primary:hover { background: var(--accent-hover) }
-.btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent) }
-.btn-outline:hover { background: var(--accent-light) }
-.btn-gold { background: var(--accent-2); color: #fff }
-.btn-ghost { background: var(--surface); color: var(--fg-muted); border: 1.5px solid var(--border) }
-.form-link-note { font-size: 12px; color: var(--fg-subtle); margin-top: 4px }
+
+/* MODULE SUBMIT */
+.module-submit { margin-top: 28px; padding: 20px 24px; background: var(--accent-light); border: 1px solid var(--accent); border-radius: var(--radius) }
+.module-submit h3 { font-family: var(--font-display); font-style: italic; font-size: 18px; margin: 0 0 6px; color: var(--accent) }
+.module-submit p { font-size: 14px; color: var(--fg-muted); margin: 0 0 14px; line-height: 1.55 }
+.submit-actions { display: flex; gap: 10px; flex-wrap: wrap }
+.btn-copy, .btn-submit { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: var(--radius); font-family: var(--font-body); font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all .15s }
+.btn-copy { background: var(--surface); color: var(--accent); border: 1.5px solid var(--accent) }
+.btn-copy:hover { background: var(--accent); color: #fff }
+.btn-submit { background: var(--accent); color: #fff; border: 1.5px solid var(--accent) }
+.btn-submit:hover { background: var(--accent-hover) }
+
+/* ATTRIBUTION FOOTER */
 .attribution-section { padding-top: 56px; padding-bottom: 20px }
 .attribution-block { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 28px 32px }
 .attribution-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px }
@@ -152,28 +164,21 @@ body { margin: 0; font-family: var(--font-body); background: var(--bg); color: v
 .attribution-label { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 5px }
 .attribution-text { font-size: 14px; line-height: 1.65; color: var(--fg); margin: 0 }
 .attribution-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 }
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 200; display: none; align-items: flex-start; justify-content: center; padding: max(40px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(40px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px)); overflow-y: auto }
-.modal-overlay.open { display: flex }
-.modal-box { background: var(--surface); border-radius: var(--radius); max-width: 720px; width: 100%; padding: 28px 32px; position: relative }
-.modal-title { font-family: var(--font-display); font-size: 22px; font-style: italic; margin: 0 0 16px }
-.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--fg-subtle); line-height: 1 }
-.modal-body { white-space: pre-wrap; font-size: 13px; font-family: monospace; line-height: 1.7; background: var(--bg); padding: 16px; border-radius: var(--radius); max-height: 60vh; overflow-y: auto; color: var(--fg) }
-.modal-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap }
+
 @media (max-width: 520px) { .progress-ring { display: none } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important } }
 </style>
+</head>
+<body>
 
 <header class="site-header">
   <div class="header-inner">
     <div class="header-text">
       <p class="header-series">From Soil to Sky Training Series</p>
-      <p class="course-badge">Course 6</p>
+      <p class="header-course"><span class="course-badge">Course 6</span></p>
       <h1 class="header-title">Rites of Passage &amp; Developmental Ceremony</h1>
-      <p class="header-desc">Building the developmental architecture young people need — grounded in Paul Hill Jr., Malidoma Somé, Na'im Akbar, and the FSTS four-phase structure.</p>
-      <div class="header-meta">
-        <span class="header-stat">7 Modules &nbsp;·&nbsp; ~6.5 hours &nbsp;·&nbsp; Self-paced</span>
-        <span class="header-author">Application to FSTS by <strong>Tiana Massaquoi</strong>, Keep Still Cares Foundation</span>
-      </div>
+      <p class="header-desc">A deep study of African and African American rites of passage traditions — Paul Hill Jr., Malidoma Somé, and Na'im Akbar — and the application of the FSTS four-phase model as a contemporary rites of passage framework.</p>
+      <p class="header-author">Frameworks by <strong>Paul Hill Jr., Malidoma Somé &amp; Na'im Akbar</strong> &nbsp;·&nbsp; Applied to FSTS by <strong>Tiana Massaquoi</strong></p>
     </div>
     <div class="progress-ring">
       <svg class="ring-svg" viewBox="0 0 80 80" aria-hidden="true">
@@ -192,482 +197,605 @@ body { margin: 0; font-family: var(--font-body); background: var(--bg); color: v
 
 <main class="main-content" id="main-content"></main>
 
-<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <button class="modal-close" id="modal-close" aria-label="Close">×</button>
-    <h2 class="modal-title" id="modal-title">Your Responses</h2>
-    <div class="modal-body" id="modal-body"></div>
-    <div class="modal-actions">
-      <button class="btn btn-primary" id="modal-copy-btn">Copy All</button>
-      <button class="btn btn-ghost" id="modal-close-btn">Close</button>
-    </div>
-  </div>
-</div>
-
 <script>
 const CIRC = 2 * Math.PI * 32;
+
 const FORM_URLS = {
-  module1: '#', module2: '#', module3: '#', module4: '#',
-  module5: '#', module6: '#', module7: '#',
+  'module-1': '#', // Replace with your Google Form URL for Module 1
+  'module-2': '#', // Replace with your Google Form URL for Module 2
+  'module-3': '#', // Replace with your Google Form URL for Module 3
+  'module-4': '#', // Replace with your Google Form URL for Module 4
+  'module-5': '#', // Replace with your Google Form URL for Module 5
+  'module-6': '#', // Replace with your Google Form URL for Module 6
+  'module-7': '#', // Replace with your Google Form URL for Module 7
 };
+
 const DATA = [
   {
-    id: 'module-1', navLabel: 'M1',
-    eyebrow: 'Module 1  ·  ~50 min',
-    title: 'Why Rites of Passage? The Developmental Argument',
-    meta: 'Making the case before designing anything',
-    formKey: 'module1',
-    intro: 'Rites of passage are not cultural artifacts from the past — they are the developmental architecture young people need. Paul Hill Jr., Malidoma Somé, and Na\'im Akbar each made this argument from a different standpoint: Hill from the Black community organizing tradition, Somé from Dagara cosmology, Akbar from African-centered psychology. This module makes the case for why rites of passage are not optional for youth development programming.',
+    id: 'module-1',
+    num: 'Module 1',
+    title: 'The Universal Language of Rites of Passage',
+    meta: '~60 min · Conceptual Foundation · 3 sections · 10 questions',
+    intro: '<p>Every human society has developed some form of rites of passage — structured processes for marking and facilitating the transition from childhood to adulthood. These are not arbitrary cultural ceremonies. They are the technology by which communities ensure their young people receive the identity, values, and belonging they need to become full members of the community.</p><p>This module establishes the conceptual foundation: what rites of passage are, why they exist across all cultures, and what happens when young people are deprived of meaningful passage. This is the "why" that grounds everything that follows.</p>',
     sections: [
       {
-        id: 'm1s1', code: '1.1', title: 'The Developmental Vacuum',
-        content: 'Most Western societies have abandoned formal rites of passage, leaving young people to construct their own markers of adulthood — often through dangerous risk-taking, peer-group initiation, or consumption. The research on adolescent development consistently shows that the transition from childhood to adulthood is a neurologically and psychologically critical period, one that historically has been guided by communities through structured ceremony. In the absence of that guidance, young people still transition — but often without the preparation, community support, or sense of purpose that makes that transition developmental rather than merely biological.',
-        questions: [
-          { id: 'q_m1s1_1', type: 'textarea', label: 'Q1 — The Void', prompt: 'Describe the developmental void that exists in your community when young people transition without ceremony or structured guidance. What do you see in the lives of young people who navigate this transition without support? Be specific.', placeholder: 'Write your response here...' },
-          { id: 'q_m1s1_2', type: 'radio', label: 'Q2 — Theoretical Resonance', prompt: 'Of the three thinkers who anchor this course, whose argument resonates most with your current understanding?', options: ['Paul Hill Jr. — the Black community organizing argument', 'Malidoma Somé — the Dagara cosmological argument', 'Na\'im Akbar — the African-centered psychological argument', 'All three equally — they address different dimensions of the same truth'] },
-          { id: 'q_m1s1_3', type: 'textarea', label: 'Q3 — Community Markers', prompt: 'How does your community currently mark the transition from childhood to adulthood? What rituals, ceremonies, or practices exist — formal or informal — and what is their developmental quality?', placeholder: 'Write your response here...' },
+        id: 'm1s1', code: '1.1',
+        title: "Defining Rites of Passage — Van Gennep's Tripartite Structure",
+        groups: [
+          { heading: null, items: [
+            "Define a rite of passage in your own words — not from a textbook, but from your own experience of witnessing or living one. What makes something a rite of passage rather than just an event?",
+            "Arnold van Gennep (1909) identified three universal phases present in rites of passage across every culture: Separation (the person is removed from their former social status), Liminality (they exist in an in-between state, neither here nor there), and Reincorporation (they are received back into the community with a new status). Describe a transition you have witnessed or experienced — formal or informal — that followed this structure. What happened in each phase?",
+            "Victor Turner extended van Gennep's work by naming the power of communitas — the deep equality and connection that forms between people who undergo liminality together. Turner observed that in liminal space, ordinary social hierarchies dissolve and people meet each other as raw human beings. Have you witnessed communitas in a group of young people? What conditions made it possible?",
+            "The youth you serve are navigating transitions right now, whether or not your program creates a formal rite of passage. Name three transitions your young people are currently in the middle of. How is your program — intentionally or unintentionally — affecting those transitions?",
+          ]}
         ]
       },
       {
-        id: 'm1s2', code: '1.2', title: 'The Three Thinkers Compared',
-        content: 'Paul Hill Jr. developed the Rite of Passage Experience (ROPE) model from Black community organizing. His framework is communal, elder-centered, and grounded in African-American experience. Malidoma Somé drew from the living traditions of the Dagara people of Burkina Faso to argue that initiation is not cultural heritage but developmental necessity — that uninitiated people remain incomplete and become destructive. Na\'im Akbar grounded his argument in African-centered psychology: that the disruption of African initiation traditions by slavery and colonialism constitutes a psychological wound, and that restoring those traditions is part of healing.',
-        questions: [
-          { id: 'q_m1s2_1', type: 'textarea', label: 'Q4 — Three Arguments', prompt: 'In your own words, describe what each thinker argues rites of passage accomplish developmentally. Where do their arguments align? Where do they differ?', placeholder: 'Hill:\n\nSomé:\n\nAkbar:\n\nWhere they align:\n\nWhere they differ:' },
-          { id: 'q_m1s2_2', type: 'textarea', label: 'Q5 — Akbar\'s Wound', prompt: 'Na\'im Akbar argues that the Black community\'s disconnection from African initiation traditions is itself a form of psychological wounding that must be healed. Engage this argument seriously. Where do you find it compelling? Where does it require nuance or qualification?', placeholder: 'Write your response here...' },
-          { id: 'q_m1s2_3', type: 'textarea', label: 'Q6 — Assignment: The Case', prompt: 'Write a 2–3 paragraph argument for why your program needs a rites of passage structure. This is a document you could share with your board or funders. It should name what is at stake, ground it in the research and frameworks, and state specifically what rites of passage will provide that conventional programming cannot.', placeholder: 'Write your response here...' },
+        id: 'm1s2', code: '1.2',
+        title: 'The Cost of Absent Initiation',
+        groups: [
+          { heading: null, items: [
+            "Malidoma Somé wrote that in village life, young people who are not initiated become a danger to themselves and to others. He argued that when young people are not given meaningful initiation, they create their own — often through destructive ways of proving status and identity. What evidence do you see of this in the communities you serve? What 'self-initiated' rites are young people creating in the absence of intentional alternatives?",
+            "Paul Hill Jr. identified the absence of structured, culturally grounded rites of passage as a specific crisis facing African American young men — one that leaves them vulnerable to being initiated by street culture or carceral institutions instead. How does this analysis apply to the youth your organization serves? Where do you see young people seeking initiation that the community has not intentionally provided?",
+            "Think about the young people who have thrived in youth development programs you know of. What did the program provide that functioned like initiation — identity, belonging, testing, witnessing, communal reception? What was missing even in the best programs you have seen?",
+          ]}
+        ]
+      },
+      {
+        id: 'm1s3', code: '1.3',
+        title: 'African Rites of Passage as Source and Context',
+        groups: [
+          { heading: null, items: [
+            "What do you currently know about how traditional African societies structured rites of passage for young people? What questions do you have? Name both what you know and what you don't.",
+            "Apply: How does drawing on African rites of passage traditions as a cultural source — not as appropriation, but as roots — change the nature of the program you are designing? What does it make possible that a purely programmatic approach does not?",
+            "Write a short paragraph explaining to a future mentor or volunteer in your program why rites of passage are central to the work — without using jargon. How would you help someone who has never thought about this understand why it matters for the young people they will serve?",
+          ]}
         ]
       },
     ]
   },
   {
-    id: 'module-2', navLabel: 'M2',
-    eyebrow: 'Module 2  ·  ~55 min',
-    title: 'Paul Hill Jr. — The Hill Model of Rites of Passage',
-    meta: 'Community organizing as developmental framework',
-    formKey: 'module2',
-    intro: 'Paul Hill Jr.\'s Passage framework emerged from Black community organizing in the 1980s and provided a structured model for Black youth development programming. His model grounds rites of passage in communal values and elder-guided development, insisting that the whole community bears responsibility for the development of its young people — not just their parents, not just their schools.',
+    id: 'module-2',
+    num: 'Module 2',
+    title: 'Paul Hill Jr. — African American Rites of Passage',
+    meta: '~75 min · Framework Deep Dive · 3 sections · 13 questions',
+    intro: "<p>Paul Hill Jr.'s <em>Coming of Age: African American Male Rites-of-Passage</em> (1992) is one of the most important frameworks in the African American youth development tradition. Hill argued that the African American community needs culturally grounded, deliberately structured rites of passage to counter the systematic destruction of Black identity and community that makes this development task particularly urgent.</p><p>While Hill's original framework focused on African American male development, its principles extend to all young people and all organizations working to ground their programs in African and African American cultural traditions. This module studies his framework in depth and applies it to FSTS.</p>",
     sections: [
       {
-        id: 'm2s1', code: '2.1', title: 'The Hill Framework',
-        content: 'The Hill model rests on several foundational premises: that African-American young people need a clear, intentional passage from childhood to responsible adulthood; that this passage requires elder guidance and community witness; that it must be grounded in African-centered values; and that it must produce a young person who is not just personally successful but communally accountable — someone who gives back to the community that invested in them. The framework is structured around preparation, the passage experience itself, and re-integration into the community in a new role.',
-        questions: [
-          { id: 'q_m2s1_1', type: 'textarea', label: 'Q1 — Core Elements', prompt: 'Describe the core elements of Hill\'s rites of passage model. What must be present for a program to be a genuine rites of passage program in Hill\'s framework, rather than simply a youth development program?', placeholder: 'Write your response here...' },
-          { id: 'q_m2s1_2', type: 'radio', label: 'Q2 — Hill\'s Central Emphasis', prompt: 'Which element is most central to Hill\'s framework?', options: ['Elder guidance and transmission of cultural knowledge', 'Communal responsibility for youth — the village raising the child', 'African-centered values as the content of the passage', 'The structured three-part sequence: preparation, passage, re-integration'] },
-          { id: 'q_m2s1_3', type: 'textarea', label: 'Q3 — Communal Challenge', prompt: 'Hill\'s model fundamentally challenges the individualistic framing of most youth mentoring programs, which focus on a one-to-one relationship. How does his model reframe the question from "who is this young person\'s mentor?" to something larger?', placeholder: 'Write your response here...' },
+        id: 'm2s1', code: '2.1',
+        title: 'The Framework — Why African Americans Need Rites of Passage',
+        groups: [
+          { heading: null, items: [
+            "Hill argued that African Americans face a specific crisis: the structures that traditional African societies used to initiate young people were destroyed by enslavement, and nothing adequate has replaced them. At the same time, anti-Black racism creates developmental challenges that mainstream youth programming was not designed to address. Do you agree with Hill's diagnosis? What does your experience tell you about whether this crisis is still present today?",
+            "Hill emphasized that rites of passage must be rooted in African values — not adapted from European models. He was explicit that this was not 'multicultural programming' but a return to cultural foundations. What does it mean for your organization to design a program rooted in African values, not simply culturally sensitive? What would have to change in how you currently think about your program?",
+            "Hill's framework was designed for a specific population: African American males in urban contexts. How do you adapt this framework for your specific context — your demographics, your setting, your community? What principles transfer directly? What requires thoughtful adaptation?",
+          ]}
         ]
       },
       {
-        id: 'm2s2', code: '2.2', title: 'Applying Hill to Your Program',
-        content: 'The Hill model requires community investment that most youth programs do not typically mobilize. Finding, preparing, and sustaining elders in a formal role is one of the most challenging implementation tasks any rites of passage program faces — because it requires relationships that exist before the program is built, and authority that is earned rather than assigned.',
-        questions: [
-          { id: 'q_m2s2_1', type: 'textarea', label: 'Q4 — Your Elders', prompt: 'Who are the elders in your community? These are people with standing, lived experience, and cultural knowledge — not necessarily the oldest people, but those whose lives represent the values you want young people to develop. Name them, describe what they carry, and describe the relationship your organization currently has with them.', placeholder: 'Write your response here...' },
-          { id: 'q_m2s2_2', type: 'textarea', label: 'Q5 — Community Role Design', prompt: 'Hill\'s model requires the community, not just staff, to be actively engaged in the development of young people. Design the community role in your rites of passage program — who participates beyond the youth and the staff? What specifically do they do? How are they recruited and prepared?', placeholder: 'Write your response here...' },
-          { id: 'q_m2s2_3', type: 'textarea', label: 'Q6 — Assignment: Elder Engagement Strategy', prompt: 'Write a one-page description of your program\'s elder engagement strategy. Who are the elders? How are they recruited — and by whom, since they would not be recruited by a stranger? What is their role — specifically, not vaguely? What do they receive in return for their time and knowledge? How are they prepared, supported, and honored?', placeholder: 'Write your response here...' },
+        id: 'm2s2', code: '2.2',
+        title: 'The Five Elements — Values, Knowledge, Skills, Discipline, Responsibility',
+        groups: [
+          { heading: null, items: [
+            "Hill identified five elements that must be present in an effective rites of passage program: (1) African/African American values — participants must learn what their cultural heritage values and why; (2) Cultural knowledge — history, philosophy, and spiritual traditions; (3) Practical skills — abilities that connect to adult roles and community contribution; (4) Self-discipline — the capacity to govern oneself from internal values, not external pressure; (5) Responsibility — accountability to self, family, and community. Assess your current program against these five elements. Which are strong? Which are absent or underdeveloped?",
+            "Design one program activity, ritual, or practice that directly addresses a gap you identified above. Be concrete: what would happen, who would be involved, and what would young people experience?",
+            "Hill insisted that the five elements must be taught by people who embody them — that rites of passage require credible adults who can be examples, not just instructors. Reflect honestly: who in your current volunteer or staff structure embodies these five elements? Where are there gaps? What would it mean to only assign adults to certain roles when they genuinely exemplify the qualities they are teaching?",
+            "Hill believed that community must be involved in receiving the young person at the end of the passage — not a graduation ceremony, but the whole community changing how it sees and interacts with a young person who has completed their passage. What would that look like in your context? Who is the community that needs to be present and prepared to receive your young people?",
+          ]}
+        ]
+      },
+      {
+        id: 'm2s3', code: '2.3',
+        title: 'Elders and Mentors as Initiators in Hill\'s Model',
+        groups: [
+          { heading: null, items: [
+            "In Hill's framework, the Elder is not a teacher or program leader in the conventional sense — they are an initiator. An initiator must have already crossed the threshold themselves; they must know the territory. What does it mean for your mentors to be initiators rather than instructors? What does that require of them?",
+            "Hill recognized that many African American adults who would otherwise be Elders have themselves never been adequately initiated — the intergenerational rupture of slavery and its aftermath means the chain of transmission has been broken. He argued that the first work of building rites of passage programs is often healing the adults who will lead them. How does this apply to your organization? What healing or preparation do your adult leaders and mentors need before they can genuinely hold initiatory space for young people?",
+            "Apply: Based on Paul Hill Jr.'s framework, write a brief summary of what your program would need to look like to qualify as a genuine rites of passage program — not just a good youth development program. What are the non-negotiables that cannot be compromised without losing the essential thing?",
+          ]}
         ]
       },
     ]
   },
   {
-    id: 'module-3', navLabel: 'M3',
-    eyebrow: 'Module 3  ·  ~55 min',
-    title: 'Malidoma Somé — The Dagara Framework',
-    meta: 'What happens when initiation is absent',
-    formKey: 'module3',
-    intro: 'Malidoma Patrice Somé\'s work draws on the initiation traditions of the Dagara people of West Africa and makes a cross-cultural argument about what happens developmentally when young people are not initiated. His framework holds that initiation connects the young person to purpose, ancestry, and community — and that without it, young people remain incomplete, carrying an unfulfilled longing that becomes destructive.',
+    id: 'module-3',
+    num: 'Module 3',
+    title: 'Malidoma Somé — Ritual, Power, and Community',
+    meta: '~75 min · Deep Dive · 3 sections · 12 questions',
+    intro: "<p>Malidoma Patrice Somé was born in Burkina Faso, West Africa, into the Dagara people. Taken by Jesuit missionaries at age four and educated in a Western seminary until his early twenties, he eventually returned, was initiated into the Dagara tradition, and spent decades working to communicate what the Dagara and African indigenous traditions know about ritual, healing, community, and initiation.</p><p>Somé's work is not anthropological description — it is direct transmission from a living tradition. His books <em>Of Water and the Spirit</em> (1994) and <em>Ritual: Power, Healing and Community</em> (1993) give us a window into what a fully functional initiation tradition looks like from the inside. His central argument: what the Dagara know about ritual and initiation is urgently needed in modern contexts precisely because so much of what makes human beings whole has been stripped away.</p>",
     sections: [
       {
-        id: 'm3s1', code: '3.1', title: 'The Initiation Principle',
-        content: 'Somé\'s central argument is that uninitiated adults — regardless of age or accomplishment — remain developmentally incomplete, and that their incompleteness drives destructive patterns: violence, addictions, the desperate seeking of belonging in gangs and other substitute communities. He makes this argument not as cultural nostalgia but as developmental observation: modern Western societies are full of uninitiated adults in positions of power, and the consequences are visible everywhere. The solution he proposes is not to simply transplant Dagara practices into other cultures, but to understand the developmental logic they embody and create culturally appropriate expressions of that logic.',
-        questions: [
-          { id: 'q_m3s1_1', type: 'textarea', label: 'Q1 — The Uninitiated Adult', prompt: 'Somé argues that uninitiated adults become destructive to themselves and their communities. Engage this claim — where do you see evidence for it in your community, in your organizational experience, or in larger cultural patterns? Where does the claim require nuance?', placeholder: 'Write your response here...' },
-          { id: 'q_m3s1_2', type: 'radio', label: 'Q2 — Somé\'s Value to Your Work', prompt: 'Somé\'s framework is most valuable to your program as:', options: ['A literal model to adapt carefully for your cultural context', 'A philosophical framework that clarifies the stakes of youth development', 'A cultural contrast that reveals the assumptions underlying Western youth programming', 'Evidence for the universality of the developmental need for initiation'] },
-          { id: 'q_m3s1_3', type: 'textarea', label: 'Q3 — Translation', prompt: 'What from Dagara initiation practice has direct application to your program\'s design, even if significantly adapted? What requires such significant cultural translation that it would be more honest to find your own community\'s equivalent than to adapt Somé\'s framework?', placeholder: 'Direct application:\n\nRequires cultural equivalent rather than adaptation:' },
+        id: 'm3s1', code: '3.1',
+        title: '"Of Water and the Spirit" — Initiation as Transformation',
+        groups: [
+          { heading: null, items: [
+            "Somé described his Dagara initiation as a months-long process that literally ended who he had been and gave birth to who he would become. He was tested, terrified, and completely remade. The Dagara understood that genuine initiation requires genuine transformation — not just new knowledge, but a different identity. What does this mean for youth programming? How is a transformative process different from a developmental one? Can a program produce both?",
+            "The Dagara initiation was held in the forest — literally outside the village — because the transformation required complete separation from ordinary life. Somé argued that true initiation cannot happen inside ordinary social structures, because those structures maintain who we already are. What does this suggest about how your program designs its space, time, and environment? How does FSTS's structure create genuine separation from ordinary life?",
+            "Somé was explicit that the most important thing that happened during his initiation was not the tests or the teachings, but contact with something larger than himself — what he called the Other World, what others might call Spirit, ancestors, or purpose. He argued that young people who have no contact with anything larger than the social world are unable to develop a true sense of direction. Regardless of your personal framework, what does your program offer young people that helps them encounter meaning beyond the social?",
+            "Design one program experience oriented toward the young person encountering themselves — not learning content, but meeting who they are at a deeper level than they have accessed before. What would this look like? What conditions would you need to create for it?",
+          ]}
         ]
       },
       {
-        id: 'm3s2', code: '3.2', title: 'Purpose and Ancestry',
-        content: 'Two elements of Somé\'s framework are most often cited by practitioners: his emphasis on purpose (that initiation reveals to the young person what they came here to do — not a career, but a calling) and his emphasis on ancestral connection (that initiation connects the young person to their lineage and to the collective wisdom of those who came before). Both of these elements challenge conventional youth programming, which focuses on skills, credentials, and individual achievement rather than purpose and belonging.',
-        questions: [
-          { id: 'q_m3s2_1', type: 'textarea', label: 'Q4 — Cultivating Purpose', prompt: 'Somé emphasizes that initiation connects the young person to their purpose — not a career goal, but a deeper calling. How will your program help young people identify and name their purpose? What specific activities, conversations, or ceremonies will you use?', placeholder: 'Write your response here...' },
-          { id: 'q_m3s2_2', type: 'textarea', label: 'Q5 — Ancestral Connection Without Appropriation', prompt: 'Ancestral connection is central to Somé\'s framework. In a secular urban program context serving a culturally diverse population, how do you create meaningful ancestral or historical connection without appropriating Dagara practices or flattening the diversity of your participants\'s heritages?', placeholder: 'Write your response here...' },
-          { id: 'q_m3s2_3', type: 'textarea', label: 'Q6 — Assignment: Ceremony Design', prompt: 'Design a ceremony or ritual moment in your program that reflects Somé\'s principle that youth development is spiritual and communal, not merely educational or therapeutic. Describe the ceremony\'s purpose, who participates, what happens, and what the young person is expected to do, receive, or declare.', placeholder: 'Write your response here...' },
+        id: 'm3s2', code: '3.2',
+        title: '"Ritual: Power, Healing and Community" — The Village\'s Role',
+        groups: [
+          { heading: null, items: [
+            "In <em>Ritual: Power, Healing and Community</em>, Somé argued that ritual is not performed by individuals — it is performed by the community. The community holds the container within which transformation becomes possible. A young person cannot initiate themselves; they need the community to hold the threshold for them. What is the community that will hold the threshold for your young people? Who needs to be in that community? How will you cultivate it before the program begins?",
+            "Somé observed that in the modern West, atomization of family, neighborhood, and cultural community means there is no coherent community to hold ritual space — which is why attempts at ceremony in modern contexts often feel hollow. How do you build something like a village for your program? What structures create the necessary coherence and commitment among the adults surrounding your young people?",
+            "Somé wrote about what ritual does for a community, not just for individuals: it maintains the connection between the living and the ancestors, between the present and the future, between the individual and the whole. What might this mean for a youth organization? What would it look like for your program ceremonies to serve the health of your organizational community — not only the young people's development?",
+          ]}
+        ]
+      },
+      {
+        id: 'm3s3', code: '3.3',
+        title: 'Healing Through Ritual — What Modern Programs Can Learn',
+        groups: [
+          { heading: null, items: [
+            "Somé wrote extensively about grief — the Dagara have extended, communal practices for grieving that are completely absent in modern Western culture. He argued that unprocessed grief is one of the primary wounds of modern life, and that young people carry the unprocessed grief of their families, communities, and ancestors. How does your program create space for grief — not therapy, but communal acknowledgment of loss? Or does it avoid grief entirely?",
+            "Somé distinguished between healing and fixing. Healing requires going into the wound, not around it. It is a communal process, witnessed by others. Fixing is a technical intervention that addresses symptoms. He argued that modern culture tries to fix what can only be healed, and that this is why so many interventions fail. How does this distinction apply to your program's approach to the trauma and wounds your young people carry?",
+            "Apply: Based on Malidoma Somé's work, identify one thing your program currently does — or could do — that functions as genuine ritual: a repeated, communal, intentional practice that connects participants to something larger than themselves and contributes to the health of the community. If nothing comes to mind immediately, design one.",
+          ]}
         ]
       },
     ]
   },
   {
-    id: 'module-4', navLabel: 'M4',
-    eyebrow: 'Module 4  ·  ~55 min',
-    title: 'Na\'im Akbar — African-Centered Psychology & Rites of Passage',
-    meta: 'Psychological liberation through cultural reconnection',
-    formKey: 'module4',
-    intro: 'Na\'im Akbar\'s contribution to rites of passage comes through his development of African-centered psychology — an analysis of how colonialism and slavery have disrupted African people\'s psychological development, and how culturally grounded rites of passage are part of the healing. Akbar argues that psychological liberation requires cultural reconnection, and that programs that do not address cultural identity are addressing symptoms rather than causes.',
+    id: 'module-4',
+    num: 'Module 4',
+    title: "Na'im Akbar — African-Centered Psychology and Developmental Initiation",
+    meta: '~60 min · Framework Deep Dive · 3 sections · 11 questions',
+    intro: "<p>Na'im Akbar (born Luther Benjamin Weems Jr.) is one of the founding figures of African-centered psychology in America. A past president of the Association of Black Psychologists, Akbar drew on African philosophical traditions and the Black liberation tradition to develop a psychology rooted in African humanity — not in the deficit models that dominated mainstream psychology's treatment of Black people.</p><p>His works <em>Visions for Black Men</em> (1991) and <em>Breaking the Chains of Psychological Slavery</em> (1996) are essential reading for anyone working with African American youth. Akbar argued that the psychological wounds of enslavement were transmitted across generations and continue to shape the inner life and behavior of many African Americans. Genuine youth development, in his framework, requires healing those psychological chains and building a positive identity rooted in African humanity.</p>",
     sections: [
       {
-        id: 'm4s1', code: '4.1', title: 'African-Centered Psychology',
-        content: 'Akbar\'s African-centered psychology holds that mainstream Western psychology is not culturally neutral — it is grounded in European philosophical assumptions about individualism, the nature of the self, and the relationship between the person and the community. These assumptions often pathologize the communal orientation, extended family structures, and spiritual worldviews common in African and African diaspora cultures. His work argues that effective psychological development for Black people requires frameworks grounded in African philosophical traditions, not adaptations of European models.',
-        questions: [
-          { id: 'q_m4s1_1', type: 'textarea', label: 'Q1 — The Necessary Argument', prompt: 'Explain Akbar\'s argument that African-centered psychology is necessary, not optional, for Black youth development. What does mainstream developmental psychology miss, and why does that matter for your program?', placeholder: 'Write your response here...' },
-          { id: 'q_m4s1_2', type: 'scale', label: 'Q2 — Framework Familiarity', prompt: 'How familiar are you currently with African-centered psychology frameworks?', min: 1, max: 5, minLabel: 'Not at all familiar', maxLabel: 'Deep knowledge' },
-          { id: 'q_m4s1_3', type: 'textarea', label: 'Q3 — Root Causes', prompt: 'Akbar identifies patterns of self-destructive behavior in Black communities as rooted in the psychological aftermath of slavery and colonialism — not in character deficits. How does your program address these root causes rather than simply managing the behaviors that result from them?', placeholder: 'Write your response here...' },
+        id: 'm4s1', code: '4.1',
+        title: '"Visions for Black Men" — Identity, Purpose, and Development',
+        groups: [
+          { heading: null, items: [
+            "Akbar opened <em>Visions for Black Men</em> by noting that most Black men in America have had their self-image defined by their oppressors — that is, they have internalized a self-concept formed by 400 years of racist systems. He argued that a person who does not consciously reconstruct their identity from African roots will continue to be shaped by the images their oppressors imposed. How does this analysis apply to the young people your program serves? How does your program help young people develop a self-concept grounded in their own humanity?",
+            "Akbar outlined a vision of Black development rooted in African values: accountability to community, relationship with the sacred, responsibility to the next generation, and disciplined self-mastery. These are not Western individualist virtues — they are relational and communal. What is the equivalent vision your program holds for who a young person should become? Is it explicit? How do young people come to know it?",
+            "Write a one-paragraph 'vision statement' for a young person who has fully completed your rites of passage program — not what skills they will have, but who they will be: how they will carry themselves, what they will believe about themselves and their community, what they will be accountable to. This vision is the destination your program moves toward.",
+          ]}
         ]
       },
       {
-        id: 'm4s2', code: '4.2', title: 'Liberation Through Cultural Grounding',
-        content: 'Akbar\'s framework insists that psychological liberation and cultural reconnection are not separate processes — they are the same process. A young person cannot be psychologically whole while disconnected from their cultural heritage, history, and ancestors. The rites of passage program, in Akbar\'s framework, is a vehicle for both: it provides the developmental structure that marks passage into adulthood while simultaneously reconnecting the young person to their cultural identity and community.',
-        questions: [
-          { id: 'q_m4s2_1', type: 'textarea', label: 'Q4 — Cultural Grounding Design', prompt: 'Design the cultural grounding element of your rites of passage program. What specifically will young people learn about their African and African-American heritage? What knowledge, stories, frameworks, and practices will you transmit, and how?', placeholder: 'Write your response here...' },
-          { id: 'q_m4s2_2', type: 'textarea', label: 'Q5 — Both Dimensions', prompt: 'Akbar argues that liberation is simultaneously psychological and cultural. How does your program address both dimensions? What does psychological healing look like in your program, and how is it integrated with cultural learning rather than separated from it?', placeholder: 'Write your response here...' },
-          { id: 'q_m4s2_3', type: 'textarea', label: 'Q6 — Assignment: Cultural Grounding Statement', prompt: 'Write your program\'s cultural grounding statement — a paragraph that articulates why cultural identity is central to your program\'s developmental theory, what specific traditions, histories, and values you will teach, and how you will ensure that cultural transmission is authentic rather than performative.', placeholder: 'Write your response here...' },
+        id: 'm4s2', code: '4.2',
+        title: 'Psychological Slavery and Liberation Through Initiation',
+        groups: [
+          { heading: null, items: [
+            "Akbar argued that 'psychological slavery' — the internalization of the enslaver's values, images, and definitions — is transmitted across generations and continues to shape Black behavior and identity. He described specific behaviors that reflect internalized enslavement: orientation toward White approval, rejection of African roots, and self-destruction that mirrors the enslaver's violence. What evidence of 'psychological chains' do you see in the young people you serve? How does your program address this without pathologizing young people?",
+            "Akbar argued that the primary antidote to psychological slavery is knowledge of self — specifically, knowledge of African history, philosophy, and cultural heritage. He wrote: 'Knowledge of self is the most powerful weapon against oppression.' How does your program provide this knowledge? How explicit are you about naming it as healing, not just cultural enrichment?",
+            "Akbar distinguished between 'survival psychology' — the adaptive responses that helped enslaved people survive — and 'liberation psychology' — the expanded freedom of people who have healed their psychological wounds. He argued that programs addressing only survival (safety, basic needs, skills) without addressing liberation (identity, purpose, self-mastery) leave young people half-healed. Where is your program focused? What would a shift toward liberation psychology require of your design?",
+          ]}
+        ]
+      },
+      {
+        id: 'm4s3', code: '4.3',
+        title: 'Self-Knowledge as the Foundation of Development',
+        groups: [
+          { heading: null, items: [
+            "The ancient Kemetic injunction 'Know Thyself' is the foundation of Akbar's developmental framework. He argued that self-knowledge is not introspection alone but includes knowledge of one's cultural history, spiritual lineage, and communal responsibilities. A young person who knows themselves in this full sense is inoculated against the identity wounds that make them vulnerable to destructive initiation. How does your program cultivate this kind of full self-knowledge — not just self-awareness?",
+            "Akbar wrote about the role of the master teacher — an adult who models what African-centered humanity looks like, not just someone who teaches about it. He argued that young people need embodied examples, not information. What does this demand of the adults in your program? How are you developing your adults into the kind of people who can genuinely model what they teach?",
+            "Apply: Conduct an honest assessment of your program's psychological orientation. Is it fundamentally deficit-focused (addressing what young people lack) or asset-focused (building on what they carry)? Is it liberation-oriented (aiming at full human flourishing) or survival-oriented (aiming at risk reduction)? What would a deliberate shift toward liberation psychology look like in your specific program context?",
+          ]}
         ]
       },
     ]
   },
   {
-    id: 'module-5', navLabel: 'M5',
-    eyebrow: 'Module 5  ·  ~60 min',
-    title: 'The FSTS Four-Phase Structure',
-    meta: 'Mapping the agricultural metaphor onto program design',
-    formKey: 'module5',
-    intro: 'The From Soil to Sky Training Series structures rites of passage around four developmental phases drawn from the agricultural metaphor at its core: Soil (preparation and grounding), Seed (planting intention and purpose), Growth (cultivation and challenge), and Sky (emergence and contribution). This module maps those phases onto your specific program design.',
+    id: 'module-5',
+    num: 'Module 5',
+    title: 'The Structure of Passage — Separation, Threshold, and Return',
+    meta: '~60 min · Framework Integration · 3 sections · 11 questions',
+    intro: "<p>Having studied three distinct African and African American rites of passage frameworks, this module steps back to examine the common structural architecture that underlies all of them. Understanding this structure allows you to recognize it in your program, intentionally design for it, and assess whether your program is actually facilitating genuine passage.</p><p>Arnold van Gennep's three-phase structure and Victor Turner's work on liminality provide analytical lenses for understanding what makes rites of passage transformative. These are observational frameworks, not source traditions. Use them as lenses to see your program more clearly — and then return to the African traditions as the roots of your practice.</p>",
     sections: [
       {
-        id: 'm5s1', code: '5.1', title: 'Understanding the Four Phases',
-        content: 'The Soil phase is preparation — the young person is not yet engaged in the rites of passage itself but is being prepared for it: building trust, establishing safety, developing the foundational relationships that will carry the harder work to come. The Seed phase plants intention — the young person names their purpose, makes commitments, and formally enters the community of the program. The Growth phase is the longest and most demanding — here the young person faces challenge, acquires knowledge, deepens relationships, and develops the character that the passage requires. The Sky phase is emergence — the young person has completed the work of the passage and is recognized by the community in a new role, with new responsibilities.',
-        questions: [
-          { id: 'q_m5s1_1', type: 'textarea', label: 'Q1 — Phase Meanings', prompt: 'In your own words, describe what each FSTS phase means developmentally — what the young person\'s task is, what the program\'s task is, and what marks the transition from one phase to the next.', placeholder: 'Soil:\n\nSeed:\n\nGrowth:\n\nSky:' },
-          { id: 'q_m5s1_2', type: 'radio', label: 'Q2 — Four-Phase Value', prompt: 'The four-phase structure is most valuable for your program because:', options: ['It gives participants a narrative framework for their own development', 'It provides a sequencing logic for the curriculum', 'Its agricultural metaphor resonates with non-Western traditions', 'It maps directly onto the Hill/Somé/Akbar frameworks\' structure'] },
-          { id: 'q_m5s1_3', type: 'textarea', label: 'Q3 — Cultural Resonance', prompt: 'How does the Soil-to-Sky metaphor resonate with the community you serve? Are there other cultural or ecological metaphors — from your community\'s own heritage — that might be more resonant or run alongside the FSTS framework?', placeholder: 'Write your response here...' },
+        id: 'm5s1', code: '5.1',
+        title: 'Separation — Crossing the First Threshold',
+        groups: [
+          { heading: null, items: [
+            "In all rites of passage, the first phase is Separation: the young person is marked as distinct from their ordinary social position and begins to leave it behind. This is not just physical separation — it is a social and psychological crossing. What does Separation look like in your current program? How do you mark the beginning of a young person's journey in a way that says: 'You are entering something different. You are in passage.'?",
+            "Van Gennep observed that Separation is made possible by the community's consent and participation. The family and community must agree that the young person is leaving their former status — they must cooperate in releasing the child-identity. What does your program do to bring families and communities into the Separation — to help them understand that their relationship with this young person is changing?",
+            "Design a Separation ceremony for your program. What words would be spoken? What objects or symbols would mark the crossing of the threshold? Who from the community would be present to witness? What would the young person say or do that signals their willingness to enter passage?",
+          ]}
         ]
       },
       {
-        id: 'm5s2', code: '5.2', title: 'Designing the Four Phases',
-        content: 'The four-phase structure is a design framework, not a rigid script. What happens in each phase depends on your community, your young people, your cultural context, and your organizational capacity. What must remain constant is the developmental logic: preparation before planting, cultivation before harvest. Programs that rush to the Sky phase without doing the Soil and Seed work produce performances of development, not genuine transformation.',
-        questions: [
-          { id: 'q_m5s2_1', type: 'textarea', label: 'Q4 — Soil Phase Design', prompt: 'Design your program\'s Soil phase. What happens here? What is its duration? What is the young person\'s developmental task? What does the program provide? What relationships must be established before this phase ends?', placeholder: 'Write your response here...' },
-          { id: 'q_m5s2_2', type: 'textarea', label: 'Q5 — Seed Phase Design', prompt: 'Design your program\'s Seed phase. What happens here? What is the planting ceremony or commitment moment? What does the young person formally name or declare? Who witnesses it?', placeholder: 'Write your response here...' },
-          { id: 'q_m5s2_3', type: 'textarea', label: 'Q6 — Assignment: Growth & Sky', prompt: 'Design your program\'s Growth and Sky phases. For Growth: what are the developmental challenges, what knowledge is acquired, what is the hardest moment and what support exists for it? For Sky: what marks the transition from Growth to Sky, who is present at the completion ceremony, what does the young person do and receive, and what is their new role in the community?', placeholder: 'Growth phase:\n\nSky phase:\n\nCompletion ceremony:' },
+        id: 'm5s2', code: '5.2',
+        title: 'Liminality — The In-Between Space and Its Power',
+        groups: [
+          { heading: null, items: [
+            "Victor Turner named the liminal phase as the most powerful and the most dangerous. In liminality, the young person is 'betwixt and between' — no longer what they were, not yet what they will become. All social hierarchies are stripped away; they are raw and undefined. Turner called this state liminal because it exists at the threshold — the limen — between two worlds. What does your program do to hold young people in a genuinely liminal container? Or do they continue to live in their ordinary social world during the program?",
+            "Turner observed that liminal people are simultaneously invisible and highly visible — they are outside ordinary social categories and therefore experienced as uncanny. In many traditions, liminal initiates are given new names, new clothing, or new roles that mark their threshold state. Does your program have any equivalent of this? Is there a moment when the young person receives something that marks their new status within the passage?",
+            "The liminal phase is where the hardest tests occur — where the young person is challenged beyond what they thought they could bear. Turner wrote: 'The neophyte is in a sense dying to the old self and being born to a new self.' What are the tests and challenges in your program that serve this function? What specifically challenges a young person to grow beyond who they were?",
+            "Apply: Map your program against the liminal phase. Which elements of your program are truly liminal — that is, which exist outside ordinary social structures and create genuine conditions for transformation? Which elements simply operate within ordinary social structures and therefore cannot produce the deeper change you are seeking?",
+          ]}
+        ]
+      },
+      {
+        id: 'm5s3', code: '5.3',
+        title: 'Reincorporation — The Communal Return',
+        groups: [
+          { heading: null, items: [
+            "Van Gennep insisted that the third phase — Reincorporation — is not the end of the rite but its completion. Without Reincorporation, the passage is incomplete and the transformation cannot be integrated. Reincorporation requires the community to receive the young person in their new identity and to treat them accordingly. How does your program accomplish genuine Reincorporation? What happens after the program ends to ensure the young person's transformation is received by their family and community — not just acknowledged?",
+            "In traditional rites of passage, the community's reception of the newly initiated young person is a sacred obligation. The whole community is changed by having a new adult in it. The family changes how they treat the young person; the community changes what it asks of them. This is not graduation — it is communal transformation. What would it look like for your program to accomplish this kind of genuine communal change?",
+            "Write a description of the Reincorporation ceremony you will build for your program. Who is present? What happens? What do the Elders, mentors, families, and community members say and do? How do families and community members receive the young person in their new identity? What obligations does the young person take on? What obligations does the community take on in return?",
+          ]}
         ]
       },
     ]
   },
   {
-    id: 'module-6', navLabel: 'M6',
-    eyebrow: 'Module 6  ·  ~50 min',
-    title: 'Ceremony, Ritual, and Developmental Milestones',
-    meta: 'Ceremony as developmental technology',
-    formKey: 'module6',
-    intro: 'Ceremony is not decoration — it is developmental technology. Research on rites of passage consistently finds that the ceremonial moments — the moments that mark passage, that involve community witness, that create a before and after in the young person\'s own narrative — are disproportionately powerful in their developmental effect. This module designs the ceremonial architecture of your program.',
+    id: 'module-6',
+    num: 'Module 6',
+    title: 'The FSTS Four Phases as Rites of Passage',
+    meta: '~90 min · Applied Synthesis · 5 sections · 18 questions',
+    intro: "<p>This module is the heart of the course. The From Soil to Sky four phases — Soil, Seed, Stem, Sky — are not simply a program sequence. They are a rites of passage architecture. Each phase corresponds to a specific moment in the initiatory journey: Soil as Separation, Seed as the beginning of Liminality, Stem as Liminal deepening, and Sky as Reincorporation and communal return.</p><p>Understanding FSTS as a rites of passage framework changes how you design and deliver every element of it. The activities, the ceremonies, the mentor relationships, the community involvement — everything looks different when you understand that you are holding initiatory space, not running a program.</p>",
     sections: [
       {
-        id: 'm6s1', code: '6.1', title: 'What Ceremony Does',
-        content: 'Ceremony works developmentally because it is memorable, communal, embodied, and irreversible. A young person who has gone through a genuine ceremony has crossed a threshold they cannot un-cross — they have been seen in a new way by their community, and that community\'s recognition changes how the young person sees themselves. Research on identity development consistently finds that the moments young people name as turning points are ceremonial in character: someone important saw something in them, named it publicly, and held them accountable to it.',
-        questions: [
-          { id: 'q_m6s1_1', type: 'textarea', label: 'Q1 — Why Ceremony Works', prompt: 'Why does ceremony work developmentally? What does it accomplish that instruction, mentoring, and activity cannot accomplish alone? Ground your answer in the research on identity development and what you have witnessed in your own experience.', placeholder: 'Write your response here...' },
-          { id: 'q_m6s1_2', type: 'textarea', label: 'Q2 — Three Ceremonial Moments', prompt: 'Describe three ceremonial moments in your program: one that marks entry into the program, one that marks passage from one phase to the next, and one that marks completion. For each: who is present, what happens, what is said, and what the young person does.', placeholder: 'Entry ceremony:\n\nPhase transition ceremony:\n\nCompletion ceremony:' },
-          { id: 'q_m6s1_3', type: 'radio', label: 'Q3 — Most Important Ceremonial Element', prompt: 'The most important element of a powerful developmental ceremony is:', options: ['Community witness — others seeing and naming the young person\'s transformation', 'Elder blessing or formal recognition by someone with standing', 'The young person\'s own self-declaration — what they claim about themselves', 'The physical and sensory experience — the space, the objects, the embodied ritual'] },
+        id: 'm6s1', code: '6.1',
+        title: 'Soil as Separation — Safety and Grounding for the Crossing',
+        groups: [
+          { heading: null, items: [
+            "In FSTS, Soil is the phase of safety and grounding — establishing trust, building relationships, and creating the conditions within which young people feel secure enough to cross the threshold. In the rites of passage framework, Separation requires a foundation of safety to be genuine: a young person cannot truly leave their former identity unless they feel held by something. How does your Soil phase create the safety that makes genuine Separation possible? What specifically happens in Soil that establishes the container for passage?",
+            "Soil is not just about making young people comfortable — it is about helping them feel grounded in their identity enough to let go of their former self-concept. In many rites of passage traditions, the Separation phase involves teaching young people about their ancestry, cultural lineage, and community belonging — giving them something larger to be part of before asking them to leave who they were. How does your Soil phase ground young people in something larger than themselves?",
+            "Design a Soil Opening Ceremony — a ceremony that marks the crossing of the threshold into the FSTS program. This ceremony should accomplish Separation: it should say to the young person, 'You are entering something different now. The person who came in here is beginning a journey.' What would this ceremony look, sound, and feel like? What role would families and mentors play?",
+          ]}
         ]
       },
       {
-        id: 'm6s2', code: '6.2', title: 'Designing Your Ceremony',
-        content: 'A ceremony that has been designed primarily for optics — for the sake of documentation, for parents, for funders — will not accomplish the developmental work. The ceremony must be designed for the young people, with the community, and grounded in authentic cultural practice. The facilitator\'s own relationship to the ceremony matters: a facilitator who is going through the motions transmits that quality to participants.',
-        questions: [
-          { id: 'q_m6s2_1', type: 'textarea', label: 'Q4 — Complete Completion Ceremony', prompt: 'Design your program\'s completion ceremony in detail. Who is present? What happens in sequence — from how participants arrive to how they leave? What is said, and by whom? What is given to the young person? What must the young person do, declare, or receive? What distinguishes this ceremony from a graduation celebration?', placeholder: 'Write your response here...' },
-          { id: 'q_m6s2_2', type: 'textarea', label: 'Q5 — Cultural Grounding Without Appropriation', prompt: 'How will you ensure your ceremony is culturally grounded without being appropriative? What traditions from the community\'s own heritage will you draw from, and who has the authority to lead those elements?', placeholder: 'Write your response here...' },
-          { id: 'q_m6s2_3', type: 'textarea', label: 'Q6 — Assignment: Full Ceremony Guide', prompt: 'Write a complete ceremony guide for one milestone in your program — entry, a phase transition, or completion. Include: who facilitates, what the space looks like, the full sequence of events, what participants need to prepare in advance, what materials are used, and how the ceremony ends and transitions back to everyday life.', placeholder: 'Write your ceremony guide here...' },
+        id: 'm6s2', code: '6.2',
+        title: 'Seed as Liminality — Identity Work at the Threshold',
+        groups: [
+          { heading: null, items: [
+            "In FSTS, Seed is the phase of identity and agency — the deep work of asking 'Who am I?' and 'What am I capable of?' In the rites of passage framework, this is the beginning of liminality: the young person has crossed the threshold but has not yet become what they will be. They are raw and open. What does your Seed phase offer to the young person who is asking 'Who am I?' at the deepest level — not just 'What do I like?' but 'What is my name in the world?'?",
+            "In many initiation traditions, the liminal phase involves giving the young person a new name or identity marker that their new self will carry. The old identity is left behind; the new one is earned through the passage. Does your Seed phase have any equivalent of this — a moment when the young person receives something that marks their developing new identity? If not, how could you build one?",
+            "The Seed phase corresponds to Turner's communitas — the deep equality and connection of people who share the threshold together. Peers in the Seed phase are fellow liminal travelers, and the bonds formed there are the most enduring. How does your program design the Seed phase to cultivate genuine communitas — not just peer relationships, but solidarity among people who are all in passage at the same time?",
+            "Reflect: How does the Seed phase require the mentor to show up differently than in a conventional mentoring relationship? In the rites of passage framework, the mentor at the threshold is not an advisor or helper — they are a guide through territory they have already crossed. What does this require of your mentors specifically during the Seed phase?",
+          ]}
+        ]
+      },
+      {
+        id: 'm6s3', code: '6.3',
+        title: 'Stem as Liminal Deepening — Skills, Agency, and Contribution',
+        groups: [
+          { heading: null, items: [
+            "In FSTS, Stem is the phase of skills and contribution — the young person begins to use their developing identity in service of something beyond themselves. In the rites of passage framework, the second half of liminality involves being tested: asked to demonstrate that the transformation is real by taking on new responsibilities. How does your Stem phase test young people in this sense? What does a Stem experience ask of a young person that a Seed experience does not?",
+            "Malidoma Somé described the tests of initiation as experiences that brought young people to their absolute limit — and then showed them what was on the other side. The purpose was not suffering for its own sake but the discovery that there is life beyond the limit of what you thought you could bear. What is the equivalent of this in your Stem phase? What experiences push young people to the edge of their capacity in a way that expands that capacity?",
+            "The Stem phase is where young people begin contributing — mentoring younger cohorts, leading in the community, taking on organizational responsibility. This is not just a leadership development activity — it is the beginning of Reincorporation while still in the liminal phase. The young person is practicing their new identity before the community has formally received it. How do you structure Stem experiences to make this practice explicit and meaningful?",
+          ]}
+        ]
+      },
+      {
+        id: 'm6s4', code: '6.4',
+        title: 'Sky as Reincorporation — Returning with Purpose and Legacy',
+        groups: [
+          { heading: null, items: [
+            "In FSTS, Sky is the phase of integration and legacy — the young person has been changed, and now they return to the community as someone different. In the rites of passage framework, this is Reincorporation: the community must receive the young person in their new identity, and the young person must take on new responsibilities within the community. What does your Sky phase do to prepare young people for this return? How do you help them understand what they are returning to — and as whom?",
+            "Na'im Akbar wrote about the importance of returning the initiated person to service — not as an obligation but as the natural expression of what they have become. A person who has been genuinely initiated returns to the community not to receive but to give. How does your Sky phase establish a clear path of service and contribution for young people after they complete the program?",
+            "Write: Describe what success looks like at the end of your Sky phase — not just for the young person, but for the community. What will families notice? What will the neighborhood see? What will the young person carry into their adult life? Be specific and concrete.",
+          ]}
+        ]
+      },
+      {
+        id: 'm6s5', code: '6.5',
+        title: 'The Closing Ceremony as Communal Reception',
+        groups: [
+          { heading: null, items: [
+            "Van Gennep and Turner both emphasized that Reincorporation is only complete when the community formally receives the young person in their new identity. The closing ceremony of an FSTS cohort is not a graduation — it is a communal reception. It is the community saying: 'We see you. We receive you. You are different, and we are changing how we relate to you.' Design this ceremony. Who must be present? What happens? What do Elders, mentors, families, and community members say and do?",
+            "In the Dagara tradition, the newly initiated young person is presented to the ancestral community during the closing ceremony — their new identity is received not just by the living but by the lineage of those who came before. Regardless of your personal or organizational framework, what is the equivalent of this in your program? How do you connect a young person's completion to something larger and older than the program itself?",
+            "Reflect: The closing ceremony is also the moment when young people become available as guides for those who come after them. How does your closing ceremony explicitly create this — how does it mark young people not just as having completed but as now holding an obligation to support the passage of the next cohort?",
+            "Apply: Draw a complete timeline of your rites of passage program using the four FSTS phases and the van Gennep structure. For each phase, name: (1) the primary work of that phase, (2) the ceremony or practice that marks entry into and exit from that phase, (3) the adults who hold the space, and (4) the ways the broader community is involved.",
+          ]}
         ]
       },
     ]
   },
   {
-    id: 'module-7', navLabel: 'M7',
-    eyebrow: 'Module 7  ·  ~50 min',
-    title: 'Implementation — Community, Elder Engagement & Program Integrity',
-    meta: 'The ecosystem that makes rites of passage sustainable',
-    formKey: 'module7',
-    intro: 'A rites of passage program is only as strong as its community ecosystem. This module addresses the implementation realities: how to build the elder network, how to maintain program integrity as facilitators turn over, and how to sustain a program that makes demands most youth programs do not make.',
+    id: 'module-7',
+    num: 'Module 7',
+    title: 'Designing Developmental Ceremony for Your Program',
+    meta: '~90 min · Practical Application · 4 sections · 16 questions',
+    intro: "<p>This module moves from concept to practice. You have developed a deep understanding of what rites of passage are, why they matter, and how the FSTS four phases constitute a rites of passage architecture. Now you will design the specific ceremonial elements of your program — not decorative ceremonies, but developmental ceremonies that actually do the work of rites of passage: marking thresholds, creating communitas, and effecting genuine transformation.</p><p>Ceremony is a skill. It requires intention, design, practice, and the genuine presence of the people who hold it. This module gives you the tools to design ceremonial elements worthy of the young people who will pass through them.</p>",
     sections: [
       {
-        id: 'm7s1', code: '7.1', title: 'Community and Elder Systems',
-        content: 'The biggest implementation failure in rites of passage programs is treating community and elder involvement as recruitment rather than relationship. Elders do not show up because they were asked in a meeting — they show up because a trusted person in the community made a specific ask, because the program\'s values align with theirs, and because they see their own legacy in the work. Building an elder system is a years-long relational project, not a program feature to be launched.',
-        questions: [
-          { id: 'q_m7s1_1', type: 'textarea', label: 'Q1 — Elder System Design', prompt: 'Design your elder recruitment, preparation, and support system. How do you find elders — and through whose relationship, since strangers cannot recruit them? How do you prepare them for this specific role? How do you compensate or honor them? What support exists when a challenge arises in the program?', placeholder: 'Write your response here...' },
-          { id: 'q_m7s1_2', type: 'textarea', label: 'Q2 — Minimum Community Investment', prompt: 'What is the minimum community investment required for your program to function as a genuine rites of passage program? Name specific community roles and what each requires. Below this minimum, what would you have instead of a rites of passage program?', placeholder: 'Write your response here...' },
-          { id: 'q_m7s1_3', type: 'textarea', label: 'Q3 — Cultural Integrity Over Time', prompt: 'How do you maintain the cultural integrity of a rites of passage program as staff turn over, funding changes, and the program scales? What does the program hold constant, and what can vary without compromising its essential character?', placeholder: 'Write your response here...' },
+        id: 'm7s1', code: '7.1',
+        title: 'What Makes Ceremony Developmental vs. Decorative',
+        groups: [
+          { heading: null, items: [
+            "A decorative ceremony marks a moment without changing anything — everyone knows what happened before it, and nothing is different after it. A developmental ceremony actually does something: it changes the social reality, the relationships, or the identity of those who participate. Name three ceremonies you have participated in or observed. Were they decorative or developmental? What made the difference?",
+            "Malidoma Somé argued that what makes a ceremony genuine is: (1) it involves the participation of the whole community, not just the subject; (2) it is oriented toward something larger than the social world; (3) it requires genuine vulnerability from participants; and (4) it creates a real change in the social fabric. Assess your current program events against these four criteria. Which come closest to meeting them? Which fall short?",
+            "Design the 'ceremony design criteria' for your program — the standards that every ceremony must meet to qualify as developmental. Reference the frameworks from this course to build them, but make them specific to your community, your population, and your cultural context. These are your non-negotiables.",
+          ]}
         ]
       },
       {
-        id: 'm7s2', code: '7.2', title: 'Sustainability and Program Integrity',
-        content: 'Rites of passage programs face a particular sustainability challenge: they depend on relationships, trust, and cultural authority that take years to build and cannot be quickly replaced. A program that builds community relationships and then loses them to staff turnover, funding gaps, or organizational change may cause more harm than good — because the young people who trusted it experience another abandonment.',
-        questions: [
-          { id: 'q_m7s2_1', type: 'textarea', label: 'Q4 — Facilitator Training Design', prompt: 'Design your program\'s facilitator training. What must every facilitator know and be able to do before they lead any ceremony or rites of passage element? Include cultural knowledge requirements, personal development expectations, and practical facilitation skills.', placeholder: 'Write your response here...' },
-          { id: 'q_m7s2_2', type: 'scale', label: 'Q5 — Organizational Readiness', prompt: 'Rate your organization\'s current readiness to run a genuine rites of passage program.', min: 1, max: 5, minLabel: 'Need 2+ years of groundwork', maxLabel: 'Ready to launch in 6 months' },
-          { id: 'q_m7s2_3', type: 'textarea', label: 'Q6 — Assignment: 18-Month Roadmap', prompt: 'Write your program\'s 18-month implementation roadmap. What do you build in months 1–6 (community relationships, elder engagement, cultural curriculum development)? What do you launch in months 7–12 (first cohort)? What do you consolidate in months 13–18 (systems, documentation, succession)? Name specific milestones and the community infrastructure required at each stage.', placeholder: 'Months 1-6:\n\nMonths 7-12:\n\nMonths 13-18:' },
+        id: 'm7s2', code: '7.2',
+        title: 'The Opening Ceremony — Welcoming Young People Across the Threshold',
+        groups: [
+          { heading: null, items: [
+            "The Opening Ceremony is the Separation ritual — the moment when a young person crosses the threshold into the program and begins their passage. It must accomplish something real: it must communicate to the young person's body, spirit, and mind that they are entering something different. Design your Opening Ceremony in full detail. What happens first? Who speaks? What objects or symbols are used? What does the young person do to mark their crossing? What do the adults witness and affirm?",
+            "The Opening Ceremony must also involve families and community — not just the young people. Families must release their child into passage and agree to hold the space for their return. How does your Opening Ceremony involve parents and caregivers? What do families commit to during this ceremony? How do you make the communal container explicit and mutual?",
+            "Reflect: What would the Opening Ceremony feel like to a young person who arrived skeptical or defended — someone who has been promised transformation before and has been let down? How does your ceremony speak to that young person without requiring them to perform enthusiasm they don't feel? What earns their trust before anything else?",
+          ]}
+        ]
+      },
+      {
+        id: 'm7s3', code: '7.3',
+        title: 'Mid-Program Ceremonies — Marking the Threshold',
+        groups: [
+          { heading: null, items: [
+            "Between the Opening and Closing ceremonies, there are threshold moments — transitions from Soil to Seed, from Seed to Stem, from Stem to Sky. Each of these transitions deserves a ceremony that marks the crossing. Design one mid-program ceremony for your program. Which transition does it mark? What happens? How long does it take? Who is present? What does the young person do to demonstrate they are ready to cross?",
+            "Somé described mid-initiation ceremonies as moments when the community reassesses whether the young person is ready to move forward. They are not automatic — they require the young person to demonstrate readiness, and the community to affirm it. How does your program build in this kind of assessment that is ceremonial and relational, not just programmatic or evaluative?",
+            "Develop a 'threshold practice' — a brief, repeatable practice that marks every session as a threshold: a way of opening and closing each gathering that reminds young people they are in passage, not just attending a program. This practice should be simple enough to do every week but meaningful enough to accumulate significance over time. What is it?",
+            "Build a Ceremony Calendar for a full FSTS cohort — a visual map of all ceremonial moments from Opening to Closing, including the phases they mark, who is involved in each, and how they build on each other. This is not a program calendar — it is the initiatory architecture of your program.",
+          ]}
+        ]
+      },
+      {
+        id: 'm7s4', code: '7.4',
+        title: 'The Closing Ceremony — Community Witness and the Obligation to Return',
+        groups: [
+          { heading: null, items: [
+            "The Closing Ceremony is the Reincorporation ritual — the moment when the community formally receives the newly initiated young person. Design your Closing Ceremony from beginning to end. What is the order of events? What does each element accomplish in the rites of passage structure? What do the young people do? What do the adults do? What does the extended community do?",
+            "Paul Hill Jr. emphasized that the Closing Ceremony must create accountability — the community must know what the young person is committing to, and the young person must know what the community is committing to them in return. Design the public commitment that young people will make in your Closing Ceremony. What are they committing to? How will this commitment be held and honored over time?",
+            "Develop a 'Return Protocol' — what happens in the weeks and months after the Closing Ceremony to ensure that Reincorporation actually occurs in family and community life, not just in the program. What conversations happen? What follow-up occurs? What structures sustain the transformation after the ceremony is over?",
+            "Reflect on yourself as a ceremony leader. What do you need to develop to hold the space you are designing? What is your own relationship to ceremony, ritual, and initiation? What healing or preparation do you need before you can genuinely hold this work for young people? Write honestly — this reflection is for you.",
+            "Write a letter to the first cohort of young people who will go through your rites of passage program — telling them what you are preparing for them, what you are committing to, and what you believe they are capable of. This letter may never be shared; it is for you to know the covenant you are making.",
+          ]}
         ]
       },
     ]
   },
 ];
 
-const ATTRIBUTION_ROWS = [
-  { label: 'Paul Hill Jr.', text: 'Creator of the Rite of Passage Experience (ROPE) model; pioneer of African-centered rites of passage for Black youth in the United States. His framework is documented in Joining the Circle: A Practitioner\'s Guide to African American Youth Development (1991) and has influenced the design of youth rites of passage programs across the country for four decades.' },
-  { label: 'Malidoma Patrice Somé (1956–2021)', text: 'Elder, scholar, and teacher from the Dagara people of Burkina Faso, West Africa. His writing on initiation and its absence in the West is foundational to this course. Key works: Of Water and the Spirit (1994), Ritual: Power, Healing and Community (1993), The Healing Wisdom of Africa (1998). His teachings are shared with deep gratitude and the recognition that they come from a living tradition that exists independent of this course.' },
-  { label: 'Na\'im Akbar (born Lincoln Terence Reynolds)', text: 'Psychologist, scholar, and one of the founders of African-centered psychology. His analysis of Black psychological development and the role of rites of passage in healing is core to this course. Key works: Chains and Images of Psychological Slavery (1984), Breaking the Chains of Psychological Slavery (1996), Visions for Black Men (1991).' },
-  { label: 'FSTS Four-Phase Structure', text: 'The Soil–Seed–Growth–Sky framework is original work by Tiana Massaquoi, founder of Keep Still Cares Foundation. It represents her synthesis of the Hill, Somé, and Akbar frameworks with Positive Youth Development research, applied to the program architecture of the From Soil to Sky Training Series.' },
-];
+/* =========================================================
+   RENDER
+   ========================================================= */
 
-const STORE_KEY = 'fsts_c6_v1';
-let state = {};
-try { const r = localStorage.getItem(STORE_KEY); if (r) state = JSON.parse(r); } catch(e) {}
-function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {} }
-function getVal(id) { return state[id] || ''; }
-function setVal(id, val) { state[id] = val; save(); }
-
-function countSection(sec) {
-  const qs = sec.questions || [];
-  const answered = qs.filter(q => { const v = getVal(q.id); return v && v.toString().trim() !== ''; }).length;
-  return { answered, total: qs.length };
-}
-function updateSectionProgress(sec) {
-  if (!sec) return;
-  const { answered, total } = countSection(sec);
-  const countEl = document.querySelector(`[data-sec-count="${sec.id}"]`);
-  const barEl = document.querySelector(`[data-sec-bar="${sec.id}"]`);
-  if (countEl) countEl.textContent = `${answered}/${total}`;
-  if (barEl) { barEl.style.width = total ? `${Math.round(answered/total*100)}%` : '0%'; barEl.classList.toggle('done', answered===total&&total>0); }
-}
-function updateOverallProgress() {
-  let totalQ = 0, answeredQ = 0;
-  DATA.forEach(mod => (mod.sections||[]).forEach(sec => {
-    const { answered, total } = countSection(sec);
-    totalQ += total; answeredQ += answered;
-  }));
-  const pct = totalQ ? Math.round(answeredQ/totalQ*100) : 0;
-  const fill = document.getElementById('ring-fill');
-  const pctEl = document.getElementById('ring-pct');
-  if (fill) { fill.setAttribute('stroke-dasharray', CIRC); fill.style.strokeDashoffset = CIRC - (CIRC*pct/100); }
-  if (pctEl) pctEl.textContent = pct + '%';
-}
-function updateAll() {
-  DATA.forEach(mod => (mod.sections||[]).forEach(sec => updateSectionProgress(sec)));
-  updateOverallProgress();
-}
-function findSection(qid) {
-  let found = null;
-  DATA.forEach(mod => (mod.sections||[]).forEach(sec => { if (sec.questions && sec.questions.find(q => q.id===qid)) found = sec; }));
-  return found || { id:'', questions:[] };
+const _qIdx = {};
+function qType(text) {
+  const w = text.trim().split(/\s+/)[0].toLowerCase().replace(/[^a-z]/g, '');
+  if (['develop','design','build','create','audit','map','write','draft','practice'].includes(w)) return 'assignment';
+  if (['reflect','apply','commit','connect'].includes(w)) return 'reflection';
+  return 'q';
 }
 
-function renderQuestion(q) {
-  const block = document.createElement('div');
-  block.className = 'question-block';
-  const label = document.createElement('p');
-  label.className = 'question-label';
-  label.textContent = q.label;
-  block.appendChild(label);
-  const prompt = document.createElement('p');
-  prompt.className = 'question-prompt';
-  prompt.textContent = q.prompt;
-  block.appendChild(prompt);
-  if (q.type === 'textarea') {
-    const ta = document.createElement('textarea');
-    ta.className = 'question-textarea';
-    ta.id = q.id;
-    ta.rows = 5;
-    ta.placeholder = q.placeholder || 'Write your response here...';
-    ta.value = getVal(q.id);
-    if (ta.value.trim()) ta.classList.add('answered');
-    ta.addEventListener('input', () => {
-      setVal(q.id, ta.value);
-      ta.classList.toggle('answered', !!ta.value.trim());
-      updateSectionProgress(findSection(q.id));
-      updateOverallProgress();
-    });
-    block.appendChild(ta);
-  } else if (q.type === 'radio') {
-    const group = document.createElement('div');
-    group.className = 'radio-group';
-    q.options.forEach(opt => {
-      const saved = getVal(q.id);
-      const lbl = document.createElement('label');
-      lbl.className = 'radio-option' + (saved===opt?' selected':'');
-      const inp = document.createElement('input');
-      inp.type='radio'; inp.name=q.id; inp.value=opt; inp.checked=saved===opt;
-      const dot = document.createElement('span'); dot.className='radio-dot';
-      const txt = document.createElement('span'); txt.className='radio-label'; txt.textContent=opt;
-      lbl.appendChild(inp); lbl.appendChild(dot); lbl.appendChild(txt);
-      lbl.addEventListener('click', () => {
-        group.querySelectorAll('.radio-option').forEach(el=>el.classList.remove('selected'));
-        lbl.classList.add('selected'); inp.checked=true;
-        setVal(q.id, opt);
-        updateSectionProgress(findSection(q.id));
-        updateOverallProgress();
-      });
-      group.appendChild(lbl);
-    });
-    block.appendChild(group);
-  } else if (q.type === 'scale') {
-    const wrapper = document.createElement('div'); wrapper.className='scale-wrapper';
-    const row = document.createElement('div'); row.className='scale-row';
-    const saved = getVal(q.id);
-    for (let i = q.min; i <= q.max; i++) {
-      const opt = document.createElement('label');
-      opt.className = 'scale-option' + (String(saved)===String(i)?' selected':'');
-      const inp = document.createElement('input');
-      inp.type='radio'; inp.name=q.id; inp.value=i; inp.checked=String(saved)===String(i);
-      const btn = document.createElement('span'); btn.className='scale-btn'; btn.textContent=i;
-      opt.appendChild(inp); opt.appendChild(btn);
-      opt.addEventListener('click', () => {
-        row.querySelectorAll('.scale-option').forEach(el=>el.classList.remove('selected'));
-        opt.classList.add('selected'); inp.checked=true;
-        setVal(q.id, String(i));
-        updateSectionProgress(findSection(q.id));
-        updateOverallProgress();
-      });
-      row.appendChild(opt);
-    }
-    const sl = document.createElement('div'); sl.className='scale-labels';
-    sl.innerHTML=`<span>${q.minLabel}</span><span>${q.maxLabel}</span>`;
-    wrapper.appendChild(row); wrapper.appendChild(sl);
-    block.appendChild(wrapper);
-  }
-  return block;
+function makeItem(item, secId) {
+  _qIdx[secId] = (_qIdx[secId] || 0) + 1;
+  const idx = _qIdx[secId];
+  const isObj = typeof item === 'object';
+  const text = isObj ? item.text : item;
+  const type = qType(text);
+  const qid = `${secId}_q${idx}`;
+  const labelText = type === 'q' ? `Q${idx}` : type === 'assignment' ? 'Assignment' : 'Reflection';
+  const subList = (isObj && item.nested)
+    ? '<ul class="sub-list">' + item.nested.map(n => `<li>${n}</li>`).join('') + '</ul>'
+    : '';
+  return `<div class="question-item">
+    <div class="question-header">
+      <span class="q-label type-${type}">${labelText}</span>
+      <span class="saved-chip" id="sv_${qid}"></span>
+    </div>
+    <p class="question-prompt">${text}</p>${subList}
+    <textarea class="question-textarea" id="ta_${qid}" placeholder="Write your response here…" rows="4"></textarea>
+  </div>`;
 }
 
-function renderSubsection(sec) {
-  const details = document.createElement('details');
-  details.className = 'subsection'; details.id = sec.id;
-  const { answered, total } = countSection(sec);
-  details.innerHTML = `
+function makeSection(sec, modId) {
+  _qIdx[sec.id] = 0;
+  const body = sec.groups.map(g => {
+    const heading = g.heading ? `<p class="group-heading">${g.heading}</p>` : '';
+    return heading + g.items.map(it => makeItem(it, sec.id)).join('');
+  }).join('');
+  return `<details class="subsection" data-subsection="${sec.id}">
     <summary>
-      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 4 10 8 6 12"/></svg>
-      <span class="summary-text">
-        <span class="summary-code">${sec.code}</span>
-        <span class="summary-title">${sec.title}</span>
-      </span>
-      <span class="summary-right">
-        <span class="prog-count" data-sec-count="${sec.id}">${answered}/${total}</span>
-        <span class="prog-bar"><span class="prog-fill${answered===total&&total>0?' done':''}" data-sec-bar="${sec.id}" style="width:${total?Math.round(answered/total*100):0}%"></span></span>
-      </span>
-    </summary>`;
-  const body = document.createElement('div'); body.className='subsection-body';
-  if (sec.content) { const ctx=document.createElement('div'); ctx.className='subsection-content'; ctx.textContent=sec.content; body.appendChild(ctx); }
-  (sec.questions||[]).forEach(q => body.appendChild(renderQuestion(q)));
-  details.appendChild(body);
-  return details;
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <div class="summary-text">
+        <p class="summary-code">${sec.code}</p>
+        <p class="summary-title">${sec.title}</p>
+      </div>
+      <div class="summary-right">
+        <span class="prog-count" aria-live="polite">0/0</span>
+        <div class="prog-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="prog-fill"></div>
+        </div>
+      </div>
+    </summary>
+    <div class="subsection-body">${body}</div>
+  </details>`;
 }
 
-function renderSubmitPanel(mod) {
-  const panel = document.createElement('div'); panel.className='module-submit-panel';
-  const info = document.createElement('div'); info.style.flex='1';
-  info.innerHTML=`<div class="submit-panel-title">Submit ${mod.eyebrow.split('·')[0].trim()}</div><div class="submit-panel-sub">Copy your responses or submit directly to Google Form.</div>`;
-  panel.appendChild(info);
-  const actions = document.createElement('div'); actions.className='submit-panel-actions';
-  const rBtn=document.createElement('button'); rBtn.className='btn btn-outline'; rBtn.textContent='Review Responses';
-  rBtn.addEventListener('click',()=>showModal(mod));
-  const cBtn=document.createElement('button'); cBtn.className='btn btn-ghost'; cBtn.textContent='Copy Responses';
-  cBtn.addEventListener('click',()=>copyModule(mod));
-  const formUrl=FORM_URLS[mod.formKey];
-  const fWrap=document.createElement('div'); fWrap.style.cssText='display:flex;flex-direction:column;gap:3px';
-  const fLink=document.createElement('a'); fLink.className='btn btn-gold'; fLink.textContent='Submit to Google Form →';
-  fLink.href=formUrl; if(formUrl!=='#')fLink.target='_blank';
-  fWrap.appendChild(fLink);
-  if(formUrl==='#'){const note=document.createElement('span');note.className='form-link-note';note.textContent='Google Form URL not yet configured';fWrap.appendChild(note);}
-  actions.appendChild(rBtn); actions.appendChild(cBtn); actions.appendChild(fWrap);
-  panel.appendChild(actions);
-  return panel;
+function makeModuleSubmit(modId) {
+  const url = FORM_URLS[modId] || '#';
+  return `<div class="module-submit">
+    <h3>Ready to submit this module?</h3>
+    <p>Review your responses above. Copy them to your clipboard, then open the Google Form to submit. You'll receive a copy at your email address.</p>
+    <div class="submit-actions">
+      <button class="btn-copy" onclick="copyModuleResponses('${modId}')">Copy My Responses</button>
+      <a class="btn-submit" href="${url}" target="_blank" rel="noopener">Submit to Google Form →</a>
+    </div>
+  </div>`;
 }
 
-function buildModuleText(mod) {
-  let text=`${mod.eyebrow}\n${mod.title}\n${'='.repeat(60)}\n\n`;
-  (mod.sections||[]).forEach(sec=>{
-    text+=`${sec.code} — ${sec.title}\n${'-'.repeat(40)}\n`;
-    (sec.questions||[]).forEach(q=>{const v=getVal(q.id);text+=`\n${q.label}\n${q.prompt}\n\nResponse: ${v||'(Not answered)'}\n`;});
-    text+='\n';
+function copyModuleResponses(modId) {
+  const sec = document.getElementById(modId);
+  if (!sec) return;
+  const lines = [`=== ${sec.querySelector('.module-title')?.textContent || modId} ===`, ''];
+  sec.querySelectorAll('.question-item').forEach(q => {
+    const label = q.querySelector('.q-label')?.textContent?.trim() || '';
+    const prompt = q.querySelector('.question-prompt')?.textContent?.trim() || '';
+    const val = q.querySelector('.question-textarea')?.value?.trim() || '';
+    if (prompt) { lines.push(`[${label}] ${prompt}`, val || '(no response)', ''); }
   });
-  return text;
-}
-function showModal(mod){openModal(`Review: ${mod.title}`,buildModuleText(mod));}
-function copyModule(mod){navigator.clipboard.writeText(buildModuleText(mod)).catch(()=>{});}
-
-function openModal(title,content){
-  document.getElementById('modal-title').textContent=title;
-  document.getElementById('modal-body').textContent=content;
-  document.getElementById('modal-overlay').classList.add('open');
-}
-function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
-document.getElementById('modal-close').addEventListener('click',closeModal);
-document.getElementById('modal-close-btn').addEventListener('click',closeModal);
-document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
-document.getElementById('modal-copy-btn').addEventListener('click',()=>{
-  const text=document.getElementById('modal-body').textContent;
-  navigator.clipboard.writeText(text).then(()=>{
-    document.getElementById('modal-copy-btn').textContent='Copied!';
-    setTimeout(()=>{document.getElementById('modal-copy-btn').textContent='Copy All';},2000);
-  }).catch(()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);});
-});
-
-function buildModule(mod) {
-  const sec=document.createElement('section');
-  sec.className='course-section'; sec.id=mod.id; sec.setAttribute('data-module',mod.id);
-  sec.innerHTML=`
-    <p class="section-eyebrow">${mod.eyebrow}</p>
-    <h2 class="section-title">${mod.title}</h2>
-    <p class="section-meta">${mod.meta}</p>
-    <div class="section-intro">${mod.intro}</div>
-    <hr class="section-divider">`;
-  (mod.sections||[]).forEach(s=>sec.appendChild(renderSubsection(s)));
-  sec.appendChild(renderSubmitPanel(mod));
-  return sec;
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    const btn = sec.querySelector('.btn-copy');
+    if (btn) { const orig = btn.textContent; btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = orig, 2000); }
+  }).catch(() => {});
 }
 
-function buildAttribution(){
-  const sec=document.createElement('section');
-  sec.className='attribution-section course-section'; sec.id='attribution'; sec.setAttribute('data-module','attribution');
-  const block=document.createElement('div'); block.className='attribution-block';
-  block.innerHTML=`<p class="attribution-eyebrow">Framework Attribution & Authorship</p>`;
-  ATTRIBUTION_ROWS.forEach((row,i)=>{
-    const rowEl=document.createElement('div'); rowEl.className='attribution-row';
-    rowEl.innerHTML=`<p class="attribution-label">${row.label}</p><p class="attribution-text">${row.text}</p>`;
-    block.appendChild(rowEl);
-    if(i<ATTRIBUTION_ROWS.length-1){const hr=document.createElement('hr');hr.className='attribution-divider';block.appendChild(hr);}
+function renderAll() {
+  const main = document.getElementById('main-content');
+  const nav = document.getElementById('nav-inner');
+
+  DATA.forEach(mod => {
+    const tab = document.createElement('button');
+    tab.className = 'nav-tab';
+    tab.textContent = mod.num;
+    tab.dataset.target = mod.id;
+    nav.appendChild(tab);
+
+    const intro = mod.intro ? `<div class="module-intro">${mod.intro}</div>` : '';
+    const el = document.createElement('section');
+    el.className = 'module-section';
+    el.id = mod.id;
+    el.innerHTML = `
+      <p class="module-eyebrow">${mod.num}</p>
+      <h2 class="module-title">${mod.title}</h2>
+      <p class="module-meta">${mod.meta}</p>
+      ${intro}
+      <hr class="module-divider">
+      ${mod.sections.map(s => makeSection(s, mod.id)).join('')}
+      ${makeModuleSubmit(mod.id)}
+    `;
+    main.appendChild(el);
   });
-  sec.appendChild(block);
-  return sec;
+
+  // Attribution
+  const attrTab = document.createElement('button');
+  attrTab.className = 'nav-tab';
+  attrTab.textContent = 'Attribution';
+  attrTab.dataset.target = 'attribution';
+  nav.appendChild(attrTab);
+
+  const attrEl = document.createElement('section');
+  attrEl.className = 'attribution-section';
+  attrEl.id = 'attribution';
+  attrEl.innerHTML = `
+    <div class="attribution-block">
+      <p class="attribution-eyebrow">Attribution &amp; Intellectual Credit</p>
+
+      <div class="attribution-row">
+        <p class="attribution-label">Paul Hill Jr.</p>
+        <p class="attribution-text"><strong>Paul Hill Jr.</strong> developed the African American rites of passage framework presented in <em>Coming of Age: African American Male Rites-of-Passage</em> (1992). Hill's framework for culturally grounded, community-held initiation for African American youth is foundational to this course. All elements of Hill's five-component framework and his conceptualization of Elders as initiators are his original work, used here with full credit and deep respect.</p>
+      </div>
+
+      <hr class="attribution-divider">
+
+      <div class="attribution-row">
+        <p class="attribution-label">Malidoma Patrice Somé</p>
+        <p class="attribution-text"><strong>Malidoma Patrice Somé</strong> (1956–2021) was a Dagara Elder from Burkina Faso, West Africa, and a doctor of philosophy from the Sorbonne and Brandeis University. His books <em>Of Water and the Spirit: Ritual, Magic, and Initiation in the Life of an African Shaman</em> (1994) and <em>Ritual: Power, Healing and Community</em> (1993) are the primary sources for the Dagara tradition presented in this course. The ritual knowledge in this course belongs to the Dagara tradition and to Somé's transmission of it. It is used here with reverence for the source.</p>
+      </div>
+
+      <hr class="attribution-divider">
+
+      <div class="attribution-row">
+        <p class="attribution-label">Na'im Akbar</p>
+        <p class="attribution-text"><strong>Na'im Akbar</strong> (born Luther Benjamin Weems Jr.) is a psychologist and past president of the Association of Black Psychologists. His works <em>Visions for Black Men</em> (1991) and <em>Breaking the Chains of Psychological Slavery</em> (1996) are foundational to the African-centered psychology presented in this course. All elements of Akbar's framework — including his concepts of psychological slavery, liberation psychology, and the master teacher — are his original intellectual work, used here with full credit.</p>
+      </div>
+
+      <hr class="attribution-divider">
+
+      <div class="attribution-row">
+        <p class="attribution-label">Arnold van Gennep &amp; Victor Turner</p>
+        <p class="attribution-text"><strong>Arnold van Gennep</strong> (1873–1957) first described the tripartite structure of rites of passage — Separation, Liminality, and Reincorporation — in <em>The Rites of Passage</em> (1909). <strong>Victor Turner</strong> (1920–1983) extended this framework in <em>The Ritual Process: Structure and Anti-Structure</em> (1969), developing the theory of liminality and communitas. Both frameworks are used here as analytical lenses for understanding the structure of African rites of passage traditions, not as the source traditions themselves.</p>
+      </div>
+
+      <hr class="attribution-divider">
+
+      <div class="attribution-row">
+        <p class="attribution-label">Application &amp; Synthesis</p>
+        <p class="attribution-text">The application of these rites of passage frameworks to the <em>From Soil to Sky</em> program model — including the mapping of the four phases (Soil, Seed, Stem, Sky) onto the initiatory structure of Separation, Liminality, and Reincorporation — is the original synthesis work of <strong>Tiana Massaquoi</strong> and the <strong>Keep Still Cares Foundation</strong>. The FSTS four-phase model, the ceremony design frameworks, and the conceptualization of FSTS as a contemporary African American rites of passage program are Tiana Massaquoi's original contributions. This course structure, its questions, and its applications to organizational practice are part of the <em>From Soil to Sky</em> Training Series — Tiana Massaquoi's legacy work in youth development and mentoring.</p>
+      </div>
+    </div>
+  `;
+  main.appendChild(attrEl);
 }
 
-function buildNav(){
-  const nav=document.getElementById('nav-inner');
-  const items=[
-    ...DATA.map(m=>({id:m.id,label:m.navLabel})),
-    {id:'attribution',label:'Attribution'}
-  ];
-  items.forEach(item=>{
-    const btn=document.createElement('button');
-    btn.className='nav-tab'; btn.textContent=item.label; btn.dataset.target=item.id;
-    btn.addEventListener('click',()=>document.getElementById(item.id)?.scrollIntoView({behavior:'smooth',block:'start'}));
-    nav.appendChild(btn);
+/* =========================================================
+   STATE & PROGRESS
+   ========================================================= */
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem('fsts_c6_v1') || '{}'); } catch { return {}; }
+}
+function saveState(s) {
+  try { localStorage.setItem('fsts_c6_v1', JSON.stringify(s)); } catch {}
+}
+
+function updateProgress() {
+  document.querySelectorAll('[data-subsection]').forEach(sec => {
+    const tas = sec.querySelectorAll('.question-textarea');
+    const answered = [...tas].filter(t => t.value.trim().length > 10).length;
+    const total = tas.length;
+    const pct = total > 0 ? (answered / total) * 100 : 0;
+    const fill = sec.querySelector('.prog-fill');
+    const count = sec.querySelector('.prog-count');
+    const bar = sec.querySelector('.prog-bar');
+    if (fill) { fill.style.width = pct + '%'; fill.classList.toggle('done', pct >= 100); }
+    if (count) count.textContent = `${answered}/${total}`;
+    if (bar) bar.setAttribute('aria-valuenow', Math.round(pct));
   });
+  const all = document.querySelectorAll('.question-textarea');
+  const done = [...all].filter(t => t.value.trim().length > 10).length;
+  const pct = all.length > 0 ? done / all.length : 0;
+  const rf = document.getElementById('ring-fill');
+  const rp = document.getElementById('ring-pct');
+  if (rf) { rf.style.strokeDasharray = CIRC; rf.style.strokeDashoffset = CIRC * (1 - pct); }
+  if (rp) rp.textContent = Math.round(pct * 100) + '%';
 }
 
-function initIO(){
-  const tabs=document.querySelectorAll('.nav-tab');
-  const sections=document.querySelectorAll('[data-module]');
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const id=entry.target.getAttribute('data-module');
-        tabs.forEach(t=>t.classList.toggle('active',t.dataset.target===id));
+const _debounce = {};
+function initTextareas() {
+  const state = getState();
+  document.querySelectorAll('.question-textarea').forEach(ta => {
+    if (state[ta.id]) ta.value = state[ta.id];
+    ta.addEventListener('input', () => {
+      clearTimeout(_debounce[ta.id]);
+      _debounce[ta.id] = setTimeout(() => {
+        const s = getState();
+        if (ta.value.trim()) s[ta.id] = ta.value;
+        else delete s[ta.id];
+        saveState(s);
+        const chip = document.getElementById('sv_' + ta.id.replace('ta_', 'sv_'));
+        if (chip) { chip.textContent = 'Saved'; setTimeout(() => chip.textContent = '', 1500); }
+        updateProgress();
+      }, 500);
+    });
+  });
+  updateProgress();
+}
+
+/* NAV ACTIVE TAB via IntersectionObserver */
+function initNav() {
+  const tabs = document.querySelectorAll('.nav-tab');
+  const sections = document.querySelectorAll('.module-section, .attribution-section');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = document.getElementById(tab.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.target === entry.target.id));
+        const activeTab = document.querySelector(`.nav-tab[data-target="${entry.target.id}"]`);
+        if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
     });
-  },{rootMargin:'-30% 0px -60% 0px'});
-  sections.forEach(s=>io.observe(s));
+  }, { threshold: 0.15, rootMargin: '-80px 0px -60% 0px' });
+
+  sections.forEach(s => obs.observe(s));
 }
 
-const main=document.getElementById('main-content');
-buildNav();
-DATA.forEach(mod=>main.appendChild(buildModule(mod)));
-main.appendChild(buildAttribution());
-updateAll();
-initIO();
+document.addEventListener('DOMContentLoaded', () => {
+  renderAll();
+  initTextareas();
+  initNav();
+});
 </script>
+</body>
+</html>
