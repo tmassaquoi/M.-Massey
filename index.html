@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>From Soil to Sky Training Series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap">
+<style>
+/* === TOKENS === */
+:root {
+  --bg: #F5F3EE;
+  --surface: #FFFFFF;
+  --surface-2: #EDEAE4;
+  --fg: #1A1710;
+  --fg-muted: #4A4538;
+  --fg-subtle: #7A7264;
+  --accent: #C4960E;
+  --accent-hover: #A87C0A;
+  --accent-light: #FBF3D8;
+  --hero-bg: #1B3E2A;
+  --border: #DDD9D0;
+  --border-strong: #B8B2A4;
+  --positive: #1A7A4A;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 2px 12px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.05);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121510;
+    --surface: #1A1E17;
+    --surface-2: #212619;
+    --fg: #EAE8E0;
+    --fg-muted: #A0A090;
+    --fg-subtle: #686858;
+    --accent: #C4960E;
+    --accent-hover: #D8AA20;
+    --accent-light: #201800;
+    --border: #282C20;
+    --border-strong: #3C4030;
+    --positive: #3AB870;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121510;
+  --surface: #1A1E17;
+  --surface-2: #212619;
+  --fg: #EAE8E0;
+  --fg-muted: #A0A090;
+  --fg-subtle: #686858;
+  --accent: #C4960E;
+  --accent-hover: #D8AA20;
+  --accent-light: #201800;
+  --border: #282C20;
+  --border-strong: #3C4030;
+  --positive: #3AB870;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+
+html { scroll-behavior: smooth }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === HERO === */
+.hero {
+  background: var(--hero-bg);
+  color: #fff;
+  padding-top: max(72px, calc(56px + env(safe-area-inset-top, 0px)));
+  padding-bottom: 72px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(196,150,14,.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(255,255,255,.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-org {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .6;
+  margin-bottom: 18px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(32px, 6vw, 56px);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-wrap: balance;
+  color: #fff;
+}
+.hero-title span {
+  color: #C4960E;
+}
+.hero-subtitle {
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.6;
+  opacity: .8;
+  max-width: 56ch;
+  margin-bottom: 32px;
+}
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hero-stat-num {
+  font-size: 22px;
+  font-weight: 600;
+  color: #C4960E;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.hero-stat-label {
+  font-size: 11px;
+  opacity: .6;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.hero-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255,255,255,.2);
+}
+
+/* === MAIN LAYOUT === */
+.page-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  padding-block: 0 80px;
+}
+
+/* === SERIES INTRO === */
+.series-intro {
+  padding-top: 52px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 44px;
+}
+.series-intro p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--fg-muted);
+  max-width: 68ch;
+}
+.series-intro p + p { margin-top: 14px }
+
+/* === FOUNDATIONS CALLOUT === */
+.foundations-callout {
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  box-shadow: 0 0 0 6px var(--accent-light);
+}
+.foundations-callout-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.foundations-callout-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 26px);
+  line-height: 1.2;
+  margin-bottom: 10px;
+  text-wrap: balance;
+}
+.foundations-callout-desc {
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1.6;
+  max-width: 58ch;
+}
+.foundations-callout-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.callout-chip {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .15s, transform .1s;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px) }
+.btn-primary:active { transform: translateY(0) }
+@media (max-width: 620px) {
+  .foundations-callout { grid-template-columns: 1fr; }
+  .foundations-callout .btn-primary { width: fit-content; }
+}
+
+/* === SECTION HEADING === */
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  margin-bottom: 20px;
+}
+
+/* === COURSE GRID === */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 64px;
+}
+
+/* === COURSE CARD === */
+.course-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  border-left-width: 4px;
+  padding: 24px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s, transform .15s;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+.course-card:not(.course-card--disabled):hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+.course-card--disabled {
+  opacity: .6;
+  cursor: default;
+}
+.card-badges {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+.badge-label {
+  background: var(--surface-2);
+  color: var(--fg-subtle);
+  border: 1px solid var(--border);
+}
+.badge-status-available {
+  background: rgba(26,122,74,.12);
+  color: #1A7A4A;
+}
+.badge-status-soon {
+  background: var(--surface-2);
+  color: var(--fg-subtle);
+}
+.badge-status-start {
+  background: rgba(196,150,14,.15);
+  color: #9A7008;
+}
+.badge-status-progress {
+  background: rgba(44,59,142,.12);
+  color: #2C3B8E;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .badge-status-available { background: rgba(58,184,112,.15); color: #3AB870 }
+  :root:not([data-theme="light"]) .badge-status-start { background: rgba(196,150,14,.2); color: #C4960E }
+  :root:not([data-theme="light"]) .badge-status-progress { background: rgba(104,120,216,.15); color: #6878D8 }
+}
+:root[data-theme="dark"] .badge-status-available { background: rgba(58,184,112,.15); color: #3AB870 }
+:root[data-theme="dark"] .badge-status-start { background: rgba(196,150,14,.2); color: #C4960E }
+:root[data-theme="dark"] .badge-status-progress { background: rgba(104,120,216,.15); color: #6878D8 }
+
+.card-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  text-wrap: balance;
+}
+.card-authors {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  margin-bottom: 10px;
+}
+.card-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+  flex: 1;
+  margin-bottom: 16px;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.card-time {
+  font-size: 12px;
+  color: var(--fg-subtle);
+}
+.card-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background .15s;
+}
+.course-card:not(.course-card--disabled):hover .card-arrow {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+.card-arrow svg { color: var(--fg-muted); }
+.course-card:not(.course-card--disabled):hover .card-arrow svg { color: var(--accent); }
+
+/* === PROGRESS BAR === */
+.card-progress {
+  margin-bottom: 12px;
+}
+.card-progress-bar {
+  height: 3px;
+  background: var(--surface-2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.card-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width .4s ease;
+}
+.card-progress-label {
+  font-size: 11px;
+  color: var(--fg-subtle);
+}
+
+/* === ABOUT === */
+.about-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.about-monogram {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--hero-bg);
+  color: #fff;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.about-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  margin-bottom: 6px;
+}
+.about-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.about-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+.about-text + .about-text { margin-top: 10px }
+@media (max-width: 520px) {
+  .about-section { grid-template-columns: 1fr; gap: 16px; padding: 24px 20px }
+}
+
+/* === FOOTER === */
+.site-footer {
+  background: var(--hero-bg);
+  color: rgba(255,255,255,.6);
+  padding: 28px max(24px, env(safe-area-inset-left, 0px));
+  padding-bottom: max(28px, env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  font-size: 13px;
+}
+.site-footer strong { color: rgba(255,255,255,.85) }
+
+/* === RESPONSIVE === */
+@media (max-width: 480px) {
+  .hero { padding-top: 48px; padding-bottom: 48px }
+  .foundations-callout { padding: 24px 20px }
+  .about-section { padding: 24px 20px }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-org">Keep Still Cares Foundation</p>
+    <h1 class="hero-title">From <span>Soil</span> to <span>Sky</span><br>Training Series</h1>
+    <p class="hero-subtitle">Professional development for organizational leaders building youth development and mentoring programming grounded in African philosophy, developmental science, and community wisdom.</p>
+    <div class="hero-meta">
+      <div class="hero-stat">
+        <span class="hero-stat-num">7</span>
+        <span class="hero-stat-label">Courses</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">5</span>
+        <span class="hero-stat-label">Frameworks</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">~50</span>
+        <span class="hero-stat-label">Hours of Learning</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">Designed by</span>
+        <span class="hero-stat-label">Tiana Massaquoi</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="page-main">
+
+  <!-- INTRO -->
+  <section class="series-intro">
+    <p>The From Soil to Sky Training Series is a seven-course professional development program for organizational leaders who want to develop or lead youth development and mentoring programming. Each course goes deep on one framework — or a synthesis of frameworks — and applies it directly to program design, facilitation, and organizational practice.</p>
+    <p>This series is rooted in African philosophical traditions, developmental science, and decades of mentoring practice. It is designed to be studied sequentially — start with FOUNDATIONS and build from there. Every course produces work you can use immediately in your organization.</p>
+  </section>
+
+  <!-- FOUNDATIONS CALLOUT -->
+  <div class="foundations-callout" id="foundations-card">
+    <div>
+      <p class="foundations-callout-label">Where Everyone Starts</p>
+      <h2 class="foundations-callout-title">FOUNDATIONS</h2>
+      <p class="foundations-callout-desc">Five frameworks, seven modules, and a full organizational readiness capstone. FOUNDATIONS integrates Positive Youth Development, the 40 Developmental Assets, Karen Pittman's youth ecosystems research, Elements of Effective Practice in Mentoring, and Emergent Strategy into a complete grounding for organizational leaders — with modules on youth engagement, volunteers, families, and community stakeholders.</p>
+      <div class="foundations-callout-meta">
+        <span class="callout-chip">~8 hours</span>
+        <span class="callout-chip">7 modules</span>
+        <span class="callout-chip">Google Forms per module</span>
+        <span class="callout-chip">Capstone project included</span>
+      </div>
+    </div>
+    <a href="foundations.html" class="btn-primary">
+      Begin FOUNDATIONS
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 4 10 8 6 12"/></svg>
+    </a>
+  </div>
+
+  <!-- COURSE GRID -->
+  <p class="section-label">All Courses</p>
+  <div class="course-grid" id="course-grid">
+    <!-- rendered by JS -->
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <div class="about-monogram" aria-hidden="true">TM</div>
+    <div>
+      <p class="about-label">About the Designer</p>
+      <h2 class="about-name">Tiana Massaquoi</h2>
+      <p class="about-text">Tiana Massaquoi is the founder of Keep Still Cares Foundation and the creator of the From Soil to Sky Program Model — a year-long youth development and mentoring program structured around a four-phase rites of passage journey (Soil → Seed → Stem → Sky). The FSTS Training Series is Tiana's contribution to the field: a complete professional development curriculum that gives organizational leaders the theoretical grounding and practical tools to build programs that heal as well as develop young people.</p>
+      <p class="about-text">The series draws on Tiana's original synthesis of African cultural philosophy, developmental science, and community practice, and represents a distinct contribution to the fields of youth development, mentoring, and culturally grounded organizational leadership.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p><strong>From Soil to Sky Training Series</strong> &nbsp;·&nbsp; Keep Still Cares Foundation &nbsp;·&nbsp; Designed by Tiana Massaquoi</p>
+  <p style="margin-top:6px">All course content is original work or applied synthesis and may not be reproduced without permission.</p>
+</footer>
+
+<script>
+const COURSES = [
+  {
+    label: 'FOUNDATIONS',
+    title: 'Foundations of Youth Development & Mentoring',
+    authors: 'Lerner · Benson · Pittman · EEPM · Brown',
+    desc: 'Integrates five core frameworks into a complete grounding for organizational leaders, with stakeholder-specific modules and a program design capstone.',
+    time: '~8 hours',
+    color: '#1B3E2A',
+    href: 'foundations.html',
+    status: 'start',
+    statusLabel: 'Start Here',
+    storeKey: 'fsts_foundations_v1',
+  },
+  {
+    label: 'Course 2',
+    title: 'Emergent Strategy in Youth Work',
+    authors: 'Adrienne Maree Brown',
+    desc: 'A deep study of all nine Emergent Strategy principles and their application to youth organizations, mentoring programs, and the FSTS model.',
+    time: '~6 hours',
+    color: '#1C5235',
+    href: 'course-2-emergent-strategy.html',
+    status: 'available',
+    statusLabel: 'Available',
+    storeKey: 'fsts_c2_v1',
+  },
+  {
+    label: 'Course 3',
+    title: 'Healing-Centered Engagement',
+    authors: 'Shawn Ginwright',
+    desc: 'Explores Ginwright\'s four pillars of HCE, the shift from trauma-informed to healing-centered practice, and what the healed practitioner looks like.',
+    time: '~6 hours',
+    color: '#8C4A2F',
+    href: 'course-3-healing-centered-engagement.html',
+    status: 'available',
+    statusLabel: 'Available',
+    storeKey: 'fsts_c3_v1',
+  },
+  {
+    label: 'Course 4',
+    title: 'PYD × Healing-Centered Engagement',
+    authors: 'Lerner · Benson · Pittman · Ginwright',
+    desc: 'A co-analysis of Positive Youth Development and HCE — their convergences, productive tensions, and integration in the FSTS program model.',
+    time: '~6 hours',
+    color: '#2C3B8E',
+    href: 'course-4-pyd-hce.html',
+    status: 'available',
+    statusLabel: 'Available',
+    storeKey: 'fsts_c4_v1',
+  },
+  {
+    label: 'Course 5',
+    title: 'Cultural Grounding: Nguzo Saba, Ma\'at & Ubuntu',
+    authors: 'Maulana Karenga · Kemetic tradition · Bantu tradition',
+    desc: 'Studies the three African frameworks that form the cultural spine of FSTS — with deep dives on all seven Nguzo Saba principles.',
+    time: '~6 hours',
+    color: '#4A1860',
+    href: 'course-5-cultural-grounding.html',
+    status: 'available',
+    statusLabel: 'Available',
+    storeKey: 'fsts_c5_v1',
+  },
+  {
+    label: 'Course 6',
+    title: 'Rites of Passage & Developmental Ceremony',
+    authors: 'Paul Hill Jr. · Malidoma Somé · Na\'im Akbar',
+    desc: 'The FSTS four-phase structure as a rites of passage framework — separation, threshold, and return as developmental architecture.',
+    time: '~6 hours',
+    color: '#5C3614',
+    href: null,
+    status: 'soon',
+    statusLabel: 'Coming Soon',
+    storeKey: null,
+  },
+  {
+    label: 'Course 7',
+    title: 'The FSTS Program Model',
+    authors: 'Tiana Massaquoi · Keep Still Cares Foundation',
+    desc: 'The complete From Soil to Sky Program Model — original work synthesizing all six prior courses into a full program design and implementation guide.',
+    time: '~6 hours',
+    color: '#1A3D4A',
+    href: null,
+    status: 'soon',
+    statusLabel: 'Coming Soon',
+    storeKey: null,
+  },
+];
+
+function getProgress(key) {
+  if (!key) return null;
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    const keys = Object.keys(data);
+    if (!keys.length) return null;
+    const done = keys.filter(k => data[k] === true).length;
+    return { done, total: keys.length };
+  } catch(e) { return null }
+}
+
+function buildGrid() {
+  const grid = document.getElementById('course-grid');
+  COURSES.forEach(course => {
+    const progress = getProgress(course.storeKey);
+    const isDisabled = !course.href;
+
+    const card = document.createElement(isDisabled ? 'div' : 'a');
+    card.className = 'course-card' + (isDisabled ? ' course-card--disabled' : '');
+    if (!isDisabled) {
+      card.href = course.href;
+    }
+    card.style.borderLeftColor = course.color;
+
+    // Determine status
+    let statusClass = 'badge-status-available';
+    let statusLabel = course.statusLabel;
+    if (course.status === 'start') statusClass = 'badge-status-start';
+    if (course.status === 'soon') statusClass = 'badge-status-soon';
+    if (progress && course.status !== 'soon') {
+      statusClass = 'badge-status-progress';
+      statusLabel = 'In Progress';
+    }
+
+    let progressHTML = '';
+    if (progress) {
+      const pct = Math.round(progress.done / progress.total * 100);
+      progressHTML = `
+        <div class="card-progress">
+          <span class="card-progress-label">${progress.done} of ${progress.total} items complete</span>
+          <div class="card-progress-bar"><div class="card-progress-fill" style="width:${pct}%"></div></div>
+        </div>`;
+    }
+
+    const arrowHTML = !isDisabled ? `
+      <span class="card-arrow" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg>
+      </span>` : '';
+
+    card.innerHTML = `
+      <div class="card-badges">
+        <span class="badge badge-label">${course.label}</span>
+        <span class="badge ${statusClass}">${statusLabel}</span>
+      </div>
+      <h3 class="card-title">${course.title}</h3>
+      <p class="card-authors">${course.authors}</p>
+      <p class="card-desc">${course.desc}</p>
+      ${progressHTML}
+      <div class="card-footer">
+        <span class="card-time">${course.time}</span>
+        ${arrowHTML}
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+buildGrid();
+</script>
+</body>
+</html>
